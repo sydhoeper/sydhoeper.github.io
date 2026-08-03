@@ -69,7 +69,9 @@ function showComingSoon(pageName, pagePath = "") {
 
 function updateActiveLink(pageName) {
     navigationLinks.forEach((link) => {
-        if (link.dataset.page === pageName) {
+        const isHomeLink = link.dataset.page === "home";
+
+        if (link.dataset.page === pageName && !isHomeLink) {
             link.classList.add("active");
         } else {
             link.classList.remove("active");

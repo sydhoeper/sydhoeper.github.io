@@ -5,6 +5,8 @@
 :root {
     --color-background: #F7F3EC;
     --color-text: #222535;
+    --color-selected-background: #222535;
+    --color-selected-text: #F7F3EC;
     --color-accent: #C66A3D;
     --color-muted: #7B7284;
 
@@ -89,6 +91,7 @@ body {
     display: block;
 
     width: fit-content;
+    padding: 3px 8px;
     max-width: 100%;
 
     margin: 3px 0;
@@ -117,6 +120,16 @@ body {
 }
 
 .navigation a.active {
+    font-weight: 400;
+    background: var(--color-selected-background);
+    color: var(--color-selected-text);
+    text-decoration: none;
+}
+
+.navigation .site-title.active {
+    background: transparent;
+    color: var(--color-text);
+    text-decoration: none;
     font-weight: 700;
 }
 
