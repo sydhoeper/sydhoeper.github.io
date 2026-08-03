@@ -86,6 +86,15 @@ body {
     text-underline-offset: 2px;
 }
 
+.navigation .site-title {
+    margin: 0 0 60px 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 0.92;
+    text-decoration: none;
+    letter-spacing: -0.05em;
+}
+
 .navigation a:hover {
     opacity: 0.5;
 }
@@ -167,7 +176,7 @@ body {
         font-size: 28px;
     }
 
-    .site-title {
+    .navigation .site-title {
         margin-bottom: 42px;
         font-size: 36px;
     }
