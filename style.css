@@ -2,16 +2,33 @@
     box-sizing: border-box;
 }
 
+:root {
+    --color-background: #F7F3EC;
+    --color-text: #222535;
+    --color-accent: #C66A3D;
+    --color-muted: #7B7284;
+
+    --font-body: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    --text-base: 16px;
+    --text-title: 48px;
+    --text-heading: 32px;
+    --text-subheading: 24px;
+
+    --sidebar-width: 390px;
+    --page-padding: 80px;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
-    background: white;
-    color: black;
-    font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
 }
 
 .sidebar {
@@ -19,13 +36,13 @@ body {
     top: 0;
     left: 0;
 
-    width: 390px;
+    width: var(--sidebar-width);
     height: 100vh;
 
-    padding: 80px 45px 80px 80px;
+    padding: var(--page-padding) 45px var(--page-padding) var(--page-padding);
 
     overflow-y: auto;
-    background: white;
+    background: var(--color-background);
 }
 
 .navigation {
@@ -37,11 +54,11 @@ body {
 
     margin-bottom: 60px;
 
-    font-size: 48px;
+    font-size: var(--text-title);
     font-weight: 700;
     line-height: 0.92;
 
-    color: black;
+    color: var(--color-text);
 
     text-decoration: none !important;
 
@@ -63,7 +80,7 @@ body {
 .navigation h2 {
     margin: 0 0 7px 0;
 
-    font-size: 16px;
+    font-size: var(--text-base);
     line-height: 1.1;
     font-weight: 700;
 }
@@ -76,9 +93,9 @@ body {
 
     margin: 3px 0;
 
-    color: black;
+    color: var(--color-text);
 
-    font-size: 16px;
+    font-size: var(--text-base);
     line-height: 1.2;
 
     text-decoration: underline;
@@ -88,7 +105,7 @@ body {
 
 .navigation .site-title {
     margin: 0 0 60px 0;
-    font-size: 48px;
+    font-size: var(--text-title);
     font-weight: 700;
     line-height: 0.92;
     text-decoration: none;
@@ -110,28 +127,28 @@ body {
 }
 
 .main-content {
-    margin-left: 390px;
+    margin-left: var(--sidebar-width);
 
     min-height: 100vh;
     max-width: 1050px;
 
-    padding: 80px 80px 120px 60px;
+    padding: var(--page-padding) var(--page-padding) 120px 60px;
 
-    font-size: 16px;
+    font-size: var(--text-base);
     line-height: 1.5;
 }
 
 .main-content h1 {
     margin-top: 0;
 
-    font-size: 32px;
+    font-size: var(--text-heading);
     line-height: 1.05;
 }
 
 .main-content h2 {
     margin-top: 45px;
 
-    font-size: 24px;
+    font-size: var(--text-subheading);
 }
 
 .main-content img,
@@ -154,7 +171,7 @@ body {
 
         padding: 40px 30px;
 
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid var(--color-text);
     }
 
     .main-content {
@@ -165,11 +182,11 @@ body {
     }
 
     .navigation h2 {
-        font-size: 16px;
+        font-size: var(--text-base);
     }
 
     .navigation a {
-        font-size: 16px;
+        font-size: var(--text-base);
     }
 
     .main-content h1 {
