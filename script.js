@@ -4,6 +4,7 @@ const navigationLinks = document.querySelectorAll("[data-page]");
 const pageMap = {
     home: "pages/home.html",
     about: "pages/about.html",
+    resume: "pages/background.html",
     contact: "pages/contact.html",
 
     "va-pdfs": "pages/User Experience Design/va-pdfs.html",
