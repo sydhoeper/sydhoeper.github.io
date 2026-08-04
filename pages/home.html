@@ -2,6 +2,8 @@
     .home-page {
         width: 100%;
         --home-section-padding: 48px;
+        --home-section-spacing: clamp(4rem, 8vw, 8rem);
+        --home-section-spacing-compact: clamp(2rem, 4vw, 4rem);
         font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
@@ -12,8 +14,8 @@
         gap: clamp(2rem, 6vw, 6rem);
         width: calc(100% + (2 * var(--page-padding)));
         margin-left: calc(-1 * var(--page-padding));
-        min-height: 70vh;
-        padding: clamp(3rem, 7vw, 7rem) var(--home-section-padding);
+        padding: var(--home-section-spacing) var(--home-section-padding);
+        padding-bottom: var(--home-section-spacing-compact);
         text-align: left;
     }
 
@@ -27,10 +29,6 @@
         font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-    }
-
-    .home-hero .home-eyebrow {
-        margin-bottom: 2rem;
     }
 
     .home-hero h1,
@@ -69,7 +67,8 @@
     .home-section {
         width: calc(100% + (2 * var(--page-padding)));
         margin-left: calc(-1 * var(--page-padding));
-        padding: clamp(4rem, 8vw, 8rem) var(--home-section-padding);
+        padding: var(--home-section-spacing) var(--home-section-padding);
+        padding-top: var(--home-section-spacing-compact);
     }
 
     .experience-layout {
@@ -82,6 +81,7 @@
     }
 
     .home-section h2 {
+        margin-bottom: 1rem;
         font-size: clamp(2.25rem, 4vw, 4rem);
     }
 
@@ -126,7 +126,7 @@
     .contact-section {
         width: calc(100% + (2 * var(--page-padding)));
         margin-left: calc(-1 * var(--page-padding));
-        padding: clamp(4rem, 8vw, 8rem) var(--home-section-padding);
+        padding: var(--home-section-spacing) var(--home-section-padding);
         background: #dcebc8;
         color: #1c2616;
     }
@@ -218,10 +218,6 @@
             grid-template-columns: 1fr;
         }
 
-        .home-hero {
-            min-height: auto;
-        }
-
         .home-portrait {
             order: -1;
             max-width: 420px;
@@ -236,7 +232,6 @@
 <div class="home-page">
     <section class="home-hero" aria-labelledby="home-title">
         <div class="home-hero-copy">
-            <p class="home-eyebrow">Product Designer · Creative Technologist</p>
             <h1 id="home-title">Complexity, made human.</h1>
             <p>
                 I’m Syd Hoeper, a senior product designer with nearly a decade of experience turning complex systems into clear, useful, and human-centered products. My work spans public services, emergency response, outdoor travel, mapping, and interactive technology, with a focus on making difficult experiences feel understandable and approachable.
@@ -251,6 +246,7 @@
     <section class="home-section" aria-labelledby="experience-title">
         <div class="experience-layout">
             <div>
+                <p class="home-eyebrow">Product Designer · Creative Technologist</p>
                 <h2 id="experience-title">Experience</h2>
             </div>
 
