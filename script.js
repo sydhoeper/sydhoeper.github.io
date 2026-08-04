@@ -46,7 +46,10 @@ async function loadPage(pageName) {
         const pageContent = await response.text();
 
         contentArea.innerHTML = pageContent;
-        requestAnimationFrame(() => fitGameEmbeds(contentArea));
+        requestAnimationFrame(() => {
+            fitGameEmbeds(contentArea);
+            initializeGalleries(contentArea);
+        });
         updateActiveLink(pageName);
         window.scrollTo(0, 0);
     } catch (error) {
@@ -69,6 +72,72 @@ function fitGameEmbeds(root = document) {
 
         iframe.style.transform = `scale(${scale})`;
         container.style.height = `${embedHeight * scale}px`;
+    });
+}
+
+function initializeGalleries(root = document) {
+    root.querySelectorAll("[data-gallery]").forEach((gallery) => {
+        const galleryPage = gallery.closest(".marker-gallery-page");
+        const dialog = galleryPage?.querySelector(".marker-lightbox");
+        const items = [...gallery.querySelectorAll(".marker-gallery-item")];
+        const lightboxImage = dialog?.querySelector("[data-gallery-image]");
+        const counter = dialog?.querySelector("[data-gallery-counter]");
+        const previousButton = dialog?.querySelector("[data-gallery-previous]");
+        const nextButton = dialog?.querySelector("[data-gallery-next]");
+        const closeButton = dialog?.querySelector("[data-gallery-close]");
+
+        if (!dialog || !lightboxImage || !counter || items.length === 0) {
+            return;
+        }
+
+        let currentIndex = 0;
+        let openingButton = null;
+
+        const showImage = (index) => {
+            currentIndex = (index + items.length) % items.length;
+
+            const item = items[currentIndex];
+            const thumbnail = item.querySelector("img");
+
+            lightboxImage.src = item.dataset.full || thumbnail.src;
+            lightboxImage.alt = thumbnail.alt;
+            counter.textContent = `${currentIndex + 1} / ${items.length}`;
+        };
+
+        items.forEach((item, index) => {
+            item.addEventListener("click", () => {
+                openingButton = item;
+                showImage(index);
+                dialog.showModal();
+            });
+        });
+
+        previousButton?.addEventListener("click", () => showImage(currentIndex - 1));
+        nextButton?.addEventListener("click", () => showImage(currentIndex + 1));
+        closeButton?.addEventListener("click", () => dialog.close());
+
+        dialog.addEventListener("click", (event) => {
+            if (event.target === dialog) {
+                dialog.close();
+            }
+        });
+
+        dialog.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft") {
+                event.preventDefault();
+                showImage(currentIndex - 1);
+            }
+
+            if (event.key === "ArrowRight") {
+                event.preventDefault();
+                showImage(currentIndex + 1);
+            }
+        });
+
+        dialog.addEventListener("close", () => {
+            lightboxImage.removeAttribute("src");
+            openingButton?.focus();
+        });
     });
 }
 

@@ -1,0 +1,379 @@
+<style>
+    .marker-gallery-page h1 {
+        margin-bottom: 2rem;
+    }
+
+    .marker-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .marker-gallery-item {
+        aspect-ratio: 1;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        background: #e8e3dc;
+        cursor: zoom-in;
+    }
+
+    .marker-gallery-item img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        margin: 0;
+        object-fit: cover;
+        transition: transform 180ms ease;
+    }
+
+    .marker-gallery-item:hover img {
+        transform: scale(1.03);
+    }
+
+    .marker-gallery-item:focus-visible {
+        outline: 3px solid var(--color-text);
+        outline-offset: 3px;
+    }
+
+    .marker-lightbox {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100dvh;
+        max-width: none;
+        max-height: none;
+        margin: 0;
+        padding: 1.5rem;
+        border: 0;
+        background: rgba(20, 20, 28, 0.96);
+        color: white;
+    }
+
+    .marker-lightbox[open] {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr) 64px;
+        align-items: center;
+    }
+
+    .marker-lightbox::backdrop {
+        background: rgba(20, 20, 28, 0.96);
+    }
+
+    .marker-lightbox figure {
+        display: grid;
+        min-width: 0;
+        height: 100%;
+        margin: 0;
+        place-items: center;
+    }
+
+    .marker-lightbox img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: calc(100dvh - 5rem);
+        margin: 0;
+        object-fit: contain;
+    }
+
+    .marker-lightbox figcaption {
+        position: fixed;
+        right: 1.5rem;
+        bottom: 1rem;
+        left: 1.5rem;
+        text-align: center;
+    }
+
+    .marker-lightbox button {
+        border: 0;
+        background: rgba(255, 255, 255, 0.12);
+        color: white;
+        cursor: pointer;
+    }
+
+    .marker-lightbox button:hover,
+    .marker-lightbox button:focus-visible {
+        background: rgba(255, 255, 255, 0.24);
+    }
+
+    .marker-lightbox-nav {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        font-size: 1.75rem;
+        line-height: 1;
+    }
+
+    .marker-lightbox-close {
+        position: fixed;
+        z-index: 1;
+        top: 1rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        font-size: 2rem;
+        line-height: 1;
+    }
+
+    body:has(.marker-lightbox[open]) {
+        overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+        .marker-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .marker-lightbox {
+            padding: 1rem 0.5rem;
+        }
+
+        .marker-lightbox[open] {
+            grid-template-columns: 48px minmax(0, 1fr) 48px;
+        }
+
+        .marker-lightbox-nav {
+            width: 42px;
+            height: 42px;
+        }
+    }
+</style>
+
+<article class="marker-gallery-page">
+    <h1>Marker Doodles</h1>
+
+    <div class="marker-grid" data-gallery>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/B80D1FF8-BF4C-4718-96FC-8BF21908A2C6.jpg" aria-label="Open marker doodle 1 of 72">
+            <img src="/images/Markers/thumbs/B80D1FF8-BF4C-4718-96FC-8BF21908A2C6.jpg" alt="Colorful marker doodle 1" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_0612.jpg" aria-label="Open marker doodle 2 of 72">
+            <img src="/images/Markers/thumbs/IMG_0612.jpg" alt="Colorful marker doodle 2" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1034.jpg" aria-label="Open marker doodle 3 of 72">
+            <img src="/images/Markers/thumbs/IMG_1034.jpg" alt="Colorful marker doodle 3" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1035.jpg" aria-label="Open marker doodle 4 of 72">
+            <img src="/images/Markers/thumbs/IMG_1035.jpg" alt="Colorful marker doodle 4" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1036.jpg" aria-label="Open marker doodle 5 of 72">
+            <img src="/images/Markers/thumbs/IMG_1036.jpg" alt="Colorful marker doodle 5" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1037.jpg" aria-label="Open marker doodle 6 of 72">
+            <img src="/images/Markers/thumbs/IMG_1037.jpg" alt="Colorful marker doodle 6" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1038.jpg" aria-label="Open marker doodle 7 of 72">
+            <img src="/images/Markers/thumbs/IMG_1038.jpg" alt="Colorful marker doodle 7" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1040.jpg" aria-label="Open marker doodle 8 of 72">
+            <img src="/images/Markers/thumbs/IMG_1040.jpg" alt="Colorful marker doodle 8" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1041.jpg" aria-label="Open marker doodle 9 of 72">
+            <img src="/images/Markers/thumbs/IMG_1041.jpg" alt="Colorful marker doodle 9" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1042.jpg" aria-label="Open marker doodle 10 of 72">
+            <img src="/images/Markers/thumbs/IMG_1042.jpg" alt="Colorful marker doodle 10" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1043.jpg" aria-label="Open marker doodle 11 of 72">
+            <img src="/images/Markers/thumbs/IMG_1043.jpg" alt="Colorful marker doodle 11" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1044.jpg" aria-label="Open marker doodle 12 of 72">
+            <img src="/images/Markers/thumbs/IMG_1044.jpg" alt="Colorful marker doodle 12" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1045.jpg" aria-label="Open marker doodle 13 of 72">
+            <img src="/images/Markers/thumbs/IMG_1045.jpg" alt="Colorful marker doodle 13" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1046.jpg" aria-label="Open marker doodle 14 of 72">
+            <img src="/images/Markers/thumbs/IMG_1046.jpg" alt="Colorful marker doodle 14" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1047.jpg" aria-label="Open marker doodle 15 of 72">
+            <img src="/images/Markers/thumbs/IMG_1047.jpg" alt="Colorful marker doodle 15" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1048.jpg" aria-label="Open marker doodle 16 of 72">
+            <img src="/images/Markers/thumbs/IMG_1048.jpg" alt="Colorful marker doodle 16" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1049.jpg" aria-label="Open marker doodle 17 of 72">
+            <img src="/images/Markers/thumbs/IMG_1049.jpg" alt="Colorful marker doodle 17" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1050.jpg" aria-label="Open marker doodle 18 of 72">
+            <img src="/images/Markers/thumbs/IMG_1050.jpg" alt="Colorful marker doodle 18" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1051.jpg" aria-label="Open marker doodle 19 of 72">
+            <img src="/images/Markers/thumbs/IMG_1051.jpg" alt="Colorful marker doodle 19" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1052.jpg" aria-label="Open marker doodle 20 of 72">
+            <img src="/images/Markers/thumbs/IMG_1052.jpg" alt="Colorful marker doodle 20" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1053.jpg" aria-label="Open marker doodle 21 of 72">
+            <img src="/images/Markers/thumbs/IMG_1053.jpg" alt="Colorful marker doodle 21" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1054.jpg" aria-label="Open marker doodle 22 of 72">
+            <img src="/images/Markers/thumbs/IMG_1054.jpg" alt="Colorful marker doodle 22" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1055.jpg" aria-label="Open marker doodle 23 of 72">
+            <img src="/images/Markers/thumbs/IMG_1055.jpg" alt="Colorful marker doodle 23" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1056.jpg" aria-label="Open marker doodle 24 of 72">
+            <img src="/images/Markers/thumbs/IMG_1056.jpg" alt="Colorful marker doodle 24" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1057.jpg" aria-label="Open marker doodle 25 of 72">
+            <img src="/images/Markers/thumbs/IMG_1057.jpg" alt="Colorful marker doodle 25" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1058.jpg" aria-label="Open marker doodle 26 of 72">
+            <img src="/images/Markers/thumbs/IMG_1058.jpg" alt="Colorful marker doodle 26" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1059.jpg" aria-label="Open marker doodle 27 of 72">
+            <img src="/images/Markers/thumbs/IMG_1059.jpg" alt="Colorful marker doodle 27" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1060.jpg" aria-label="Open marker doodle 28 of 72">
+            <img src="/images/Markers/thumbs/IMG_1060.jpg" alt="Colorful marker doodle 28" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1061.jpg" aria-label="Open marker doodle 29 of 72">
+            <img src="/images/Markers/thumbs/IMG_1061.jpg" alt="Colorful marker doodle 29" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1062.jpg" aria-label="Open marker doodle 30 of 72">
+            <img src="/images/Markers/thumbs/IMG_1062.jpg" alt="Colorful marker doodle 30" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1063.jpg" aria-label="Open marker doodle 31 of 72">
+            <img src="/images/Markers/thumbs/IMG_1063.jpg" alt="Colorful marker doodle 31" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1064.jpg" aria-label="Open marker doodle 32 of 72">
+            <img src="/images/Markers/thumbs/IMG_1064.jpg" alt="Colorful marker doodle 32" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3103.jpg" aria-label="Open marker doodle 33 of 72">
+            <img src="/images/Markers/thumbs/IMG_3103.jpg" alt="Colorful marker doodle 33" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3104.jpg" aria-label="Open marker doodle 34 of 72">
+            <img src="/images/Markers/thumbs/IMG_3104.jpg" alt="Colorful marker doodle 34" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3105.jpg" aria-label="Open marker doodle 35 of 72">
+            <img src="/images/Markers/thumbs/IMG_3105.jpg" alt="Colorful marker doodle 35" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3106.jpg" aria-label="Open marker doodle 36 of 72">
+            <img src="/images/Markers/thumbs/IMG_3106.jpg" alt="Colorful marker doodle 36" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3107.jpg" aria-label="Open marker doodle 37 of 72">
+            <img src="/images/Markers/thumbs/IMG_3107.jpg" alt="Colorful marker doodle 37" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3108.jpg" aria-label="Open marker doodle 38 of 72">
+            <img src="/images/Markers/thumbs/IMG_3108.jpg" alt="Colorful marker doodle 38" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3109.jpg" aria-label="Open marker doodle 39 of 72">
+            <img src="/images/Markers/thumbs/IMG_3109.jpg" alt="Colorful marker doodle 39" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3110.jpg" aria-label="Open marker doodle 40 of 72">
+            <img src="/images/Markers/thumbs/IMG_3110.jpg" alt="Colorful marker doodle 40" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3111.jpg" aria-label="Open marker doodle 41 of 72">
+            <img src="/images/Markers/thumbs/IMG_3111.jpg" alt="Colorful marker doodle 41" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3112.jpg" aria-label="Open marker doodle 42 of 72">
+            <img src="/images/Markers/thumbs/IMG_3112.jpg" alt="Colorful marker doodle 42" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3113.jpg" aria-label="Open marker doodle 43 of 72">
+            <img src="/images/Markers/thumbs/IMG_3113.jpg" alt="Colorful marker doodle 43" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3114.jpg" aria-label="Open marker doodle 44 of 72">
+            <img src="/images/Markers/thumbs/IMG_3114.jpg" alt="Colorful marker doodle 44" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3115.jpg" aria-label="Open marker doodle 45 of 72">
+            <img src="/images/Markers/thumbs/IMG_3115.jpg" alt="Colorful marker doodle 45" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3116.jpg" aria-label="Open marker doodle 46 of 72">
+            <img src="/images/Markers/thumbs/IMG_3116.jpg" alt="Colorful marker doodle 46" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3117.jpg" aria-label="Open marker doodle 47 of 72">
+            <img src="/images/Markers/thumbs/IMG_3117.jpg" alt="Colorful marker doodle 47" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3118.jpg" aria-label="Open marker doodle 48 of 72">
+            <img src="/images/Markers/thumbs/IMG_3118.jpg" alt="Colorful marker doodle 48" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3119.jpg" aria-label="Open marker doodle 49 of 72">
+            <img src="/images/Markers/thumbs/IMG_3119.jpg" alt="Colorful marker doodle 49" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3120.jpg" aria-label="Open marker doodle 50 of 72">
+            <img src="/images/Markers/thumbs/IMG_3120.jpg" alt="Colorful marker doodle 50" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3121.jpg" aria-label="Open marker doodle 51 of 72">
+            <img src="/images/Markers/thumbs/IMG_3121.jpg" alt="Colorful marker doodle 51" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3122.jpg" aria-label="Open marker doodle 52 of 72">
+            <img src="/images/Markers/thumbs/IMG_3122.jpg" alt="Colorful marker doodle 52" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3123.jpg" aria-label="Open marker doodle 53 of 72">
+            <img src="/images/Markers/thumbs/IMG_3123.jpg" alt="Colorful marker doodle 53" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3124.jpg" aria-label="Open marker doodle 54 of 72">
+            <img src="/images/Markers/thumbs/IMG_3124.jpg" alt="Colorful marker doodle 54" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3125.jpg" aria-label="Open marker doodle 55 of 72">
+            <img src="/images/Markers/thumbs/IMG_3125.jpg" alt="Colorful marker doodle 55" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3126.jpg" aria-label="Open marker doodle 56 of 72">
+            <img src="/images/Markers/thumbs/IMG_3126.jpg" alt="Colorful marker doodle 56" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3127.jpg" aria-label="Open marker doodle 57 of 72">
+            <img src="/images/Markers/thumbs/IMG_3127.jpg" alt="Colorful marker doodle 57" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3128.jpg" aria-label="Open marker doodle 58 of 72">
+            <img src="/images/Markers/thumbs/IMG_3128.jpg" alt="Colorful marker doodle 58" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3129.jpg" aria-label="Open marker doodle 59 of 72">
+            <img src="/images/Markers/thumbs/IMG_3129.jpg" alt="Colorful marker doodle 59" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3130.jpg" aria-label="Open marker doodle 60 of 72">
+            <img src="/images/Markers/thumbs/IMG_3130.jpg" alt="Colorful marker doodle 60" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3131.jpg" aria-label="Open marker doodle 61 of 72">
+            <img src="/images/Markers/thumbs/IMG_3131.jpg" alt="Colorful marker doodle 61" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3132.jpg" aria-label="Open marker doodle 62 of 72">
+            <img src="/images/Markers/thumbs/IMG_3132.jpg" alt="Colorful marker doodle 62" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3133.jpg" aria-label="Open marker doodle 63 of 72">
+            <img src="/images/Markers/thumbs/IMG_3133.jpg" alt="Colorful marker doodle 63" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3134.jpg" aria-label="Open marker doodle 64 of 72">
+            <img src="/images/Markers/thumbs/IMG_3134.jpg" alt="Colorful marker doodle 64" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3135.jpg" aria-label="Open marker doodle 65 of 72">
+            <img src="/images/Markers/thumbs/IMG_3135.jpg" alt="Colorful marker doodle 65" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3136.jpg" aria-label="Open marker doodle 66 of 72">
+            <img src="/images/Markers/thumbs/IMG_3136.jpg" alt="Colorful marker doodle 66" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3137.jpg" aria-label="Open marker doodle 67 of 72">
+            <img src="/images/Markers/thumbs/IMG_3137.jpg" alt="Colorful marker doodle 67" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3138.jpg" aria-label="Open marker doodle 68 of 72">
+            <img src="/images/Markers/thumbs/IMG_3138.jpg" alt="Colorful marker doodle 68" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3139.jpg" aria-label="Open marker doodle 69 of 72">
+            <img src="/images/Markers/thumbs/IMG_3139.jpg" alt="Colorful marker doodle 69" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3251.jpg" aria-label="Open marker doodle 70 of 72">
+            <img src="/images/Markers/thumbs/IMG_3251.jpg" alt="Colorful marker doodle 70" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3254.jpg" aria-label="Open marker doodle 71 of 72">
+            <img src="/images/Markers/thumbs/IMG_3254.jpg" alt="Colorful marker doodle 71" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3256.jpg" aria-label="Open marker doodle 72 of 72">
+            <img src="/images/Markers/thumbs/IMG_3256.jpg" alt="Colorful marker doodle 72" loading="lazy" decoding="async">
+        </button>
+    </div>
+
+    <dialog class="marker-lightbox" aria-label="Marker doodle viewer">
+        <button class="marker-lightbox-close" type="button" data-gallery-close aria-label="Close full-screen image">&times;</button>
+        <button class="marker-lightbox-nav" type="button" data-gallery-previous aria-label="Previous image">&#8592;</button>
+
+        <figure>
+            <img data-gallery-image src="" alt="">
+            <figcaption data-gallery-counter aria-live="polite"></figcaption>
+        </figure>
+
+        <button class="marker-lightbox-nav" type="button" data-gallery-next aria-label="Next image">&#8594;</button>
+    </dialog>
+</article>
