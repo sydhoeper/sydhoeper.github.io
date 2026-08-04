@@ -2,11 +2,6 @@ const contentArea = document.querySelector("#main-content");
 const navigationLinks = document.querySelectorAll("[data-page]");
 
 const pageMap = {
-    home: "pages/home.html",
-    about: "pages/about.html",
-    resume: "pages/background.html",
-    contact: "pages/contact.html",
-
     "va-pdfs": "pages/User Experience Design/va-pdfs.html",
     "booking-platform": "pages/User Experience Design/booking-platform.html",
     "map-redesign": "pages/User Experience Design/map-redesign.html",
@@ -81,7 +76,8 @@ function updateActiveLink(pageName) {
 }
 
 function getCurrentPage() {
-    return window.location.hash.replace("#", "") || "home";
+    const page = window.location.hash.replace("#", "");
+    return page || null;
 }
 
 navigationLinks.forEach((link) => {
@@ -94,4 +90,7 @@ window.addEventListener("hashchange", () => {
     loadPage(getCurrentPage());
 });
 
-loadPage(getCurrentPage());
+const initialPage = getCurrentPage();
+if (initialPage) {
+    loadPage(initialPage);
+}
