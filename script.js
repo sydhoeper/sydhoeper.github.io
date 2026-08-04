@@ -2,6 +2,7 @@ const contentArea = document.querySelector("#main-content");
 const navigationLinks = document.querySelectorAll("[data-page]");
 
 const pageMap = {
+    home: "pages/home.html",
     "va-pdfs": "pages/User Experience Design/va-pdfs.html",
     "booking-platform": "pages/User Experience Design/booking-platform.html",
     "map-redesign": "pages/User Experience Design/map-redesign.html",
@@ -93,4 +94,6 @@ window.addEventListener("hashchange", () => {
 const initialPage = getCurrentPage();
 if (initialPage) {
     loadPage(initialPage);
+} else {
+    loadPage("home");
 }
