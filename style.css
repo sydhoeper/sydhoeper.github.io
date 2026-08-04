@@ -18,7 +18,7 @@
     --text-heading: 32px;
     --text-subheading: 24px;
 
-    --sidebar-width: 330px;
+    --sidebar-width: 300px;
     --page-padding: 24px;
 }
 
@@ -197,6 +197,20 @@ textarea {
     height: auto;
 
     margin: 30px 0;
+}
+
+.site-footer {
+    position: relative;
+    z-index: 1;
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 24px;
+    background: var(--color-text);
+    color: var(--color-selected-text);
+}
+
+.site-footer p {
+    margin: 0;
 }
 
 @media screen and (max-width: 850px) {
