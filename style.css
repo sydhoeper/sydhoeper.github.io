@@ -203,6 +203,23 @@ textarea {
     margin-bottom: 2rem;
 }
 
+.project-video-page h1 {
+    margin-bottom: 2rem;
+}
+
+.main-content:has(.project-video-page) {
+    max-width: none;
+}
+
+.project-video {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    background: #111;
+}
+
 .art-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
