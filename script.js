@@ -82,12 +82,13 @@ function initializeGalleries(root = document) {
         const dialog = galleryPage?.querySelector("[data-gallery-dialog], .marker-lightbox");
         const items = [...gallery.querySelectorAll("[data-gallery-item], .marker-gallery-item")];
         const lightboxImage = dialog?.querySelector("[data-gallery-image]");
+        const lightboxVideo = dialog?.querySelector("[data-gallery-video]");
         const counter = dialog?.querySelector("[data-gallery-counter]");
         const previousButton = dialog?.querySelector("[data-gallery-previous]");
         const nextButton = dialog?.querySelector("[data-gallery-next]");
         const closeButton = dialog?.querySelector("[data-gallery-close]");
 
-        if (!dialog || !lightboxImage || !counter || items.length === 0) {
+        if (!dialog || (!lightboxImage && !lightboxVideo) || !counter || items.length === 0) {
             return;
         }
 
@@ -98,10 +99,32 @@ function initializeGalleries(root = document) {
             currentIndex = (index + items.length) % items.length;
 
             const item = items[currentIndex];
-            const thumbnail = item.querySelector("img");
+            const thumbnail = item.querySelector("img, video");
+            const isVideo = item.dataset.galleryType === "video" || thumbnail?.tagName === "VIDEO";
+            const source = item.dataset.full || thumbnail?.currentSrc || thumbnail?.src;
 
-            lightboxImage.src = item.dataset.full || thumbnail.src;
-            lightboxImage.alt = thumbnail.alt;
+            if (!thumbnail || !source) {
+                return;
+            }
+
+            if (lightboxVideo) {
+                lightboxVideo.pause();
+                lightboxVideo.removeAttribute("src");
+                lightboxVideo.hidden = !isVideo;
+            }
+
+            if (lightboxImage) {
+                lightboxImage.hidden = isVideo;
+            }
+
+            if (isVideo && lightboxVideo) {
+                lightboxVideo.src = source;
+                lightboxVideo.load();
+            } else if (lightboxImage) {
+                lightboxImage.src = source;
+                lightboxImage.alt = thumbnail.alt;
+            }
+
             counter.textContent = `${currentIndex + 1} / ${items.length}`;
         };
 
@@ -136,7 +159,10 @@ function initializeGalleries(root = document) {
         });
 
         dialog.addEventListener("close", () => {
-            lightboxImage.removeAttribute("src");
+            lightboxImage?.removeAttribute("src");
+            lightboxVideo?.pause();
+            lightboxVideo?.removeAttribute("src");
+            lightboxVideo?.load();
             openingButton?.focus();
         });
     });
