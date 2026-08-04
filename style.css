@@ -18,7 +18,7 @@
     --text-heading: 32px;
     --text-subheading: 24px;
 
-    --sidebar-width: 390px;
+    --sidebar-width: 330px;
     --page-padding: 24px;
 }
 
@@ -75,6 +75,7 @@ textarea {
 
 .site-title {
     display: block;
+    white-space: nowrap;
 
     margin-bottom: 60px;
 
@@ -130,6 +131,7 @@ textarea {
 
 .navigation .site-title {
     margin: 0 0 60px 0;
+    padding: 0;
     font-size: var(--text-title);
     font-weight: 700;
     line-height: 0.92;
