@@ -4,6 +4,7 @@
         --home-section-padding: 48px;
         --home-section-spacing: clamp(4rem, 8vw, 8rem);
         --home-section-spacing-compact: clamp(2rem, 4vw, 4rem);
+        container: home / inline-size;
         font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
@@ -38,7 +39,7 @@
 
     .home-hero h1 {
         margin-bottom: 1.5rem;
-        font-size: clamp(2.75rem, 6vw, 5.5rem);
+        font-size: clamp(2.75rem, 6cqi, 4rem);
         line-height: 0.95;
     }
 
@@ -212,14 +213,13 @@
         color: #1c2616;
     }
 
-    @media (max-width: 760px) {
+    @container home (max-width: 760px) {
         .home-hero,
         .experience-layout {
             grid-template-columns: 1fr;
         }
 
         .home-portrait {
-            order: -1;
             max-width: 420px;
         }
 
