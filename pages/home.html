@@ -1,3 +1,278 @@
 <p>Welcome to my portfolio.</p>
 
 <p>Coming soon.</p>
+<style>
+    .home-page {
+        width: 100%;
+    }
+
+    .home-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+        align-items: center;
+        gap: clamp(2rem, 6vw, 6rem);
+        min-height: 70vh;
+        padding: clamp(3rem, 7vw, 7rem) 0;
+    }
+
+    .home-hero-copy {
+        max-width: 650px;
+    }
+
+    .home-eyebrow {
+        margin: 0 0 1rem;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .home-hero h1,
+    .home-section h2 {
+        margin-top: 0;
+    }
+
+    .home-hero h1 {
+        margin-bottom: 1.5rem;
+        font-size: clamp(2.75rem, 6vw, 5.5rem);
+        line-height: 0.95;
+    }
+
+    .home-hero-copy p:last-child {
+        max-width: 58ch;
+        margin-bottom: 0;
+        font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+        line-height: 1.65;
+    }
+
+    .home-portrait {
+        margin: 0;
+    }
+
+    .home-portrait img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border-radius: 2px;
+    }
+
+    .home-section {
+        padding: clamp(4rem, 8vw, 8rem) 0;
+    }
+
+    .experience-layout {
+        display: grid;
+        grid-template-columns: minmax(180px, 0.6fr) minmax(0, 1.4fr);
+        gap: clamp(2rem, 6vw, 6rem);
+        align-items: start;
+    }
+
+    .home-section h2 {
+        font-size: clamp(2.25rem, 4vw, 4rem);
+    }
+
+    .experience-copy {
+        max-width: 720px;
+    }
+
+    .experience-copy p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+    }
+
+    .resume-link {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding-bottom: 0.3rem;
+        border-bottom: 2px solid currentColor;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .contact-section {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        padding: clamp(4rem, 8vw, 8rem) max(1.5rem, calc((100vw - 1200px) / 2));
+        background: #b7cf55;
+        color: #1c2616;
+    }
+
+    .contact-inner {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+        gap: clamp(2rem, 6vw, 6rem);
+        align-items: start;
+    }
+
+    .contact-intro h2 {
+        margin: 0 0 1rem;
+        font-size: clamp(2.25rem, 4vw, 4rem);
+    }
+
+    .contact-intro p {
+        max-width: 34ch;
+        line-height: 1.6;
+    }
+
+    .contact-form {
+        display: grid;
+        gap: 1.25rem;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+    }
+
+    .form-field {
+        display: grid;
+        gap: 0.5rem;
+    }
+
+    .form-field label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .form-field input,
+    .form-field textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.95rem 0;
+        border: 0;
+        border-bottom: 2px solid #1c2616;
+        border-radius: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+    }
+
+    .form-field textarea {
+        min-height: 150px;
+        resize: vertical;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+        outline: 2px solid #1c2616;
+        outline-offset: 4px;
+    }
+
+    .contact-form button {
+        justify-self: start;
+        padding: 0.9rem 1.5rem;
+        border: 2px solid #1c2616;
+        background: #1c2616;
+        color: #f7f6ef;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .contact-form button:hover,
+    .contact-form button:focus-visible {
+        background: transparent;
+        color: #1c2616;
+    }
+
+    @media (max-width: 760px) {
+        .home-hero,
+        .experience-layout,
+        .contact-inner {
+            grid-template-columns: 1fr;
+        }
+
+        .home-hero {
+            min-height: auto;
+        }
+
+        .home-portrait {
+            order: -1;
+            max-width: 420px;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="home-page">
+    <section class="home-hero" aria-labelledby="home-title">
+        <div class="home-hero-copy">
+            <p class="home-eyebrow">Product Designer · Researcher · Creative Technologist</p>
+            <h1 id="home-title">I design thoughtful tools for complicated worlds.</h1>
+            <p>
+                I’m Syd Hoeper, a senior product designer with nearly a decade of experience turning complex systems into clear, useful, and human-centered products. My work spans public services, emergency response, outdoor travel, mapping, and interactive technology, with a focus on making difficult experiences feel understandable and approachable.
+            </p>
+        </div>
+
+        <figure class="home-portrait">
+            <img src="/images/Hoeper-Picture.jpeg" alt="Portrait of Syd Hoeper">
+        </figure>
+    </section>
+
+    <section class="home-section" aria-labelledby="experience-title">
+        <div class="experience-layout">
+            <div>
+                <p class="home-eyebrow">Background</p>
+                <h2 id="experience-title">Experience</h2>
+            </div>
+
+            <div class="experience-copy">
+                <p>
+                    I’m a multidisciplinary designer who is most at home in messy, ambiguous problem spaces. Across my career, I’ve led product strategy, research, interaction design, prototyping, accessibility work, and cross-functional collaboration for products used by travelers, first responders, government employees, veterans, and the public.
+                </p>
+                <p>
+                    I care deeply about understanding the people behind the work, building shared clarity across teams, and creating systems that are both practical and genuinely pleasant to use. Alongside my professional design practice, I’m pursuing an MFA in Game Design and Interactive Media, where I’m expanding my work into immersive environments, creative technology, and interactive storytelling.
+                </p>
+
+                <a class="resume-link" href="/documents/syd-hoeper-resume.pdf?v=2" target="_blank" rel="noopener noreferrer">
+                    View or download my resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" aria-labelledby="contact-title">
+        <div class="contact-inner">
+            <div class="contact-intro">
+                <p class="home-eyebrow">Get in touch</p>
+                <h2 id="contact-title">Let’s make something good.</h2>
+                <p>
+                    Have a role, project, collaboration, or strange little idea you’d like to talk about? Send me a message.
+                </p>
+            </div>
+
+            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="contact-name">Name</label>
+                        <input id="contact-name" name="name" type="text" autocomplete="name" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contact-email">Email</label>
+                        <input id="contact-email" name="email" type="email" autocomplete="email" required>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="contact-subject">Subject</label>
+                    <input id="contact-subject" name="subject" type="text">
+                </div>
+
+                <div class="form-field">
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" name="message" required></textarea>
+                </div>
+
+                <button type="submit">Send message</button>
+            </form>
+        </div>
+    </section>
+</div>
