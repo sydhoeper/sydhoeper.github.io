@@ -46,12 +46,30 @@ async function loadPage(pageName) {
         const pageContent = await response.text();
 
         contentArea.innerHTML = pageContent;
+        requestAnimationFrame(() => fitGameEmbeds(contentArea));
         updateActiveLink(pageName);
         window.scrollTo(0, 0);
     } catch (error) {
         showComingSoon(pageName, pagePath);
         console.error(error);
     }
+}
+
+function fitGameEmbeds(root = document) {
+    root.querySelectorAll(".itch-widget iframe").forEach((iframe) => {
+        const container = iframe.parentElement;
+        const embedWidth = Number(iframe.getAttribute("width"));
+        const embedHeight = Number(iframe.getAttribute("height"));
+
+        if (!container || !embedWidth || !embedHeight) {
+            return;
+        }
+
+        const scale = Math.min(1, container.clientWidth / embedWidth);
+
+        iframe.style.transform = `scale(${scale})`;
+        container.style.height = `${embedHeight * scale}px`;
+    });
 }
 
 function showComingSoon(pageName, pagePath = "") {
@@ -89,6 +107,10 @@ navigationLinks.forEach((link) => {
 
 window.addEventListener("hashchange", () => {
     loadPage(getCurrentPage());
+});
+
+window.addEventListener("resize", () => {
+    fitGameEmbeds(contentArea);
 });
 
 const initialPage = getCurrentPage();
