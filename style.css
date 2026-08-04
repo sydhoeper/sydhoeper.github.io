@@ -18,7 +18,7 @@
     --text-subheading: 24px;
 
     --sidebar-width: 390px;
-    --page-padding: 80px;
+    --page-padding: 24px;
 }
 
 html {
@@ -33,6 +33,13 @@ body {
     font-size: var(--text-base);
 }
 
+button,
+input,
+select,
+textarea {
+    font-family: var(--font-body);
+}
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -41,7 +48,7 @@ body {
     width: var(--sidebar-width);
     height: 100vh;
 
-    padding: var(--page-padding) 45px var(--page-padding) var(--page-padding);
+    padding: 80px var(--page-padding);
 
     overflow-y: auto;
     background: var(--color-background);
@@ -145,7 +152,7 @@ body {
     min-height: 100vh;
     max-width: 1050px;
 
-    padding: var(--page-padding) var(--page-padding) 120px 60px;
+    padding: 80px var(--page-padding) 120px;
 
     font-size: var(--text-base);
     line-height: 1.5;
@@ -182,7 +189,7 @@ body {
         width: 100%;
         height: auto;
 
-        padding: 40px 30px;
+        padding: 40px var(--page-padding);
 
         border-bottom: 2px solid var(--color-text);
     }
@@ -191,7 +198,7 @@ body {
         margin-left: 0;
 
         width: 100%;
-        padding: 40px 30px 80px;
+        padding: 40px var(--page-padding) 80px;
     }
 
     .navigation h2 {
