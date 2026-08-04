@@ -26,6 +26,9 @@ html {
 }
 
 body {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    align-items: start;
     margin: 0;
     background: var(--color-background);
     color: var(--color-text);
@@ -41,16 +44,11 @@ textarea {
 }
 
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-
     width: var(--sidebar-width);
-    height: 100vh;
+    min-width: 0;
 
     padding: 80px var(--page-padding);
 
-    overflow-y: auto;
     background: var(--color-background);
 }
 
@@ -147,8 +145,7 @@ textarea {
 }
 
 .main-content {
-    margin-left: var(--sidebar-width);
-
+    width: 100%;
     min-height: 100vh;
     max-width: 1050px;
 
@@ -183,11 +180,12 @@ textarea {
 
 @media screen and (max-width: 850px) {
 
-    .sidebar {
-        position: relative;
+    body {
+        display: block;
+    }
 
+    .sidebar {
         width: 100%;
-        height: auto;
 
         padding: 40px var(--page-padding);
 
@@ -195,8 +193,6 @@ textarea {
     }
 
     .main-content {
-        margin-left: 0;
-
         width: 100%;
         padding: 40px var(--page-padding) 80px;
     }
