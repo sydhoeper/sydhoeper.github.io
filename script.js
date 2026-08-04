@@ -22,6 +22,7 @@ const pageMap = {
     "digital-portraits": "pages/Illustration/digital-portraits.html",
     "digital-drawings": "pages/Illustration/digital-drawings.html",
     "event-posters": "pages/Illustration/event-posters.html",
+    "oracle-deck": "pages/Illustration/oracle-deck.html",
     "marker-doodles": "pages/Illustration/marker-doodles.html",
     "plein-air": "pages/Illustration/plein-air-sketches.html"
 };
@@ -37,7 +38,7 @@ async function loadPage(pageName) {
     try {
         contentArea.innerHTML = "<p>Loading...</p>";
 
-        const response = await fetch(encodeURI(pagePath));
+        const response = await fetch(encodeURI(pagePath), { cache: "no-store" });
 
         if (!response.ok) {
             throw new Error(`Could not load ${pagePath}`);
@@ -77,9 +78,9 @@ function fitGameEmbeds(root = document) {
 
 function initializeGalleries(root = document) {
     root.querySelectorAll("[data-gallery]").forEach((gallery) => {
-        const galleryPage = gallery.closest(".marker-gallery-page");
-        const dialog = galleryPage?.querySelector(".marker-lightbox");
-        const items = [...gallery.querySelectorAll(".marker-gallery-item")];
+        const galleryPage = gallery.closest("[data-gallery-page], .marker-gallery-page");
+        const dialog = galleryPage?.querySelector("[data-gallery-dialog], .marker-lightbox");
+        const items = [...gallery.querySelectorAll("[data-gallery-item], .marker-gallery-item")];
         const lightboxImage = dialog?.querySelector("[data-gallery-image]");
         const counter = dialog?.querySelector("[data-gallery-counter]");
         const previousButton = dialog?.querySelector("[data-gallery-previous]");

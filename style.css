@@ -199,6 +199,131 @@ textarea {
     margin: 30px 0;
 }
 
+.art-gallery-page h1 {
+    margin-bottom: 2rem;
+}
+
+.art-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: clamp(16px, 3vw, 30px);
+}
+
+.art-grid figure {
+    min-width: 0;
+    margin: 0;
+}
+
+.art-gallery-item {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+}
+
+.art-grid img,
+.art-gallery-item img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+}
+
+.art-gallery-item:focus-visible {
+    outline: 3px solid var(--color-text);
+    outline-offset: 4px;
+}
+
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 1.5rem;
+    border: 0;
+    background: rgba(20, 20, 28, 0.96);
+    color: white;
+}
+
+.gallery-lightbox[open] {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) 64px;
+    align-items: center;
+}
+
+.gallery-lightbox::backdrop {
+    background: rgba(20, 20, 28, 0.96);
+}
+
+.gallery-lightbox figure {
+    display: grid;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+    place-items: center;
+}
+
+.gallery-lightbox img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100dvh - 5rem);
+    margin: 0;
+    object-fit: contain;
+}
+
+.gallery-lightbox figcaption {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1rem;
+    left: 1.5rem;
+    text-align: center;
+}
+
+.gallery-lightbox button {
+    border: 0;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    cursor: pointer;
+}
+
+.gallery-lightbox button:hover,
+.gallery-lightbox button:focus-visible {
+    background: rgba(255, 255, 255, 0.24);
+}
+
+.gallery-lightbox-nav {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+.gallery-lightbox-close {
+    position: fixed;
+    z-index: 1;
+    top: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+body:has(.gallery-lightbox[open]) {
+    overflow: hidden;
+}
+
 .site-footer {
     position: relative;
     z-index: 1;
@@ -252,5 +377,24 @@ textarea {
     .navigation .site-title {
         margin-bottom: 42px;
         font-size: 36px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .art-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-lightbox {
+        padding: 1rem 0.5rem;
+    }
+
+    .gallery-lightbox[open] {
+        grid-template-columns: 48px minmax(0, 1fr) 48px;
+    }
+
+    .gallery-lightbox-nav {
+        width: 42px;
+        height: 42px;
     }
 }
