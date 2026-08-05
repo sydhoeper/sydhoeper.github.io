@@ -63,8 +63,8 @@
         object-fit: cover;
         border-radius: 16px;
         box-shadow:
-            0 3px 8px rgba(34, 37, 53, 0.3),
-            0 12px 30px rgba(34, 37, 53, 0.2);
+            0 3px 8px rgba(var(--color-dark-rgb), 0.3),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.2);
     }
 
     .home-section {
@@ -108,8 +108,8 @@
         gap: 0.65rem;
         margin-top: 1.5rem;
         padding: 0.9rem 1.25rem;
-        border: 2px solid #222535;
-        background: #222535;
+        border: 2px solid var(--color-dark);
+        background: var(--color-dark);
         color: #f7f3ec;
         font-weight: 700;
         text-decoration: none;
@@ -124,7 +124,7 @@
     .resume-link:hover,
     .resume-link:focus-visible {
         background: transparent;
-        color: #222535;
+        color: var(--color-dark);
     }
 
     .contact-section {
@@ -132,8 +132,8 @@
         margin-left: calc(-1 * var(--page-padding));
         padding: var(--home-section-spacing) var(--home-section-padding);
         padding-top: var(--home-section-spacing-compact);
-        background: var(--color-background);
-        color: #1c2616;
+        background: transparent;
+        color: var(--color-dark);
     }
 
     .contact-inner {
@@ -182,7 +182,7 @@
         width: 100%;
         box-sizing: border-box;
         padding: 0.95rem 1rem;
-        border: 1px solid #1c2616;
+        border: 1px solid var(--color-dark);
         border-radius: 0;
         background: transparent;
         color: inherit;
@@ -196,15 +196,15 @@
 
     .form-field input:focus,
     .form-field textarea:focus {
-        outline: 2px solid #1c2616;
+        outline: 2px solid var(--color-dark);
         outline-offset: 4px;
     }
 
     .contact-form button {
         justify-self: start;
         padding: 0.9rem 1.5rem;
-        border: 2px solid #1c2616;
-        background: #1c2616;
+        border: 2px solid var(--color-dark);
+        background: var(--color-dark);
         color: #f7f6ef;
         font: inherit;
         font-weight: 700;
@@ -214,7 +214,7 @@
     .contact-form button:hover,
     .contact-form button:focus-visible {
         background: transparent;
-        color: #1c2616;
+        color: var(--color-dark);
     }
 
     @container home (max-width: 760px) {

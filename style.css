@@ -3,10 +3,12 @@
 }
 
 :root {
+    --color-dark: #1C1220;
+    --color-dark-rgb: 28, 18, 32;
     --color-background: #F7F3EC;
     --color-sidebar-background: #FCFAF6;
-    --color-text: #222535;
-    --color-selected-background: #222535;
+    --color-text: var(--color-dark);
+    --color-selected-background: var(--color-dark);
     --color-selected-text: #F7F3EC;
     --color-accent: #C66A3D;
     --color-muted: #7B7284;
@@ -20,10 +22,16 @@
 
     --sidebar-width: 300px;
     --page-padding: 24px;
+
+    --comet-x: calc(var(--sidebar-width) + 12vw);
+    --comet-y: 12vh;
+    --comet-rotation: 0deg;
+    --comet-scale: 1;
 }
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -37,6 +45,7 @@ body {
     color: var(--color-text);
     font-family: var(--font-body);
     font-size: var(--text-base);
+    overflow-x: hidden;
 }
 
 body::before {
@@ -46,6 +55,27 @@ body::before {
     inset: 0 auto 0 0;
     width: var(--sidebar-width);
     background: var(--color-sidebar-background);
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: clamp(420px, 48vw, 680px);
+    height: clamp(200px, 23vw, 330px);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 80% 50%, rgba(246, 181, 199, 0.62) 0 12%, rgba(215, 151, 216, 0.38) 26%, transparent 49%),
+        radial-gradient(ellipse at 56% 50%, rgba(166, 153, 235, 0.32) 0 18%, transparent 59%),
+        linear-gradient(90deg, transparent 0%, rgba(126, 216, 213, 0.1) 23%, rgba(137, 205, 232, 0.26) 58%, rgba(246, 181, 199, 0.22) 100%);
+    filter: blur(15px) saturate(0.82);
+    opacity: 0.58;
+    transform: translate3d(var(--comet-x), var(--comet-y), 0) rotate(var(--comet-rotation)) scale(var(--comet-scale));
+    transform-origin: 80% 50%;
+    will-change: transform;
     pointer-events: none;
 }
 
@@ -213,11 +243,11 @@ textarea {
 
 .project-video {
     display: block;
-    width: 100%;
+    width: 50%;
     max-width: none;
     height: auto;
-    margin: 0;
-    background: #111;
+    margin: 0 auto;
+    background: var(--color-dark);
 }
 
 .art-grid {
@@ -264,7 +294,7 @@ textarea {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: rgba(20, 20, 28, 0.78);
+    background: rgba(var(--color-dark-rgb), 0.78);
     color: white;
     font-size: 1.25rem;
     line-height: 1;
@@ -310,7 +340,7 @@ textarea {
     margin: 0;
     padding: 1.5rem;
     border: 0;
-    background: rgba(20, 20, 28, 0.96);
+    background: rgba(var(--color-dark-rgb), 0.96);
     color: white;
 }
 
@@ -321,7 +351,7 @@ textarea {
 }
 
 .gallery-lightbox::backdrop {
-    background: rgba(20, 20, 28, 0.96);
+    background: rgba(var(--color-dark-rgb), 0.96);
 }
 
 .gallery-lightbox figure {
@@ -448,6 +478,10 @@ body:has(.gallery-lightbox[open]) {
 }
 
 @media screen and (max-width: 560px) {
+    .project-video {
+        width: 100%;
+    }
+
     .art-grid {
         grid-template-columns: 1fr;
     }

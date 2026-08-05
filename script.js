@@ -1,5 +1,66 @@
 const contentArea = document.querySelector("#main-content");
 const navigationLinks = document.querySelectorAll("[data-page]");
+const rootElement = document.documentElement;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+let cometFrame = null;
+let cometPhase = window.scrollY * 0.0018;
+let lastCometScrollY = window.scrollY;
+let previousCometX = null;
+let previousCometY = null;
+
+function positionScrollComet() {
+    if (reduceMotion.matches) {
+        return;
+    }
+
+    const isMobile = window.innerWidth <= 850;
+    const sidebarWidth = isMobile ? 0 : 300;
+    const cometWidth = Math.min(Math.max(window.innerWidth * 0.48, 420), 680);
+    const cometHeight = Math.min(Math.max(window.innerWidth * 0.23, 200), 330);
+    const availableWidth = Math.max(window.innerWidth - sidebarWidth - cometWidth, 0);
+    const availableHeight = Math.max(window.innerHeight - cometHeight, 0);
+    const scrollDistance = Math.abs(window.scrollY - lastCometScrollY);
+
+    cometPhase += scrollDistance * 0.0018;
+    lastCometScrollY = window.scrollY;
+
+    const xWave =
+        Math.sin(cometPhase * 0.91) * 0.29 +
+        Math.sin(cometPhase * 2.17 + 1.3) * 0.13;
+    const yWave =
+        Math.cos(cometPhase * 1.13 + 0.7) * 0.27 +
+        Math.sin(cometPhase * 2.73 + 2.1) * 0.14;
+    const x = sidebarWidth + availableWidth * (0.5 + xWave);
+    const y = availableHeight * (0.5 + yWave);
+    const scale = 0.76 + ((Math.sin(cometPhase * 1.47 - 0.8) + 1) / 2) * 0.48;
+    const movementX = previousCometX === null ? 1 : x - previousCometX;
+    const movementY = previousCometY === null ? 0 : y - previousCometY;
+    const rotation = Math.atan2(movementY, movementX) * 57.2958;
+
+    previousCometX = x;
+    previousCometY = y;
+
+    rootElement.style.setProperty("--comet-x", `${x}px`);
+    rootElement.style.setProperty("--comet-y", `${y}px`);
+    rootElement.style.setProperty("--comet-rotation", `${rotation}deg`);
+    rootElement.style.setProperty("--comet-scale", scale.toFixed(3));
+}
+
+function requestCometPosition() {
+    if (cometFrame !== null) {
+        return;
+    }
+
+    cometFrame = window.requestAnimationFrame(() => {
+        positionScrollComet();
+        cometFrame = null;
+    });
+}
+
+positionScrollComet();
+window.addEventListener("scroll", requestCometPosition, { passive: true });
+window.addEventListener("resize", requestCometPosition);
 
 const pageMap = {
     home: "pages/home.html",
