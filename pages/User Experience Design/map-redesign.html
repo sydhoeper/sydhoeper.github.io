@@ -1,106 +1,704 @@
-<article class="case-study">
+<style>
+    .map-case-study {
+        --map-card: rgba(252, 250, 246, 0.94);
+        --map-purple: #c9b8ef;
+        --map-blue: #a9ccef;
+        --map-green: #afeec2;
+        width: 100%;
+        max-width: 980px;
+        container: map-case-study / inline-size;
+    }
 
-    <header class="case-study-header">
-        <p class="case-study-category">User Experience Design</p>
+    .map-case-study * {
+        box-sizing: border-box;
+    }
 
-        <h1>Project Title</h1>
+    .map-hero,
+    .map-section {
+        padding: clamp(3.5rem, 8vw, 7rem) 0;
+    }
 
-        <p class="case-study-summary">
-            Write a short one- or two-sentence summary of the project here.
-        </p>
+    .map-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+        align-items: center;
+        gap: clamp(2.5rem, 6vw, 5rem);
+        padding-top: 0;
+    }
 
-        <dl class="project-details">
-            <div>
-                <dt>Role</dt>
-                <dd>Senior Product Designer</dd>
+    .map-eyebrow,
+    .map-step-label {
+        display: block;
+        margin: 0 0 0.75rem;
+        color: var(--color-text);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .map-step-label {
+        color: var(--color-muted);
+    }
+
+    .map-hero h1 {
+        max-width: 12ch;
+        margin: 0 0 1.25rem;
+        font-size: clamp(2.6rem, 7cqi, 5.6rem);
+        line-height: 0.96;
+        letter-spacing: -0.045em;
+    }
+
+    .map-lede {
+        max-width: 48ch;
+        margin: 0;
+        font-size: clamp(1.1rem, 2.2cqi, 1.35rem);
+        line-height: 1.55;
+    }
+
+    .map-section {
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .map-section-heading {
+        display: grid;
+        grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: start;
+        margin-bottom: clamp(2.5rem, 6vw, 5rem);
+    }
+
+    .map-section-heading h2 {
+        margin: 0;
+        font-size: clamp(2rem, 5cqi, 3.6rem);
+        line-height: 1;
+        letter-spacing: -0.035em;
+    }
+
+    .map-section-heading p {
+        max-width: 58ch;
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.7;
+    }
+
+    .map-card-grid,
+    .map-process-grid,
+    .map-outcome-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .map-card-grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .map-card,
+    .map-role,
+    .map-impact-card,
+    .map-quote {
+        padding: clamp(1.35rem, 3vw, 2rem);
+        border-radius: 16px;
+        background: var(--map-card);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+    }
+
+    .map-card h3,
+    .map-role h3,
+    .map-impact-card h3,
+    .map-copy h3,
+    .map-decision-copy h3 {
+        margin: 0 0 0.65rem;
+        font-size: 1.12rem;
+        line-height: 1.2;
+    }
+
+    .map-card p,
+    .map-copy p,
+    .map-decision-copy p {
+        margin: 0;
+        line-height: 1.65;
+    }
+
+    .map-card ul,
+    .map-role ul,
+    .map-impact-card ul,
+    .map-outcomes ul,
+    .map-decision-copy ul {
+        margin: 0.65rem 0 0;
+        padding-left: 1.2rem;
+        line-height: 1.6;
+    }
+
+    .map-role {
+        margin-top: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .map-challenge-table {
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 1fr;
+        overflow: hidden;
+        border: 1px solid rgba(var(--color-dark-rgb), 0.16);
+        border-radius: 16px;
+        background: var(--map-card);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+    }
+
+    .map-challenge-table > div {
+        min-width: 0;
+        padding: clamp(1rem, 2.5vw, 1.6rem);
+        border-right: 1px solid rgba(var(--color-dark-rgb), 0.13);
+        border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.13);
+    }
+
+    .map-challenge-table > div:nth-child(3n) {
+        border-right: 0;
+    }
+
+    .map-challenge-table > div:nth-last-child(-n + 3) {
+        border-bottom: 0;
+    }
+
+    .map-challenge-table .map-table-label,
+    .map-challenge-table .map-table-heading {
+        font-weight: 700;
+    }
+
+    .map-challenge-table ul {
+        margin: 0;
+        padding-left: 1.1rem;
+        line-height: 1.5;
+    }
+
+    .map-media {
+        margin: 0;
+    }
+
+    .map-media-frame {
+        display: grid;
+        min-height: 250px;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        border: 1px dashed rgba(var(--color-dark-rgb), 0.34);
+        border-radius: 16px;
+        background:
+            radial-gradient(circle at 18% 18%, rgba(169, 204, 239, 0.55), transparent 38%),
+            radial-gradient(circle at 82% 78%, rgba(201, 184, 239, 0.55), transparent 40%),
+            var(--color-sidebar-background);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.3),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.2);
+        place-items: center;
+        text-align: center;
+    }
+
+    .map-media-frame span,
+    .map-media-frame strong,
+    .map-media-frame small {
+        display: block;
+    }
+
+    .map-media-frame span {
+        margin-bottom: 0.45rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .map-media-frame strong {
+        font-size: clamp(1.15rem, 2.5cqi, 1.6rem);
+    }
+
+    .map-media-frame small {
+        max-width: 40ch;
+        margin-top: 0.5rem;
+        line-height: 1.45;
+    }
+
+    .map-media figcaption {
+        margin-top: 0.85rem;
+        color: var(--color-muted);
+        font-size: 0.86rem;
+        line-height: 1.5;
+    }
+
+    .map-media.tall .map-media-frame {
+        min-height: 440px;
+    }
+
+    .map-media.wide .map-media-frame {
+        min-height: clamp(280px, 44cqi, 430px);
+    }
+
+    .map-process-step,
+    .map-decision {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(280px, 1.15fr);
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: center;
+    }
+
+    .map-process-list,
+    .map-decision-list {
+        display: grid;
+        gap: clamp(4rem, 9vw, 8rem);
+    }
+
+    .map-process-step:nth-child(even),
+    .map-decision:nth-child(even) {
+        grid-template-columns: minmax(280px, 1.15fr) minmax(0, 0.85fr);
+    }
+
+    .map-process-step:nth-child(even) .map-copy,
+    .map-decision:nth-child(even) .map-decision-copy {
+        order: 2;
+    }
+
+    .map-copy h3,
+    .map-decision-copy h3 {
+        font-size: clamp(1.4rem, 3cqi, 2rem);
+    }
+
+    .map-outcomes {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .map-outcomes > div {
+        padding-top: 1.4rem;
+        border-top: 4px solid var(--color-dark);
+    }
+
+    .map-outcomes h3 {
+        margin: 0;
+        font-size: 1.4rem;
+    }
+
+    .map-outcome-grid {
+        margin-top: clamp(3rem, 6vw, 5rem);
+    }
+
+    .map-outcome-grid > article:nth-child(1) {
+        background: rgba(175, 238, 194, 0.48);
+    }
+
+    .map-outcome-grid > article:nth-child(2) {
+        background: rgba(169, 204, 239, 0.42);
+    }
+
+    .map-outcome-grid > article:nth-child(3) {
+        grid-column: 1 / -1;
+        background: rgba(201, 184, 239, 0.38);
+    }
+
+    .map-quote {
+        margin: clamp(2rem, 5vw, 4rem) 0 0;
+        font-size: clamp(1.25rem, 3cqi, 1.8rem);
+        line-height: 1.45;
+    }
+
+    @container map-case-study (max-width: 720px) {
+        .map-hero,
+        .map-section-heading,
+        .map-process-step,
+        .map-process-step:nth-child(even),
+        .map-decision,
+        .map-decision:nth-child(even) {
+            grid-template-columns: 1fr;
+        }
+
+        .map-hero-copy {
+            order: -1;
+        }
+
+        .map-process-step:nth-child(even) .map-copy,
+        .map-decision:nth-child(even) .map-decision-copy {
+            order: 0;
+        }
+
+        .map-card-grid.three {
+            grid-template-columns: 1fr;
+        }
+
+        .map-media.tall .map-media-frame {
+            min-height: 330px;
+        }
+    }
+
+    @container map-case-study (max-width: 520px) {
+        .map-card-grid,
+        .map-process-grid,
+        .map-outcomes,
+        .map-outcome-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .map-outcome-grid > article:nth-child(3) {
+            grid-column: auto;
+        }
+
+        .map-challenge-table {
+            grid-template-columns: 1fr;
+        }
+
+        .map-challenge-table > div,
+        .map-challenge-table > div:nth-child(3n),
+        .map-challenge-table > div:nth-last-child(-n + 3) {
+            border-right: 0;
+            border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.13);
+        }
+
+        .map-challenge-table > div:last-child {
+            border-bottom: 0;
+        }
+
+        .map-challenge-table .map-table-heading:first-child {
+            display: none;
+        }
+    }
+</style>
+
+<article class="map-case-study">
+    <header class="map-hero">
+        <div class="map-hero-copy">
+            <p class="map-eyebrow">User Experience Design · Campendium</p>
+            <h1>Map Overlay Redesign</h1>
+            <p class="map-lede">Helping RVers efficiently explore, compare, and navigate map overlays.</p>
+        </div>
+
+        <figure class="map-media tall">
+            <div class="map-media-frame" role="img" aria-label="Placeholder for the redesigned mobile map overlays drawer">
+                <div>
+                    <span>Image placeholder</span>
+                    <strong>Final map overlays experience</strong>
+                    <small>Add the primary mobile overlay-selection screen here.</small>
+                </div>
             </div>
-
-            <div>
-                <dt>Organization</dt>
-                <dd>Company or client name</dd>
-            </div>
-
-            <div>
-                <dt>Timeline</dt>
-                <dd>Month Year–Month Year</dd>
-            </div>
-
-            <div>
-                <dt>Responsibilities</dt>
-                <dd>Research, strategy, interaction design, prototyping</dd>
-            </div>
-        </dl>
+        </figure>
     </header>
 
+    <section class="map-section" aria-labelledby="map-overview">
+        <div class="map-section-heading">
+            <h2 id="map-overview">Overview</h2>
+            <p>Campendium’s main map split overlay controls across three buttons and four different drawers. When the team needed to add a smoke layer, I used the opportunity to redesign the system rather than add another disconnected control.</p>
+        </div>
 
-    <section>
-        <h2>Overview</h2>
+        <div class="map-card-grid three">
+            <article class="map-card">
+                <h3>Context</h3>
+                <p>Map layers had grown into a fragmented collection of controls, making the interface harder to understand and extend.</p>
+            </article>
+            <article class="map-card">
+                <h3>Objective</h3>
+                <p>Improve the user experience, increase Pro upsell conversion, and establish a system that could support future layers.</p>
+            </article>
+            <article class="map-card">
+                <h3>Challenge</h3>
+                <p>Create a smooth, intuitive way to select, compare, and change multiple map layers.</p>
+            </article>
+        </div>
 
-        <p>
-            Introduce the project, its purpose, and the people it served.
-        </p>
+        <article class="map-role">
+            <h3>My role</h3>
+            <p>I led the design work and was responsible for the project from early concept development through developer handoff.</p>
+        </article>
     </section>
 
+    <section class="map-section" aria-labelledby="map-challenges">
+        <div class="map-section-heading">
+            <h2 id="map-challenges">Challenges and opportunities</h2>
+            <p>The redesign needed to reduce customer confusion while creating a clearer, more scalable place for Campendium’s free and Pro map tools.</p>
+        </div>
 
-    <section>
-        <h2>The Challenge</h2>
+        <div class="map-challenge-table" aria-label="Customer and business challenges and opportunities">
+            <div class="map-table-heading"></div>
+            <div class="map-table-heading">Challenges</div>
+            <div class="map-table-heading">Opportunities</div>
 
-        <p>
-            Explain the problem the team needed to solve.
-        </p>
+            <div class="map-table-label">Customer</div>
+            <div>
+                <ul>
+                    <li>The existing experience was disjointed</li>
+                    <li>Adding another control would create more clutter and confusion</li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>Consolidate every map layer into one view</li>
+                    <li>Make it easier to compare and combine overlays</li>
+                </ul>
+            </div>
+
+            <div class="map-table-label">Business</div>
+            <div>
+                <ul>
+                    <li>There was no clear place for the new smoke layer</li>
+                    <li>The unclear design made feature upsells more difficult</li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>A more efficient selection experience could support Pro conversion</li>
+                    <li>A scalable system would make future additions easier</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
+    <section class="map-section" aria-labelledby="map-approach">
+        <div class="map-section-heading">
+            <h2 id="map-approach">Approach</h2>
+            <p>I worked mobile-first, explored multiple UI patterns, and adapted the strongest direction for desktop and tablet.</p>
+        </div>
 
-    <section>
-        <h2>My Role</h2>
-
-        <p>
-            Explain what you personally owned, led, or contributed.
-        </p>
+        <div class="map-card-grid three">
+            <article class="map-card">
+                <h3>High-level strategy</h3>
+                <p>Design for mobile first, adapt for larger devices, and experiment until the interaction felt efficient and natural.</p>
+            </article>
+            <article class="map-card">
+                <h3>Methodologies</h3>
+                <p>Human-centered design principles supported by a lean product framework.</p>
+            </article>
+            <article class="map-card">
+                <h3>Collaboration</h3>
+                <p>Regular check-ins with product and engineering, plus recurring internal design reviews.</p>
+            </article>
+        </div>
     </section>
 
+    <section class="map-section" aria-labelledby="map-process">
+        <div class="map-section-heading">
+            <h2 id="map-process">Process</h2>
+            <p>I combined competitive research, customer knowledge, information architecture, rapid prototyping, and visual exploration to arrive at a flexible interaction system.</p>
+        </div>
 
-    <section>
-        <h2>Process</h2>
+        <div class="map-process-list">
+            <article class="map-process-step">
+                <div class="map-copy">
+                    <span class="map-step-label">01 · Research the landscape</span>
+                    <h3>State-of-the-art research</h3>
+                    <p>I reviewed dozens of mapping and navigation apps to understand familiar interaction patterns, useful conventions, and opportunities to improve on the status quo.</p>
+                </div>
+                <figure class="map-media wide">
+                    <div class="map-media-frame" role="img" aria-label="Placeholder for competitive mapping-app research">
+                        <div><span>Image placeholder</span><strong>Competitive research</strong><small>Add the state-of-the-art research board here.</small></div>
+                    </div>
+                </figure>
+            </article>
 
-        <p>
-            Explain the research, design, collaboration, and decision-making
-            involved in the project.
-        </p>
+            <article class="map-process-step">
+                <div class="map-copy">
+                    <span class="map-step-label">02 · Organize the system</span>
+                    <h3>Inventory and sorting</h3>
+                    <p>I inventoried current and planned overlays, then grouped them into categories that could remain understandable as the product grew.</p>
+                </div>
+                <figure class="map-media wide">
+                    <div class="map-media-frame" role="img" aria-label="Placeholder for the map-layer sorting exercise">
+                        <div><span>Image placeholder</span><strong>Layer inventory and sorting</strong></div>
+                    </div>
+                </figure>
+            </article>
 
-        <!-- Example image:
+            <article class="map-process-step">
+                <div class="map-copy">
+                    <span class="map-step-label">03 · Understand RVers</span>
+                    <h3>Interviews and user journey</h3>
+                    <p>I spoke with full-time RVers about how they use maps and what information they need. I combined those conversations with existing product knowledge to map a detailed journey and identify moments where users compare multiple map types.</p>
+                </div>
+                <div class="map-process-grid">
+                    <figure class="map-media">
+                        <div class="map-media-frame" role="img" aria-label="Placeholder for interview notes"><div><span>Image placeholder</span><strong>Interview notes</strong></div></div>
+                    </figure>
+                    <figure class="map-media">
+                        <div class="map-media-frame" role="img" aria-label="Placeholder for the RVer user journey"><div><span>Image placeholder</span><strong>User journey</strong></div></div>
+                    </figure>
+                </div>
+            </article>
 
-        <figure>
-            <img
-                src="images/example-image.jpg"
-                alt="Describe what is shown in the image"
-            >
+            <article class="map-process-step">
+                <div class="map-copy">
+                    <span class="map-step-label">04 · Explore the interface</span>
+                    <h3>Wireframes and visual experimentation</h3>
+                    <p>I borrowed effective patterns from other products and explored several visual directions, balancing aesthetic quality with fast, efficient selection.</p>
+                </div>
+                <div class="map-process-grid">
+                    <figure class="map-media">
+                        <div class="map-media-frame" role="img" aria-label="Placeholder for early wireframes"><div><span>Image placeholder</span><strong>Wireframes</strong></div></div>
+                    </figure>
+                    <figure class="map-media">
+                        <div class="map-media-frame" role="img" aria-label="Placeholder for visual design variations"><div><span>Image placeholder</span><strong>Visual experiments</strong></div></div>
+                    </figure>
+                </div>
+            </article>
 
-            <figcaption>
-                Optional caption explaining the image.
-            </figcaption>
+            <article class="map-process-step">
+                <div class="map-copy">
+                    <span class="map-step-label">05 · Prototype and extend</span>
+                    <h3>Interaction design and additional states</h3>
+                    <p>I used Figma’s prototyping tools to test which interactions communicated the design best. Once the core system was resolved, I adapted it for desktop, Android, dark mode, and locked states.</p>
+                </div>
+                <div class="map-process-grid">
+                    <figure class="map-media">
+                        <div class="map-media-frame" role="img" aria-label="Placeholder for the interaction prototype"><div><span>Image placeholder</span><strong>Interaction prototype</strong></div></div>
+                    </figure>
+                    <figure class="map-media">
+                        <div class="map-media-frame" role="img" aria-label="Placeholder for desktop Android locked and dark-mode states"><div><span>Image placeholder</span><strong>Responsive and alternate states</strong></div></div>
+                    </figure>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="map-section" aria-labelledby="map-solution">
+        <div class="map-section-heading">
+            <h2 id="map-solution">Proposed solution</h2>
+            <p>A single map drawer brings base maps and every overlay into one organized, scalable interface across mobile and desktop.</p>
+        </div>
+
+        <figure class="map-media wide">
+            <div class="map-media-frame" role="img" aria-label="Placeholder for the complete proposed map overlays redesign">
+                <div>
+                    <span>Image placeholder</span>
+                    <strong>Complete map overlays system</strong>
+                    <small>Add the mobile, drawer, modal, and in-map solution screens here.</small>
+                </div>
+            </div>
         </figure>
-
-        -->
     </section>
 
+    <section class="map-section" aria-labelledby="map-decisions">
+        <div class="map-section-heading">
+            <h2 id="map-decisions">Design decisions</h2>
+            <p>The final system combines familiar drawer behavior with clearer grouping, flexible selection patterns, and stronger feedback about the user’s current map state.</p>
+        </div>
 
-    <section>
-        <h2>Outcome</h2>
+        <div class="map-decision-list">
+            <article class="map-decision">
+                <div class="map-decision-copy">
+                    <span class="map-step-label">Mobile-first</span>
+                    <h3>Start where most people use the feature</h3>
+                    <p>Most customers use the app on mobile. Starting with the smallest screen clarified priorities and made the interaction easier to expand for desktop than to compress later.</p>
+                </div>
+                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for mobile-first designs"><div><span>Image placeholder</span><strong>Mobile-first designs</strong></div></div></figure>
+            </article>
 
-        <p>
-            Describe what changed, what was delivered, and any measurable or
-            observed results.
-        </p>
+            <article class="map-decision">
+                <div class="map-decision-copy">
+                    <span class="map-step-label">Consolidation</span>
+                    <h3>Replace three buttons with one entry point</h3>
+                    <p>A single map control looks cleaner and gives every overlay a consistent home inside one drawer.</p>
+                </div>
+                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for before and after overlay buttons"><div><span>Image placeholder</span><strong>Consolidated map button</strong></div></div></figure>
+            </article>
+
+            <article class="map-decision">
+                <div class="map-decision-copy">
+                    <span class="map-step-label">Drawer pattern</span>
+                    <h3>Keep behavior users already understand</h3>
+                    <p>The existing drawer supported internal scrolling, different screen heights, and thumb-friendly use. Keeping it preserved expected behavior and made the redesign feel familiar.</p>
+                </div>
+                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for the updated map drawer"><div><span>Image placeholder</span><strong>Updated drawer</strong></div></div></figure>
+            </article>
+
+            <article class="map-decision">
+                <div class="map-decision-copy">
+                    <span class="map-step-label">Tile pattern</span>
+                    <h3>Make options visual and easy to tap</h3>
+                    <p>Image-and-text tiles provide a large target, preview each overlay, and feel familiar. I added shadows for contrast, strengthened the image-label relationship, and narrowed the tiles so three fit across.</p>
+                </div>
+                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for before and after overlay tiles"><div><span>Image placeholder</span><strong>Updated tile pattern</strong></div></div></figure>
+            </article>
+
+            <article class="map-decision">
+                <div class="map-decision-copy">
+                    <span class="map-step-label">Information architecture</span>
+                    <h3>Use categories to reduce cognitive load</h3>
+                    <p>Base maps, map overlays, public lands, and environmental information are grouped into internal categories with familiar names, making a growing collection easier to scan.</p>
+                </div>
+                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for categorized overlay drawer"><div><span>Image placeholder</span><strong>Internal categories</strong></div></div></figure>
+            </article>
+
+            <article class="map-decision">
+                <div class="map-decision-copy">
+                    <span class="map-step-label">Base maps</span>
+                    <h3>Make single selection unmistakable</h3>
+                    <p>A blue border, rounded shadow, and reduced saturation on unselected tiles clarify which base map is active. The full tile is clickable because only one base map can be selected at a time.</p>
+                </div>
+                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for base-map selection states"><div><span>Image placeholder</span><strong>Base-map selection</strong></div></div></figure>
+            </article>
+
+            <article class="map-decision">
+                <div class="map-decision-copy">
+                    <span class="map-step-label">Overlays</span>
+                    <h3>Support multiple simultaneous selections</h3>
+                    <p>Overlay tiles look related to base maps but use checkboxes to communicate that several can be active at once. Full-color unselected tiles remain visibly available for interaction.</p>
+                </div>
+                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for multi-select map overlay tiles"><div><span>Image placeholder</span><strong>Overlay multi-selection</strong></div></div></figure>
+            </article>
+
+            <article class="map-decision">
+                <div class="map-decision-copy">
+                    <span class="map-step-label">Selection feedback</span>
+                    <h3>Keep the current state visible</h3>
+                    <p>A count pill shows how many overlays are selected, even when an active tile has been scrolled out of view.</p>
+                </div>
+                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for the number-of-selections pill"><div><span>Image placeholder</span><strong>Selection-count pill</strong></div></div></figure>
+            </article>
+
+            <article class="map-decision">
+                <div class="map-decision-copy">
+                    <span class="map-step-label">Bulk action</span>
+                    <h3>Reveal “Clear all” only when it is useful</h3>
+                    <p>The action appears after at least one selection is made, giving users a fast reset without cluttering the default state.</p>
+                </div>
+                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for the conditional Clear all action"><div><span>Image placeholder</span><strong>Clear-all action</strong></div></div></figure>
+            </article>
+        </div>
     </section>
 
+    <section class="map-section" aria-labelledby="map-outcomes">
+        <div class="map-section-heading">
+            <h2 id="map-outcomes">Outcomes and impact</h2>
+            <p>The redesign launched to immediate positive feedback, created a clearer way to compare overlays, and gave the business a stronger home for Pro features.</p>
+        </div>
 
-    <section>
-        <h2>What I Learned</h2>
+        <div class="map-outcome-grid">
+            <article class="map-impact-card">
+                <h3>Results and metrics</h3>
+                <p>The experience launched successfully, and users immediately told the team they loved it.</p>
+            </article>
+            <article class="map-impact-card">
+                <h3>Business impact</h3>
+                <p>The product manager reported increased conversion and engagement, though exact metrics were not available.</p>
+            </article>
+            <article class="map-impact-card">
+                <h3>User impact</h3>
+                <p>A consolidated view makes overlays easier to compare and combine, while presenting all Pro options in one understandable place.</p>
+            </article>
+        </div>
 
-        <p>
-            Add any useful reflection, lessons, or later improvements.
-        </p>
+        <div class="map-outcomes" style="margin-top: clamp(3rem, 6vw, 5rem);">
+            <div>
+                <h3>What I learned</h3>
+                <ul>
+                    <li>Clearly justifying design decisions strengthened my communication</li>
+                    <li>Collaboration and adaptability matter when joining a team as the newcomer</li>
+                    <li>At some point, exploration must turn into a decision and forward momentum</li>
+                </ul>
+            </div>
+            <div>
+                <h3>A scalable foundation</h3>
+                <p>The new structure gives Campendium a consistent system for adding future base maps, overlays, and paid features without returning to fragmented controls.</p>
+            </div>
+        </div>
+
+        <p class="map-quote">One organized map system replaced a collection of disconnected controls—making exploration easier for RVers and future growth easier for the product team.</p>
     </section>
-
 </article>

@@ -1,106 +1,735 @@
-<article class="case-study">
+<style>
+    .va-case-study {
+        --va-card: rgba(252, 250, 246, 0.92);
+        --va-soft: #eee9f2;
+        --va-purple: #c9b8ef;
+        --va-blue: #a9ccef;
+        --va-green: #afeec2;
+        --va-pink: #edb2da;
+        width: 100%;
+        max-width: 980px;
+        container: va-case-study / inline-size;
+    }
 
-    <header class="case-study-header">
-        <p class="case-study-category">User Experience Design</p>
+    .va-case-study * {
+        box-sizing: border-box;
+    }
 
-        <h1>Veterans' Affairs PDF Digitization</h1>
+    .va-hero,
+    .va-section {
+        padding: clamp(3.5rem, 8vw, 7rem) 0;
+    }
 
-        <p class="case-study-summary">
-            Write a short one- or two-sentence summary of the project here.
-        </p>
+    .va-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+        align-items: center;
+        gap: clamp(2.5rem, 6vw, 5rem);
+        padding-top: 0;
+    }
 
-        <dl class="project-details">
-            <div>
-                <dt>Role</dt>
-                <dd>Senior Product Designer</dd>
+    .va-eyebrow {
+        margin: 0 0 0.85rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+    }
+
+    .va-hero h1 {
+        max-width: 12ch;
+        margin: 0 0 1.25rem;
+        font-size: clamp(2.6rem, 7cqi, 5.6rem);
+        line-height: 0.96;
+        letter-spacing: -0.045em;
+    }
+
+    .va-lede {
+        max-width: 48ch;
+        margin: 0;
+        font-size: clamp(1.1rem, 2.2cqi, 1.35rem);
+        line-height: 1.55;
+    }
+
+    .va-section {
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .va-section-heading {
+        display: grid;
+        grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: start;
+        margin-bottom: clamp(2.5rem, 6vw, 5rem);
+    }
+
+    .va-section-heading h2 {
+        margin: 0;
+        font-size: clamp(2rem, 5cqi, 3.6rem);
+        line-height: 1;
+        letter-spacing: -0.035em;
+    }
+
+    .va-section-heading p {
+        max-width: 58ch;
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.7;
+    }
+
+    .va-card-grid,
+    .va-impact-grid,
+    .va-process-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .va-card-grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .va-card,
+    .va-role,
+    .va-quote {
+        padding: clamp(1.35rem, 3vw, 2rem);
+        border-radius: 16px;
+        background: var(--va-card);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+    }
+
+    .va-card h3,
+    .va-role h3,
+    .va-decision-copy h3,
+    .va-process-copy h3,
+    .va-impact-grid h3 {
+        margin: 0 0 0.65rem;
+        font-size: 1.12rem;
+        line-height: 1.2;
+    }
+
+    .va-card p,
+    .va-decision-copy p,
+    .va-process-copy p {
+        margin: 0;
+        line-height: 1.65;
+    }
+
+    .va-card ul,
+    .va-role ul,
+    .va-impact-grid ul,
+    .va-outcomes ul {
+        margin: 0.65rem 0 0;
+        padding-left: 1.2rem;
+        line-height: 1.6;
+    }
+
+    .va-role {
+        margin-top: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .va-challenge-table {
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 1fr;
+        overflow: hidden;
+        border: 1px solid rgba(var(--color-dark-rgb), 0.16);
+        border-radius: 16px;
+        background: var(--va-card);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+    }
+
+    .va-challenge-table > div {
+        min-width: 0;
+        padding: clamp(1rem, 2.5vw, 1.6rem);
+        border-right: 1px solid rgba(var(--color-dark-rgb), 0.13);
+        border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.13);
+    }
+
+    .va-challenge-table > div:nth-child(3n) {
+        border-right: 0;
+    }
+
+    .va-challenge-table > div:nth-last-child(-n + 3) {
+        border-bottom: 0;
+    }
+
+    .va-challenge-table .va-table-label,
+    .va-challenge-table .va-table-heading {
+        font-weight: 700;
+    }
+
+    .va-challenge-table ul {
+        margin: 0;
+        padding-left: 1.1rem;
+        line-height: 1.5;
+    }
+
+    .va-media {
+        margin: 0;
+    }
+
+    .va-media-frame {
+        display: grid;
+        min-height: 250px;
+        padding: clamp(1.5rem, 4vw, 3rem);
+        border: 1px dashed rgba(var(--color-dark-rgb), 0.34);
+        border-radius: 16px;
+        background:
+            radial-gradient(circle at 18% 18%, rgba(201, 184, 239, 0.55), transparent 38%),
+            radial-gradient(circle at 82% 78%, rgba(169, 204, 239, 0.54), transparent 40%),
+            var(--color-sidebar-background);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.3),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.2);
+        place-items: center;
+        text-align: center;
+    }
+
+    .va-media-frame strong,
+    .va-media-frame span,
+    .va-media-frame small {
+        display: block;
+    }
+
+    .va-media-frame span {
+        margin-bottom: 0.45rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .va-media-frame strong {
+        font-size: clamp(1.15rem, 2.5cqi, 1.6rem);
+    }
+
+    .va-media-frame small {
+        max-width: 40ch;
+        margin-top: 0.5rem;
+        line-height: 1.45;
+    }
+
+    .va-media figcaption {
+        margin-top: 0.85rem;
+        color: var(--color-muted);
+        font-size: 0.86rem;
+        line-height: 1.5;
+    }
+
+    .va-media.tall .va-media-frame {
+        min-height: 440px;
+    }
+
+    .va-media.wide .va-media-frame {
+        min-height: clamp(280px, 44cqi, 430px);
+    }
+
+    .va-process-step,
+    .va-decision {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(280px, 1.15fr);
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: center;
+        margin-top: clamp(4rem, 9vw, 8rem);
+    }
+
+    .va-process-step:first-of-type,
+    .va-decision:first-of-type {
+        margin-top: 0;
+    }
+
+    .va-process-step:nth-child(even),
+    .va-decision:nth-child(even) {
+        grid-template-columns: minmax(280px, 1.15fr) minmax(0, 0.85fr);
+    }
+
+    .va-process-step:nth-child(even) .va-process-copy,
+    .va-decision:nth-child(even) .va-decision-copy {
+        order: 2;
+    }
+
+    .va-step-number {
+        display: block;
+        margin-bottom: 0.6rem;
+        color: var(--color-muted);
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .va-process-copy h3,
+    .va-decision-copy h3 {
+        font-size: clamp(1.4rem, 3cqi, 2rem);
+    }
+
+    .va-decision-list {
+        display: grid;
+        gap: clamp(4rem, 9vw, 8rem);
+    }
+
+    .va-decision-list .va-decision {
+        margin: 0;
+    }
+
+    .va-quote {
+        margin: clamp(2rem, 5vw, 4rem) 0 0;
+        font-size: clamp(1.25rem, 3cqi, 1.8rem);
+        line-height: 1.45;
+    }
+
+    .va-outcomes {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .va-outcomes > div {
+        padding-top: 1.4rem;
+        border-top: 4px solid var(--color-dark);
+    }
+
+    .va-outcomes h3 {
+        margin: 0;
+        font-size: 1.4rem;
+    }
+
+    .va-impact-grid {
+        margin-top: clamp(3rem, 6vw, 5rem);
+    }
+
+    .va-impact-grid > div:first-child {
+        background: rgba(175, 238, 194, 0.48);
+    }
+
+    .va-impact-grid > div:last-child {
+        background: rgba(169, 204, 239, 0.42);
+    }
+
+    @container va-case-study (max-width: 720px) {
+        .va-hero,
+        .va-section-heading,
+        .va-process-step,
+        .va-process-step:nth-child(even),
+        .va-decision,
+        .va-decision:nth-child(even) {
+            grid-template-columns: 1fr;
+        }
+
+        .va-hero-copy {
+            order: -1;
+        }
+
+        .va-process-step:nth-child(even) .va-process-copy,
+        .va-decision:nth-child(even) .va-decision-copy {
+            order: 0;
+        }
+
+        .va-card-grid.three {
+            grid-template-columns: 1fr;
+        }
+
+        .va-media.tall .va-media-frame {
+            min-height: 330px;
+        }
+    }
+
+    @container va-case-study (max-width: 520px) {
+        .va-card-grid,
+        .va-impact-grid,
+        .va-process-grid,
+        .va-outcomes {
+            grid-template-columns: 1fr;
+        }
+
+        .va-challenge-table {
+            grid-template-columns: 1fr;
+        }
+
+        .va-challenge-table > div,
+        .va-challenge-table > div:nth-child(3n),
+        .va-challenge-table > div:nth-last-child(-n + 3) {
+            border-right: 0;
+            border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.13);
+        }
+
+        .va-challenge-table > div:last-child {
+            border-bottom: 0;
+        }
+
+        .va-challenge-table .va-table-heading:first-child {
+            display: none;
+        }
+    }
+</style>
+
+<article class="va-case-study">
+    <header class="va-hero">
+        <div class="va-hero-copy">
+            <p class="va-eyebrow">User Experience Design · U.S. Department of Veterans Affairs</p>
+            <h1>PDF Digitization</h1>
+            <p class="va-lede">Helping disabled Veterans’ families apply for health care through a clearer, accessible digital experience.</p>
+        </div>
+
+        <figure class="va-media tall">
+            <div class="va-media-frame" role="img" aria-label="Placeholder for a mobile screen from the digitized CHAMPVA application">
+                <div>
+                    <span>Image placeholder</span>
+                    <strong>Final mobile application</strong>
+                    <small>Add the primary CHAMPVA application screen here.</small>
+                </div>
             </div>
-
-            <div>
-                <dt>Organization</dt>
-                <dd>Company or client name</dd>
-            </div>
-
-            <div>
-                <dt>Timeline</dt>
-                <dd>Month Year–Month Year</dd>
-            </div>
-
-            <div>
-                <dt>Responsibilities</dt>
-                <dd>Research, strategy, interaction design, prototyping</dd>
-            </div>
-        </dl>
+        </figure>
     </header>
 
+    <section class="va-section" aria-labelledby="va-overview">
+        <div class="va-section-heading">
+            <h2 id="va-overview">Overview</h2>
+            <p>A legacy print-and-mail application created friction for beneficiaries and required extensive manual processing by VA case workers. Our team transformed it into an accessible, end-to-end digital workflow on VA.gov.</p>
+        </div>
 
-    <section>
-        <h2>Overview</h2>
+        <div class="va-card-grid three">
+            <article class="va-card">
+                <h3>Context</h3>
+                <p>The application was a print-only PDF. Applicants filled it out by hand and mailed it to the VA, where case workers manually interpreted and processed it.</p>
+            </article>
 
-        <p>
-            Introduce the project, its purpose, and the people it served.
-        </p>
+            <article class="va-card">
+                <h3>Objective</h3>
+                <p>Lead the transformation of a paper-based PDF process into an accessible digital workflow on VA.gov.</p>
+            </article>
+
+            <article class="va-card">
+                <h3>Challenge</h3>
+                <p>Replace a legacy workflow with an intuitive experience while reducing the processing burden on VA staff.</p>
+            </article>
+        </div>
+
+        <article class="va-role">
+            <h3>My role</h3>
+            <ul>
+                <li>Main design point of contact for the project</li>
+                <li>Led research, interaction design, prototyping, and high-fidelity design</li>
+                <li>Contributed patterns to the VA design system</li>
+                <li>Helped manage stakeholders and cross-functional collaboration</li>
+                <li>Created developer annotations with accessibility guidance</li>
+            </ul>
+        </article>
     </section>
 
+    <section class="va-section" aria-labelledby="va-challenges">
+        <div class="va-section-heading">
+            <h2 id="va-challenges">Challenges and opportunities</h2>
+            <p>The paper process was hard for applicants to navigate and equally difficult for VA staff to process. Digitization could remove barriers on both sides of the service.</p>
+        </div>
 
-    <section>
-        <h2>The Challenge</h2>
+        <div class="va-challenge-table" aria-label="Customer and business challenges and opportunities">
+            <div class="va-table-heading"></div>
+            <div class="va-table-heading">Challenges</div>
+            <div class="va-table-heading">Opportunities</div>
 
-        <p>
-            Explain the problem the team needed to solve.
-        </p>
+            <div class="va-table-label">Customer</div>
+            <div>
+                <ul>
+                    <li>Mailing printed PDFs was cumbersome</li>
+                    <li>Instructions and application help were difficult to access</li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>Thousands of people apply every year despite these barriers</li>
+                    <li>A guided digital flow could make the process more approachable</li>
+                </ul>
+            </div>
+
+            <div class="va-table-label">Business</div>
+            <div>
+                <ul>
+                    <li>Manual sorting led to mistakes</li>
+                    <li>Handwriting caused missing signatures, ineligible entries, and processing delays</li>
+                    <li>The process depended on physical mail</li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>Digitization could reduce mistakes and processing time</li>
+                    <li>More applications could be received and reviewed</li>
+                    <li>The existing design system could accelerate delivery</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
+    <section class="va-section" aria-labelledby="va-approach">
+        <div class="va-section-heading">
+            <h2 id="va-approach">Approach</h2>
+            <p>We started lean, addressed issues as they emerged, tested with users, analyzed findings, and incorporated improvements in a mobile-first experience.</p>
+        </div>
 
-    <section>
-        <h2>My Role</h2>
-
-        <p>
-            Explain what you personally owned, led, or contributed.
-        </p>
+        <div class="va-card-grid three">
+            <article class="va-card">
+                <h3>High-level strategy</h3>
+                <p>Start small, learn continuously, and improve the experience as evidence emerged.</p>
+            </article>
+            <article class="va-card">
+                <h3>Methodologies</h3>
+                <p>Human-centered design, inclusive and accessible design principles, and agile teamwork.</p>
+            </article>
+            <article class="va-card">
+                <h3>Collaboration</h3>
+                <p>Regular check-ins with design, engineering, and stakeholders, with a shared design decision log.</p>
+            </article>
+        </div>
     </section>
 
+    <section class="va-section" aria-labelledby="va-process">
+        <div class="va-section-heading">
+            <h2 id="va-process">Process</h2>
+            <p>I moved from service-level understanding to detailed interaction design, testing each stage and preparing the final experience for an accessible engineering handoff.</p>
+        </div>
 
-    <section>
-        <h2>Process</h2>
+        <div class="va-process-step">
+            <div class="va-process-copy">
+                <span class="va-step-number">01 · Map the service</span>
+                <h3>Updated user flow</h3>
+                <p>I cleaned up the existing user flow to make it flatter, clearer, and more streamlined. I then facilitated a Figma workshop so the team could collaboratively build the first section using the VA design system.</p>
+            </div>
+            <figure class="va-media wide">
+                <div class="va-media-frame" role="img" aria-label="Placeholder for the updated user flow">
+                    <div>
+                        <span>Image placeholder</span>
+                        <strong>Updated user flow</strong>
+                        <small>Add the arrival and post-completion journey maps here.</small>
+                    </div>
+                </div>
+                <figcaption>A flatter flow helped the team align on the complete applicant journey.</figcaption>
+            </figure>
+        </div>
 
-        <p>
-            Explain the research, design, collaboration, and decision-making
-            involved in the project.
-        </p>
+        <div class="va-process-step">
+            <div class="va-process-copy">
+                <span class="va-step-number">02 · Learn and structure</span>
+                <h3>Stakeholder interviews and wireframes</h3>
+                <p>I interviewed researchers and stakeholders to uncover the right questions and update the user flow. I translated the flow into wireframes using the existing VA design library.</p>
+            </div>
+            <div class="va-process-grid">
+                <figure class="va-media">
+                    <div class="va-media-frame" role="img" aria-label="Placeholder for the stakeholder discussion guide">
+                        <div><span>Image placeholder</span><strong>Discussion guide</strong></div>
+                    </div>
+                </figure>
+                <figure class="va-media">
+                    <div class="va-media-frame" role="img" aria-label="Placeholder for the initial wireframes">
+                        <div><span>Image placeholder</span><strong>Wireframes</strong></div>
+                    </div>
+                </figure>
+            </div>
+        </div>
 
-        <!-- Example image:
+        <div class="va-process-step">
+            <div class="va-process-copy">
+                <span class="va-step-number">03 · Increase fidelity</span>
+                <h3>Screen advancement and clickable prototype</h3>
+                <p>I brought the core questions and concerns into each screen, then connected the high-fidelity designs into a clickable prototype for stakeholder review and usability testing.</p>
+            </div>
+            <div class="va-process-grid">
+                <figure class="va-media">
+                    <div class="va-media-frame" role="img" aria-label="Placeholder for screen advancement designs">
+                        <div><span>Image placeholder</span><strong>Screen advancement</strong></div>
+                    </div>
+                </figure>
+                <figure class="va-media">
+                    <div class="va-media-frame" role="img" aria-label="Placeholder for the clickable prototype">
+                        <div><span>Image placeholder</span><strong>Clickable prototype</strong></div>
+                    </div>
+                </figure>
+            </div>
+        </div>
 
-        <figure>
-            <img
-                src="images/example-image.jpg"
-                alt="Describe what is shown in the image"
-            >
+        <div class="va-process-step">
+            <div class="va-process-copy">
+                <span class="va-step-number">04 · Test and hand off</span>
+                <h3>User testing, iteration, and annotations</h3>
+                <p>I supported post-interview analysis and report writing, then updated the flow and screens based on feedback. For handoff, I documented the golden path, auxiliary screens, responsive states, and accessibility requirements.</p>
+            </div>
+            <div class="va-process-grid">
+                <figure class="va-media">
+                    <div class="va-media-frame" role="img" aria-label="Placeholder for usability testing analysis">
+                        <div><span>Image placeholder</span><strong>Testing analysis</strong></div>
+                    </div>
+                </figure>
+                <figure class="va-media">
+                    <div class="va-media-frame" role="img" aria-label="Placeholder for developer annotations">
+                        <div><span>Image placeholder</span><strong>Annotated handoff</strong></div>
+                    </div>
+                </figure>
+            </div>
+        </div>
+    </section>
 
-            <figcaption>
-                Optional caption explaining the image.
-            </figcaption>
+    <section class="va-section" aria-labelledby="va-solution">
+        <div class="va-section-heading">
+            <h2 id="va-solution">Proposed solution</h2>
+            <p>A guided, mobile-first application on VA.gov that made eligibility, applicant information, document collection, review, and submission easier to understand.</p>
+        </div>
+
+        <figure class="va-media wide">
+            <div class="va-media-frame" role="img" aria-label="Placeholder for the complete proposed VA.gov application">
+                <div>
+                    <span>Image placeholder</span>
+                    <strong>Complete digital application</strong>
+                    <small>Add a long-form view of the final VA.gov experience here.</small>
+                </div>
+            </div>
         </figure>
-
-        -->
     </section>
 
+    <section class="va-section" aria-labelledby="va-decisions">
+        <div class="va-section-heading">
+            <h2 id="va-decisions">Design decisions</h2>
+            <p>User research and testing shaped a set of interaction patterns that reduced cognitive load, supported complex family situations, and made document submission more flexible.</p>
+        </div>
 
-    <section>
-        <h2>Outcome</h2>
+        <div class="va-decision-list">
+            <article class="va-decision">
+                <div class="va-decision-copy">
+                    <span class="va-step-number">Mobile-first</span>
+                    <h3>Design for the smallest screen first</h3>
+                    <p>Most VA applicants use mobile devices. Starting with the smallest screens made it easier to prioritize content, then adapt the experience to larger screens.</p>
+                </div>
+                <figure class="va-media tall"><div class="va-media-frame" role="img" aria-label="Placeholder for mobile-first screens"><div><span>Image placeholder</span><strong>Mobile-first screens</strong></div></div></figure>
+            </article>
 
-        <p>
-            Describe what changed, what was delivered, and any measurable or
-            observed results.
-        </p>
+            <article class="va-decision">
+                <div class="va-decision-copy">
+                    <span class="va-step-number">Progressive disclosure</span>
+                    <h3>Show only what is relevant</h3>
+                    <p>Questions were ordered so applicants only saw follow-up questions when they applied. For example, document-upload guidance appeared only when a scenario required supporting evidence.</p>
+                </div>
+                <figure class="va-media wide"><div class="va-media-frame" role="img" aria-label="Placeholder for progressive disclosure screen sequence"><div><span>Image placeholder</span><strong>Conditional question flow</strong></div></div></figure>
+            </article>
+
+            <article class="va-decision">
+                <div class="va-decision-copy">
+                    <span class="va-step-number">Dynamic content</span>
+                    <h3>Use each applicant’s perspective</h3>
+                    <p>I moved signer information to the beginning so later content could use the applicant’s role and name—for example, changing “Veteran information” to “Your information” when appropriate.</p>
+                </div>
+                <figure class="va-media tall"><div class="va-media-frame" role="img" aria-label="Placeholder for signer information screen"><div><span>Image placeholder</span><strong>Signer information</strong></div></div></figure>
+            </article>
+
+            <article class="va-decision">
+                <div class="va-decision-copy">
+                    <span class="va-step-number">Document flexibility</span>
+                    <h3>Allow optional documents</h3>
+                    <p>Stakeholder interviews showed that applicants could provide many possible document types, but very few were universally required. The upload flow kept these options available without turning them into barriers.</p>
+                </div>
+                <figure class="va-media tall"><div class="va-media-frame" role="img" aria-label="Placeholder for optional document upload screen"><div><span>Image placeholder</span><strong>Optional documents</strong></div></div></figure>
+            </article>
+
+            <article class="va-decision">
+                <div class="va-decision-copy">
+                    <span class="va-step-number">Upload timing</span>
+                    <h3>Ask for files when they become relevant</h3>
+                    <p>The file prompt appears at the moment a document becomes relevant, with the option to skip it and return during review.</p>
+                </div>
+                <figure class="va-media tall"><div class="va-media-frame" role="img" aria-label="Placeholder for contextual file upload prompt"><div><span>Image placeholder</span><strong>File upload placement</strong></div></div></figure>
+            </article>
+
+            <article class="va-decision">
+                <div class="va-decision-copy">
+                    <span class="va-step-number">Address pattern</span>
+                    <h3>Reduce repeated address entry</h3>
+                    <p>Testing showed that people were frustrated when entering the same address for multiple people in one household. A reusable-address pattern removed that friction while still supporting different addresses.</p>
+                </div>
+                <figure class="va-media wide"><div class="va-media-frame" role="img" aria-label="Placeholder for same-address selector"><div><span>Image placeholder</span><strong>Same-address option</strong></div></div></figure>
+            </article>
+
+            <article class="va-decision">
+                <div class="va-decision-copy">
+                    <span class="va-step-number">List and loop</span>
+                    <h3>Make repeated applicants manageable</h3>
+                    <p>Instead of one inefficient repeating pattern, applicants first create a list of people and then complete each person’s questions individually. A submitted version of this pattern later replaced the older design in the VA design system.</p>
+                </div>
+                <figure class="va-media tall"><div class="va-media-frame" role="img" aria-label="Placeholder for before and after list-and-loop designs"><div><span>Image placeholder</span><strong>List-and-loop pattern</strong></div></div></figure>
+            </article>
+
+            <article class="va-decision">
+                <div class="va-decision-copy">
+                    <span class="va-step-number">Review</span>
+                    <h3>Give documents a clear overview</h3>
+                    <p>A dedicated review page gives applicants another opportunity to upload files before submission. Existing VA design-system components separate content by applicant and document requirements.</p>
+                </div>
+                <figure class="va-media tall"><div class="va-media-frame" role="img" aria-label="Placeholder for document review screen"><div><span>Image placeholder</span><strong>Review and overview</strong></div></div></figure>
+            </article>
+
+            <article class="va-decision">
+                <div class="va-decision-copy">
+                    <span class="va-step-number">Mail-in alternative</span>
+                    <h3>Keep a non-digital path available</h3>
+                    <p>Some applicants told us they would rather mail documents than upload them. The experience keeps that option visible while allowing processors to continue working with the rest of the application.</p>
+                </div>
+                <figure class="va-media wide"><div class="va-media-frame" role="img" aria-label="Placeholder for mail-in documentation option"><div><span>Image placeholder</span><strong>Mail-in documentation</strong></div></div></figure>
+            </article>
+
+            <article class="va-decision">
+                <div class="va-decision-copy">
+                    <span class="va-step-number">Post-submission</span>
+                    <h3>Make application status unmistakable</h3>
+                    <p>After submission, the interface clearly distinguishes fully submitted applications from those still missing required documentation. Existing alert patterns help applicants see what happened and what to do next.</p>
+                </div>
+                <figure class="va-media tall"><div class="va-media-frame" role="img" aria-label="Placeholder for post-submission application states"><div><span>Image placeholder</span><strong>Submission states</strong></div></div></figure>
+            </article>
+        </div>
     </section>
 
+    <section class="va-section" aria-labelledby="va-outcomes">
+        <div class="va-section-heading">
+            <h2 id="va-outcomes">Outcomes</h2>
+            <p>The service launched in fall 2024 after two previously failed attempts and immediately demonstrated demand for a digital application.</p>
+        </div>
 
-    <section>
-        <h2>What I Learned</h2>
+        <div class="va-outcomes">
+            <div>
+                <h3>Results and metrics</h3>
+                <ul>
+                    <li>Launched in fall 2024</li>
+                    <li>24,000 applications submitted online in the first two months</li>
+                </ul>
+            </div>
+            <div>
+                <h3>What I learned</h3>
+                <ul>
+                    <li>Aligning on processes before designing saves time later</li>
+                    <li>There is no substitute for in-depth user research</li>
+                    <li>Balancing stakeholder requests with prioritized design needs is an art form</li>
+                </ul>
+            </div>
+        </div>
 
-        <p>
-            Add any useful reflection, lessons, or later improvements.
-        </p>
+        <div class="va-impact-grid">
+            <article class="va-card">
+                <h3>User impact</h3>
+                <ul>
+                    <li>More people can apply through a more accessible method</li>
+                    <li>The guided flow is easier to complete than the PDF</li>
+                    <li>Applicants can apply without leaving home</li>
+                </ul>
+            </article>
+            <article class="va-card">
+                <h3>Business impact</h3>
+                <ul>
+                    <li>More applications can be processed in less time</li>
+                    <li>Staff no longer need to decipher handwriting or rely on physical mail</li>
+                    <li>Uploaded files arrive directly and are easier to review</li>
+                </ul>
+            </article>
+        </div>
+
+        <p class="va-quote">A clearer digital service allows more people to apply—and helps processors approve applications faster, with fewer mistakes.</p>
     </section>
-
 </article>

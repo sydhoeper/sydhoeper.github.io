@@ -10,7 +10,7 @@ let previousCometX = null;
 let previousCometY = null;
 
 function positionScrollComet() {
-    if (reduceMotion.matches) {
+    if (!document.body.classList.contains("blob-visible") || reduceMotion.matches) {
         return;
     }
 
@@ -106,6 +106,13 @@ const pageMap = {
 
 async function loadPage(pageName) {
     const pagePath = pageMap[pageName];
+
+    document.body.classList.toggle("blob-visible", pageName === "home");
+
+    if (pageName === "home") {
+        lastCometScrollY = window.scrollY;
+        requestCometPosition();
+    }
 
     if (!pagePath) {
         showComingSoon(pageName);

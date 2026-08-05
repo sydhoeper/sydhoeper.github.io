@@ -76,11 +76,15 @@ body::after {
         radial-gradient(circle at 58% 72%, rgba(125, 218, 210, 0.4), transparent 54%),
         radial-gradient(circle at 30% 70%, rgba(145, 205, 235, 0.34), transparent 50%);
     filter: blur(38px) saturate(0.76) hue-rotate(var(--comet-hue));
-    opacity: 0.48;
+    opacity: 0;
     transform: translate3d(var(--comet-x), var(--comet-y), 0) rotate(var(--comet-rotation)) scale(var(--comet-scale-x), var(--comet-scale-y));
     transform-origin: center;
     will-change: transform, filter, border-radius;
     pointer-events: none;
+}
+
+body.blob-visible::after {
+    opacity: 0.48;
 }
 
 button,
