@@ -22,6 +22,7 @@
 
     --sidebar-width: 300px;
     --page-padding: 24px;
+    --content-gutter: 48px;
 
     --comet-x: calc(var(--sidebar-width) + 12vw);
     --comet-y: 12vh;
@@ -208,7 +209,7 @@ textarea {
     min-height: 100vh;
     max-width: 1050px;
 
-    padding: 80px var(--page-padding) 120px;
+    padding: 80px var(--content-gutter) 120px;
 
     font-size: var(--text-base);
     line-height: 1.5;

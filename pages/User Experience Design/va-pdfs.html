@@ -24,8 +24,12 @@
         display: grid;
         grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
         align-items: center;
-        gap: clamp(2.5rem, 6vw, 5rem);
+        gap: clamp(0.75rem, 2vw, 1.5rem);
         padding-top: 0;
+    }
+
+    .va-hero-copy {
+        text-align: left;
     }
 
     .va-eyebrow {
@@ -183,12 +187,44 @@
             0 12px 30px rgba(var(--color-dark-rgb), 0.2);
     }
 
+    .va-media.va-hero-phone > img {
+        border-radius: 0;
+        box-shadow: none;
+        filter:
+            drop-shadow(0 8px 10px rgba(var(--color-dark-rgb), 0.18))
+            drop-shadow(0 20px 24px rgba(var(--color-dark-rgb), 0.16));
+    }
+
+    .va-media.va-hero-phone {
+        transform: translateX(-12%);
+    }
+
     .va-media.portrait > img {
         width: auto;
         max-width: 100%;
         max-height: 760px;
         margin-inline: auto;
         object-fit: contain;
+    }
+
+    .va-media.va-original-pdf {
+        display: grid;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .va-media.va-original-pdf > img {
+        width: min(520px, 100%);
+        max-width: 100%;
+        max-height: none;
+        height: auto;
+        aspect-ratio: auto;
+        border-radius: 16px;
+        object-fit: contain;
+    }
+
+    .va-media.va-original-pdf figcaption {
+        text-align: center;
     }
 
     .va-media-frame {
@@ -271,6 +307,39 @@
         order: 2;
     }
 
+    .va-process-step.va-flow-step {
+        grid-template-columns: 1fr;
+        gap: clamp(1.25rem, 2.5vw, 2rem);
+    }
+
+    .va-process-step.va-flow-step .va-process-copy {
+        order: 0;
+        max-width: 62ch;
+    }
+
+    .va-flow-comparison {
+        grid-template-columns: 1fr;
+        gap: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .va-process-step.va-stakeholder-step {
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 0.75fr);
+        align-items: start;
+    }
+
+    .va-process-step.va-stakeholder-step .va-process-copy {
+        order: 0;
+        max-width: 62ch;
+    }
+
+    .va-stakeholder-artifacts {
+        grid-template-columns: 1fr;
+        gap: clamp(1.25rem, 3vw, 2rem);
+        width: 100%;
+        max-width: 380px;
+        justify-self: end;
+    }
+
     .va-step-number {
         display: block;
         margin-bottom: 0.6rem;
@@ -343,6 +412,19 @@
             order: -1;
         }
 
+        .va-media.va-hero-phone {
+            transform: none;
+        }
+
+        .va-process-step.va-stakeholder-step {
+            grid-template-columns: 1fr;
+        }
+
+        .va-stakeholder-artifacts {
+            max-width: none;
+            justify-self: stretch;
+        }
+
         .va-process-step:nth-child(even) .va-process-copy,
         .va-decision:nth-child(even) .va-decision-copy {
             order: 0;
@@ -394,8 +476,8 @@
             <p class="va-lede">Helping disabled Veterans’ families apply for health care through a clearer, accessible digital experience.</p>
         </div>
 
-        <figure class="va-media tall">
-            <img src="/images/PDF%20Digitization/PDF%20Digitization%20Mobile%20Preview.png" alt="Mobile preview of the digitized CHAMPVA application" loading="eager" decoding="async">
+        <figure class="va-media tall va-hero-phone">
+            <img src="images/PDF%20Digitization/PDF%20Digitization%20Mobile%20Preview.png" alt="Mobile preview of the digitized CHAMPVA application" loading="eager" decoding="async">
         </figure>
     </header>
 
@@ -433,8 +515,8 @@
             </ul>
         </article>
 
-        <figure class="va-media portrait" style="margin-top: clamp(2rem, 5vw, 4rem);">
-            <img src="/images/PDF%20Digitization/Original%2010-10d%20PDF.png" alt="The original paper VA Form 10-10d application" loading="lazy" decoding="async">
+        <figure class="va-media portrait va-original-pdf" style="margin-top: clamp(2rem, 5vw, 4rem);">
+            <img src="images/PDF%20Digitization/PDF%20OG%201010d%20omfg.png" alt="The complete original paper Application for CHAMPVA Benefits form" loading="eager" decoding="async">
             <figcaption>The original print-and-mail application that the digital service replaced.</figcaption>
         </figure>
     </section>
@@ -510,36 +592,36 @@
             <p>I moved from service-level understanding to detailed interaction design, testing each stage and preparing the final experience for an accessible engineering handoff.</p>
         </div>
 
-        <div class="va-process-step">
+        <div class="va-process-step va-flow-step">
             <div class="va-process-copy">
                 <span class="va-step-number">01 · Map the service</span>
                 <h3>Updated user flow</h3>
                 <p>I cleaned up the existing user flow to make it flatter, clearer, and more streamlined. I then facilitated a Figma workshop so the team could collaboratively build the first section using the VA design system.</p>
             </div>
-            <div class="va-process-grid">
+            <div class="va-process-grid va-flow-comparison">
                 <figure class="va-media">
-                    <img src="/images/PDF%20Digitization/When%20I%20arrived%20Flow.png" alt="The application flow when I joined the project" loading="lazy" decoding="async">
+                    <img src="images/PDF%20Digitization/When%20I%20arrived%20Flow.png" alt="The application flow when I joined the project" loading="eager" decoding="async">
                     <figcaption>Before: the flow when I joined the project.</figcaption>
                 </figure>
                 <figure class="va-media">
-                    <img src="/images/PDF%20Digitization/When%20I%20was%20done%20Flow.png" alt="The streamlined application flow after the redesign" loading="lazy" decoding="async">
+                    <img src="images/PDF%20Digitization/When%20I%20was%20done%20Flow.png" alt="The streamlined application flow after the redesign" loading="eager" decoding="async">
                     <figcaption>After: a flatter, more streamlined applicant journey.</figcaption>
                 </figure>
             </div>
         </div>
 
-        <div class="va-process-step">
+        <div class="va-process-step va-stakeholder-step">
             <div class="va-process-copy">
                 <span class="va-step-number">02 · Learn and structure</span>
                 <h3>Stakeholder interviews and wireframes</h3>
                 <p>I interviewed researchers and stakeholders to uncover the right questions and update the user flow. I translated the flow into wireframes using the existing VA design library.</p>
             </div>
-            <div class="va-process-grid">
+            <div class="va-process-grid va-stakeholder-artifacts">
                 <figure class="va-media">
-                    <img src="/images/PDF%20Digitization/Discussion%20Questions.png" alt="Stakeholder interview discussion questions" loading="lazy" decoding="async">
+                    <img src="images/PDF%20Digitization/Discussion%20Questions.png" alt="Stakeholder interview discussion questions" loading="eager" decoding="async">
                 </figure>
                 <figure class="va-media">
-                    <img src="/images/PDF%20Digitization/Wireframes.png" alt="Early application wireframes" loading="lazy" decoding="async">
+                    <img src="images/PDF%20Digitization/Wireframes.png" alt="Early application wireframes" loading="eager" decoding="async">
                 </figure>
             </div>
         </div>
@@ -552,10 +634,10 @@
             </div>
             <div class="va-process-grid">
                 <figure class="va-media">
-                    <img src="/images/PDF%20Digitization/Screen%20advancement.png" alt="Application screens progressing in fidelity" loading="lazy" decoding="async">
+                    <img src="images/PDF%20Digitization/Screen%20advancement.png" alt="Application screens progressing in fidelity" loading="eager" decoding="async">
                 </figure>
                 <figure class="va-media">
-                    <img src="/images/PDF%20Digitization/clickable%20prototype.png" alt="High-fidelity clickable application prototype" loading="lazy" decoding="async">
+                    <img src="images/PDF%20Digitization/clickable%20prototype.png" alt="High-fidelity clickable application prototype" loading="eager" decoding="async">
                 </figure>
             </div>
         </div>
@@ -568,10 +650,10 @@
             </div>
             <div class="va-process-grid">
                 <figure class="va-media">
-                    <img src="/images/PDF%20Digitization/User%20testing%20analysis.png" alt="User testing analysis and findings" loading="lazy" decoding="async">
+                    <img src="images/PDF%20Digitization/User%20testing%20analysis.png" alt="User testing analysis and findings" loading="eager" decoding="async">
                 </figure>
                 <figure class="va-media">
-                    <img src="/images/PDF%20Digitization/Annotations%20and%20handoff.png" alt="Annotated application designs prepared for engineering handoff" loading="lazy" decoding="async">
+                    <img src="images/PDF%20Digitization/Annotations%20and%20handoff.png" alt="Annotated application designs prepared for engineering handoff" loading="eager" decoding="async">
                 </figure>
             </div>
         </div>
@@ -584,7 +666,7 @@
         </div>
 
         <figure class="va-media wide">
-            <img src="/images/PDF%20Digitization/Proposed%20Solution.png" alt="Long-form view of the proposed digital CHAMPVA application" loading="lazy" decoding="async">
+            <img src="images/PDF%20Digitization/Proposed%20Solution.png" alt="Long-form view of the proposed digital CHAMPVA application" loading="eager" decoding="async">
         </figure>
     </section>
 
@@ -601,7 +683,7 @@
                     <h3>Design for the smallest screen first</h3>
                     <p>Most VA applicants use mobile devices. Starting with the smallest screens made it easier to prioritize content, then adapt the experience to larger screens.</p>
                 </div>
-                <figure class="va-media portrait"><img src="/images/PDF%20Digitization/Mobile-first%20designs.png" alt="Mobile-first CHAMPVA application screens" loading="lazy" decoding="async"></figure>
+                <figure class="va-media portrait"><img src="images/PDF%20Digitization/Mobile-first%20designs.png" alt="Mobile-first CHAMPVA application screens" loading="eager" decoding="async"></figure>
             </article>
 
             <article class="va-decision">
@@ -610,7 +692,7 @@
                     <h3>Show only what is relevant</h3>
                     <p>Questions were ordered so applicants only saw follow-up questions when they applied. For example, document-upload guidance appeared only when a scenario required supporting evidence.</p>
                 </div>
-                <figure class="va-media"><img src="/images/PDF%20Digitization/progressive%20disclosure.png" alt="Progressive disclosure screen sequence showing conditional questions" loading="lazy" decoding="async"></figure>
+                <figure class="va-media"><img src="images/PDF%20Digitization/progressive%20disclosure.png" alt="Progressive disclosure screen sequence showing conditional questions" loading="eager" decoding="async"></figure>
             </article>
 
             <article class="va-decision">
@@ -619,7 +701,7 @@
                     <h3>Use each applicant’s perspective</h3>
                     <p>I moved signer information to the beginning so later content could use the applicant’s role and name—for example, changing “Veteran information” to “Your information” when appropriate.</p>
                 </div>
-                <figure class="va-media portrait"><img src="/images/PDF%20Digitization/dynamic%20content.png" alt="Signer information screen demonstrating dynamic content" loading="lazy" decoding="async"></figure>
+                <figure class="va-media portrait"><img src="images/PDF%20Digitization/dynamic%20content.png" alt="Signer information screen demonstrating dynamic content" loading="eager" decoding="async"></figure>
             </article>
 
             <article class="va-decision">
@@ -628,7 +710,7 @@
                     <h3>Allow optional documents</h3>
                     <p>Stakeholder interviews showed that applicants could provide many possible document types, but very few were universally required. The upload flow kept these options available without turning them into barriers.</p>
                 </div>
-                <figure class="va-media portrait"><img src="/images/PDF%20Digitization/optional%20documents.png" alt="Application screen allowing optional supporting documents" loading="lazy" decoding="async"></figure>
+                <figure class="va-media portrait"><img src="images/PDF%20Digitization/optional%20documents.png" alt="Application screen allowing optional supporting documents" loading="eager" decoding="async"></figure>
             </article>
 
             <article class="va-decision">
@@ -637,7 +719,7 @@
                     <h3>Ask for files when they become relevant</h3>
                     <p>The file prompt appears at the moment a document becomes relevant, with the option to skip it and return during review.</p>
                 </div>
-                <figure class="va-media portrait"><img src="/images/PDF%20Digitization/file%20upload%20placement.png" alt="Contextual file upload prompt in the application flow" loading="lazy" decoding="async"></figure>
+                <figure class="va-media portrait"><img src="images/PDF%20Digitization/file%20upload%20placement.png" alt="Contextual file upload prompt in the application flow" loading="eager" decoding="async"></figure>
             </article>
 
             <article class="va-decision">
@@ -646,7 +728,7 @@
                     <h3>Reduce repeated address entry</h3>
                     <p>Testing showed that people were frustrated when entering the same address for multiple people in one household. A reusable-address pattern removed that friction while still supporting different addresses.</p>
                 </div>
-                <figure class="va-media"><img src="/images/PDF%20Digitization/same%20mailing%20address.png" alt="Reusable mailing address selection pattern" loading="lazy" decoding="async"></figure>
+                <figure class="va-media"><img src="images/PDF%20Digitization/same%20mailing%20address.png" alt="Reusable mailing address selection pattern" loading="eager" decoding="async"></figure>
             </article>
 
             <article class="va-decision">
@@ -657,11 +739,11 @@
                 </div>
                 <div class="va-process-grid">
                     <figure class="va-media portrait">
-                        <img src="/images/PDF%20Digitization/list%20and%20loop%20before.png" alt="List-and-loop pattern before the redesign" loading="lazy" decoding="async">
+                        <img src="images/PDF%20Digitization/list%20and%20loop%20before.png" alt="List-and-loop pattern before the redesign" loading="eager" decoding="async">
                         <figcaption>Before</figcaption>
                     </figure>
                     <figure class="va-media">
-                        <img src="/images/PDF%20Digitization/list%20and%20loop%20after.png" alt="List-and-loop pattern after the redesign" loading="lazy" decoding="async">
+                        <img src="images/PDF%20Digitization/list%20and%20loop%20after.png" alt="List-and-loop pattern after the redesign" loading="eager" decoding="async">
                         <figcaption>After</figcaption>
                     </figure>
                 </div>
@@ -673,7 +755,7 @@
                     <h3>Give documents a clear overview</h3>
                     <p>A dedicated review page gives applicants another opportunity to upload files before submission. Existing VA design-system components separate content by applicant and document requirements.</p>
                 </div>
-                <figure class="va-media portrait"><img src="/images/PDF%20Digitization/overview%20screen.png" alt="Document review and overview screen" loading="lazy" decoding="async"></figure>
+                <figure class="va-media portrait"><img src="images/PDF%20Digitization/overview%20screen.png" alt="Document review and overview screen" loading="eager" decoding="async"></figure>
             </article>
 
             <article class="va-decision">
@@ -691,7 +773,7 @@
                     <h3>Make application status unmistakable</h3>
                     <p>After submission, the interface clearly distinguishes fully submitted applications from those still missing required documentation. Existing alert patterns help applicants see what happened and what to do next.</p>
                 </div>
-                <figure class="va-media portrait"><img src="/images/PDF%20Digitization/post-submission.png" alt="Post-submission application status screens" loading="lazy" decoding="async"></figure>
+                <figure class="va-media portrait"><img src="images/PDF%20Digitization/post-submission.png" alt="Post-submission application status screens" loading="eager" decoding="async"></figure>
             </article>
         </div>
     </section>

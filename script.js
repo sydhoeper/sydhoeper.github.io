@@ -122,7 +122,8 @@ async function loadPage(pageName) {
     try {
         contentArea.innerHTML = "<p>Loading...</p>";
 
-        const response = await fetch(encodeURI(pagePath), { cache: "no-store" });
+        const pageUrl = `${encodeURI(pagePath)}?v=${Date.now()}`;
+        const response = await fetch(pageUrl, { cache: "no-store" });
 
         if (!response.ok) {
             throw new Error(`Could not load ${pagePath}`);
