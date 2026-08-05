@@ -14,12 +14,8 @@ function positionScrollComet() {
         return;
     }
 
-    const isMobile = window.innerWidth <= 850;
-    const sidebarWidth = isMobile ? 0 : 300;
-    const cometWidth = Math.min(Math.max(window.innerWidth * 0.48, 420), 680);
-    const cometHeight = Math.min(Math.max(window.innerWidth * 0.23, 200), 330);
-    const availableWidth = Math.max(window.innerWidth - sidebarWidth - cometWidth, 0);
-    const availableHeight = Math.max(window.innerHeight - cometHeight, 0);
+    const cometWidth = Math.min(Math.max(window.innerWidth * 0.43, 380), 650);
+    const cometHeight = cometWidth;
     const scrollDistance = Math.abs(window.scrollY - lastCometScrollY);
 
     cometPhase += scrollDistance * 0.0018;
@@ -31,9 +27,23 @@ function positionScrollComet() {
     const yWave =
         Math.cos(cometPhase * 1.13 + 0.7) * 0.27 +
         Math.sin(cometPhase * 2.73 + 2.1) * 0.14;
-    const x = sidebarWidth + availableWidth * (0.5 + xWave);
-    const y = availableHeight * (0.5 + yWave);
+    const xProgress = Math.max(0, Math.min(1, 0.5 + xWave * 1.17));
+    const yProgress = Math.max(0, Math.min(1, 0.5 + yWave * 1.2));
+    const xStart = cometWidth * -0.42;
+    const xEnd = window.innerWidth - cometWidth * 0.58;
+    const yStart = cometHeight * -0.42;
+    const yEnd = window.innerHeight - cometHeight * 0.58;
+    const x = xStart + (xEnd - xStart) * xProgress;
+    const y = yStart + (yEnd - yStart) * yProgress;
     const scale = 0.76 + ((Math.sin(cometPhase * 1.47 - 0.8) + 1) / 2) * 0.48;
+    const shapeShift = Math.sin(cometPhase * 1.91 + 0.4);
+    const scaleX = scale * (1 + shapeShift * 0.13);
+    const scaleY = scale * (1 - shapeShift * 0.1);
+    const hue = ((Math.sin(cometPhase * 0.83) + 1) / 2) * 70 - 35;
+    const radiusA = 44 + Math.sin(cometPhase * 1.37) * 10;
+    const radiusB = 56 + Math.cos(cometPhase * 1.61) * 10;
+    const radiusC = 50 + Math.sin(cometPhase * 2.03 + 1.2) * 9;
+    const radiusD = 50 + Math.cos(cometPhase * 1.79 + 0.5) * 9;
     const movementX = previousCometX === null ? 1 : x - previousCometX;
     const movementY = previousCometY === null ? 0 : y - previousCometY;
     const rotation = Math.atan2(movementY, movementX) * 57.2958;
@@ -44,7 +54,13 @@ function positionScrollComet() {
     rootElement.style.setProperty("--comet-x", `${x}px`);
     rootElement.style.setProperty("--comet-y", `${y}px`);
     rootElement.style.setProperty("--comet-rotation", `${rotation}deg`);
-    rootElement.style.setProperty("--comet-scale", scale.toFixed(3));
+    rootElement.style.setProperty("--comet-scale-x", scaleX.toFixed(3));
+    rootElement.style.setProperty("--comet-scale-y", scaleY.toFixed(3));
+    rootElement.style.setProperty("--comet-hue", `${hue.toFixed(1)}deg`);
+    rootElement.style.setProperty(
+        "--comet-radius",
+        `${radiusA.toFixed(1)}% ${radiusB.toFixed(1)}% ${radiusC.toFixed(1)}% ${radiusD.toFixed(1)}% / ${radiusB.toFixed(1)}% ${radiusD.toFixed(1)}% ${radiusA.toFixed(1)}% ${radiusC.toFixed(1)}%`
+    );
 }
 
 function requestCometPosition() {
