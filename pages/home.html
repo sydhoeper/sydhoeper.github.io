@@ -1,4 +1,6 @@
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
+
     .home-page {
         width: 100%;
         --home-edge: 48px;
@@ -19,6 +21,12 @@
     .home-page h2,
     .home-page h3 {
         text-wrap: balance;
+    }
+
+    .home-page h1,
+    .home-page h2 {
+        font-family: "Fraunces", Georgia, "Times New Roman", serif;
+        font-weight: 700;
     }
 
     .home-block {
@@ -87,13 +95,6 @@
         font-size: clamp(1.25rem, 2.3cqi, 1.65rem);
         font-weight: 650;
         line-height: 1.4;
-    }
-
-    .home-intro {
-        max-width: 53ch;
-        margin: 0;
-        font-size: 1.05rem;
-        line-height: 1.72;
     }
 
     .home-actions {
@@ -394,43 +395,28 @@
 <div class="home-page">
     <section class="home-block home-hero" aria-labelledby="home-title">
         <figure class="home-portrait">
-            <img src="/images/Hoeper-Picture.jpg" alt="Portrait of Syd Hoeper">
+            <img src="images/Hoeper-Picture.jpg?v=2" alt="Portrait of Syd Hoeper" loading="eager" decoding="async">
         </figure>
 
         <div class="home-hero-copy">
-            <p class="home-eyebrow">Hi, I’m Syd · Senior Product Designer</p>
             <h1 id="home-title">Complexity, made human.</h1>
-            <p class="home-lede">I make complicated systems feel clear, inclusive, and genuinely useful.</p>
-            <p class="home-intro">
-                For more than eight years, I’ve led end-to-end product design across public services, emergency response, outdoor travel, mapping, and creative technology. I’m at my best when the problem is ambiguous, the workflow is messy, and the people using it deserve something better.
-            </p>
+            <p class="home-lede">I’ve spent 8.5+ years making complicated systems feel clear, inclusive, and genuinely useful.</p>
 
-            <div class="home-actions" aria-label="Primary links">
-                <a class="home-button" href="#va-pdfs">Explore my work</a>
-                <a class="home-button secondary" href="/documents/syd-hoeper-resume.pdf?v=2" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M15 3h6v6"></path>
-                        <path d="m10 14 11-11"></path>
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                    </svg>
-                    View my résumé
-                </a>
-            </div>
         </div>
     </section>
 
     <section class="home-block home-snapshot" aria-label="Experience at a glance">
         <div class="snapshot-card">
-            <strong>8+ years</strong>
-            <span>Leading research, strategy, interaction design, testing, and delivery.</span>
+            <strong>8.5+ years</strong>
+            <span>Leading products from research through delivery.</span>
         </div>
         <div class="snapshot-card">
-            <strong>0→1 + systems</strong>
-            <span>Turning ambiguous ideas and tangled workflows into durable products.</span>
+            <strong>0→1 products</strong>
+            <span>Shaping new ideas into useful, launched experiences.</span>
         </div>
         <div class="snapshot-card">
-            <strong>Public impact</strong>
-            <span>Designing accessible services for Veterans, families, responders, and travelers.</span>
+            <strong>Systems thinking</strong>
+            <span>Making tangled workflows feel straightforward.</span>
         </div>
     </section>
 
@@ -441,26 +427,26 @@
                 <h2 id="background-title">A nonlinear path to better products.</h2>
             </div>
             <p>
-                I started with physical products, moved into digital systems, and kept following the work toward harder, more human problems. Each chapter sharpened a different part of how I design today.
+                I started with physical products and followed the work toward increasingly complex, human problems.
             </p>
         </div>
 
         <ol class="career-list">
             <li>
                 <h3>Physical products taught me constraints</h3>
-                <p>At Giant Loop Moto, I designed off-road motorcycle gear where materials, manufacturing, and real-world use made every decision tangible.</p>
+                <p>I designed off-road motorcycle gear at Giant Loop Moto.</p>
             </li>
             <li>
                 <h3>Startups taught me ownership</h3>
-                <p>At Trip Pilot, I became the sole product designer and learned to guide an evolving product from research and concept through launch.</p>
+                <p>As Trip Pilot’s sole designer, I guided products from research through launch.</p>
             </li>
             <li>
                 <h3>Platforms taught me systems thinking</h3>
-                <p>At Active911 and Roadpass, I led complex tools for first responders and travelers, balancing business goals with high-stakes workflows.</p>
+                <p>At Active911, Roadpass, and Ad Hoc, I designed complex services for responders, travelers, and Veterans’ families.</p>
             </li>
             <li>
-                <h3>Public service made the stakes personal</h3>
-                <p>At Ad Hoc, I improved federal services for Veterans Affairs and Social Security—work that deepened my commitment to accessible, equitable design.</p>
+                <h3>Graduate school keeps my perspective fresh</h3>
+                <p>I’m pursuing an MFA in Game Design and Interactive Media, expanding how I think about interaction, play, and experience design.</p>
             </li>
         </ol>
     </section>
@@ -472,7 +458,7 @@
                 <h2 id="practice-title">Clarity is a team sport.</h2>
             </div>
             <p>
-                My role is rarely just to make an interface. I help teams understand the problem, make intentional tradeoffs, and stay connected to the people affected by what we build.
+                I help teams understand the problem, align on tradeoffs, and stay close to users.
             </p>
         </div>
 
@@ -480,17 +466,17 @@
             <article class="practice-card">
                 <span class="practice-number">01</span>
                 <h3>Find the real problem</h3>
-                <p>I use research, service mapping, and systems thinking to separate root causes from visible symptoms.</p>
+                <p>Separate root causes from visible symptoms.</p>
             </article>
             <article class="practice-card">
                 <span class="practice-number">02</span>
                 <h3>Build shared clarity</h3>
-                <p>I bring product, engineering, stakeholders, and users into the work early so decisions hold up later.</p>
+                <p>Bring teams and users into the work early.</p>
             </article>
             <article class="practice-card">
                 <span class="practice-number">03</span>
                 <h3>Make it work for more people</h3>
-                <p>I treat accessibility and inclusive design as core product quality—not a checklist at the end.</p>
+                <p>Treat accessibility as core product quality.</p>
             </article>
         </div>
     </section>
@@ -503,17 +489,18 @@
 
         <div class="home-personal-copy">
             <p>
-                I’m a proud trans/nonbinary designer and use they/them pronouns. I live in Missoula, Montana, where I spend as much time outside as possible—skiing, river surfing, camping, and motorcycling.
+                I’m a proud trans/nonbinary designer (they/them) living in Missoula, Montana.
             </p>
             <p>
-                I’m also pursuing an MFA in Game Design and Interactive Media, expanding my practice into immersive environments, creative technology, and interactive storytelling. When I’m away from a screen, I’m usually making stained glass, crocheting, drawing, or building something strange.
+                Away from work, I’m usually outside or experimenting with games, creative technology, and new ways to make something funky.
             </p>
 
             <ul class="interest-list" aria-label="Interests">
                 <li>Game design</li>
                 <li>Creative technology</li>
-                <li>Stained glass</li>
                 <li>Skiing</li>
+                <li>Stained glass</li>
+                <li>Painting</li>
                 <li>River surfing</li>
                 <li>Camping</li>
             </ul>
@@ -523,9 +510,9 @@
     <section class="home-block contact-section" aria-labelledby="contact-title">
         <div>
             <p class="home-eyebrow">Contact</p>
-            <h2 id="contact-title">Let’s make something good.</h2>
+            <h2 id="contact-title">Let’s make something cool.</h2>
             <p>
-                Have a role, project, collaboration, or strange little idea you’d like to talk about? I’d love to hear what you’re working through.
+                Have a role, project, or strange little idea? I’d love to hear about it.
             </p>
         </div>
 

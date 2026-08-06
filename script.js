@@ -2,6 +2,7 @@ const contentArea = document.querySelector("#main-content");
 const navigationLinks = document.querySelectorAll("[data-page]");
 const rootElement = document.documentElement;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const showScrollBlob = false;
 
 let cometFrame = null;
 let cometPhase = window.scrollY * 0.0018;
@@ -108,7 +109,7 @@ const pageMap = {
 async function loadPage(pageName) {
     const pagePath = pageMap[pageName];
 
-    document.body.classList.toggle("blob-visible", pageName === "home");
+    document.body.classList.toggle("blob-visible", showScrollBlob && pageName === "home");
 
     if (pageName === "home") {
         lastCometScrollY = window.scrollY;

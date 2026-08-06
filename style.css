@@ -63,6 +63,7 @@ body::before {
 }
 
 body::after {
+    display: none;
     content: "";
     position: fixed;
     z-index: 0;
