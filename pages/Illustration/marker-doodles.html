@@ -32,6 +32,11 @@
         transform: scale(1.03);
     }
 
+    .marker-gallery-item:hover {
+        outline: 3px solid var(--color-accent);
+        outline-offset: 3px;
+    }
+
     .marker-gallery-item:focus-visible {
         outline: 3px solid var(--color-text);
         outline-offset: 3px;
@@ -96,7 +101,11 @@
 
     .marker-lightbox button:hover,
     .marker-lightbox button:focus-visible {
-        background: rgba(255, 255, 255, 0.24);
+        background: var(--color-accent);
+    }
+
+    .marker-lightbox button:focus-visible {
+        outline-color: white;
     }
 
     .marker-lightbox-nav {

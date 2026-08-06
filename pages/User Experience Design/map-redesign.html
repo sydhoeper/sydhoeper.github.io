@@ -149,18 +149,22 @@
             0 12px 30px rgba(var(--color-dark-rgb), 0.08);
     }
 
-    .map-challenge-table > div {
+    .map-table-row {
+        display: contents;
+    }
+
+    .map-table-row > * {
         min-width: 0;
         padding: clamp(1rem, 2.5vw, 1.6rem);
         border-right: 1px solid rgba(var(--color-dark-rgb), 0.13);
         border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.13);
     }
 
-    .map-challenge-table > div:nth-child(3n) {
+    .map-table-row > :last-child {
         border-right: 0;
     }
 
-    .map-challenge-table > div:nth-last-child(-n + 3) {
+    .map-table-row:last-child > * {
         border-bottom: 0;
     }
 
@@ -347,18 +351,16 @@
             grid-template-columns: 1fr;
         }
 
-        .map-challenge-table > div,
-        .map-challenge-table > div:nth-child(3n),
-        .map-challenge-table > div:nth-last-child(-n + 3) {
+        .map-table-row > * {
             border-right: 0;
             border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.13);
         }
 
-        .map-challenge-table > div:last-child {
+        .map-table-row:last-child > :last-child {
             border-bottom: 0;
         }
 
-        .map-challenge-table .map-table-heading:first-child {
+        .map-table-row:first-child .map-table-heading:first-child {
             display: none;
         }
     }
@@ -416,37 +418,43 @@
             <p>The redesign needed to reduce customer confusion while creating a clearer, more scalable place for Campendium’s free and Pro map tools.</p>
         </div>
 
-        <div class="map-challenge-table" aria-label="Customer and business challenges and opportunities">
-            <div class="map-table-heading"></div>
-            <div class="map-table-heading">Challenges</div>
-            <div class="map-table-heading">Opportunities</div>
-
-            <div class="map-table-label">Customer</div>
-            <div>
-                <ul>
-                    <li>The existing experience was disjointed</li>
-                    <li>Adding another control would create more clutter and confusion</li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>Consolidate every map layer into one view</li>
-                    <li>Make it easier to compare and combine overlays</li>
-                </ul>
+        <div class="map-challenge-table" role="table" aria-label="Customer and business challenges and opportunities">
+            <div class="map-table-row" role="row">
+                <div class="map-table-heading" role="columnheader"><span class="visually-hidden">Audience</span></div>
+                <div class="map-table-heading" role="columnheader">Challenges</div>
+                <div class="map-table-heading" role="columnheader">Opportunities</div>
             </div>
 
-            <div class="map-table-label">Business</div>
-            <div>
-                <ul>
-                    <li>There was no clear place for the new smoke layer</li>
-                    <li>The unclear design made feature upsells more difficult</li>
-                </ul>
+            <div class="map-table-row" role="row">
+                <div class="map-table-label" role="rowheader">Customer</div>
+                <div role="cell">
+                    <ul>
+                        <li>The existing experience was disjointed</li>
+                        <li>Adding another control would create more clutter and confusion</li>
+                    </ul>
+                </div>
+                <div role="cell">
+                    <ul>
+                        <li>Consolidate every map layer into one view</li>
+                        <li>Make it easier to compare and combine overlays</li>
+                    </ul>
+                </div>
             </div>
-            <div>
-                <ul>
-                    <li>A more efficient selection experience could support Pro conversion</li>
-                    <li>A scalable system would make future additions easier</li>
-                </ul>
+
+            <div class="map-table-row" role="row">
+                <div class="map-table-label" role="rowheader">Business</div>
+                <div role="cell">
+                    <ul>
+                        <li>There was no clear place for the new smoke layer</li>
+                        <li>The unclear design made feature upsells more difficult</li>
+                    </ul>
+                </div>
+                <div role="cell">
+                    <ul>
+                        <li>A more efficient selection experience could support Pro conversion</li>
+                        <li>A scalable system would make future additions easier</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -701,4 +709,15 @@
 
         <p class="map-quote">One organized map system replaced a collection of disconnected controls—making exploration easier for RVers and future growth easier for the product team.</p>
     </section>
+
+    <nav class="case-study-navigation" aria-label="More UX case studies">
+        <a class="case-study-navigation-link previous" href="#booking-platform" rel="prev">
+            <span class="case-study-navigation-direction"><span aria-hidden="true">←</span> Previous case study</span>
+            <strong>Campground Booking Platform</strong>
+        </a>
+        <a class="case-study-navigation-link next" href="#search-redesign" rel="next">
+            <span class="case-study-navigation-direction">Next case study <span aria-hidden="true">→</span></span>
+            <strong>Search Results Updates</strong>
+        </a>
+    </nav>
 </article>

@@ -1,5 +1,6 @@
 const contentArea = document.querySelector("#main-content");
 const navigationLinks = document.querySelectorAll("[data-page]");
+let pageLoadRequest = 0;
 
 const pageMap = {
     home: "pages/home.html",
@@ -28,16 +29,18 @@ const pageMap = {
     "plein-air": "pages/Illustration/plein-air-sketches.html"
 };
 
-async function loadPage(pageName) {
+async function loadPage(pageName, { focusContent = false } = {}) {
+    const requestId = ++pageLoadRequest;
     const pagePath = pageMap[pageName];
 
     if (!pagePath) {
-        showComingSoon(pageName);
+        showComingSoon(pageName, "", focusContent);
         return;
     }
 
     try {
-        contentArea.innerHTML = "<p>Loading...</p>";
+        contentArea.setAttribute("aria-busy", "true");
+        contentArea.innerHTML = '<p role="status">Loading...</p>';
 
         const pageUrl = `${encodeURI(pagePath)}?v=${Date.now()}`;
         const response = await fetch(pageUrl, { cache: "no-store" });
@@ -48,16 +51,38 @@ async function loadPage(pageName) {
 
         const pageContent = await response.text();
 
+        if (requestId !== pageLoadRequest) {
+            return;
+        }
+
         contentArea.innerHTML = pageContent;
         requestAnimationFrame(() => {
             fitGameEmbeds(contentArea);
             initializeGalleries(contentArea);
+            finishPageLoad(pageName, focusContent);
         });
-        updateActiveLink(pageName);
-        window.scrollTo(0, 0);
     } catch (error) {
-        showComingSoon(pageName, pagePath);
+        if (requestId !== pageLoadRequest) {
+            return;
+        }
+
+        showComingSoon(pageName, pagePath, focusContent);
         console.error(error);
+    }
+}
+
+function finishPageLoad(pageName, focusContent) {
+    const pageHeading = contentArea.querySelector("h1");
+
+    contentArea.setAttribute("aria-busy", "false");
+    updateActiveLink(pageName);
+    document.title = pageHeading ? `${pageHeading.textContent.trim()} | Syd Hoeper` : "Syd Hoeper";
+    window.scrollTo(0, 0);
+
+    if (focusContent) {
+        const focusTarget = pageHeading || contentArea;
+        focusTarget.setAttribute("tabindex", "-1");
+        focusTarget.focus({ preventScroll: true });
     }
 }
 
@@ -97,6 +122,10 @@ function initializeGalleries(root = document) {
         let currentIndex = 0;
         let openingButton = null;
 
+        closeButton?.setAttribute("aria-label", "Close gallery viewer");
+        previousButton?.setAttribute("aria-label", "Previous gallery item");
+        nextButton?.setAttribute("aria-label", "Next gallery item");
+
         const showImage = (index) => {
             currentIndex = (index + items.length) % items.length;
 
@@ -121,6 +150,7 @@ function initializeGalleries(root = document) {
 
             if (isVideo && lightboxVideo) {
                 lightboxVideo.src = source;
+                lightboxVideo.setAttribute("aria-label", thumbnail.alt || "Gallery video");
                 lightboxVideo.load();
             } else if (lightboxImage) {
                 lightboxImage.src = source;
@@ -131,6 +161,13 @@ function initializeGalleries(root = document) {
         };
 
         items.forEach((item, index) => {
+            const thumbnail = item.querySelector("img, video");
+            const itemDescription = thumbnail?.getAttribute("alt") || `Gallery item ${index + 1}`;
+            item.setAttribute(
+                "aria-label",
+                `Open ${itemDescription} full screen, item ${index + 1} of ${items.length}`
+            );
+
             item.addEventListener("click", () => {
                 openingButton = item;
                 showImage(index);
@@ -170,24 +207,31 @@ function initializeGalleries(root = document) {
     });
 }
 
-function showComingSoon(pageName, pagePath = "") {
+function showComingSoon(pageName, pagePath = "", focusContent = false) {
     contentArea.innerHTML = `
         <h1>Coming Soon</h1>
         <p>This page hasn't been built yet.</p>
         ${pagePath ? `<p><small>Missing file: ${pagePath}</small></p>` : ""}
     `;
 
-    updateActiveLink(pageName);
+    finishPageLoad(pageName, focusContent);
 }
 
 function updateActiveLink(pageName) {
     navigationLinks.forEach((link) => {
         const isHomeLink = link.dataset.page === "home";
+        const isCurrentPage = link.dataset.page === pageName;
 
-        if (link.dataset.page === pageName && !isHomeLink) {
+        if (isCurrentPage && !isHomeLink) {
             link.classList.add("active");
         } else {
             link.classList.remove("active");
+        }
+
+        if (isCurrentPage) {
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.removeAttribute("aria-current");
         }
     });
 }
@@ -197,14 +241,8 @@ function getCurrentPage() {
     return page || null;
 }
 
-navigationLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-        loadPage(link.dataset.page);
-    });
-});
-
 window.addEventListener("hashchange", () => {
-    loadPage(getCurrentPage());
+    loadPage(getCurrentPage() || "home", { focusContent: true });
 });
 
 window.addEventListener("resize", () => {

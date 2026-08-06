@@ -1,13 +1,10 @@
 <style>
-    @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
-
     .home-page {
         width: 100%;
         --home-edge: 48px;
         --home-space: clamp(4.5rem, 8vw, 7.5rem);
-        --home-card: rgba(252, 250, 246, 0.92);
         container: home / inline-size;
-        font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: var(--font-body);
     }
 
     .home-page h1,
@@ -25,7 +22,7 @@
 
     .home-page h1,
     .home-page h2 {
-        font-family: "Fraunces", Georgia, "Times New Roman", serif;
+        font-family: var(--font-display);
         font-weight: 700;
     }
 
@@ -39,12 +36,12 @@
         display: block;
         margin: 0 0 0.9rem;
         color: var(--color-muted) !important;
-        font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 0.82rem;
+        font-family: var(--font-body);
+        font-size: var(--type-eyebrow-size);
         font-style: normal;
-        font-weight: 650;
-        line-height: 1.2;
-        letter-spacing: 0.13em;
+        font-weight: var(--type-eyebrow-weight);
+        line-height: var(--type-eyebrow-line-height);
+        letter-spacing: var(--type-eyebrow-spacing);
         text-transform: uppercase;
     }
 
@@ -77,16 +74,16 @@
 
     .home-hero h1 {
         margin: 0 0 1.2rem;
-        font-size: clamp(2.8rem, 6.2cqi, 5rem);
-        line-height: 0.98;
-        letter-spacing: -0.045em;
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-line-height);
+        letter-spacing: var(--type-hero-spacing);
     }
 
     .home-lede {
         margin: 0 0 1.15rem;
-        font-size: clamp(1.25rem, 2.3cqi, 1.65rem);
+        font-size: var(--type-lede-size);
         font-weight: 400;
-        line-height: 1.4;
+        line-height: var(--type-lede-line-height);
     }
 
     .home-actions {
@@ -140,10 +137,8 @@
     .career-list li {
         padding: clamp(1.35rem, 3vw, 2rem);
         border-radius: 16px;
-        background: var(--home-card);
-        box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
     .snapshot-card {
@@ -166,7 +161,7 @@
     .snapshot-card span {
         display: block;
         color: var(--color-muted);
-        line-height: 1.35;
+        line-height: var(--type-body-line-height);
     }
 
     .home-section-heading {
@@ -181,16 +176,16 @@
     .home-personal h2,
     .contact-section h2 {
         margin: 0;
-        font-size: clamp(2.35rem, 5cqi, 3.7rem);
-        line-height: 1.02;
-        letter-spacing: -0.035em;
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
     }
 
     .home-section-heading > p {
         max-width: 58ch;
         margin: 0;
-        font-size: 1.05rem;
-        line-height: 1.7;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .career-path {
@@ -220,21 +215,21 @@
         display: block;
         margin-bottom: 1.6rem;
         color: var(--color-muted);
-        font-size: 0.82rem;
-        font-weight: 650;
-        letter-spacing: 0.12em;
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        letter-spacing: var(--type-eyebrow-spacing);
         text-align: left;
     }
 
     .career-list h3 {
         margin: 0 0 0.6rem;
-        font-size: 1.3rem;
-        line-height: 1.25;
+        font-size: var(--type-card-heading-size);
+        line-height: var(--type-card-heading-line-height);
     }
 
     .career-list p {
         margin: 0;
-        line-height: 1.65;
+        line-height: var(--type-body-line-height);
     }
 
     .home-practice {
@@ -293,19 +288,19 @@
         display: block;
         margin-bottom: 1.6rem;
         color: var(--color-muted);
-        font-weight: 750;
-        font-size: 0.78rem;
-        letter-spacing: 0.12em;
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        letter-spacing: var(--type-eyebrow-spacing);
     }
 
     .practice-card h3 {
         margin: 0 0 0.65rem;
-        font-size: 1.3rem;
+        font-size: var(--type-card-heading-size);
     }
 
     .practice-card p {
         margin: 0;
-        line-height: 1.65;
+        line-height: var(--type-body-line-height);
     }
 
     .home-personal {
@@ -323,8 +318,8 @@
 
     .home-personal-copy p {
         margin: 0 0 1.15rem;
-        font-size: 1.05rem;
-        line-height: 1.72;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .interest-list {
@@ -340,7 +335,7 @@
         padding: 0.55rem 0.8rem;
         border: 1px solid rgba(var(--color-dark-rgb), 0.2);
         border-radius: 999px;
-        background: var(--home-card);
+        background: var(--surface-card);
         font-weight: 650;
     }
 
@@ -362,8 +357,8 @@
     .contact-section p {
         max-width: 54ch;
         margin: 0;
-        font-size: 1.05rem;
-        line-height: 1.7;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .contact-links {
@@ -379,8 +374,8 @@
         padding: 1rem 0;
         border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.32);
         color: var(--color-dark);
-        font-size: 1.05rem;
-        font-weight: 650;
+        font-size: var(--type-section-copy-size);
+        font-weight: var(--type-eyebrow-weight);
         text-decoration: none;
     }
 
@@ -391,9 +386,13 @@
     .contact-link:hover,
     .contact-link:focus-visible {
         color: var(--color-accent);
+        text-decoration-line: underline;
+        text-decoration-color: var(--color-accent);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
     }
 
-    .contact-link span:last-child {
+    .contact-link > span:last-child {
         font-size: 1.35rem;
     }
 
@@ -586,9 +585,9 @@
             </p>
         </div>
 
-        <div class="contact-links" aria-label="Contact links">
+        <nav class="contact-links" aria-label="Contact links">
             <a class="contact-link" href="/documents/syd-hoeper-resume.pdf?v=3" target="_blank" rel="noopener noreferrer">
-                <span>View my résumé</span>
+                <span>View my résumé <span class="visually-hidden">(opens in a new tab)</span></span>
                 <span aria-hidden="true">↗</span>
             </a>
             <a class="contact-link" href="mailto:sphoeper@gmail.com">
@@ -596,9 +595,9 @@
                 <span aria-hidden="true">↗</span>
             </a>
             <a class="contact-link" href="https://www.linkedin.com/in/sphoeper/" target="_blank" rel="noopener noreferrer">
-                <span>Connect on LinkedIn</span>
+                <span>Connect on LinkedIn <span class="visually-hidden">(opens in a new tab)</span></span>
                 <span aria-hidden="true">↗</span>
             </a>
-        </div>
+        </nav>
     </section>
 </div>

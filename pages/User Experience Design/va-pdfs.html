@@ -1,16 +1,10 @@
 <style>
-    @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
-
     .va-case-study {
-        --va-card: rgba(252, 250, 246, 0.92);
-        --va-soft: #eee9f2;
-        --va-purple: #c9b8ef;
-        --va-blue: #a9ccef;
-        --va-green: #afeec2;
-        --va-pink: #edb2da;
         width: 100%;
         max-width: 980px;
         container: va-case-study / inline-size;
+        color: var(--color-dark);
+        font-family: var(--font-body);
     }
 
     .va-case-study * {
@@ -19,11 +13,8 @@
 
     .va-case-study h1,
     .va-case-study h2,
-    .va-case-study h3,
-    .va-case-study .va-table-heading,
-    .va-case-study .va-table-label,
     .va-case-study .va-quote {
-        font-family: "Fraunces", Georgia, "Times New Roman", serif;
+        font-family: var(--font-display);
         font-optical-sizing: auto;
     }
 
@@ -46,25 +37,27 @@
 
     .va-eyebrow {
         margin: 0 0 0.85rem;
-        font-size: 0.8rem;
-        font-weight: 700;
-        letter-spacing: 0.13em;
+        color: var(--color-muted);
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        line-height: var(--type-eyebrow-line-height);
+        letter-spacing: var(--type-eyebrow-spacing);
         text-transform: uppercase;
     }
 
     .va-hero h1 {
         max-width: 12ch;
         margin: 0 0 1.25rem;
-        font-size: clamp(2.6rem, 7cqi, 5.6rem);
-        line-height: 0.96;
-        letter-spacing: -0.025em;
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-line-height);
+        letter-spacing: var(--type-hero-spacing);
     }
 
     .va-lede {
         max-width: 48ch;
         margin: 0;
-        font-size: clamp(1.1rem, 2.2cqi, 1.35rem);
-        line-height: 1.55;
+        font-size: var(--type-lede-size);
+        line-height: var(--type-lede-line-height);
     }
 
     .va-section {
@@ -81,16 +74,16 @@
 
     .va-section-heading h2 {
         margin: 0;
-        font-size: clamp(2rem, 5cqi, 3.6rem);
-        line-height: 1;
-        letter-spacing: -0.02em;
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
     }
 
     .va-section-heading p {
         max-width: 58ch;
         margin: 0;
-        font-size: 1.08rem;
-        line-height: 1.7;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .va-card-grid,
@@ -110,10 +103,8 @@
     .va-quote {
         padding: clamp(1.35rem, 3vw, 2rem);
         border-radius: 16px;
-        background: var(--va-card);
-        box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
     .va-card h3,
@@ -122,15 +113,15 @@
     .va-process-copy h3,
     .va-impact-grid h3 {
         margin: 0 0 0.65rem;
-        font-size: 1.12rem;
-        line-height: 1.2;
+        font-size: var(--type-card-heading-size);
+        line-height: var(--type-card-heading-line-height);
     }
 
     .va-card p,
     .va-decision-copy p,
     .va-process-copy p {
         margin: 0;
-        line-height: 1.65;
+        line-height: var(--type-body-line-height);
     }
 
     .va-card ul,
@@ -152,30 +143,32 @@
         overflow: hidden;
         border: 1px solid rgba(var(--color-dark-rgb), 0.16);
         border-radius: 16px;
-        background: var(--va-card);
-        box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
-    .va-challenge-table > div {
+    .va-table-row {
+        display: contents;
+    }
+
+    .va-table-row > * {
         min-width: 0;
         padding: clamp(1rem, 2.5vw, 1.6rem);
         border-right: 1px solid rgba(var(--color-dark-rgb), 0.13);
         border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.13);
     }
 
-    .va-challenge-table > div:nth-child(3n) {
+    .va-table-row > :last-child {
         border-right: 0;
     }
 
-    .va-challenge-table > div:nth-last-child(-n + 3) {
+    .va-table-row:last-child > * {
         border-bottom: 0;
     }
 
     .va-challenge-table .va-table-label,
     .va-challenge-table .va-table-heading {
-        font-weight: 700;
+        font-weight: var(--type-eyebrow-weight);
     }
 
     .va-challenge-table ul {
@@ -378,10 +371,7 @@
         padding: clamp(1.5rem, 4vw, 3rem);
         border: 1px dashed rgba(var(--color-dark-rgb), 0.34);
         border-radius: 16px;
-        background:
-            radial-gradient(circle at 18% 18%, rgba(201, 184, 239, 0.55), transparent 38%),
-            radial-gradient(circle at 82% 78%, rgba(169, 204, 239, 0.54), transparent 40%),
-            var(--color-sidebar-background);
+        background: var(--surface-card);
         box-shadow:
             0 3px 8px rgba(var(--color-dark-rgb), 0.3),
             0 12px 30px rgba(var(--color-dark-rgb), 0.2);
@@ -500,9 +490,9 @@
         display: block;
         margin-bottom: 0.6rem;
         color: var(--color-muted);
-        font-size: 0.76rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        letter-spacing: var(--type-eyebrow-spacing);
         text-transform: uppercase;
     }
 
@@ -540,12 +530,12 @@
 
     .va-section-disclosure summary:hover,
     .va-section-disclosure summary:focus-visible {
-        background: var(--color-dark);
-        color: var(--color-background);
+        background: var(--color-accent);
+        color: white;
     }
 
     .va-section-disclosure summary:focus-visible {
-        outline: 3px solid rgba(var(--color-dark-rgb), 0.28);
+        outline: 3px solid var(--color-dark);
         outline-offset: 4px;
     }
 
@@ -600,19 +590,11 @@
 
     .va-outcomes h3 {
         margin: 0;
-        font-size: 1.4rem;
+        font-size: var(--type-card-heading-size);
     }
 
     .va-impact-grid {
         margin-top: clamp(3rem, 6vw, 5rem);
-    }
-
-    .va-impact-grid > div:first-child {
-        background: rgba(175, 238, 194, 0.48);
-    }
-
-    .va-impact-grid > div:last-child {
-        background: rgba(169, 204, 239, 0.42);
     }
 
     @container va-case-study (max-width: 720px) {
@@ -668,18 +650,16 @@
             grid-template-columns: 1fr;
         }
 
-        .va-challenge-table > div,
-        .va-challenge-table > div:nth-child(3n),
-        .va-challenge-table > div:nth-last-child(-n + 3) {
+        .va-table-row > * {
             border-right: 0;
             border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.13);
         }
 
-        .va-challenge-table > div:last-child {
+        .va-table-row:last-child > :last-child {
             border-bottom: 0;
         }
 
-        .va-challenge-table .va-table-heading:first-child {
+        .va-table-row:first-child .va-table-heading:first-child {
             display: none;
         }
     }
@@ -688,7 +668,7 @@
 <article class="va-case-study">
     <header class="va-hero">
         <div class="va-hero-copy">
-            <p class="va-eyebrow">User Experience Design · U.S. Department of Veterans Affairs</p>
+            <p class="va-eyebrow">U.S. Department of Veterans Affairs</p>
             <h1>PDF Digitization</h1>
             <p class="va-lede">Helping disabled Veterans’ families apply for health care through a clearer, accessible digital experience.</p>
         </div>
@@ -742,37 +722,43 @@
             <p>The paper process created barriers for applicants and staff.</p>
         </div>
 
-        <div class="va-challenge-table" aria-label="Customer and business challenges and opportunities">
-            <div class="va-table-heading"></div>
-            <div class="va-table-heading">Challenges</div>
-            <div class="va-table-heading">Opportunities</div>
-
-            <div class="va-table-label">Customer</div>
-            <div>
-                <ul>
-                    <li>Paper forms were hard to complete and mail</li>
-                    <li>Help was difficult to find</li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>Meet proven demand with a guided digital flow</li>
-                    <li>Make support easier to access</li>
-                </ul>
+        <div class="va-challenge-table" role="table" aria-label="Customer and business challenges and opportunities">
+            <div class="va-table-row" role="row">
+                <div class="va-table-heading" role="columnheader"><span class="visually-hidden">Audience</span></div>
+                <div class="va-table-heading" role="columnheader">Challenges</div>
+                <div class="va-table-heading" role="columnheader">Opportunities</div>
             </div>
 
-            <div class="va-table-label">Business</div>
-            <div>
-                <ul>
-                    <li>Manual review caused errors and delays</li>
-                    <li>Physical mail slowed intake</li>
-                </ul>
+            <div class="va-table-row" role="row">
+                <div class="va-table-label" role="rowheader">Customer</div>
+                <div role="cell">
+                    <ul>
+                        <li>Paper forms were hard to complete and mail</li>
+                        <li>Help was difficult to find</li>
+                    </ul>
+                </div>
+                <div role="cell">
+                    <ul>
+                        <li>Meet proven demand with a guided digital flow</li>
+                        <li>Make support easier to access</li>
+                    </ul>
+                </div>
             </div>
-            <div>
-                <ul>
-                    <li>Process more applications with fewer errors</li>
-                    <li>Accelerate delivery with the VA design system</li>
-                </ul>
+
+            <div class="va-table-row" role="row">
+                <div class="va-table-label" role="rowheader">Business</div>
+                <div role="cell">
+                    <ul>
+                        <li>Manual review caused errors and delays</li>
+                        <li>Physical mail slowed intake</li>
+                    </ul>
+                </div>
+                <div role="cell">
+                    <ul>
+                        <li>Process more applications with fewer errors</li>
+                        <li>Accelerate delivery with the VA design system</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -1066,4 +1052,15 @@
 
         <p class="va-quote">A clearer digital service allows more people to apply—and helps processors approve applications faster, with fewer mistakes.</p>
     </section>
+
+    <nav class="case-study-navigation" aria-label="More UX case studies">
+        <a class="case-study-navigation-link previous" href="#scheduling-product-creation" rel="prev">
+            <span class="case-study-navigation-direction"><span aria-hidden="true">←</span> Previous case study</span>
+            <strong>Scheduling Product Creation</strong>
+        </a>
+        <a class="case-study-navigation-link next" href="#booking-platform" rel="next">
+            <span class="case-study-navigation-direction">Next case study <span aria-hidden="true">→</span></span>
+            <strong>Campground Booking Platform</strong>
+        </a>
+    </nav>
 </article>
