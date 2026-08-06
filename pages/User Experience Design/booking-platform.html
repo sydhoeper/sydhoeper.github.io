@@ -1,6 +1,6 @@
 <style>
     .booking-study {
-        --booking-card: rgba(252, 250, 246, 0.94);
+        --booking-surface: rgba(252, 250, 246, 0.96);
         width: 100%;
         max-width: 980px;
         container: booking-study / inline-size;
@@ -8,647 +8,633 @@
 
     .booking-study * { box-sizing: border-box; }
 
-    .booking-hero,
-    .booking-section { padding: clamp(3.5rem, 8vw, 7rem) 0; }
-
-    .booking-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
-        align-items: center;
-        gap: clamp(2.5rem, 6vw, 5rem);
-        padding-top: 0;
-    }
+    .booking-hero { padding: 0 0 clamp(4rem, 9vw, 7rem); }
 
     .booking-eyebrow,
-    .booking-step-label {
+    .booking-kicker,
+    .booking-star-label {
         display: block;
         margin: 0 0 0.75rem;
+        color: var(--color-muted);
         font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
+        font-weight: 650;
+        letter-spacing: 0.11em;
         text-transform: uppercase;
     }
-
-    .booking-step-label { color: var(--color-muted); }
 
     .booking-hero h1 {
         max-width: 12ch;
         margin: 0 0 1.25rem;
-        font-size: clamp(2.6rem, 7cqi, 5.6rem);
-        line-height: 0.96;
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 8cqi, 6.2rem);
+        font-weight: 700;
+        line-height: 0.94;
         letter-spacing: -0.045em;
     }
 
     .booking-lede {
-        max-width: 48ch;
+        max-width: 61ch;
         margin: 0;
-        font-size: clamp(1.1rem, 2.2cqi, 1.35rem);
+        font-size: clamp(1.12rem, 2.4cqi, 1.42rem);
         line-height: 1.55;
     }
 
-    .booking-section { border-top: 1px solid rgba(var(--color-dark-rgb), 0.16); }
+    .booking-media { margin: 0; }
 
-    .booking-section-heading {
-        display: grid;
-        grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
-        gap: clamp(2rem, 6vw, 5rem);
-        align-items: start;
-        margin-bottom: clamp(2.5rem, 6vw, 5rem);
-    }
+    .booking-hero-media { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
 
-    .booking-section-heading h2 {
-        margin: 0;
-        font-size: clamp(2rem, 5cqi, 3.6rem);
-        line-height: 1;
-        letter-spacing: -0.035em;
-    }
-
-    .booking-section-heading p {
-        max-width: 58ch;
-        margin: 0;
-        font-size: 1.08rem;
-        line-height: 1.7;
-    }
-
-    .booking-card-grid,
-    .booking-media-grid,
-    .booking-results-grid,
-    .booking-phase-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: clamp(1rem, 3vw, 1.75rem);
-    }
-
-    .booking-card-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
-    .booking-card,
-    .booking-role,
-    .booking-phase,
-    .booking-result,
-    .booking-takeaway {
-        padding: clamp(1.35rem, 3vw, 2rem);
+    .booking-hero-video {
+        overflow: hidden;
         border-radius: 16px;
-        background: var(--booking-card);
+        background: #232323;
         box-shadow:
             0 3px 8px rgba(var(--color-dark-rgb), 0.11),
             0 12px 30px rgba(var(--color-dark-rgb), 0.08);
     }
 
-    .booking-card h3,
-    .booking-role h3,
-    .booking-phase h3,
-    .booking-copy h3,
-    .booking-result h3,
-    .booking-takeaway h3 {
-        margin: 0 0 0.65rem;
-        font-size: 1.12rem;
-        line-height: 1.2;
+    .booking-hero-video video {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        margin: 0;
+        background: #232323;
     }
 
-    .booking-card p,
-    .booking-copy p,
-    .booking-result p,
-    .booking-takeaway p { margin: 0; line-height: 1.65; }
-
-    .booking-card ul,
-    .booking-role ul,
-    .booking-phase ul,
-    .booking-copy ul,
-    .booking-result ul {
-        margin: 0.65rem 0 0;
-        padding-left: 1.2rem;
-        line-height: 1.6;
-    }
-
-    .booking-role { margin-top: clamp(1rem, 3vw, 1.75rem); }
-
-    .booking-phase-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .booking-phase:nth-child(1) { background: rgba(237, 178, 178, 0.38); }
-    .booking-phase:nth-child(2) { background: rgba(243, 204, 158, 0.42); }
-    .booking-phase:nth-child(3) { background: rgba(246, 235, 142, 0.42); }
-    .booking-phase:nth-child(4) { background: rgba(175, 238, 194, 0.44); }
-
-    .booking-media { margin: 0; }
-
-    .booking-media-frame {
-        display: grid;
-        min-height: 250px;
-        padding: clamp(1.5rem, 4vw, 3rem);
-        border: 1px dashed rgba(var(--color-dark-rgb), 0.34);
+    .booking-image-link {
+        display: block;
+        overflow: hidden;
         border-radius: 16px;
-        background:
-            radial-gradient(circle at 18% 18%, rgba(175, 238, 194, 0.52), transparent 38%),
-            radial-gradient(circle at 82% 78%, rgba(169, 204, 239, 0.48), transparent 40%),
-            var(--color-sidebar-background);
+        background: var(--booking-surface);
         box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.3),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.2);
+            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+    }
+
+    .booking-image-link:hover {
+        color: inherit;
+        outline: 3px solid var(--color-accent);
+        outline-offset: 4px;
+    }
+
+    .booking-image-link img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+    }
+
+    .booking-media.contained .booking-image-link {
+        display: grid;
+        min-height: 100%;
+        padding: clamp(0.75rem, 2vw, 1.25rem);
+        background: #232323;
         place-items: center;
-        text-align: center;
     }
 
-    .booking-media-frame span,
-    .booking-media-frame strong,
-    .booking-media-frame small { display: block; }
-
-    .booking-media-frame span {
-        margin-bottom: 0.45rem;
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-    }
-
-    .booking-media-frame strong { font-size: clamp(1.15rem, 2.5cqi, 1.6rem); }
-
-    .booking-media-frame small {
-        max-width: 40ch;
-        margin-top: 0.5rem;
-        line-height: 1.45;
+    .booking-media.contained img {
+        max-height: 760px;
+        object-fit: contain;
     }
 
     .booking-media figcaption {
-        margin-top: 0.85rem;
+        margin-top: 0.8rem;
         color: var(--color-muted);
         font-size: 0.86rem;
         line-height: 1.5;
     }
 
-    .booking-media.tall .booking-media-frame { min-height: 440px; }
-    .booking-media.wide .booking-media-frame { min-height: clamp(280px, 44cqi, 430px); }
-
-    .booking-step {
-        display: grid;
-        grid-template-columns: minmax(0, 0.85fr) minmax(280px, 1.15fr);
-        gap: clamp(2rem, 6vw, 5rem);
-        align-items: center;
+    .booking-section {
+        padding: clamp(4.5rem, 9vw, 7.5rem) 0;
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.18);
     }
 
-    .booking-step-list {
-        display: grid;
-        gap: clamp(4rem, 9vw, 8rem);
+    .booking-section-heading {
+        max-width: 720px;
+        margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
     }
 
-    .booking-step:nth-child(even) {
-        grid-template-columns: minmax(280px, 1.15fr) minmax(0, 0.85fr);
-    }
-
-    .booking-step:nth-child(even) .booking-copy { order: 2; }
-    .booking-copy h3 { font-size: clamp(1.4rem, 3cqi, 2rem); }
-
-    .booking-subsection {
-        margin-top: clamp(5rem, 10vw, 9rem);
-        padding-top: clamp(2rem, 5vw, 4rem);
-        border-top: 4px solid var(--color-dark);
-    }
-
-    .booking-subsection:first-child { margin-top: 0; }
-
-    .booking-subsection-header {
-        max-width: 68ch;
-        margin-bottom: clamp(2.5rem, 6vw, 5rem);
-    }
-
-    .booking-subsection-header h3 {
+    .booking-section-heading h2 {
+        max-width: 15ch;
         margin: 0 0 1rem;
-        font-size: clamp(1.8rem, 4cqi, 3rem);
-        line-height: 1.05;
+        font-family: var(--font-display);
+        font-size: clamp(2.1rem, 5cqi, 3.75rem);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.035em;
     }
 
-    .booking-subsection-header p { margin: 0; font-size: 1.08rem; line-height: 1.7; }
+    .booking-section-heading p {
+        max-width: 60ch;
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.7;
+    }
 
-    .booking-results-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .booking-result:nth-child(1) { background: rgba(175, 238, 194, 0.48); }
-    .booking-result:nth-child(2) { background: rgba(169, 204, 239, 0.42); }
-    .booking-result:nth-child(3) { background: rgba(201, 184, 239, 0.38); }
+    .booking-star {
+        display: grid;
+        margin: 0;
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.2);
+    }
 
-    .booking-takeaways {
+    .booking-star-row {
+        display: grid;
+        grid-template-columns: minmax(100px, 0.24fr) minmax(0, 1fr);
+        gap: clamp(1rem, 4vw, 3rem);
+        padding: 1.15rem 0;
+        border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.2);
+    }
+
+    .booking-star-row dt,
+    .booking-star-row dd { margin: 0; }
+
+    .booking-star-label { margin: 0.2rem 0 0; }
+
+    .booking-star-row dd {
+        max-width: 68ch;
+        font-size: 1.02rem;
+        line-height: 1.6;
+    }
+
+    .booking-facts {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(1rem, 2.5vw, 1.5rem);
+        margin-top: clamp(2.5rem, 6vw, 4rem);
+    }
+
+    .booking-fact {
+        min-width: 0;
+        padding: clamp(1.15rem, 2.5vw, 1.6rem);
+        border-radius: 16px;
+        background: var(--booking-surface);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+    }
+
+    .booking-fact strong,
+    .booking-fact span { display: block; }
+
+    .booking-fact strong { margin-bottom: 0.35rem; }
+
+    .booking-fact span {
+        color: var(--color-muted);
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    .booking-before-after {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: clamp(1rem, 3vw, 1.75rem);
-        margin-top: clamp(3rem, 6vw, 5rem);
     }
 
-    .booking-takeaway:last-child { grid-column: 1 / -1; }
+    .booking-process-intro {
+        max-width: 720px;
+        margin-bottom: clamp(3rem, 7vw, 5rem);
+    }
+
+    .booking-process-intro h2 {
+        max-width: 15ch;
+        margin: 0 0 1rem;
+        font-family: var(--font-display);
+        font-size: clamp(2.1rem, 5cqi, 3.75rem);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.035em;
+    }
+
+    .booking-process-chapter h3 {
+        margin: 0 0 1rem;
+        font-family: var(--font-display);
+        font-size: clamp(1.65rem, 3.6cqi, 2.5rem);
+        line-height: 1.06;
+        letter-spacing: -0.025em;
+    }
+
+    .booking-process-intro p,
+    .booking-process-chapter-header p {
+        margin: 0;
+        line-height: 1.7;
+    }
+
+    .booking-process-chapter {
+        padding-top: clamp(3rem, 7vw, 5rem);
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.18);
+    }
+
+    .booking-process-chapter + .booking-process-chapter {
+        margin-top: clamp(3rem, 7vw, 5rem);
+    }
+
+    .booking-process-chapter-header {
+        display: grid;
+        grid-template-columns: minmax(110px, 0.28fr) minmax(0, 1fr);
+        gap: clamp(1.5rem, 4vw, 3rem);
+        align-items: start;
+        margin-bottom: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .booking-process-chapter-header .booking-kicker { margin-top: 0.25rem; }
+
+    .booking-process-artifacts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1.25rem, 3vw, 2rem);
+        align-items: start;
+    }
+
+    .booking-process-artifacts .wide { grid-column: 1 / -1; }
+
+    .booking-process-artifacts .booking-image-link {
+        display: grid;
+        min-height: 100%;
+        padding: clamp(0.6rem, 1.5vw, 1rem);
+        background: #232323;
+        place-items: center;
+    }
+
+    .booking-process-artifacts img {
+        width: 100%;
+        max-height: 620px;
+        object-fit: contain;
+    }
+
+    .booking-process-decision {
+        margin: clamp(2rem, 5vw, 3rem) 0 0;
+        padding: 1rem 1.25rem;
+        border-left: 4px solid var(--color-dark);
+        background: rgba(var(--color-dark-rgb), 0.045);
+        line-height: 1.65;
+    }
+
+    .booking-process-decision strong { margin-right: 0.25rem; }
+
+    .booking-visual-label {
+        display: inline-block;
+        margin-bottom: 0.7rem;
+        font-weight: 650;
+    }
+
+    .booking-solution-heading {
+        max-width: 48ch;
+        margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+    }
+
+    .booking-solution-heading h3 {
+        margin: 0 0 0.65rem;
+        font-family: var(--font-display);
+        font-size: clamp(1.7rem, 3.8cqi, 2.65rem);
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+    }
+
+    .booking-solution-heading p { margin: 0; line-height: 1.65; }
+
+    .booking-decision-list { display: grid; gap: clamp(5rem, 11vw, 9rem); }
+
+    .booking-solution-decisions { margin-top: clamp(5rem, 10vw, 8rem); }
+
+    .booking-decision {
+        display: grid;
+        grid-template-columns: minmax(0, 0.68fr) minmax(300px, 1.32fr);
+        gap: clamp(2.5rem, 7vw, 5rem);
+        align-items: start;
+    }
+
+    .booking-decision-copy h3 {
+        margin: 0 0 1rem;
+        font-family: var(--font-display);
+        font-size: clamp(1.7rem, 3.8cqi, 2.65rem);
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+    }
+
+    .booking-decision-copy p { margin: 0; line-height: 1.68; }
+
+    .booking-decision-copy ul {
+        margin: 1.25rem 0 0;
+        padding-left: 1.15rem;
+        line-height: 1.6;
+    }
+
+    .booking-decision-copy li + li { margin-top: 0.55rem; }
+
+    .booking-card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(1rem, 2.5vw, 1.5rem);
+    }
+
+    .booking-card {
+        min-width: 0;
+        padding: clamp(1.35rem, 3vw, 2rem);
+        border-radius: 16px;
+        background: var(--booking-surface);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+    }
+
+    .booking-card h3 {
+        margin: 0 0 0.65rem;
+        font-size: 1.12rem;
+        line-height: 1.25;
+    }
+
+    .booking-card p { margin: 0; line-height: 1.65; }
+
+    .booking-role { margin-top: clamp(1rem, 2.5vw, 1.5rem); }
+
+    .booking-overview-approach {
+        margin-top: clamp(3rem, 7vw, 5rem);
+        padding-top: clamp(2rem, 5vw, 3.5rem);
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.18);
+    }
+
+    .booking-overview-approach > h3 {
+        margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
+        font-family: var(--font-display);
+        font-size: clamp(1.55rem, 3.4cqi, 2.3rem);
+        line-height: 1.08;
+        letter-spacing: -0.025em;
+    }
+
+    .booking-proposed-solution { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
+
+    .booking-proof {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(1rem, 2.5vw, 1.5rem);
+        margin-top: clamp(2.5rem, 6vw, 4rem);
+    }
+
+    .booking-proof article,
+    .booking-reflection {
+        padding: clamp(1.35rem, 3vw, 2rem);
+        border-radius: 16px;
+        background: var(--booking-surface);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+    }
+
+    .booking-proof h3,
+    .booking-reflection h3 {
+        margin: 0 0 0.65rem;
+        font-size: 1.12rem;
+        line-height: 1.25;
+    }
+
+    .booking-proof p,
+    .booking-reflection p { margin: 0; line-height: 1.65; }
+
+    .booking-outcome-media { margin-top: clamp(3rem, 7vw, 5rem); }
+
+    .booking-reflection {
+        display: grid;
+        grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr);
+        gap: clamp(1.5rem, 5vw, 4rem);
+        margin-top: clamp(2.5rem, 6vw, 4rem);
+    }
+
+    .booking-reflection h3 {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 3cqi, 2rem);
+    }
 
     @container booking-study (max-width: 760px) {
-        .booking-hero,
-        .booking-section-heading,
-        .booking-step,
-        .booking-step:nth-child(even) { grid-template-columns: 1fr; }
+        .booking-decision,
+        .booking-reflection { grid-template-columns: 1fr; }
 
-        .booking-hero-copy { order: -1; }
-        .booking-step:nth-child(even) .booking-copy { order: 0; }
-        .booking-card-grid.three,
-        .booking-phase-grid,
-        .booking-results-grid { grid-template-columns: 1fr 1fr; }
-        .booking-media.tall .booking-media-frame { min-height: 330px; }
+        .booking-facts,
+        .booking-proof,
+        .booking-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+        .booking-process-chapter-header { grid-template-columns: 1fr; }
     }
 
     @container booking-study (max-width: 520px) {
+        .booking-star-row,
+        .booking-before-after,
+        .booking-facts,
+        .booking-proof,
         .booking-card-grid,
-        .booking-media-grid,
-        .booking-phase-grid,
-        .booking-results-grid,
-        .booking-takeaways { grid-template-columns: 1fr; }
-        .booking-takeaway:last-child { grid-column: auto; }
+        .booking-process-artifacts { grid-template-columns: 1fr; }
+
+        .booking-process-artifacts .wide { grid-column: auto; }
+
+        .booking-star-row { gap: 0.4rem; }
     }
 </style>
 
 <article class="booking-study">
     <header class="booking-hero">
-        <div class="booking-hero-copy">
-            <p class="booking-eyebrow">Product Design · Campendium · 2022</p>
-            <h1>Campground Booking Platform</h1>
-            <p class="booking-lede">Designing a trusted, end-to-end marketplace experience that brought campground discovery, site selection, payment, and confirmation into one product.</p>
-        </div>
+        <p class="booking-eyebrow">Product Design · Campendium · 2022</p>
+        <h1>Campground Booking</h1>
+        <p class="booking-lede">I led Campendium’s first native reservation experience, connecting campground discovery to payment without losing the context RV travelers needed.</p>
 
-        <figure class="booking-media tall">
-            <div class="booking-media-frame" role="img" aria-label="Placeholder for the complete Campendium booking experience">
-                <div>
-                    <span>Image placeholder</span>
-                    <strong>The end-to-end booking experience</strong>
-                    <small>Add a composed view of search, site selection, and checkout here.</small>
-                </div>
+        <figure class="booking-media booking-hero-media">
+            <div class="booking-hero-video">
+                <video controls muted playsinline preload="metadata" poster="images/Campground%20Booking/Campground%20search%20after.png" width="1280" height="720" aria-label="Campendium booking flow demonstration" aria-describedby="booking-hero-caption">
+                    <source src="images/Campground%20Booking/Full%20Booking%20Flow.m4v" type="video/x-m4v">
+                    <source src="images/Campground%20Booking/Full%20Booking%20Flow.mov" type="video/quicktime">
+                    <a href="images/Campground%20Booking/Full%20Booking%20Flow.mov">Watch the complete booking flow</a>
+                </video>
             </div>
+            <figcaption id="booking-hero-caption">The final journey from campsite availability through confirmation.</figcaption>
         </figure>
     </header>
 
     <section class="booking-section" aria-labelledby="booking-overview">
         <div class="booking-section-heading">
             <h2 id="booking-overview">Overview</h2>
-            <p>Campendium had a large audience discovering campgrounds, but reservations happened elsewhere. The company saw an opportunity to create a new revenue stream by connecting discovery directly to booking. I led product design for the marketplace experience, from early framing through launch.</p>
+            <p>Campendium helped travelers choose a campground—but booking happened elsewhere.</p>
         </div>
 
-        <div class="booking-card-grid three">
+        <div class="booking-card-grid">
             <article class="booking-card">
-                <h3>Opportunity</h3>
-                <p>Turn high-intent campground discovery into a direct reservation without sending travelers to a third party.</p>
+                <h3>Context</h3>
+                <p>Research ended at a third-party handoff.</p>
             </article>
             <article class="booking-card">
-                <h3>Design challenge</h3>
-                <p>Add a transactional product to a content-focused platform without disrupting the behaviors customers already understood.</p>
+                <h3>Objective</h3>
+                <p>Launch native booking in two months.</p>
             </article>
             <article class="booking-card">
-                <h3>Business constraint</h3>
-                <p>The experience needed to work with a new and initially limited supply of bookable properties.</p>
+                <h3>Challenge</h3>
+                <p>Account for equipment, capacity, rules, and price.</p>
             </article>
         </div>
 
-        <article class="booking-role">
-            <h3>My role and scope</h3>
-            <p>As the product designer, I owned the experience strategy, research, service flow, interaction model, responsive UI, prototyping, and annotated handoff. I partnered closely with product management and engineering to sequence the work, resolve technical constraints, and define a shippable first version in roughly two months.</p>
+        <article class="booking-card booking-role">
+            <h3>My role</h3>
+            <p>I led the entire design—from service strategy through responsive UI, prototyping, and engineering handoff.</p>
         </article>
-    </section>
 
-    <section class="booking-section" aria-labelledby="booking-framing">
-        <div class="booking-section-heading">
-            <h2 id="booking-framing">Strategic framing</h2>
-            <p>This was not simply a checkout-page project. It introduced a new marketplace model and required Campendium to support customers from initial discovery through post-purchase reassurance. I framed the work as one connected service rather than a collection of screens.</p>
-        </div>
-
-        <div class="booking-card-grid three">
-            <article class="booking-card">
-                <h3>Experience hypothesis</h3>
-                <p>If bookable inventory felt native to Campendium and customers could verify that a site fit their trip, they would be more willing to complete a reservation directly.</p>
-            </article>
-            <article class="booking-card">
-                <h3>Definition of success</h3>
-                <p>A customer could identify an eligible property, find a compatible site, understand the full cost, complete payment, and retain a trustworthy record of the reservation.</p>
-            </article>
-            <article class="booking-card">
-                <h3>Key product risk</h3>
-                <p>A polished funnel would not create marketplace value without enough campground supply. The design therefore needed to scale beyond the launch inventory.</p>
-            </article>
+        <div class="booking-overview-approach">
+            <h3>How I approached it</h3>
+            <div class="booking-card-grid">
+                <article class="booking-card">
+                    <h3>Preserve context</h3>
+                    <p>Third-party booking broke continuity. I designed one service from discovery through confirmation.</p>
+                </article>
+                <article class="booking-card">
+                    <h3>Design for fit</h3>
+                    <p>Availability was not enough. I prioritized the details that determined campsite compatibility.</p>
+                </article>
+                <article class="booking-card">
+                    <h3>Reduce delivery risk</h3>
+                    <p>I modeled the service early and partnered with product and engineering throughout delivery.</p>
+                </article>
+            </div>
         </div>
     </section>
 
-    <section class="booking-section" aria-labelledby="booking-principles">
+    <section class="booking-section booking-process-section" aria-labelledby="booking-process">
         <div class="booking-section-heading">
-            <h2 id="booking-principles">Experience principles</h2>
-            <p>Four principles helped the team make consistent decisions across search, site qualification, checkout, and confirmation.</p>
+            <h2 id="booking-process">Process</h2>
+            <p>The design evolved through four connected decisions, each reducing a different kind of uncertainty.</p>
         </div>
 
-        <div class="booking-phase-grid">
-            <article class="booking-phase">
-                <span class="booking-step-label">01</span>
-                <h3>Signal availability early</h3>
-                <p>Customers should understand which properties can be booked before investing time in evaluation.</p>
-            </article>
-            <article class="booking-phase">
-                <span class="booking-step-label">02</span>
-                <h3>Build confidence progressively</h3>
-                <p>Reveal the right site, equipment, policy, and pricing details as commitment increases.</p>
-            </article>
-            <article class="booking-phase">
-                <span class="booking-step-label">03</span>
-                <h3>Feel native to Campendium</h3>
-                <p>Extend familiar patterns instead of introducing a disconnected booking product.</p>
-            </article>
-            <article class="booking-phase">
-                <span class="booking-step-label">04</span>
-                <h3>Design the whole service</h3>
-                <p>Treat discovery, transaction, confirmation, edge cases, and handoff as one system.</p>
-            </article>
-        </div>
-    </section>
-
-    <section class="booking-section" aria-labelledby="booking-insights">
-        <div class="booking-section-heading">
-            <h2 id="booking-insights">Research and sensemaking</h2>
-            <p>I used the existing experience, competitive products, and workflow modeling to understand where Campendium could follow convention—and where its context required a different approach.</p>
-        </div>
-
-        <div class="booking-step-list">
-            <article class="booking-step">
-                <div class="booking-copy">
-                    <span class="booking-step-label">Existing service</span>
-                    <h3>The handoff to third parties broke trust and continuity</h3>
-                    <p>The existing path moved customers between products with different interaction models and unclear ownership. The opportunity was not just fewer clicks; it was preserving context and confidence across the entire journey.</p>
-                </div>
-                <div class="booking-media-grid">
-                    <figure class="booking-media">
-                        <div class="booking-media-frame" role="img" aria-label="Placeholder for the existing third-party booking flow">
-                            <div><span>Image placeholder</span><strong>Existing booking journey</strong></div>
-                        </div>
-                    </figure>
-                    <figure class="booking-media">
-                        <div class="booking-media-frame" role="img" aria-label="Placeholder for notes from the existing booking experience">
-                            <div><span>Image placeholder</span><strong>Journey observations</strong></div>
-                        </div>
-                    </figure>
-                </div>
-            </article>
-
-            <article class="booking-step">
-                <div class="booking-copy">
-                    <span class="booking-step-label">Competitive research</span>
-                    <h3>Customers did not expect one universal booking flow</h3>
-                    <p>Research across Recreation.gov, Airbnb, KOA, and other overnight-stay products showed that booking models varied widely. That gave us permission to build around Campendium’s strongest context: customers often begin with a specific campground and need to qualify an individual site.</p>
-                </div>
-                <figure class="booking-media wide">
-                    <div class="booking-media-frame" role="img" aria-label="Placeholder for competitive booking research">
-                        <div><span>Image placeholder</span><strong>Competitive journey analysis</strong><small>Add the annotated research boards here.</small></div>
-                    </div>
-                </figure>
-            </article>
-
-            <article class="booking-step">
-                <div class="booking-copy">
-                    <span class="booking-step-label">Synthesis</span>
-                    <h3>Purchase confidence depended on compatibility, not just availability</h3>
-                    <p>A campsite is not interchangeable inventory. Customers needed to know whether their equipment would fit, what hookups and access were available, which rules applied, and what the full stay would cost. I used those confidence requirements to define the information architecture.</p>
-                </div>
-                <div class="booking-media-grid">
-                    <figure class="booking-media tall">
-                        <div class="booking-media-frame" role="img" aria-label="Placeholder for workflow inventory and information requirements">
-                            <div><span>Image placeholder</span><strong>Workflow and information inventory</strong></div>
-                        </div>
-                    </figure>
-                    <figure class="booking-media tall">
-                        <div class="booking-media-frame" role="img" aria-label="Placeholder for detailed campground booking user journey">
-                            <div><span>Image placeholder</span><strong>End-to-end user journey</strong></div>
-                        </div>
-                    </figure>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <section class="booking-section" aria-labelledby="booking-architecture">
-        <div class="booking-section-heading">
-            <h2 id="booking-architecture">Experience architecture</h2>
-            <p>I translated the research into a four-stage funnel. Each stage answered a different customer question and reduced uncertainty before asking for greater commitment.</p>
-        </div>
-
-        <div class="booking-phase-grid">
-            <article class="booking-phase">
-                <span class="booking-step-label">Discover</span>
-                <h3>Can I book this?</h3>
-                <p>Identify bookable properties and provide a clear path into availability.</p>
-            </article>
-            <article class="booking-phase">
-                <span class="booking-step-label">Qualify</span>
-                <h3>Will this site work?</h3>
-                <p>Compare dates, capacity, equipment fit, amenities, access, and price.</p>
-            </article>
-            <article class="booking-phase">
-                <span class="booking-step-label">Transact</span>
-                <h3>What am I agreeing to?</h3>
-                <p>Review guest details, policies, fees, and payment in one coherent view.</p>
-            </article>
-            <article class="booking-phase">
-                <span class="booking-step-label">Reassure</span>
-                <h3>What happens next?</h3>
-                <p>Confirm success and provide a durable, accessible reservation record.</p>
-            </article>
-        </div>
-
-        <figure class="booking-media wide" style="margin-top: clamp(3rem, 6vw, 5rem);">
-            <div class="booking-media-frame" role="img" aria-label="Placeholder for the complete booking service blueprint">
+        <section class="booking-process-chapter" aria-labelledby="booking-process-frame">
+            <div class="booking-process-chapter-header">
+                <span class="booking-kicker">Frame the service</span>
                 <div>
-                    <span>Image placeholder</span>
-                    <strong>Full booking flow</strong>
-                    <small>Add the journey from Campendium search through email confirmation here.</small>
+                    <h3 id="booking-process-frame">Find where trust broke</h3>
+                    <p>I traced the third-party handoff, then mapped the decisions and data Campendium would need to own.</p>
                 </div>
             </div>
+            <div class="booking-process-artifacts">
+                <figure class="booking-media">
+                    <a class="booking-image-link" href="images/Campground%20Booking/Compiling%20Context%201.png" target="_blank" rel="noopener" aria-label="Open the existing booking journey audit full size in a new tab">
+                        <img src="images/Campground%20Booking/Compiling%20Context%201.png" alt="Annotated audit of the Campendium to Campspot booking handoff" width="954" height="1708" loading="lazy" decoding="async">
+                    </a>
+                    <figcaption>The handoff exposed lost context and unclear ownership.</figcaption>
+                </figure>
+                <figure class="booking-media">
+                    <a class="booking-image-link" href="images/Campground%20Booking/Synthesize%201.png" target="_blank" rel="noopener" aria-label="Open the booking flow synthesis full size in a new tab">
+                        <img src="images/Campground%20Booking/Synthesize%201.png" alt="Potential booking flows and an inventory of required information" width="814" height="1562" loading="lazy" decoding="async">
+                    </a>
+                    <figcaption>Synthesis turned the gap into an end-to-end service model.</figcaption>
+                </figure>
+            </div>
+            <p class="booking-process-decision"><strong>Direction:</strong> Preserve campground context from discovery through confirmation.</p>
+        </section>
+
+        <section class="booking-process-chapter" aria-labelledby="booking-process-entry">
+            <div class="booking-process-chapter-header">
+                <span class="booking-kicker">Choose the entry point</span>
+                <div>
+                    <h3 id="booking-process-entry">Add booking without replacing research</h3>
+                    <p>I tested how prominently booking should appear, then extended Campendium’s familiar map-and-list results.</p>
+                </div>
+            </div>
+            <div class="booking-process-artifacts">
+                <figure class="booking-media">
+                    <a class="booking-image-link" href="images/Campground%20Booking/Campground%20search%20beofre.png" target="_blank" rel="noopener" aria-label="Open the original campground search full size in a new tab">
+                        <img src="images/Campground%20Booking/Campground%20search%20beofre.png" alt="Original Campendium search results without booking indicators or availability actions" width="2722" height="1616" loading="lazy" decoding="async">
+                    </a>
+                    <figcaption><strong>Before:</strong> Travelers could research campgrounds, but not see what they could book.</figcaption>
+                </figure>
+                <figure class="booking-media">
+                    <a class="booking-image-link" href="images/Campground%20Booking/Campground%20search%20after.png" target="_blank" rel="noopener" aria-label="Open the final bookable campground results full size in a new tab">
+                        <img src="images/Campground%20Booking/Campground%20search%20after.png" alt="Final campground results with bookable labels and availability actions" width="2520" height="1500" loading="lazy" decoding="async">
+                    </a>
+                    <figcaption><strong>After:</strong> Bookable inventory and availability actions appeared directly in search.</figcaption>
+                </figure>
+            </div>
+            <p class="booking-process-decision"><strong>Decision:</strong> Signal bookability in search, then begin availability after a campground is chosen.</p>
+        </section>
+
+        <section class="booking-process-chapter" aria-labelledby="booking-process-fit">
+            <div class="booking-process-chapter-header">
+                <span class="booking-kicker">Find an available campsite</span>
+                <div>
+                    <h3 id="booking-process-fit">Show which campsites are available for their dates</h3>
+                    <p>Travelers wanted to see which specific campsites they could book for their trip without leaving Campendium.</p>
+                </div>
+            </div>
+            <div class="booking-process-artifacts">
+                <figure class="booking-media wide">
+                    <a class="booking-image-link" href="images/Campground%20Booking/Campsite%20Search%20final%20gif.gif" target="_blank" rel="noopener" aria-label="Open the final campsite search design full size in a new tab">
+                        <img src="images/Campground%20Booking/Campsite%20Search%20final%20gif.gif" alt="Final Campendium campsite search showing availability and a compatible campsite result" width="509" height="313" loading="lazy" decoding="async">
+                    </a>
+                    <figcaption>The final design kept date search and campsite-level availability inside the campground page.</figcaption>
+                </figure>
+            </div>
+            <p class="booking-process-decision"><strong>Decision:</strong> Bring date-based, campsite-level availability into Campendium, then show essential fit details before reservation.</p>
+        </section>
+
+        <section class="booking-process-chapter" aria-labelledby="booking-process-checkout">
+            <div class="booking-process-chapter-header">
+                <span class="booking-kicker">Resolve the transaction</span>
+                <div>
+                    <h3 id="booking-process-checkout">Keep the booking reviewable</h3>
+                    <p>A stepped flow separated details customers needed together, so I consolidated the reservation into one page.</p>
+                </div>
+            </div>
+            <div class="booking-process-artifacts">
+                <figure class="booking-media">
+                    <a class="booking-image-link" href="images/Campground%20Booking/checkout%20wireframes.png" target="_blank" rel="noopener" aria-label="Open the stepped checkout wireframes full size in a new tab">
+                        <img src="images/Campground%20Booking/checkout%20wireframes.png" alt="Early multi-step checkout wireframes" width="2640" height="1000" loading="lazy" decoding="async">
+                    </a>
+                    <figcaption>The first direction split information customers needed to verify together.</figcaption>
+                </figure>
+                <figure class="booking-media">
+                    <a class="booking-image-link" href="images/Campground%20Booking/Final%20Checkout.png" target="_blank" rel="noopener" aria-label="Open the final one-page checkout full size in a new tab">
+                        <img src="images/Campground%20Booking/Final%20Checkout.png" alt="Final one-page checkout with reservation details, policies, full cost, and payment" width="1544" height="1670" loading="lazy" decoding="async">
+                    </a>
+                    <figcaption>The final page kept the complete commitment visible before payment.</figcaption>
+                </figure>
+            </div>
+            <p class="booking-process-decision"><strong>Delivery:</strong> Carry the same hierarchy into confirmation, responsive states, validation, and handoff.</p>
+        </section>
+    </section>
+
+    <section class="booking-section" aria-labelledby="booking-solution">
+        <div class="booking-section-heading">
+            <h2 id="booking-solution">Proposed solution</h2>
+            <p>A single service connected bookable search, campground availability, campsite selection, checkout, and confirmation.</p>
+        </div>
+
+        <figure class="booking-media booking-proposed-solution">
+            <a class="booking-image-link" href="images/Campground%20Booking/final%20deliverables.png" target="_blank" rel="noopener" aria-label="Open the complete Campendium booking service full size in a new tab">
+                <img src="images/Campground%20Booking/final%20deliverables.png" alt="Complete Campendium booking service from search through email confirmation" width="3136" height="866" loading="lazy" decoding="async">
+            </a>
+            <figcaption>The final end-to-end experience prepared for implementation.</figcaption>
         </figure>
-    </section>
-
-    <section class="booking-section" aria-labelledby="booking-decisions">
-        <div class="booking-section-heading">
-            <h2 id="booking-decisions">Key design decisions</h2>
-            <p>The final experience emerged from a set of system-level decisions about visibility, information hierarchy, commitment, and technical resilience.</p>
-        </div>
-
-        <div class="booking-subsection">
-            <div class="booking-subsection-header">
-                <span class="booking-step-label">Decision 01 · Discovery</span>
-                <h3>Make bookable inventory visible without fragmenting search</h3>
-                <p>I added a consistent bookable signal and “Check Availability” action to existing search-result patterns, then prioritized eligible properties in the result order. This introduced the new business model while preserving the product’s familiar map-and-list behavior.</p>
-            </div>
-
-            <div class="booking-media-grid">
-                <figure class="booking-media wide">
-                    <div class="booking-media-frame" role="img" aria-label="Placeholder for campground search explorations">
-                        <div><span>Image placeholder</span><strong>Entry-point explorations</strong></div>
-                    </div>
-                </figure>
-                <figure class="booking-media wide">
-                    <div class="booking-media-frame" role="img" aria-label="Placeholder for before and after bookable search results">
-                        <div><span>Image placeholder</span><strong>Search results: before and after</strong></div>
-                    </div>
-                </figure>
-            </div>
-        </div>
-
-        <div class="booking-subsection">
-            <div class="booking-subsection-header">
-                <span class="booking-step-label">Decision 02 · Qualification</span>
-                <h3>Turn campsite cards into decision-support tools</h3>
-                <p>Price and availability alone were not enough. I extended Campendium’s card system to surface the details that determine real-world fit—capacity, rig dimensions, hookups, access, surface type, amenities, and policies—without forcing customers to open every option.</p>
-            </div>
-
-            <div class="booking-step">
-                <div class="booking-copy">
-                    <h3>Preserve consistency while adding a new information layer</h3>
-                    <p>Reusing the existing card foundation reduced learning cost and implementation complexity. A clear visual hierarchy allowed customers to scan critical constraints first and move into richer detail only when needed.</p>
-                </div>
-                <figure class="booking-media wide">
-                    <div class="booking-media-frame" role="img" aria-label="Placeholder for campsite card iterations">
-                        <div><span>Image placeholder</span><strong>Campsite-card system</strong></div>
-                    </div>
-                </figure>
-            </div>
-        </div>
-
-        <div class="booking-subsection">
-            <div class="booking-subsection-header">
-                <span class="booking-step-label">Decision 03 · Search interaction</span>
-                <h3>Keep date and guest selection in the campground context</h3>
-                <p>Rather than create another destination page, I placed availability controls where customers were already evaluating the campground. This kept property context visible and made the transition from browsing to booking feel like a natural progression.</p>
-            </div>
-
-            <div class="booking-media-grid">
-                <figure class="booking-media wide">
-                    <div class="booking-media-frame" role="img" aria-label="Placeholder for availability placement explorations">
-                        <div><span>Image placeholder</span><strong>Availability placement studies</strong></div>
-                    </div>
-                </figure>
-                <figure class="booking-media wide">
-                    <div class="booking-media-frame" role="img" aria-label="Placeholder for final date and campsite search prototype">
-                        <div><span>Image placeholder</span><strong>Final campsite-search prototype</strong></div>
-                    </div>
-                </figure>
-            </div>
-        </div>
-
-        <div class="booking-subsection">
-            <div class="booking-subsection-header">
-                <span class="booking-step-label">Decision 04 · Checkout</span>
-                <h3>Choose reviewability over artificial step reduction</h3>
-                <p>I initially explored a three-step checkout to reduce cognitive load. Journey analysis showed that customers had already completed several decisions before payment, and separating the remaining information made review harder. I moved to one page so customers could understand and edit the complete reservation in context.</p>
-            </div>
-
-            <div class="booking-step">
-                <div class="booking-copy">
-                    <h3>A deliberate tradeoff</h3>
-                    <p>The page was longer, but it reduced navigation, made fees and policies continuously visible, and supported comparison between entered details and the selected stay. The design prioritized confidence over the appearance of simplicity.</p>
-                </div>
-                <div class="booking-media-grid">
-                    <figure class="booking-media">
-                        <div class="booking-media-frame" role="img" aria-label="Placeholder for three-step checkout wireframes">
-                            <div><span>Image placeholder</span><strong>Early stepped checkout</strong></div>
-                        </div>
-                    </figure>
-                    <figure class="booking-media tall">
-                        <div class="booking-media-frame" role="img" aria-label="Placeholder for final one-page checkout">
-                            <div><span>Image placeholder</span><strong>Final one-page checkout</strong></div>
-                        </div>
-                    </figure>
-                </div>
-            </div>
-        </div>
-
-        <div class="booking-subsection">
-            <div class="booking-subsection-header">
-                <span class="booking-step-label">Decision 05 · Confirmation</span>
-                <h3>Design reassurance as part of the product—not an afterthought</h3>
-                <p>The confirmation experience mirrored the checkout hierarchy so customers could quickly verify the reservation. When email-platform constraints made the original concept infeasible, I worked directly with engineering to simplify the structure and preserve clarity across clients, screen sizes, and light and dark modes.</p>
-            </div>
-
-            <div class="booking-media-grid">
-                <figure class="booking-media tall">
-                    <div class="booking-media-frame" role="img" aria-label="Placeholder for confirmation email iterations">
-                        <div><span>Image placeholder</span><strong>Email constraint explorations</strong></div>
-                    </div>
-                </figure>
-                <figure class="booking-media tall">
-                    <div class="booking-media-frame" role="img" aria-label="Placeholder for final confirmation email">
-                        <div><span>Image placeholder</span><strong>Final confirmation system</strong></div>
-                    </div>
-                </figure>
-            </div>
-        </div>
-    </section>
-
-    <section class="booking-section" aria-labelledby="booking-leadership">
-        <div class="booking-section-heading">
-            <h2 id="booking-leadership">Leadership and delivery</h2>
-            <p>The scope crossed discovery, commerce, legal requirements, responsive web, payment, and email. Keeping the work moving required shared models and intentional cross-functional decision-making.</p>
-        </div>
-
-        <div class="booking-card-grid three">
-            <article class="booking-card">
-                <h3>Sequenced the system</h3>
-                <p>I partnered with product management to break the service into independently buildable phases without losing the integrity of the end-to-end journey.</p>
-            </article>
-            <article class="booking-card">
-                <h3>Designed with engineering</h3>
-                <p>Early technical conversations shaped the date selector, checkout architecture, email markup, responsive behavior, and error handling.</p>
-            </article>
-            <article class="booking-card">
-                <h3>Made decisions traceable</h3>
-                <p>The handoff documented the golden path, behavior, component details, breakpoints, validation, and unsuccessful-purchase states.</p>
-            </article>
-        </div>
-
-        <div class="booking-media-grid" style="margin-top: clamp(3rem, 6vw, 5rem);">
-            <figure class="booking-media wide">
-                <div class="booking-media-frame" role="img" aria-label="Placeholder for annotated developer handoff">
-                    <div><span>Image placeholder</span><strong>Annotated system handoff</strong></div>
-                </div>
-            </figure>
-            <figure class="booking-media wide">
-                <div class="booking-media-frame" role="img" aria-label="Placeholder for golden-path prototype">
-                    <div><span>Image placeholder</span><strong>Golden-path prototype</strong></div>
-                </div>
-            </figure>
-        </div>
     </section>
 
     <section class="booking-section" aria-labelledby="booking-outcomes">
         <div class="booking-section-heading">
-            <h2 id="booking-outcomes">Outcomes</h2>
-            <p>The platform launched in May 2022 as a complete booking service. The design solved the customer journey, but the marketplace launched with only seven registered properties and the company could not recruit supply quickly enough to sustain the model.</p>
+            <h2 id="booking-outcomes">The experience shipped. Supply limited growth.</h2>
+            <p>Launched in May 2022 after two months of design.</p>
         </div>
 
-        <div class="booking-results-grid">
-            <article class="booking-result">
-                <h3>Experience outcome</h3>
-                <p>A coherent path connected campground discovery to site selection, checkout, and confirmation within Campendium.</p>
+        <div class="booking-proof">
+            <article>
+                <span class="booking-kicker">Delivered</span>
+                <h3>One continuous service</h3>
+                <p>Search through confirmation stayed in Campendium.</p>
             </article>
-            <article class="booking-result">
-                <h3>Operational reality</h3>
-                <p>Property-management constraints limited launch inventory to seven properties across the United States.</p>
+            <article>
+                <span class="booking-kicker">Enabled</span>
+                <h3>Buildable handoff</h3>
+                <p>Responsive, error, and email states were documented.</p>
             </article>
-            <article class="booking-result">
-                <h3>Business outcome</h3>
-                <p>After resource constraints and organizational layoffs, the marketplace was ultimately sunset.</p>
+            <article>
+                <span class="booking-kicker">Revealed</span>
+                <h3>Seven properties</h3>
+                <p>Limited inventory prevented growth; the marketplace was later sunset.</p>
             </article>
-        </div>
-    </section>
-
-    <section class="booking-section" aria-labelledby="booking-reflection">
-        <div class="booking-section-heading">
-            <h2 id="booking-reflection">Reflection</h2>
-            <p>The project strengthened how I think about product design beyond the interface: a strong customer experience is necessary, but it cannot compensate for an unsupported marketplace or operating model.</p>
         </div>
 
-        <div class="booking-takeaways">
-            <article class="booking-takeaway">
-                <h3>Design the service and the conditions around it</h3>
-                <p>Supply, operations, customer support, legal requirements, and technical systems all shape whether an experience can succeed.</p>
-            </article>
-            <article class="booking-takeaway">
-                <h3>Use artifacts to create alignment</h3>
-                <p>Journey maps, principles, inventories, and decision logs were most valuable as shared tools for making tradeoffs—not as deliverables by themselves.</p>
-            </article>
-            <article class="booking-takeaway">
-                <h3>Make complexity legible</h3>
-                <p>Senior design leadership is often the work of turning a broad, ambiguous system into decisions a team can understand, sequence, build, and evaluate together.</p>
-            </article>
-        </div>
+        <article class="booking-reflection">
+            <h3>What I carry forward</h3>
+            <p>Validate supply, operations, and demand alongside usability before scaling a marketplace.</p>
+        </article>
     </section>
 
     <nav class="case-study-navigation" aria-label="More UX case studies">
