@@ -1,58 +1,64 @@
 <style>
     .home-page {
         width: 100%;
-        --home-section-padding: 48px;
-        --home-section-spacing: clamp(4rem, 8vw, 8rem);
-        --home-section-spacing-compact: clamp(2rem, 4vw, 4rem);
+        --home-edge: 48px;
+        --home-space: clamp(4.5rem, 8vw, 7.5rem);
+        --home-card: rgba(255, 255, 255, 0.34);
         container: home / inline-size;
         font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .home-page h1,
+    .home-page h2,
+    .home-page h3,
+    .home-page p {
+        color: var(--color-dark);
+    }
+
+    .home-page h1,
+    .home-page h2,
+    .home-page h3 {
+        text-wrap: balance;
+    }
+
+    .home-block {
+        width: calc(100% + (2 * var(--page-padding)));
+        margin-left: calc(-1 * var(--page-padding));
+        padding: var(--home-space) var(--home-edge);
+    }
+
+    .home-eyebrow {
+        margin: 0 0 0.9rem;
+        color: var(--color-muted) !important;
+        font-size: 0.82rem;
+        font-weight: 750;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
     }
 
     .home-hero {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         align-items: center;
-        gap: clamp(2rem, 6vw, 6rem);
-        width: calc(100% + (2 * var(--page-padding)));
-        margin-left: calc(-1 * var(--page-padding));
-        padding: var(--home-section-spacing) var(--home-section-padding);
+        gap: clamp(2.5rem, 6vw, 5.5rem);
         padding-top: 0;
-        padding-bottom: var(--home-section-spacing-compact);
-        text-align: left;
-    }
-
-    .home-hero-copy {
-        max-width: 650px;
-    }
-
-    .home-eyebrow {
-        margin: 0 0 1rem;
-        font-size: 0.85rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-    }
-
-    .home-hero h1,
-    .home-section h2 {
-        margin-top: 0;
-    }
-
-    .home-hero h1 {
-        margin-bottom: 1.5rem;
-        font-size: clamp(2.25rem, 4cqi, 2.75rem);
-        line-height: 1.05;
-    }
-
-    .home-hero-copy p:last-child {
-        max-width: 58ch;
-        margin-bottom: 0;
-        font-size: clamp(1.05rem, 1.5vw, 1.3rem);
-        line-height: 1.65;
+        padding-bottom: clamp(3.5rem, 7vw, 6rem);
     }
 
     .home-portrait {
+        position: relative;
         margin: 0;
+    }
+
+    .home-portrait::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 12% -7% -7% 20%;
+        border-radius: 47% 53% 42% 58% / 58% 43% 57% 42%;
+        background: rgba(201, 184, 224, 0.46);
+        filter: blur(1px);
+        transform: rotate(8deg);
     }
 
     .home-portrait img {
@@ -61,254 +67,481 @@
         margin: 0;
         aspect-ratio: 4 / 5;
         object-fit: cover;
-        border-radius: 16px;
-        box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.3),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.2);
+        border-radius: 18px;
+        box-shadow: 0 3px 8px rgba(var(--color-dark-rgb), 0.25), 0 18px 42px rgba(var(--color-dark-rgb), 0.16);
     }
 
-    .home-section {
-        width: calc(100% + (2 * var(--page-padding)));
-        margin-left: calc(-1 * var(--page-padding));
-        padding: var(--home-section-spacing) var(--home-section-padding);
-        padding-top: var(--home-section-spacing-compact);
-        padding-bottom: var(--home-section-spacing-compact);
+    .home-hero-copy {
+        max-width: 610px;
     }
 
-    .experience-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        gap: 0;
-        align-items: start;
-        width: 100%;
-        text-align: left;
+    .home-hero h1 {
+        margin: 0 0 1.2rem;
+        font-size: clamp(2.8rem, 6.2cqi, 5rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
     }
 
-    .home-section h2 {
-        margin-bottom: 1rem;
-        font-size: clamp(2.25rem, 4cqi, 2.75rem);
+    .home-lede {
+        margin: 0 0 1.15rem;
+        font-size: clamp(1.25rem, 2.3cqi, 1.65rem);
+        font-weight: 650;
+        line-height: 1.4;
     }
 
-    .experience-copy {
-        width: 100%;
-    }
-
-    .experience-copy p {
+    .home-intro {
+        max-width: 53ch;
+        margin: 0;
         font-size: 1.05rem;
-        line-height: 1.75;
+        line-height: 1.72;
     }
 
-    .experience-copy p:first-child {
-        margin-top: 0;
+    .home-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 1.8rem;
     }
 
-    .resume-link {
+    .home-button {
         display: inline-flex;
         align-items: center;
-        gap: 0.65rem;
-        margin-top: 1.5rem;
-        padding: 0.9rem 1.25rem;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0.88rem 1.2rem;
         border: 2px solid var(--color-dark);
         background: var(--color-dark);
-        color: #f7f3ec;
-        font-weight: 700;
+        color: var(--color-background);
+        font-weight: 750;
+        line-height: 1.2;
         text-decoration: none;
     }
 
-    .resume-link svg {
-        width: 1.15rem;
-        height: 1.15rem;
+    .home-button.secondary {
+        background: transparent;
+        color: var(--color-dark);
+    }
+
+    .home-button:hover,
+    .home-button:focus-visible {
+        background: var(--color-accent);
+        border-color: var(--color-accent);
+        color: #fff;
+    }
+
+    .home-button svg {
+        width: 1.05rem;
+        height: 1.05rem;
         flex: none;
     }
 
-    .resume-link:hover,
-    .resume-link:focus-visible {
-        background: transparent;
-        color: var(--color-dark);
+    .home-snapshot {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        padding-top: 0;
+        padding-bottom: clamp(3.5rem, 7vw, 6rem);
+    }
+
+    .snapshot-card {
+        min-height: 150px;
+        padding: 1.35rem;
+        border: 1px solid rgba(var(--color-dark-rgb), 0.14);
+        border-radius: 16px;
+        background: var(--home-card);
+    }
+
+    .snapshot-card strong {
+        display: block;
+        margin-bottom: 0.45rem;
+        font-size: clamp(1.65rem, 3.5cqi, 2.35rem);
+        line-height: 1;
+    }
+
+    .snapshot-card span {
+        display: block;
+        color: var(--color-muted);
+        line-height: 1.55;
+    }
+
+    .home-section-heading {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: end;
+        margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .home-section-heading h2 {
+        margin: 0;
+        font-size: clamp(2.35rem, 5cqi, 3.7rem);
+        line-height: 1.02;
+        letter-spacing: -0.035em;
+    }
+
+    .home-section-heading > p {
+        max-width: 58ch;
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    .career-path {
+        padding-top: clamp(4rem, 7vw, 6.5rem);
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .career-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: career;
+    }
+
+    .career-list li {
+        position: relative;
+        min-height: 210px;
+        padding: 1.6rem;
+        border-radius: 16px;
+        background: var(--home-card);
+        counter-increment: career;
+    }
+
+    .career-list li::before {
+        content: "0" counter(career);
+        display: block;
+        margin-bottom: 1.6rem;
+        color: var(--color-muted);
+        font-size: 0.82rem;
+        font-weight: 750;
+        letter-spacing: 0.12em;
+    }
+
+    .career-list h3 {
+        margin: 0 0 0.6rem;
+        font-size: 1.3rem;
+        line-height: 1.25;
+    }
+
+    .career-list p {
+        margin: 0;
+        line-height: 1.65;
+    }
+
+    .home-practice {
+        padding-top: clamp(4rem, 7vw, 6.5rem);
+    }
+
+    .practice-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .practice-card {
+        padding: 1.5rem;
+        border-top: 3px solid var(--color-dark);
+    }
+
+    .practice-card .practice-number {
+        display: block;
+        margin-bottom: 2rem;
+        color: var(--color-muted);
+        font-weight: 750;
+    }
+
+    .practice-card h3 {
+        margin: 0 0 0.65rem;
+        font-size: 1.3rem;
+    }
+
+    .practice-card p {
+        margin: 0;
+        line-height: 1.65;
+    }
+
+    .home-personal {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: clamp(2.5rem, 7vw, 6rem);
+        align-items: start;
+        padding-top: clamp(4rem, 7vw, 6.5rem);
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .home-personal h2 {
+        margin: 0 0 1.1rem;
+        font-size: clamp(2.35rem, 5cqi, 3.7rem);
+        line-height: 1.02;
+        letter-spacing: -0.035em;
+    }
+
+    .home-personal-copy p {
+        margin: 0 0 1.15rem;
+        font-size: 1.05rem;
+        line-height: 1.72;
+    }
+
+    .interest-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .interest-list li {
+        padding: 0.55rem 0.8rem;
+        border: 1px solid rgba(var(--color-dark-rgb), 0.2);
+        border-radius: 999px;
+        background: var(--home-card);
+        font-weight: 650;
     }
 
     .contact-section {
-        width: calc(100% + (2 * var(--page-padding)));
-        margin-left: calc(-1 * var(--page-padding));
-        padding: var(--home-section-spacing) var(--home-section-padding);
-        padding-top: var(--home-section-spacing-compact);
-        background: transparent;
-        color: var(--color-dark);
-    }
-
-    .contact-inner {
         display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        gap: clamp(2rem, 4vw, 3rem);
-        width: 100%;
-        text-align: left;
+        grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+        gap: clamp(2.5rem, 7vw, 6rem);
+        align-items: end;
+        padding-top: clamp(4rem, 7vw, 6.5rem);
+        padding-bottom: clamp(3.5rem, 6vw, 5rem);
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
     }
 
-    .contact-intro h2 {
+    .contact-section h2 {
+        max-width: 12ch;
         margin: 0 0 1rem;
-        font-size: clamp(2.25rem, 4cqi, 2.75rem);
+        font-size: clamp(2.6rem, 6cqi, 4.6rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
     }
 
-    .contact-intro p {
-        max-width: 58ch;
-        line-height: 1.6;
+    .contact-section p {
+        max-width: 54ch;
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.7;
     }
 
-    .contact-form {
+    .contact-links {
         display: grid;
-        gap: 1.25rem;
+        gap: 0.75rem;
     }
 
-    .form-row {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.25rem;
-    }
-
-    .form-field {
-        display: grid;
-        gap: 0.5rem;
-    }
-
-    .form-field label {
-        font-size: 0.85rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-    }
-
-    .form-field input,
-    .form-field textarea {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 0.95rem 1rem;
-        border: 1px solid var(--color-dark);
-        border-radius: 0;
-        background: transparent;
-        color: inherit;
-        font: inherit;
-    }
-
-    .form-field textarea {
-        min-height: 150px;
-        resize: vertical;
-    }
-
-    .form-field input:focus,
-    .form-field textarea:focus {
-        outline: 2px solid var(--color-dark);
-        outline-offset: 4px;
-    }
-
-    .contact-form button {
-        justify-self: start;
-        padding: 0.9rem 1.5rem;
-        border: 2px solid var(--color-dark);
-        background: var(--color-dark);
-        color: #f7f6ef;
-        font: inherit;
-        font-weight: 700;
-        cursor: pointer;
-    }
-
-    .contact-form button:hover,
-    .contact-form button:focus-visible {
-        background: transparent;
+    .contact-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.32);
         color: var(--color-dark);
+        font-size: 1.05rem;
+        font-weight: 750;
+        text-decoration: none;
+    }
+
+    .contact-link:first-child {
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.32);
+    }
+
+    .contact-link:hover,
+    .contact-link:focus-visible {
+        color: var(--color-accent);
+    }
+
+    .contact-link span:last-child {
+        font-size: 1.35rem;
     }
 
     @container home (max-width: 760px) {
+        .home-block {
+            padding-right: 24px;
+            padding-left: 24px;
+        }
+
         .home-hero,
-        .experience-layout {
+        .home-section-heading,
+        .home-personal,
+        .contact-section {
             grid-template-columns: 1fr;
         }
 
         .home-portrait {
-            max-width: 420px;
+            max-width: 440px;
         }
 
-        .form-row {
+        .home-snapshot,
+        .practice-grid {
             grid-template-columns: 1fr;
+        }
+
+        .career-list {
+            grid-template-columns: 1fr;
+        }
+
+        .snapshot-card,
+        .career-list li {
+            min-height: 0;
         }
     }
 </style>
 
 <div class="home-page">
-    <section class="home-hero" aria-labelledby="home-title">
+    <section class="home-block home-hero" aria-labelledby="home-title">
         <figure class="home-portrait">
             <img src="/images/Hoeper-Picture.jpg" alt="Portrait of Syd Hoeper">
         </figure>
 
         <div class="home-hero-copy">
+            <p class="home-eyebrow">Hi, I’m Syd · Senior Product Designer</p>
             <h1 id="home-title">Complexity, made human.</h1>
-            <p>
-                I’m Syd Hoeper, a senior product designer with nearly a decade of experience turning complex systems into clear, useful, and human-centered products. My work spans public services, emergency response, outdoor travel, mapping, and interactive technology, with a focus on making difficult experiences feel understandable and approachable.
+            <p class="home-lede">I make complicated systems feel clear, inclusive, and genuinely useful.</p>
+            <p class="home-intro">
+                For more than eight years, I’ve led end-to-end product design across public services, emergency response, outdoor travel, mapping, and creative technology. I’m at my best when the problem is ambiguous, the workflow is messy, and the people using it deserve something better.
             </p>
-        </div>
-    </section>
 
-    <section class="home-section" aria-labelledby="experience-title">
-        <div class="experience-layout">
-            <div>
-                <p class="home-eyebrow">Product Designer · Creative Technologist</p>
-                <h2 id="experience-title">Experience</h2>
-            </div>
-
-            <div class="experience-copy">
-                <p>
-                    I’m a multidisciplinary designer who is most at home in messy, ambiguous problem spaces. Across my career, I’ve led product strategy, research, interaction design, prototyping, accessibility work, and cross-functional collaboration for products used by travelers, first responders, government employees, veterans, and the public.
-                </p>
-                <p>
-                    I care deeply about understanding the people behind the work, building shared clarity across teams, and creating systems that are both practical and genuinely pleasant to use. Alongside my professional design practice, I’m pursuing an MFA in Game Design and Interactive Media, where I’m expanding my work into immersive environments, creative technology, and interactive storytelling.
-                </p>
-
-                <a class="resume-link" href="/documents/syd-hoeper-resume.pdf?v=2" target="_blank" rel="noopener noreferrer">
+            <div class="home-actions" aria-label="Primary links">
+                <a class="home-button" href="#va-pdfs">Explore my work</a>
+                <a class="home-button secondary" href="/documents/syd-hoeper-resume.pdf?v=2" target="_blank" rel="noopener noreferrer">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M15 3h6v6"></path>
                         <path d="m10 14 11-11"></path>
                         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                     </svg>
-                    View or download my resume
+                    View my résumé
                 </a>
             </div>
         </div>
     </section>
 
-    <section class="contact-section" aria-labelledby="contact-title">
-        <div class="contact-inner">
-            <div class="contact-intro">
-                <p class="home-eyebrow">Get in touch</p>
-                <h2 id="contact-title">Let’s make something good.</h2>
-                <p>
-                    Have a role, project, collaboration, or strange little idea you’d like to talk about? Send me a message.
-                </p>
+    <section class="home-block home-snapshot" aria-label="Experience at a glance">
+        <div class="snapshot-card">
+            <strong>8+ years</strong>
+            <span>Leading research, strategy, interaction design, testing, and delivery.</span>
+        </div>
+        <div class="snapshot-card">
+            <strong>0→1 + systems</strong>
+            <span>Turning ambiguous ideas and tangled workflows into durable products.</span>
+        </div>
+        <div class="snapshot-card">
+            <strong>Public impact</strong>
+            <span>Designing accessible services for Veterans, families, responders, and travelers.</span>
+        </div>
+    </section>
+
+    <section class="home-block career-path" aria-labelledby="background-title">
+        <div class="home-section-heading">
+            <div>
+                <p class="home-eyebrow">Background</p>
+                <h2 id="background-title">A nonlinear path to better products.</h2>
             </div>
+            <p>
+                I started with physical products, moved into digital systems, and kept following the work toward harder, more human problems. Each chapter sharpened a different part of how I design today.
+            </p>
+        </div>
 
-            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                <div class="form-row">
-                    <div class="form-field">
-                        <label for="contact-name">Name</label>
-                        <input id="contact-name" name="name" type="text" autocomplete="name" required>
-                    </div>
+        <ol class="career-list">
+            <li>
+                <h3>Physical products taught me constraints</h3>
+                <p>At Giant Loop Moto, I designed off-road motorcycle gear where materials, manufacturing, and real-world use made every decision tangible.</p>
+            </li>
+            <li>
+                <h3>Startups taught me ownership</h3>
+                <p>At Trip Pilot, I became the sole product designer and learned to guide an evolving product from research and concept through launch.</p>
+            </li>
+            <li>
+                <h3>Platforms taught me systems thinking</h3>
+                <p>At Active911 and Roadpass, I led complex tools for first responders and travelers, balancing business goals with high-stakes workflows.</p>
+            </li>
+            <li>
+                <h3>Public service made the stakes personal</h3>
+                <p>At Ad Hoc, I improved federal services for Veterans Affairs and Social Security—work that deepened my commitment to accessible, equitable design.</p>
+            </li>
+        </ol>
+    </section>
 
-                    <div class="form-field">
-                        <label for="contact-email">Email</label>
-                        <input id="contact-email" name="email" type="email" autocomplete="email" required>
-                    </div>
-                </div>
+    <section class="home-block home-practice" aria-labelledby="practice-title">
+        <div class="home-section-heading">
+            <div>
+                <p class="home-eyebrow">How I work</p>
+                <h2 id="practice-title">Clarity is a team sport.</h2>
+            </div>
+            <p>
+                My role is rarely just to make an interface. I help teams understand the problem, make intentional tradeoffs, and stay connected to the people affected by what we build.
+            </p>
+        </div>
 
-                <div class="form-field">
-                    <label for="contact-subject">Subject</label>
-                    <input id="contact-subject" name="subject" type="text">
-                </div>
+        <div class="practice-grid">
+            <article class="practice-card">
+                <span class="practice-number">01</span>
+                <h3>Find the real problem</h3>
+                <p>I use research, service mapping, and systems thinking to separate root causes from visible symptoms.</p>
+            </article>
+            <article class="practice-card">
+                <span class="practice-number">02</span>
+                <h3>Build shared clarity</h3>
+                <p>I bring product, engineering, stakeholders, and users into the work early so decisions hold up later.</p>
+            </article>
+            <article class="practice-card">
+                <span class="practice-number">03</span>
+                <h3>Make it work for more people</h3>
+                <p>I treat accessibility and inclusive design as core product quality—not a checklist at the end.</p>
+            </article>
+        </div>
+    </section>
 
-                <div class="form-field">
-                    <label for="contact-message">Message</label>
-                    <textarea id="contact-message" name="message" required></textarea>
-                </div>
+    <section class="home-block home-personal" aria-labelledby="personal-title">
+        <div>
+            <p class="home-eyebrow">Beyond the work</p>
+            <h2 id="personal-title">Curious by nature, maker by habit.</h2>
+        </div>
 
-                <button type="submit">Send message</button>
-            </form>
+        <div class="home-personal-copy">
+            <p>
+                I’m a proud trans/nonbinary designer and use they/them pronouns. I live in Missoula, Montana, where I spend as much time outside as possible—skiing, river surfing, camping, and motorcycling.
+            </p>
+            <p>
+                I’m also pursuing an MFA in Game Design and Interactive Media, expanding my practice into immersive environments, creative technology, and interactive storytelling. When I’m away from a screen, I’m usually making stained glass, crocheting, drawing, or building something strange.
+            </p>
+
+            <ul class="interest-list" aria-label="Interests">
+                <li>Game design</li>
+                <li>Creative technology</li>
+                <li>Stained glass</li>
+                <li>Skiing</li>
+                <li>River surfing</li>
+                <li>Camping</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="home-block contact-section" aria-labelledby="contact-title">
+        <div>
+            <p class="home-eyebrow">Contact</p>
+            <h2 id="contact-title">Let’s make something good.</h2>
+            <p>
+                Have a role, project, collaboration, or strange little idea you’d like to talk about? I’d love to hear what you’re working through.
+            </p>
+        </div>
+
+        <div class="contact-links" aria-label="Contact links">
+            <a class="contact-link" href="mailto:sphoeper@gmail.com">
+                <span>Email me</span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            <a class="contact-link" href="https://www.linkedin.com/in/sphoeper/" target="_blank" rel="noopener noreferrer">
+                <span>Connect on LinkedIn</span>
+                <span aria-hidden="true">↗</span>
+            </a>
+            <a class="contact-link" href="/documents/syd-hoeper-resume.pdf?v=2" target="_blank" rel="noopener noreferrer">
+                <span>View my résumé</span>
+                <span aria-hidden="true">↗</span>
+            </a>
         </div>
     </section>
 </div>

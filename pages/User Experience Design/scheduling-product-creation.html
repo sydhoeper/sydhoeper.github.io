@@ -1,0 +1,549 @@
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
+
+    .spc-study {
+        --spc-card: rgba(252, 250, 246, 0.94);
+        --spc-purple: rgba(201, 184, 239, 0.3);
+        --spc-blue: rgba(169, 204, 239, 0.32);
+        --spc-green: rgba(175, 238, 194, 0.32);
+        width: 100%;
+        max-width: 980px;
+        container: spc-study / inline-size;
+    }
+
+    .spc-study * {
+        box-sizing: border-box;
+    }
+
+    .spc-study h1,
+    .spc-study h2,
+    .spc-study h3,
+    .spc-study .spc-pullquote {
+        font-family: "Fraunces", Georgia, "Times New Roman", serif;
+        font-optical-sizing: auto;
+    }
+
+    .spc-hero,
+    .spc-section {
+        padding: clamp(3rem, 6vw, 5rem) 0;
+    }
+
+    .spc-hero {
+        padding-top: 0;
+    }
+
+    .spc-eyebrow,
+    .spc-label {
+        display: block;
+        margin: 0 0 0.75rem;
+        color: var(--color-muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .spc-hero h1 {
+        max-width: 11ch;
+        margin: 0 0 1.35rem;
+        font-size: clamp(2.8rem, 7cqi, 5.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.025em;
+    }
+
+    .spc-lede {
+        max-width: 55ch;
+        margin: 0;
+        font-size: clamp(1.15rem, 2.4cqi, 1.5rem);
+        line-height: 1.55;
+    }
+
+    .spc-facts,
+    .spc-summary-grid,
+    .spc-card-grid,
+    .spc-results-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1rem, 3vw, 1.6rem);
+    }
+
+    .spc-facts {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    .spc-fact {
+        padding-top: 1rem;
+        border-top: 2px solid var(--color-dark);
+    }
+
+    .spc-fact strong,
+    .spc-fact span {
+        display: block;
+    }
+
+    .spc-fact strong {
+        margin-bottom: 0.35rem;
+        font-size: 1rem;
+    }
+
+    .spc-fact span {
+        color: var(--color-muted);
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    .spc-section {
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .spc-section-heading {
+        display: grid;
+        grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: start;
+        margin-bottom: clamp(2rem, 4vw, 3.25rem);
+    }
+
+    .spc-section-heading h2 {
+        margin: 0;
+        font-size: clamp(2rem, 5cqi, 3.6rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+    }
+
+    .spc-section-heading p {
+        max-width: 58ch;
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.6;
+    }
+
+    .spc-card,
+    .spc-summary-card,
+    .spc-result-card,
+    .spc-retrospective {
+        padding: clamp(1.35rem, 3vw, 2rem);
+        border-radius: 16px;
+        background: var(--spc-card);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.1),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.07);
+    }
+
+    .spc-summary-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .spc-summary-card:nth-child(1) { background: var(--spc-blue); }
+    .spc-summary-card:nth-child(2) { background: var(--spc-purple); }
+    .spc-summary-card:nth-child(3) { background: var(--spc-green); }
+
+    .spc-card h3,
+    .spc-summary-card h3,
+    .spc-result-card h3,
+    .spc-retrospective h3 {
+        margin: 0 0 0.65rem;
+        font-size: clamp(1.25rem, 2.8cqi, 1.7rem);
+        line-height: 1.15;
+    }
+
+    .spc-card p,
+    .spc-summary-card p,
+    .spc-result-card p,
+    .spc-retrospective p {
+        margin: 0;
+        line-height: 1.65;
+    }
+
+    .spc-card ul,
+    .spc-result-card ul,
+    .spc-retrospective ul {
+        margin: 0.7rem 0 0;
+        padding-left: 1.2rem;
+        line-height: 1.6;
+    }
+
+    .spc-card-grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .spc-action-list {
+        display: grid;
+        gap: clamp(2.75rem, 5vw, 4.5rem);
+    }
+
+    .spc-action {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1.2fr);
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: start;
+    }
+
+    .spc-action-copy h3 {
+        margin: 0 0 0.8rem;
+        font-size: clamp(1.55rem, 3.5cqi, 2.35rem);
+        line-height: 1.08;
+    }
+
+    .spc-action-copy p {
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .spc-evidence {
+        padding: clamp(1.35rem, 3vw, 2rem);
+        border: 1px solid rgba(var(--color-dark-rgb), 0.14);
+        border-radius: 16px;
+        background: var(--spc-card);
+    }
+
+    .spc-evidence h4 {
+        margin: 0 0 0.75rem;
+        font-size: 1rem;
+    }
+
+    .spc-evidence ul {
+        margin: 0;
+        padding-left: 1.2rem;
+        line-height: 1.65;
+    }
+
+    .spc-system-map {
+        display: grid;
+        grid-template-columns: repeat(7, auto);
+        gap: 0.6rem;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+
+    .spc-system-node {
+        padding: 0.75rem 0.9rem;
+        border-radius: 10px;
+        background: var(--color-dark);
+        color: var(--color-background);
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .spc-system-arrow {
+        color: var(--color-muted);
+        font-size: 1.2rem;
+    }
+
+    .spc-pivot {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+
+    .spc-pivot-step {
+        position: relative;
+        padding: 1rem;
+        border-radius: 12px;
+        background: var(--spc-purple);
+        font-size: 0.9rem;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    .spc-pivot-step:not(:last-child)::after {
+        content: "→";
+        position: absolute;
+        top: 50%;
+        right: -0.72rem;
+        z-index: 1;
+        color: var(--color-muted);
+        transform: translateY(-50%);
+    }
+
+    .spc-pullquote {
+        max-width: 27ch;
+        margin: clamp(2.5rem, 6vw, 4.5rem) auto 0;
+        font-size: clamp(1.5rem, 4cqi, 2.4rem);
+        line-height: 1.35;
+        text-align: center;
+    }
+
+    .spc-result-card strong {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-family: "Fraunces", Georgia, "Times New Roman", serif;
+        font-size: clamp(2.4rem, 6cqi, 4.2rem);
+        line-height: 0.95;
+    }
+
+    .spc-results-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .spc-result-card:nth-child(1) { background: var(--spc-blue); }
+    .spc-result-card:nth-child(2) { background: var(--spc-green); }
+    .spc-result-card:nth-child(3) { background: var(--spc-purple); }
+
+    .spc-retrospective {
+        margin-top: clamp(2rem, 5vw, 3.5rem);
+        background: var(--color-dark);
+        color: var(--color-background);
+    }
+
+    @container spc-study (max-width: 720px) {
+        .spc-facts,
+        .spc-summary-grid,
+        .spc-card-grid.three,
+        .spc-results-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .spc-action {
+            grid-template-columns: 1fr;
+        }
+
+        .spc-pivot {
+            grid-template-columns: 1fr;
+        }
+
+        .spc-pivot-step:not(:last-child)::after {
+            content: "↓";
+            top: auto;
+            right: 50%;
+            bottom: -0.8rem;
+            transform: translateX(50%);
+        }
+    }
+
+    @container spc-study (max-width: 520px) {
+        .spc-section-heading,
+        .spc-facts,
+        .spc-summary-grid,
+        .spc-card-grid,
+        .spc-card-grid.three,
+        .spc-results-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .spc-system-map {
+            grid-template-columns: 1fr;
+        }
+
+        .spc-system-arrow {
+            transform: rotate(90deg);
+            text-align: center;
+        }
+    }
+</style>
+
+<article class="spc-study">
+    <header class="spc-hero">
+        <span class="spc-eyebrow">Active911 · 0→1 product strategy · 2020</span>
+        <h1>Scheduling Product Creation</h1>
+        <p class="spc-lede">How I turned an ambiguous mandate into a research-led scheduling product—and used weak beta adoption to redirect the strategy toward mobile.</p>
+
+        <div class="spc-facts" aria-label="Project facts">
+            <div class="spc-fact"><strong>Role</strong><span>Sole product designer</span></div>
+            <div class="spc-fact"><strong>Scope</strong><span>Research through delivery</span></div>
+            <div class="spc-fact"><strong>Initial design</strong><span>Approximately 2 months</span></div>
+            <div class="spc-fact"><strong>Partners</strong><span>Product, engineering, and QA</span></div>
+        </div>
+    </header>
+
+    <section class="spc-section" aria-labelledby="spc-overview">
+        <div class="spc-section-heading">
+            <h2 id="spc-overview">In brief</h2>
+            <p>I led the definition of a new scheduling product, then used weak beta adoption to identify a larger access problem and redirect the strategy toward mobile.</p>
+        </div>
+
+        <div class="spc-summary-grid">
+            <article class="spc-summary-card">
+                <span class="spc-label">Challenge</span>
+                <h3>Make variation manageable</h3>
+                <p>Fire departments needed flexible rotations without the complexity of generic scheduling tools.</p>
+            </article>
+            <article class="spc-summary-card">
+                <span class="spc-label">Direction</span>
+                <h3>Build, learn, redirect</h3>
+                <p>I defined the desktop MVP, tested the schedule engine, and reframed low adoption as a strategy signal.</p>
+            </article>
+            <article class="spc-summary-card">
+                <span class="spc-label">Impact</span>
+                <h3>From beta to paid product</h3>
+                <p>The beta reached 100+ agencies; the mobile follow-up helped the product move beyond beta and generate revenue.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="spc-section" aria-labelledby="spc-market">
+        <div class="spc-section-heading">
+            <h2 id="spc-market">A market defined by exceptions</h2>
+            <p>Paper and spreadsheets remained common because existing products were expensive, overbuilt, and unable to represent irregular rotations.</p>
+        </div>
+
+        <div class="spc-card-grid three">
+            <article class="spc-card">
+                <span class="spc-label">Paid departments</span>
+                <h3>Stable teams</h3>
+                <p>The same people often worked predictable rotating shifts.</p>
+            </article>
+            <article class="spc-card">
+                <span class="spc-label">Volunteer departments</span>
+                <h3>Availability first</h3>
+                <p>Leaders gathered availability, then built coverage around submissions.</p>
+            </article>
+            <article class="spc-card">
+                <span class="spc-label">Combination departments</span>
+                <h3>Mixed staffing</h3>
+                <p>Fixed paid crews were supplemented by volunteers as needed.</p>
+            </article>
+        </div>
+
+        <p class="spc-pullquote">The product could not impose one “standard” schedule on a market defined by variation.</p>
+    </section>
+
+    <section class="spc-section" aria-labelledby="spc-scope">
+        <div class="spc-section-heading">
+            <h2 id="spc-scope">Defining a focused first release</h2>
+            <p>The desktop MVP had to support real fire-service operations without becoming another dense configuration tool.</p>
+        </div>
+
+        <div class="spc-card-grid">
+            <article class="spc-card">
+                <h3>What the MVP had to enable</h3>
+                <ul>
+                    <li>Create multiple schedules and rotating shifts</li>
+                    <li>Start from common templates or customize a rotation</li>
+                    <li>Create positions and personnel</li>
+                    <li>Assign qualified people to positions on shifts</li>
+                </ul>
+            </article>
+            <article class="spc-card">
+                <h3>What we intentionally deferred</h3>
+                <ul>
+                    <li>Self-service shift claiming and requests</li>
+                    <li>Coverage notifications and mass communication</li>
+                    <li>Detailed schedule history and printing</li>
+                    <li>A native mobile experience</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <section class="spc-section" aria-labelledby="spc-decisions">
+        <div class="spc-section-heading">
+            <h2 id="spc-decisions">Four decisions that shaped the product</h2>
+            <p>The work centered on reducing risk: understand the operating models, clarify the domain, test the schedule engine, and learn from adoption.</p>
+        </div>
+
+        <div class="spc-action-list">
+            <article class="spc-action">
+                <div class="spc-action-copy">
+                    <span class="spc-label">01 · Discover the real job</span>
+                    <h3>Research beyond feature requests</h3>
+                    <p>I interviewed six fire-service leaders and trialed four scheduling products to understand how coverage was assembled—not simply which features people requested.</p>
+                </div>
+                <div class="spc-evidence">
+                    <h4>Evidence that shaped the strategy</h4>
+                    <ul>
+                        <li>Pen, paper, and spreadsheets remained common</li>
+                        <li>Irregular rotations were the core unmet need</li>
+                        <li>Departments shared concepts, but not one workflow</li>
+                        <li>Too many configuration options made competitors difficult to use</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="spc-action">
+                <div class="spc-action-copy">
+                    <span class="spc-label">02 · Model the domain</span>
+                    <h3>Turn operational complexity into a clear system</h3>
+                    <p>I defined how the core objects related, giving product and engineering a shared language before detailed interface work began.</p>
+                </div>
+                <div class="spc-evidence">
+                    <h4>Core product model</h4>
+                    <div class="spc-system-map" aria-label="A schedule contains shifts, shifts contain positions, and positions are filled by people">
+                        <span class="spc-system-node">Schedule</span>
+                        <span class="spc-system-arrow" aria-hidden="true">→</span>
+                        <span class="spc-system-node">Shift</span>
+                        <span class="spc-system-arrow" aria-hidden="true">→</span>
+                        <span class="spc-system-node">Position</span>
+                        <span class="spc-system-arrow" aria-hidden="true">→</span>
+                        <span class="spc-system-node">Person</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="spc-action">
+                <div class="spc-action-copy">
+                    <span class="spc-label">03 · Test the riskiest assumption</span>
+                    <h3>Use failure to improve the schedule engine</h3>
+                    <p>Testing with four fire-service leaders validated the language and flow—but exposed that the schedule engine could not represent enough real rotations.</p>
+                </div>
+                <div class="spc-evidence">
+                    <h4>Decision after testing</h4>
+                    <ul>
+                        <li>Make the rotation itself directly configurable</li>
+                        <li>Preview the pattern before saving</li>
+                        <li>Ship 24-hour shifts first to protect the timeline</li>
+                        <li>Keep variable shift lengths in the near-term roadmap</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="spc-action">
+                <div class="spc-action-copy">
+                    <span class="spc-label">04 · Respond to adoption</span>
+                    <h3>Reframe a weak beta as a strategy signal</h3>
+                    <p>Low beta adoption revealed a problem larger than polish: non-admin users could not participate easily, and customers expected mobile access.</p>
+                </div>
+                <div class="spc-evidence">
+                    <h4>How the strategy changed</h4>
+                    <div class="spc-pivot" aria-label="Product strategy pivot from beta launch through mobile validation">
+                        <span class="spc-pivot-step">Desktop beta</span>
+                        <span class="spc-pivot-step">Low adoption</span>
+                        <span class="spc-pivot-step">More interviews</span>
+                        <span class="spc-pivot-step">Mobile access gap</span>
+                        <span class="spc-pivot-step">10-day mobile MVP</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="spc-section" aria-labelledby="spc-outcome">
+        <div class="spc-section-heading">
+            <h2 id="spc-outcome">What changed after launch</h2>
+            <p>The first release did not validate every assumption. It did expose the access model the product needed to serve people beyond department administrators.</p>
+        </div>
+
+        <div class="spc-results-grid">
+            <article class="spc-result-card">
+                <strong>100+</strong>
+                <h3>Agencies in desktop beta</h3>
+                <p>The initial product reached a meaningful customer cohort within three months.</p>
+            </article>
+            <article class="spc-result-card">
+                <strong>10 days</strong>
+                <h3>To design the mobile MVP</h3>
+                <p>A focused native experience addressed onboarding, account access, and schedule visibility.</p>
+            </article>
+            <article class="spc-result-card">
+                <strong>2021</strong>
+                <h3>Moved beyond beta</h3>
+                <p>The scheduling platform became a revenue-generating product for Active911.</p>
+            </article>
+        </div>
+
+        <div class="spc-retrospective">
+            <span class="spc-label">Senior retrospective</span>
+            <h3>What I would do differently today</h3>
+            <ul>
+                <li>Include administrators, volunteers, and paid personnel in discovery from the start—not only department leadership</li>
+                <li>Define the adoption funnel and product-success measures before beta</li>
+                <li>Validate the access model and cross-platform experience before investing deeply in desktop workflows</li>
+                <li>Frame the MVP around a complete critical job, not only a prioritized feature list</li>
+            </ul>
+        </div>
+    </section>
+</article>

@@ -84,6 +84,7 @@ const pageMap = {
     "booking-platform": "pages/User Experience Design/booking-platform.html",
     "map-redesign": "pages/User Experience Design/map-redesign.html",
     "search-redesign": "pages/User Experience Design/search-update.html",
+    "scheduling-product-creation": "pages/User Experience Design/scheduling-product-creation.html",
 
     "under-the-eye": "pages/Games and Interactive Media/under-the-eye.html",
     emora: "pages/Games and Interactive Media/oracle-deck.html",
