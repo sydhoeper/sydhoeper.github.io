@@ -310,6 +310,11 @@
         transform: none;
     }
 
+    .va-decision-list .va-media.va-overview-crop:not(.wide):not(.va-captioned) > img {
+        clip-path: none;
+        transform: none;
+    }
+
     .va-decision-list .va-media.va-address-pattern:not(.wide):not(.va-captioned) {
         padding: 6px 6px 12px 18px;
     }
@@ -447,7 +452,11 @@
 
     .va-flow-comparison {
         grid-template-columns: 1fr;
-        gap: clamp(2rem, 5vw, 3.5rem);
+        gap: clamp(1.25rem, 2.5vw, 1.75rem);
+    }
+
+    .va-flow-comparison > figure:first-child figcaption {
+        margin-top: 1.4rem;
     }
 
     .va-process-step.va-process-feature {
@@ -619,34 +628,32 @@
     <section class="va-section" aria-labelledby="va-overview">
         <div class="va-section-heading">
             <h2 id="va-overview">Overview</h2>
-            <p>A legacy print-and-mail application created friction for beneficiaries and required extensive manual processing by VA case workers. Our team transformed it into an accessible, end-to-end digital workflow on VA.gov.</p>
+            <p>We transformed a print-and-mail application into an accessible digital service on VA.gov.</p>
         </div>
 
         <div class="va-card-grid three">
             <article class="va-card">
                 <h3>Context</h3>
-                <p>The application was a print-only PDF. Applicants filled it out by hand and mailed it to the VA, where case workers manually interpreted and processed it.</p>
+                <p>Applicants completed and mailed a PDF that VA staff processed by hand.</p>
             </article>
 
             <article class="va-card">
                 <h3>Objective</h3>
-                <p>Lead the transformation of a paper-based PDF process into an accessible digital workflow on VA.gov.</p>
+                <p>Create an accessible, end-to-end digital application.</p>
             </article>
 
             <article class="va-card">
                 <h3>Challenge</h3>
-                <p>Replace a legacy workflow with an intuitive experience while reducing the processing burden on VA staff.</p>
+                <p>Simplify applying without adding work for VA staff.</p>
             </article>
         </div>
 
         <article class="va-role">
             <h3>My role</h3>
             <ul>
-                <li>Main design point of contact for the project</li>
-                <li>Led research, interaction design, prototyping, and high-fidelity design</li>
-                <li>Contributed patterns to the VA design system</li>
-                <li>Helped manage stakeholders and cross-functional collaboration</li>
-                <li>Created developer annotations with accessibility guidance</li>
+                <li>Design lead and primary point of contact</li>
+                <li>Led research, interaction design, prototyping, and delivery</li>
+                <li>Contributed accessible patterns to the VA design system</li>
             </ul>
         </article>
 
@@ -659,7 +666,7 @@
     <section class="va-section" aria-labelledby="va-challenges">
         <div class="va-section-heading">
             <h2 id="va-challenges">Challenges and opportunities</h2>
-            <p>The paper process was hard for applicants to navigate and equally difficult for VA staff to process. Digitization could remove barriers on both sides of the service.</p>
+            <p>The paper process created barriers for applicants and staff.</p>
         </div>
 
         <div class="va-challenge-table" aria-label="Customer and business challenges and opportunities">
@@ -670,30 +677,28 @@
             <div class="va-table-label">Customer</div>
             <div>
                 <ul>
-                    <li>Mailing printed PDFs was cumbersome</li>
-                    <li>Instructions and application help were difficult to access</li>
+                    <li>Paper forms were hard to complete and mail</li>
+                    <li>Help was difficult to find</li>
                 </ul>
             </div>
             <div>
                 <ul>
-                    <li>Thousands of people apply every year despite these barriers</li>
-                    <li>A guided digital flow could make the process more approachable</li>
+                    <li>Meet proven demand with a guided digital flow</li>
+                    <li>Make support easier to access</li>
                 </ul>
             </div>
 
             <div class="va-table-label">Business</div>
             <div>
                 <ul>
-                    <li>Manual sorting led to mistakes</li>
-                    <li>Handwriting caused missing signatures, ineligible entries, and processing delays</li>
-                    <li>The process depended on physical mail</li>
+                    <li>Manual review caused errors and delays</li>
+                    <li>Physical mail slowed intake</li>
                 </ul>
             </div>
             <div>
                 <ul>
-                    <li>Digitization could reduce mistakes and processing time</li>
-                    <li>More applications could be received and reviewed</li>
-                    <li>The existing design system could accelerate delivery</li>
+                    <li>Process more applications with fewer errors</li>
+                    <li>Accelerate delivery with the VA design system</li>
                 </ul>
             </div>
         </div>
@@ -702,21 +707,21 @@
     <section class="va-section" aria-labelledby="va-approach">
         <div class="va-section-heading">
             <h2 id="va-approach">Approach</h2>
-            <p>We started lean, addressed issues as they emerged, tested with users, analyzed findings, and incorporated improvements in a mobile-first experience.</p>
+            <p>We worked iteratively: map the service, test early, and refine a mobile-first experience.</p>
         </div>
 
         <div class="va-card-grid three">
             <article class="va-card">
                 <h3>High-level strategy</h3>
-                <p>Start small, learn continuously, and improve the experience as evidence emerged.</p>
+                <p>Start small and let evidence guide the work.</p>
             </article>
             <article class="va-card">
                 <h3>Methodologies</h3>
-                <p>Human-centered design, inclusive and accessible design principles, and agile teamwork.</p>
+                <p>Human-centered, accessible, and agile design.</p>
             </article>
             <article class="va-card">
                 <h3>Collaboration</h3>
-                <p>Regular check-ins with design, engineering, and stakeholders, with a shared design decision log.</p>
+                <p>Frequent cross-functional reviews and a shared decision log.</p>
             </article>
         </div>
     </section>
@@ -724,14 +729,14 @@
     <section class="va-section" aria-labelledby="va-process">
         <div class="va-section-heading">
             <h2 id="va-process">Process</h2>
-            <p>I moved from service-level understanding to detailed interaction design, testing each stage and preparing the final experience for an accessible engineering handoff.</p>
+            <p>I moved from service mapping to tested interactions and an accessible handoff.</p>
         </div>
 
         <div class="va-process-step va-flow-step">
             <div class="va-process-copy">
                 <span class="va-step-number">01 · Map the service</span>
                 <h3>Updated user flow</h3>
-                <p>I cleaned up the existing user flow to make it flatter, clearer, and more streamlined. I then facilitated a Figma workshop so the team could collaboratively build the first section using the VA design system.</p>
+                <p>I flattened the user flow, then aligned the team in a collaborative Figma workshop.</p>
             </div>
             <div class="va-process-grid va-flow-comparison">
                 <figure class="va-media">
@@ -749,7 +754,7 @@
             <div class="va-process-copy">
                 <span class="va-step-number">02 · Listen before designing</span>
                 <h3>Stakeholder interviews</h3>
-                <p>I interviewed researchers and stakeholders to understand the operational realities behind the form, uncover unanswered questions, and make sure the redesigned flow reflected both applicant and processor needs.</p>
+                <p>I uncovered applicant needs, processor constraints, and gaps in the existing form.</p>
             </div>
             <figure class="va-media">
                 <img src="images/PDF%20Digitization/Discussion%20Questions.png" alt="Stakeholder interview discussion questions" loading="eager" decoding="async">
@@ -760,7 +765,7 @@
             <div class="va-process-copy">
                 <span class="va-step-number">03 · Structure the experience</span>
                 <h3>Wireframes and screen advancement</h3>
-                <p>I translated the updated flow into wireframes using the VA design library, then progressively increased fidelity as the team aligned on content, sequence, and interaction behavior.</p>
+                <p>I used the VA design library to turn the new flow into progressively refined screens.</p>
             </div>
             <div class="va-process-grid va-feature-stack">
                 <figure class="va-media">
@@ -776,7 +781,7 @@
             <div class="va-process-copy">
                 <span class="va-step-number">04 · Make it testable</span>
                 <h3>Clickable prototype</h3>
-                <p>I connected the high-fidelity screens into a realistic prototype so stakeholders could evaluate the complete experience and researchers could test the flow with applicants before development.</p>
+                <p>A realistic prototype let applicants and stakeholders evaluate the full flow before development.</p>
             </div>
             <figure class="va-media">
                 <img src="images/PDF%20Digitization/clickable%20prototype.png" alt="High-fidelity clickable application prototype" loading="eager" decoding="async">
@@ -787,7 +792,7 @@
             <div class="va-process-copy">
                 <span class="va-step-number">05 · Learn and refine</span>
                 <h3>Testing and iteration</h3>
-                <p>I supported interview analysis and report writing, identified patterns across sessions, and translated the findings into focused updates to the application flow and individual screens.</p>
+                <p>I turned recurring test findings into focused flow and screen updates.</p>
             </div>
             <figure class="va-media">
                 <img src="images/PDF%20Digitization/User%20testing%20analysis.png" alt="User testing analysis and findings" loading="eager" decoding="async">
@@ -798,7 +803,7 @@
             <div class="va-process-copy">
                 <span class="va-step-number">06 · Prepare for delivery</span>
                 <h3>Annotations and handoff</h3>
-                <p>I documented the golden path, auxiliary screens, responsive states, interaction details, and accessibility requirements so engineering had the context needed to implement the experience accurately.</p>
+                <p>I documented responsive behavior, edge cases, interactions, and accessibility requirements.</p>
             </div>
             <figure class="va-media">
                 <img src="images/PDF%20Digitization/Annotations%20and%20handoff.png" alt="Annotated application designs prepared for engineering handoff" loading="eager" decoding="async">
@@ -809,7 +814,7 @@
     <section class="va-section" aria-labelledby="va-solution">
         <div class="va-section-heading">
             <h2 id="va-solution">Proposed solution</h2>
-            <p>A guided, mobile-first application on VA.gov that made eligibility, applicant information, document collection, review, and submission easier to understand.</p>
+            <p>A guided, mobile-first application from eligibility through submission.</p>
         </div>
 
         <figure class="va-media wide va-proposed-solution">
@@ -820,7 +825,7 @@
     <section class="va-section" aria-labelledby="va-decisions">
         <div class="va-section-heading">
             <h2 id="va-decisions">Design decisions</h2>
-            <p>User research and testing shaped a set of interaction patterns that reduced cognitive load, supported complex family situations, and made document submission more flexible.</p>
+            <p>Research shaped patterns for complex households and flexible document submission.</p>
         </div>
 
         <div class="va-decision-list">
@@ -828,7 +833,7 @@
                 <div class="va-decision-copy">
                     <span class="va-step-number">Mobile-first</span>
                     <h3>Design for the smallest screen first</h3>
-                    <p>Most VA applicants use mobile devices. Starting with the smallest screens made it easier to prioritize content, then adapt the experience to larger screens.</p>
+                    <p>Starting small forced clear content priorities that scaled to larger screens.</p>
                 </div>
                 <figure class="va-media portrait va-mobile-first"><img src="images/PDF%20Digitization/Mobile-first%20designs.png" alt="Mobile-first CHAMPVA application screens" loading="eager" decoding="async"></figure>
             </article>
@@ -837,7 +842,7 @@
                 <div class="va-decision-copy">
                     <span class="va-step-number">Progressive disclosure</span>
                     <h3>Show only what is relevant</h3>
-                    <p>Questions were ordered so applicants only saw follow-up questions when they applied. For example, document-upload guidance appeared only when a scenario required supporting evidence.</p>
+                    <p>Applicants saw follow-up questions only when they applied.</p>
                 </div>
                 <figure class="va-media va-dark-matte"><img src="images/PDF%20Digitization/progressive%20disclosure.png" alt="Progressive disclosure screen sequence showing conditional questions" loading="eager" decoding="async"></figure>
             </article>
@@ -846,7 +851,7 @@
                 <div class="va-decision-copy">
                     <span class="va-step-number">Dynamic content</span>
                     <h3>Use each applicant’s perspective</h3>
-                    <p>I moved signer information to the beginning so later content could use the applicant’s role and name—for example, changing “Veteran information” to “Your information” when appropriate.</p>
+                    <p>Capturing the signer first let later content reflect each applicant’s role and name.</p>
                 </div>
                 <figure class="va-media portrait va-dynamic-content"><img src="images/PDF%20Digitization/dynamic%20content.png" alt="Signer information screen demonstrating dynamic content" loading="eager" decoding="async"></figure>
             </article>
@@ -855,7 +860,7 @@
                 <div class="va-decision-copy">
                     <span class="va-step-number">Document flexibility</span>
                     <h3>Allow optional documents</h3>
-                    <p>Stakeholder interviews showed that applicants could provide many possible document types, but very few were universally required. The upload flow kept these options available without turning them into barriers.</p>
+                    <p>The flow supported optional evidence without making it a barrier.</p>
                 </div>
                 <figure class="va-media portrait va-crop-tall va-optional-documents"><img src="images/PDF%20Digitization/optional%20documents.png" alt="Application screen allowing optional supporting documents" loading="eager" decoding="async"></figure>
             </article>
@@ -864,7 +869,7 @@
                 <div class="va-decision-copy">
                     <span class="va-step-number">Upload timing</span>
                     <h3>Ask for files when they become relevant</h3>
-                    <p>The file prompt appears at the moment a document becomes relevant, with the option to skip it and return during review.</p>
+                    <p>Files are requested in context and can be added later.</p>
                 </div>
                 <figure class="va-media va-upload-crop"><img src="images/PDF%20Digitization/upload%20timing%20crop.png" alt="Contextual file upload prompt in the application flow" loading="eager" decoding="async"></figure>
             </article>
@@ -873,7 +878,7 @@
                 <div class="va-decision-copy">
                     <span class="va-step-number">Address pattern</span>
                     <h3>Reduce repeated address entry</h3>
-                    <p>Testing showed that people were frustrated when entering the same address for multiple people in one household. A reusable-address pattern removed that friction while still supporting different addresses.</p>
+                    <p>A reusable-address pattern removed repeated household data entry.</p>
                 </div>
                 <figure class="va-media va-address-pattern"><img src="images/PDF%20Digitization/same%20mailing%20address.png" alt="Reusable mailing address selection pattern" loading="eager" decoding="async"></figure>
             </article>
@@ -882,7 +887,7 @@
                 <div class="va-decision-copy">
                     <span class="va-step-number">List and loop</span>
                     <h3>Make repeated applicants manageable</h3>
-                    <p>Instead of one inefficient repeating pattern, applicants first create a list of people and then complete each person’s questions individually. A submitted version of this pattern later replaced the older design in the VA design system.</p>
+                    <p>Applicants create a household list, then complete each person’s details. The pattern later informed the VA design system.</p>
                 </div>
                 <div class="va-process-grid">
                     <figure class="va-media va-captioned">
@@ -900,16 +905,16 @@
                 <div class="va-decision-copy">
                     <span class="va-step-number">Review</span>
                     <h3>Give documents a clear overview</h3>
-                    <p>A dedicated review page gives applicants another opportunity to upload files before submission. Existing VA design-system components separate content by applicant and document requirements.</p>
+                    <p>Review groups documents by applicant and makes missing files easy to spot.</p>
                 </div>
-                <figure class="va-media portrait va-crop-tall"><img src="images/PDF%20Digitization/overview%20screen.png" alt="Document review and overview screen" loading="eager" decoding="async"></figure>
+                <figure class="va-media portrait va-crop-tall va-overview-crop"><img src="images/PDF%20Digitization/overview%20screen%20crop.png" alt="Document review showing required and optional supporting files by applicant" loading="eager" decoding="async"></figure>
             </article>
 
             <article class="va-decision">
                 <div class="va-decision-copy">
                     <span class="va-step-number">Mail-in alternative</span>
                     <h3>Keep a non-digital path available</h3>
-                    <p>Some applicants told us they would rather mail documents than upload them. The experience keeps that option visible while allowing processors to continue working with the rest of the application.</p>
+                    <p>A visible mail option preserves access without blocking digital processing.</p>
                 </div>
                 <figure class="va-media va-mail-in"><img src="images/PDF%20Digitization/mail-in%20documentation.png" alt="Instructions for mailing supporting documents to the CHAMPVA Eligibility office" loading="eager" decoding="async"></figure>
             </article>
@@ -918,7 +923,7 @@
                 <div class="va-decision-copy">
                     <span class="va-step-number">Post-submission</span>
                     <h3>Make application status unmistakable</h3>
-                    <p>After submission, the interface clearly distinguishes fully submitted applications from those still missing required documentation. Existing alert patterns help applicants see what happened and what to do next.</p>
+                    <p>Clear alerts distinguish complete applications from those still missing files.</p>
                 </div>
                 <figure class="va-media va-post-submission"><img src="images/PDF%20Digitization/post-submission.png" alt="Post-submission application status screens" loading="eager" decoding="async"></figure>
             </article>
@@ -928,7 +933,7 @@
     <section class="va-section" aria-labelledby="va-outcomes">
         <div class="va-section-heading">
             <h2 id="va-outcomes">Outcomes</h2>
-            <p>The service launched in fall 2024 after two previously failed attempts and immediately demonstrated demand for a digital application.</p>
+            <p>The service launched in fall 2024 and quickly demonstrated demand.</p>
         </div>
 
         <div class="va-outcomes">
@@ -942,9 +947,9 @@
             <div>
                 <h3>What I learned</h3>
                 <ul>
-                    <li>Aligning on processes before designing saves time later</li>
-                    <li>There is no substitute for in-depth user research</li>
-                    <li>Balancing stakeholder requests with prioritized design needs is an art form</li>
+                    <li>Early process alignment prevents rework</li>
+                    <li>Deep research reveals the real service constraints</li>
+                    <li>Prioritization keeps stakeholder needs actionable</li>
                 </ul>
             </div>
         </div>
@@ -953,17 +958,15 @@
             <article class="va-card">
                 <h3>User impact</h3>
                 <ul>
-                    <li>More people can apply through a more accessible method</li>
-                    <li>The guided flow is easier to complete than the PDF</li>
-                    <li>Applicants can apply without leaving home</li>
+                    <li>A more accessible way to apply from home</li>
+                    <li>A guided experience in place of the PDF</li>
                 </ul>
             </article>
             <article class="va-card">
                 <h3>Business impact</h3>
                 <ul>
-                    <li>More applications can be processed in less time</li>
-                    <li>Staff no longer need to decipher handwriting or rely on physical mail</li>
-                    <li>Uploaded files arrive directly and are easier to review</li>
+                    <li>Faster processing with fewer manual errors</li>
+                    <li>Direct, legible files instead of handwritten mail</li>
                 </ul>
             </article>
         </div>
