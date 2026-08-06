@@ -1,4 +1,6 @@
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
+
     .va-case-study {
         --va-card: rgba(252, 250, 246, 0.92);
         --va-soft: #eee9f2;
@@ -13,6 +15,16 @@
 
     .va-case-study * {
         box-sizing: border-box;
+    }
+
+    .va-case-study h1,
+    .va-case-study h2,
+    .va-case-study h3,
+    .va-case-study .va-table-heading,
+    .va-case-study .va-table-label,
+    .va-case-study .va-quote {
+        font-family: "Fraunces", Georgia, "Times New Roman", serif;
+        font-optical-sizing: auto;
     }
 
     .va-hero,
@@ -45,7 +57,7 @@
         margin: 0 0 1.25rem;
         font-size: clamp(2.6rem, 7cqi, 5.6rem);
         line-height: 0.96;
-        letter-spacing: -0.045em;
+        letter-spacing: -0.025em;
     }
 
     .va-lede {
@@ -71,7 +83,7 @@
         margin: 0;
         font-size: clamp(2rem, 5cqi, 3.6rem);
         line-height: 1;
-        letter-spacing: -0.035em;
+        letter-spacing: -0.02em;
     }
 
     .va-section-heading p {
@@ -504,6 +516,67 @@
         gap: clamp(4rem, 9vw, 8rem);
     }
 
+    .va-section-disclosure {
+        margin-top: clamp(1.75rem, 4vw, 3rem);
+    }
+
+    .va-section-disclosure summary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.9rem 1.2rem;
+        border: 2px solid var(--color-dark);
+        border-radius: 999px;
+        color: var(--color-dark);
+        font-weight: 700;
+        cursor: pointer;
+        list-style: none;
+        transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    .va-section-disclosure summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .va-section-disclosure summary:hover,
+    .va-section-disclosure summary:focus-visible {
+        background: var(--color-dark);
+        color: var(--color-background);
+    }
+
+    .va-section-disclosure summary:focus-visible {
+        outline: 3px solid rgba(var(--color-dark-rgb), 0.28);
+        outline-offset: 4px;
+    }
+
+    .va-section-disclosure .va-summary-open {
+        display: none;
+    }
+
+    .va-section-disclosure[open] .va-summary-closed {
+        display: none;
+    }
+
+    .va-section-disclosure[open] .va-summary-open {
+        display: inline;
+    }
+
+    .va-section-disclosure .va-summary-icon {
+        display: inline-block;
+        font-size: 1.15em;
+        line-height: 1;
+        transition: transform 180ms ease;
+    }
+
+    .va-section-disclosure[open] .va-summary-icon {
+        transform: rotate(180deg);
+    }
+
+    .va-section-disclosure .va-decision-list,
+    .va-section-disclosure .va-process-list {
+        margin-top: clamp(3rem, 7vw, 5rem);
+    }
+
     .va-decision-list .va-decision {
         margin: 0;
     }
@@ -732,6 +805,15 @@
             <p>I moved from service mapping to tested interactions and an accessible handoff.</p>
         </div>
 
+        <details class="va-section-disclosure">
+            <summary>
+                <span class="va-summary-closed">View 6 process steps</span>
+                <span class="va-summary-open">Hide process steps</span>
+                <span class="va-summary-icon" aria-hidden="true">⌄</span>
+            </summary>
+
+        <div class="va-process-list">
+
         <div class="va-process-step va-flow-step">
             <div class="va-process-copy">
                 <span class="va-step-number">01 · Map the service</span>
@@ -809,6 +891,8 @@
                 <img src="images/PDF%20Digitization/Annotations%20and%20handoff.png" alt="Annotated application designs prepared for engineering handoff" loading="eager" decoding="async">
             </figure>
         </div>
+        </div>
+        </details>
     </section>
 
     <section class="va-section" aria-labelledby="va-solution">
@@ -827,6 +911,13 @@
             <h2 id="va-decisions">Design decisions</h2>
             <p>Research shaped patterns for complex households and flexible document submission.</p>
         </div>
+
+        <details class="va-section-disclosure">
+            <summary>
+                <span class="va-summary-closed">View 10 design decisions</span>
+                <span class="va-summary-open">Hide design decisions</span>
+                <span class="va-summary-icon" aria-hidden="true">⌄</span>
+            </summary>
 
         <div class="va-decision-list">
             <article class="va-decision">
@@ -928,6 +1019,7 @@
                 <figure class="va-media va-post-submission"><img src="images/PDF%20Digitization/post-submission.png" alt="Post-submission application status screens" loading="eager" decoding="async"></figure>
             </article>
         </div>
+        </details>
     </section>
 
     <section class="va-section" aria-labelledby="va-outcomes">
@@ -940,8 +1032,9 @@
             <div>
                 <h3>Results and metrics</h3>
                 <ul>
-                    <li>Launched in fall 2024</li>
                     <li>24,000 applications submitted online in the first two months</li>
+                    <li>76% of submissions were online by May 2025</li>
+                    <li>Processing time fell from 17 minutes to under 5 by July 2025</li>
                 </ul>
             </div>
             <div>
@@ -956,17 +1049,17 @@
 
         <div class="va-impact-grid">
             <article class="va-card">
-                <h3>User impact</h3>
+                <h3>Impact on Veterans and families</h3>
                 <ul>
-                    <li>A more accessible way to apply from home</li>
-                    <li>A guided experience in place of the PDF</li>
+                    <li>Benefits received in weeks instead of months</li>
+                    <li>A guided, accessible way to apply from home</li>
                 </ul>
             </article>
             <article class="va-card">
-                <h3>Business impact</h3>
+                <h3>Impact on VA application processors</h3>
                 <ul>
-                    <li>Faster processing with fewer manual errors</li>
-                    <li>Direct, legible files instead of handwritten mail</li>
+                    <li>Fewer missing signatures, lost forms, and handwriting errors</li>
+                    <li>Faster review through direct, legible submissions</li>
                 </ul>
             </article>
         </div>
