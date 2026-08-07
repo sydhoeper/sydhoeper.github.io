@@ -97,9 +97,16 @@
 
     .map-solution-layout {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
-        gap: clamp(2.5rem, 7vw, 5.5rem);
-        align-items: center;
+        grid-template-columns: minmax(0, 1fr);
+        gap: clamp(1.5rem, 3vw, 2.5rem);
+        align-items: start;
+    }
+
+    .map-solution-copy {
+        display: grid;
+        grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: start;
     }
 
     .map-solution-copy h2 {
@@ -111,7 +118,7 @@
 
     .map-solution-copy p {
         max-width: 38ch;
-        margin: clamp(1rem, 2.5vw, 1.5rem) 0 0;
+        margin: 0;
         font-size: var(--type-section-copy-size);
         line-height: var(--type-section-copy-line-height);
     }
@@ -589,24 +596,43 @@
     }
 
     .map-solution-media {
-        width: min(100%, 360px);
+        width: min(100%, 820px);
         margin: 0;
-        justify-self: end;
+        justify-self: center;
+    }
+
+    .map-solution-comparison {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1.25rem, 4vw, 3rem);
+        align-items: start;
+    }
+
+    .map-solution-comparison-item {
+        display: grid;
+        gap: 0.1rem;
+        margin: 0;
+    }
+
+    .map-solution-comparison-item figcaption {
+        margin: 0;
+        color: var(--color-dark);
+        font-family: var(--font-body);
+        font-size: var(--card-heading-size);
+        font-weight: 700;
+        line-height: var(--card-heading-line-height);
+        text-align: left;
+    }
+
+    .map-solution-comparison-item img {
+        display: block;
+        width: 100%;
+        height: auto;
+        filter: drop-shadow(0 8px 18px rgba(var(--color-dark-rgb), 0.16));
     }
 
     .map-outcome-media {
         width: min(100%, 340px);
-    }
-
-    .map-outcome-image-frame {
-        aspect-ratio: 730 / 680;
-        overflow: hidden;
-    }
-
-    .map-outcome-image-frame img {
-        width: 100%;
-        height: auto;
-        object-position: top;
     }
 
     .map-animation-shell {
@@ -662,6 +688,7 @@
     @container map-case-study (max-width: 720px) {
         .map-hero,
         .map-section-heading,
+        .map-solution-copy,
         .map-process-step,
         .map-process-step:nth-child(even),
         .map-decision,
@@ -1035,23 +1062,18 @@
                 <p>One drawer organizes base maps and overlays across mobile and desktop.</p>
             </div>
 
-            <figure class="map-result-media map-solution-media">
-                <div class="map-animation-shell">
-                    <img
-                        src="images/Map%20Overlays/final%20gif.png"
-                        data-map-animation
-                        data-animated-src="images/Map%20Overlays/final-map-overlays.gif"
-                        data-static-src="images/Map%20Overlays/final%20gif.png"
-                        width="222"
-                        height="480"
-                        alt="Launched Campendium map with the consolidated layers control, map markers, filters, and campground details"
-                        loading="lazy"
-                        decoding="async"
-                    >
-                    <button class="map-animation-toggle" type="button" data-map-animation-toggle>Pause animation</button>
+            <div class="map-solution-media" role="group" aria-label="Map overlay before and after comparison">
+                <div class="map-solution-comparison">
+                    <figure class="map-solution-comparison-item">
+                        <figcaption>Before</figcaption>
+                        <img src="images/Map%20Overlays/Map_overlay_before.png" width="501" height="1052" alt="Map layers split across separate map controls before the redesign" loading="lazy" decoding="async">
+                    </figure>
+                    <figure class="map-solution-comparison-item">
+                        <figcaption>After</figcaption>
+                        <img src="images/Map%20Overlays/Map_Overlay_after.png" width="497" height="1052" alt="Base maps and overlays organized in one drawer after the redesign" loading="lazy" decoding="async">
+                    </figure>
                 </div>
-                <figcaption>The final experience keeps layers inside the primary browsing flow.</figcaption>
-            </figure>
+            </div>
         </div>
     </section>
 
@@ -1201,10 +1223,21 @@
             </div>
 
             <figure class="map-result-media map-outcome-media">
-                <div class="map-image-frame map-outcome-image-frame">
-                    <img src="images/Map%20Overlays/Design%20Decision%20Screenshots/Screenshot%202026-08-06%20at%2011.06.23%E2%80%AFAM.png" width="730" height="742" alt="Before and after comparison showing separate map-layer controls replaced by one consolidated drawer" loading="lazy" decoding="async">
+                <div class="map-animation-shell">
+                    <img
+                        src="images/Map%20Overlays/final%20gif.png"
+                        data-map-animation
+                        data-animated-src="images/Map%20Overlays/final-map-overlays.gif"
+                        data-static-src="images/Map%20Overlays/final%20gif.png"
+                        width="222"
+                        height="480"
+                        alt="Launched Campendium map with the consolidated layers control, map markers, filters, and campground details"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                    <button class="map-animation-toggle" type="button" data-map-animation-toggle>Pause animation</button>
                 </div>
-                <figcaption>Before: fragmented controls. After: one scalable system.</figcaption>
+                <figcaption>The final experience keeps layers inside the primary browsing flow.</figcaption>
             </figure>
         </div>
     </section>
