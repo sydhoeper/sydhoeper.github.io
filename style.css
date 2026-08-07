@@ -629,9 +629,50 @@ body:has(.gallery-lightbox[open]) {
     outline-offset: 3px;
 }
 
+.cursor-sparkle {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+    line-height: 1;
+    filter: drop-shadow(0 1px 3px rgba(89, 100, 180, 0.22));
+    animation: cursor-sparkle-fade 720ms ease-out forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes cursor-sparkle-fade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.35) rotate(0deg);
+    }
+
+    24% {
+        opacity: 0.62;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                calc(-50% + var(--sparkle-drift-x)),
+                calc(-50% + var(--sparkle-drift-y))
+            )
+            scale(0.78)
+            rotate(var(--sparkle-rotation));
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
+    }
+
+    .cursor-sparkle {
+        display: none;
     }
 
     *,

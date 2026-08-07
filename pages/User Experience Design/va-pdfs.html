@@ -12,8 +12,7 @@
     }
 
     .va-case-study h1,
-    .va-case-study h2,
-    .va-case-study .va-quote {
+    .va-case-study h2 {
         font-family: var(--font-display);
         font-optical-sizing: auto;
     }
@@ -70,7 +69,7 @@
         display: grid;
         grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
         gap: clamp(2rem, 6vw, 5rem);
-        align-items: start;
+        align-items: center;
         margin-bottom: clamp(2.5rem, 6vw, 5rem);
     }
 
@@ -88,6 +87,10 @@
         line-height: var(--type-section-copy-line-height);
     }
 
+    .va-solution-heading {
+        margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+    }
+
     .va-card-grid,
     .va-impact-grid,
     .va-process-grid {
@@ -102,7 +105,7 @@
 
     .va-card,
     .va-role,
-    .va-quote {
+    .va-overview-brief {
         padding: var(--card-padding);
         border-radius: var(--card-radius);
         background: var(--surface-card);
@@ -113,7 +116,7 @@
     .va-role h3,
     .va-decision-copy h3,
     .va-process-copy h3,
-    .va-impact-grid h3 {
+    .va-impact-grid h4 {
         margin: 0 0 0.65rem;
         font-size: var(--card-heading-size);
         line-height: var(--card-heading-line-height);
@@ -129,7 +132,7 @@
     .va-card ul,
     .va-role ul,
     .va-impact-grid ul,
-    .va-outcomes ul {
+    .va-outcome-learnings ul {
         margin: 0.65rem 0 0;
         padding-left: 1.2rem;
         line-height: 1.6;
@@ -137,6 +140,104 @@
 
     .va-role {
         margin-top: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .va-overview-stack {
+        display: grid;
+        gap: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .va-overview-columns {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: clamp(1.5rem, 3vw, 2.25rem);
+        align-items: start;
+    }
+
+    .va-overview-heading {
+        align-items: start;
+    }
+
+    .va-overview-flow {
+        display: grid;
+        grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1fr);
+        gap: clamp(1.25rem, 4vw, 3rem);
+        align-items: center;
+    }
+
+    .va-overview-journey {
+        display: grid;
+        gap: clamp(1.25rem, 3vw, 2rem);
+        justify-items: start;
+    }
+
+    .va-overview-pdf {
+        margin: 0;
+    }
+
+    .va-overview-pdf img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 520px;
+        margin: 0;
+        border-radius: 10px;
+        object-fit: contain;
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.18),
+            0 12px 24px rgba(var(--color-dark-rgb), 0.12);
+    }
+
+    .va-overview-label {
+        display: block;
+        margin-bottom: 0.75rem;
+        color: var(--color-muted);
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        letter-spacing: var(--type-eyebrow-spacing);
+        text-transform: uppercase;
+    }
+
+    .va-overview-stage h3 {
+        margin: 0 0 0.65rem;
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
+    }
+
+    .va-overview-stage p {
+        margin: 0;
+        line-height: var(--type-body-line-height);
+    }
+
+    .va-overview-arrow {
+        display: grid;
+        width: 46px;
+        height: 46px;
+        border: 1px solid rgba(var(--color-dark-rgb), 0.22);
+        border-radius: 50%;
+        font-size: 1.35rem;
+        place-items: center;
+        transform: rotate(90deg);
+    }
+
+    .va-overview-role-summary {
+        min-width: 0;
+    }
+
+    .va-overview-role-label {
+        display: block;
+        margin-bottom: 0.7rem;
+        color: var(--color-muted);
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        letter-spacing: var(--type-eyebrow-spacing);
+        text-transform: uppercase;
+    }
+
+    .va-overview-role-summary p {
+        margin: 0;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .va-challenge-table {
@@ -147,6 +248,12 @@
         border-radius: 16px;
         background: var(--surface-card);
         box-shadow: var(--shadow-card);
+    }
+
+    .va-challenges-heading {
+        grid-template-columns: minmax(0, 1fr);
+        gap: clamp(0.75rem, 1.5vw, 1.25rem);
+        margin-bottom: clamp(1.25rem, 3vw, 2rem);
     }
 
     .va-table-row {
@@ -194,6 +301,22 @@
             0 12px 30px rgba(var(--color-dark-rgb), 0.2);
     }
 
+    .va-media > video {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        border-radius: 16px;
+        background: var(--color-dark);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.3),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.2);
+    }
+
+    .va-media > img.va-flow-before-image {
+        filter: brightness(1.04) contrast(1.02);
+    }
+
     .va-media.va-hero-phone > img {
         border-radius: 0;
         box-shadow: none;
@@ -236,7 +359,8 @@
 
     .va-media.va-proposed-solution {
         width: min(420px, 100%);
-        margin-inline: auto;
+        margin-right: 0;
+        margin-left: calc(26.47% + clamp(1.5rem, 4.4vw, 3.7rem));
     }
 
     .va-media.va-proposed-solution,
@@ -513,22 +637,17 @@
         margin-top: clamp(1.75rem, 4vw, 3rem);
     }
 
-    .va-process-disclosure,
-    .va-decision-disclosure {
-        display: grid;
-        grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
-        gap: 0 clamp(2rem, 6vw, 5rem);
+    .va-disclosure-heading {
+        margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .va-disclosure-heading + .va-section-disclosure {
+        margin-top: 0;
     }
 
     .va-process-disclosure > summary,
     .va-decision-disclosure > summary {
-        grid-column: 2;
-        justify-self: start;
-    }
-
-    .va-process-disclosure > .va-process-list,
-    .va-decision-disclosure > .va-decision-list {
-        grid-column: 1 / -1;
+        margin-left: calc(26.47% + clamp(1.5rem, 4.4vw, 3.7rem));
     }
 
     .va-section-disclosure summary {
@@ -592,30 +711,98 @@
         margin: 0;
     }
 
-    .va-quote {
-        margin: clamp(2rem, 5vw, 4rem) 0 0;
-        font-size: clamp(1.25rem, 3cqi, 1.8rem);
-        line-height: 1.45;
+    .va-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(1rem, 3vw, 1.75rem);
     }
 
-    .va-outcomes {
+    .va-metric {
+        display: flex;
+        min-width: 0;
+        min-height: 190px;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: clamp(1.4rem, 3vw, 2rem);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
+    }
+
+    .va-metric strong {
+        display: block;
+        font-family: var(--font-display);
+        font-size: clamp(2.6rem, 6cqi, 4.5rem);
+        line-height: 0.92;
+        letter-spacing: -0.045em;
+    }
+
+    .va-metric span {
+        display: block;
+        color: var(--color-muted);
+        line-height: var(--type-body-line-height);
+    }
+
+    .va-reflection-section {
+        margin-top: clamp(3rem, 6vw, 5rem);
+    }
+
+    .va-impact-section {
+        margin-top: 0;
+    }
+
+    .va-reflection-section {
+        padding-top: clamp(3rem, 6vw, 5rem);
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .va-case-study h2.va-outcome-subheading {
+        margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
+    }
+
+    .va-case-study .va-impact-section h2.va-outcome-subheading {
+        margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem);
+    }
+
+    .va-impact-intro {
+        max-width: 58ch;
+        margin: 0 0 clamp(2rem, 4vw, 3rem);
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
+    }
+
+    .va-impact-grid {
+        margin-top: 0;
+    }
+
+    .va-impact-section .va-metrics-grid {
+        margin-top: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .va-outcome-reflection {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: clamp(1.5rem, 4vw, 3rem);
     }
 
-    .va-outcomes > div {
-        padding-top: 1.4rem;
-        border-top: 4px solid var(--color-dark);
+    .va-outcome-learnings,
+    .va-outcome-differently {
+        margin: 0;
     }
 
-    .va-outcomes h3 {
+    .va-outcome-learnings h4,
+    .va-outcome-differently h4 {
         margin: 0;
         font-size: var(--type-card-heading-size);
     }
 
-    .va-impact-grid {
-        margin-top: clamp(3rem, 6vw, 5rem);
+    .va-outcome-differently p {
+        margin: 0.65rem 0 0;
+        line-height: var(--type-body-line-height);
     }
 
     @container va-case-study (max-width: 720px) {
@@ -659,26 +846,48 @@
             grid-template-columns: 1fr;
         }
 
+        .va-overview-flow,
+        .va-overview-columns {
+            grid-template-columns: 1fr;
+        }
+
+        .va-overview-pdf {
+            width: min(320px, 100%);
+            justify-self: center;
+        }
+
+        .va-overview-arrow {
+            justify-self: center;
+        }
+
         .va-media.tall .va-media-frame {
             min-height: 330px;
         }
 
-        .va-process-disclosure,
-        .va-decision-disclosure {
+        .va-process-disclosure > summary,
+        .va-decision-disclosure > summary {
+            margin-left: 0;
+        }
+
+        .va-solution-heading {
+            row-gap: 2rem;
+        }
+
+        .va-media.va-proposed-solution {
+            margin-left: 0;
+        }
+
+        .va-outcome-reflection {
             grid-template-columns: 1fr;
         }
 
-        .va-process-disclosure > summary,
-        .va-decision-disclosure > summary {
-            grid-column: 1;
-        }
     }
 
     @container va-case-study (max-width: 520px) {
         .va-card-grid,
         .va-impact-grid,
         .va-process-grid,
-        .va-outcomes {
+        .va-metrics-grid {
             grid-template-columns: 1fr;
         }
 
@@ -715,45 +924,50 @@
     </header>
 
     <section class="va-section" aria-labelledby="va-overview">
-        <div class="va-section-heading">
+        <div class="va-section-heading va-overview-heading">
             <h2 id="va-overview">Overview</h2>
-            <p>We transformed a print-and-mail application into an accessible digital service on VA.gov.</p>
+            <div class="va-overview-columns">
+                <div>
+                    <span class="va-overview-role-label">The project</span>
+                    <p>Transform a print-and-mail application into an accessible digital service on VA.gov.</p>
+                </div>
+
+                <div class="va-overview-role-summary">
+                    <span class="va-overview-role-label">My role</span>
+                    <p>I led design from research through delivery, aligned cross-functional partners, and contributed patterns to the VA design system.</p>
+                </div>
+            </div>
         </div>
 
-        <div class="va-card-grid three">
-            <article class="va-card">
-                <h3>Context</h3>
-                <p>Applicants completed and mailed a PDF that VA staff processed by hand.</p>
-            </article>
+        <div class="va-overview-stack">
+            <article class="va-overview-brief">
+                <div class="va-overview-flow">
+                    <figure class="va-overview-pdf">
+                        <img src="images/PDF%20Digitization/PDF%20OG%201010d%20omfg.png" alt="The original paper Application for CHAMPVA Benefits form" loading="eager" decoding="async">
+                    </figure>
 
-            <article class="va-card">
-                <h3>Objective</h3>
-                <p>Create an accessible, end-to-end digital application.</p>
-            </article>
+                    <div class="va-overview-journey">
+                        <div class="va-overview-stage">
+                            <span class="va-overview-label">Starting point</span>
+                            <h3>Print and mail</h3>
+                            <p>Applicants completed a PDF that VA staff processed by hand.</p>
+                        </div>
 
-            <article class="va-card">
-                <h3>Challenge</h3>
-                <p>Simplify applying without adding work for VA staff.</p>
+                        <span class="va-overview-arrow" aria-hidden="true">→</span>
+
+                        <div class="va-overview-stage">
+                            <span class="va-overview-label">Goal</span>
+                            <h3>End-to-end digital service</h3>
+                            <p>Create a guided, accessible application on VA.gov.</p>
+                        </div>
+                    </div>
+                </div>
             </article>
         </div>
-
-        <article class="va-role">
-            <h3>My role</h3>
-            <ul>
-                <li>Design lead and primary point of contact</li>
-                <li>Led research, interaction design, prototyping, and delivery</li>
-                <li>Contributed accessible patterns to the VA design system</li>
-            </ul>
-        </article>
-
-        <figure class="va-media portrait va-original-pdf" style="margin-top: clamp(2rem, 5vw, 4rem);">
-            <img src="images/PDF%20Digitization/PDF%20OG%201010d%20omfg.png" alt="The complete original paper Application for CHAMPVA Benefits form" loading="eager" decoding="async">
-            <figcaption>The original print-and-mail application that the digital service replaced.</figcaption>
-        </figure>
     </section>
 
     <section class="va-section" aria-labelledby="va-challenges">
-        <div class="va-section-heading">
+        <div class="va-section-heading va-challenges-heading">
             <h2 id="va-challenges">Challenges and opportunities</h2>
             <p>The paper process created barriers for applicants and staff.</p>
         </div>
@@ -799,30 +1013,8 @@
         </div>
     </section>
 
-    <section class="va-section" aria-labelledby="va-approach">
-        <div class="va-section-heading">
-            <h2 id="va-approach">Approach</h2>
-            <p>We worked iteratively: map the service, test early, and refine a mobile-first experience.</p>
-        </div>
-
-        <div class="va-card-grid three">
-            <article class="va-card">
-                <h3>High-level strategy</h3>
-                <p>Start small and let evidence guide the work.</p>
-            </article>
-            <article class="va-card">
-                <h3>Methodologies</h3>
-                <p>Human-centered, accessible, and agile design.</p>
-            </article>
-            <article class="va-card">
-                <h3>Collaboration</h3>
-                <p>Frequent cross-functional reviews and a shared decision log.</p>
-            </article>
-        </div>
-    </section>
-
     <section class="va-section" aria-labelledby="va-process">
-        <div class="va-section-heading">
+        <div class="va-section-heading va-disclosure-heading">
             <h2 id="va-process">Process</h2>
             <p>I moved from service mapping to tested interactions and an accessible handoff.</p>
         </div>
@@ -844,7 +1036,7 @@
             </div>
             <div class="va-process-grid va-flow-comparison">
                 <figure class="va-media">
-                    <img src="images/PDF%20Digitization/When%20I%20arrived%20Flow.png" alt="The application flow when I joined the project" loading="eager" decoding="async">
+                    <img class="va-flow-before-image" src="images/PDF%20Digitization/When%20I%20arrived%20Flow.png" alt="The application flow when I joined the project" loading="eager" decoding="async">
                     <figcaption>Before: the flow when I joined the project.</figcaption>
                 </figure>
                 <figure class="va-media">
@@ -918,18 +1110,21 @@
     </section>
 
     <section class="va-section" aria-labelledby="va-solution">
-        <div class="va-section-heading">
+        <div class="va-section-heading va-solution-heading">
             <h2 id="va-solution">Proposed solution</h2>
             <p>A guided, mobile-first application from eligibility through submission.</p>
         </div>
 
         <figure class="va-media wide va-proposed-solution">
-            <img src="images/PDF%20Digitization/Proposed%20Solution.png" alt="Long-form view of the proposed digital CHAMPVA application" loading="eager" decoding="async">
+            <video controls muted playsinline preload="metadata" aria-label="Walkthrough of the proposed digital CHAMPVA application">
+                <source src="images/PDF%20Digitization/PDF%20Digitization%20Proposed%20Solution.mov" type="video/quicktime">
+                <a href="images/PDF%20Digitization/PDF%20Digitization%20Proposed%20Solution.mov">Watch the proposed solution walkthrough</a>
+            </video>
         </figure>
     </section>
 
     <section class="va-section" aria-labelledby="va-decisions">
-        <div class="va-section-heading">
+        <div class="va-section-heading va-disclosure-heading">
             <h2 id="va-decisions">Design decisions</h2>
             <p>Research shaped patterns for complex households and flexible document submission.</p>
         </div>
@@ -1044,49 +1239,63 @@
         </details>
     </section>
 
-    <section class="va-section" aria-labelledby="va-outcomes">
-        <div class="va-section-heading">
-            <h2 id="va-outcomes">Outcomes</h2>
-            <p>The service launched in fall 2024 and quickly demonstrated demand.</p>
-        </div>
+    <section class="va-section" aria-labelledby="va-impact-heading">
+        <section class="va-impact-section" aria-labelledby="va-impact-heading">
+            <h2 class="va-outcome-subheading" id="va-impact-heading">Impact</h2>
+            <p class="va-impact-intro">The service launched in fall 2024 and quickly demonstrated demand.</p>
 
-        <div class="va-outcomes">
-            <div>
-                <h3>Results and metrics</h3>
-                <ul>
-                    <li>24,000 applications submitted online in the first two months</li>
-                    <li>76% of submissions were online by May 2025</li>
-                    <li>Processing time fell from 17 minutes to under 5 by July 2025</li>
-                </ul>
+            <div class="va-impact-grid">
+                <article class="va-impact-item">
+                    <h4>Veterans and families</h4>
+                    <ul>
+                        <li>Benefits received in weeks instead of months</li>
+                        <li>A guided, accessible way to apply from home</li>
+                    </ul>
+                </article>
+                <article class="va-impact-item">
+                    <h4>VA application processors</h4>
+                    <ul>
+                        <li>Fewer missing signatures, lost forms, and handwriting errors</li>
+                        <li>Faster review through direct, legible submissions</li>
+                    </ul>
+                </article>
             </div>
-            <div>
-                <h3>What I learned</h3>
-                <ul>
-                    <li>Early process alignment prevents rework</li>
-                    <li>Deep research reveals the real service constraints</li>
-                    <li>Prioritization keeps stakeholder needs actionable</li>
-                </ul>
+
+            <div class="va-metrics-grid" aria-label="Key service results">
+                <article class="va-metric">
+                    <strong>24,000</strong>
+                    <span>online applications in the first two months</span>
+                </article>
+                <article class="va-metric">
+                    <strong>76%</strong>
+                    <span>of submissions were online by May 2025</span>
+                </article>
+                <article class="va-metric">
+                    <strong>&lt;5 min</strong>
+                    <span>processing time by July 2025—down from 17 minutes</span>
+                </article>
             </div>
-        </div>
+        </section>
 
-        <div class="va-impact-grid">
-            <article class="va-card">
-                <h3>Impact on Veterans and families</h3>
-                <ul>
-                    <li>Benefits received in weeks instead of months</li>
-                    <li>A guided, accessible way to apply from home</li>
-                </ul>
-            </article>
-            <article class="va-card">
-                <h3>Impact on VA application processors</h3>
-                <ul>
-                    <li>Fewer missing signatures, lost forms, and handwriting errors</li>
-                    <li>Faster review through direct, legible submissions</li>
-                </ul>
-            </article>
-        </div>
+        <section class="va-reflection-section" aria-labelledby="va-reflection-heading">
+            <h2 class="va-outcome-subheading" id="va-reflection-heading">Reflection</h2>
+            <div class="va-outcome-reflection">
+                <div class="va-outcome-learnings">
+                    <h4>What I learned</h4>
+                    <ul>
+                        <li>Early process alignment prevents rework</li>
+                        <li>Deep research reveals the real service constraints</li>
+                        <li>Prioritization keeps stakeholder needs actionable</li>
+                    </ul>
+                </div>
 
-        <p class="va-quote">A clearer digital service allows more people to apply—and helps processors approve applications faster, with fewer mistakes.</p>
+                <div class="va-outcome-differently">
+                    <h4>What I’d do differently</h4>
+                    <p>Align the team on the roadmap before design begins, rather than starting with the most complex form first.</p>
+                </div>
+
+            </div>
+        </section>
     </section>
 
     <nav class="case-study-navigation" aria-label="More UX case studies">

@@ -113,6 +113,45 @@ function initializeMobileNavigation() {
     });
 }
 
+function initializeSparkleTrail() {
+    const finePointerQuery = window.matchMedia("(pointer: fine)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let lastSparkleTime = 0;
+    let lastX = 0;
+    let lastY = 0;
+
+    document.addEventListener("pointermove", (event) => {
+        if (!finePointerQuery.matches || reducedMotionQuery.matches) {
+            return;
+        }
+
+        const now = performance.now();
+        const distance = Math.hypot(event.clientX - lastX, event.clientY - lastY);
+
+        if (now - lastSparkleTime < 64 || distance < 7) {
+            return;
+        }
+
+        lastSparkleTime = now;
+        lastX = event.clientX;
+        lastY = event.clientY;
+
+        const sparkle = document.createElement("span");
+        sparkle.className = "cursor-sparkle";
+        sparkle.textContent = "✨";
+        sparkle.setAttribute("aria-hidden", "true");
+        sparkle.style.left = `${event.clientX + (Math.random() * 8 - 4)}px`;
+        sparkle.style.top = `${event.clientY + (Math.random() * 8 - 4)}px`;
+        sparkle.style.fontSize = `${9 + Math.random() * 4}px`;
+        sparkle.style.setProperty("--sparkle-drift-x", `${Math.random() * 14 - 7}px`);
+        sparkle.style.setProperty("--sparkle-drift-y", `${8 + Math.random() * 10}px`);
+        sparkle.style.setProperty("--sparkle-rotation", `${Math.random() * 40 - 20}deg`);
+
+        document.body.append(sparkle);
+        sparkle.addEventListener("animationend", () => sparkle.remove(), { once: true });
+    }, { passive: true });
+}
+
 async function loadPage(pageName, { focusContent = false } = {}) {
     const requestId = ++pageLoadRequest;
     const pagePath = pageMap[pageName];
@@ -361,6 +400,7 @@ window.addEventListener("resize", () => {
 });
 
 initializeMobileNavigation();
+initializeSparkleTrail();
 
 const initialPage = getCurrentPage();
 if (initialPage) {
