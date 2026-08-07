@@ -77,6 +77,10 @@
         margin-bottom: clamp(1rem, 2vw, 1.5rem);
     }
 
+    .map-section-heading:has(+ .map-role) {
+        margin-bottom: 0;
+    }
+
     .map-section-heading h2 {
         margin: 0;
         font-size: var(--type-section-heading-size);
@@ -87,6 +91,27 @@
     .map-section-heading p {
         max-width: 58ch;
         margin: 0;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
+    }
+
+    .map-solution-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+        gap: clamp(2.5rem, 7vw, 5.5rem);
+        align-items: center;
+    }
+
+    .map-solution-copy h2 {
+        margin: 0;
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
+    }
+
+    .map-solution-copy p {
+        max-width: 38ch;
+        margin: clamp(1rem, 2.5vw, 1.5rem) 0 0;
         font-size: var(--type-section-copy-size);
         line-height: var(--type-section-copy-line-height);
     }
@@ -104,7 +129,6 @@
     }
 
     .map-card,
-    .map-role,
     .map-impact-card,
     .map-quote {
         padding: var(--card-padding);
@@ -115,6 +139,7 @@
 
     .map-card h3,
     .map-role h3,
+    .map-overview-subsection h3,
     .map-impact-card h3,
     .map-copy h3,
     .map-decision-copy h3 {
@@ -141,7 +166,83 @@
     }
 
     .map-role {
-        margin-top: clamp(1rem, 3vw, 1.75rem);
+        width: calc(100% - var(--case-study-content-inset));
+        max-width: 58ch;
+        margin: clamp(1.25rem, 2.5vw, 2rem) 0 clamp(2rem, 4vw, 3rem) var(--case-study-content-inset);
+    }
+
+    .map-role p {
+        margin: 0;
+        line-height: var(--type-section-copy-line-height);
+    }
+
+    .map-overview-subsection {
+        width: calc(100% - var(--case-study-content-inset));
+        max-width: 58ch;
+        margin-left: var(--case-study-content-inset);
+    }
+
+    .map-overview-subsection p {
+        margin: 0;
+        line-height: var(--type-section-copy-line-height);
+    }
+
+    .map-overview-goals {
+        margin-bottom: clamp(3rem, 6vw, 4rem);
+    }
+
+    .map-overview-current-state-copy {
+        margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .map-approach-framework {
+        display: grid;
+    }
+
+    .map-approach-item {
+        display: grid;
+        grid-template-columns: 3rem minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: clamp(1.25rem, 4vw, 3.5rem);
+        align-items: start;
+        padding: clamp(1.5rem, 3.5vw, 2.5rem) 0;
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.2);
+    }
+
+    .map-approach-number {
+        color: var(--color-muted);
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        letter-spacing: var(--type-eyebrow-spacing);
+    }
+
+    .map-approach-signal h3 {
+        margin: 0 0 0.65rem;
+        font-size: clamp(1.3rem, 2.7cqi, 1.75rem);
+        line-height: 1.25;
+    }
+
+    .map-approach-signal p,
+    .map-approach-response p {
+        margin: 0;
+        line-height: 1.65;
+    }
+
+    .map-approach-response {
+        padding-left: clamp(1rem, 2.5vw, 1.75rem);
+        border-left: 2px solid rgba(var(--color-dark-rgb), 0.18);
+    }
+
+    .map-approach-response .map-step-label {
+        margin-bottom: 0.55rem;
+    }
+
+    .map-goals-list {
+        display: grid;
+        gap: 0.75rem;
+        margin: 0;
+        padding-left: 1.2rem;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .map-challenge-table {
@@ -487,6 +588,27 @@
         justify-self: center;
     }
 
+    .map-solution-media {
+        width: min(100%, 360px);
+        margin: 0;
+        justify-self: end;
+    }
+
+    .map-outcome-media {
+        width: min(100%, 340px);
+    }
+
+    .map-outcome-image-frame {
+        aspect-ratio: 730 / 680;
+        overflow: hidden;
+    }
+
+    .map-outcome-image-frame img {
+        width: 100%;
+        height: auto;
+        object-position: top;
+    }
+
     .map-animation-shell {
         position: relative;
         overflow: hidden;
@@ -548,6 +670,18 @@
             grid-template-columns: 1fr;
         }
 
+        .map-solution-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .map-approach-item {
+            grid-template-columns: 2rem minmax(0, 1fr);
+        }
+
+        .map-approach-response {
+            grid-column: 2;
+        }
+
         .map-hero-copy {
             order: -1;
             transform: none;
@@ -568,6 +702,20 @@
 
         .map-card-grid.three {
             grid-template-columns: 1fr;
+        }
+
+        .map-role {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .map-overview-subsection {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .map-solution-media {
+            justify-self: start;
         }
 
         .map-media.tall .map-media-frame {
@@ -611,7 +759,7 @@
     }
 </style>
 
-<article class="map-case-study">
+<article class="map-case-study" data-case-study-version="2026-08-07-restored">
     <header class="map-hero">
         <figure class="map-media hero-art">
             <div class="map-image-frame">
@@ -629,28 +777,36 @@
     <section class="map-section" aria-labelledby="map-overview">
         <div class="map-section-heading">
             <h2 id="map-overview">Overview</h2>
-            <p>Campendium split map layers across three buttons and four drawers. Adding a smoke layer exposed the need for one scalable system.</p>
+            <p>When I was asked to add a smoke layer, the existing map had no clear place for it. I proposed redesigning the layer system instead, and the team gave me the green light.</p>
         </div>
 
-        <div class="map-card-grid three">
-            <article class="map-card">
-                <h3>Context</h3>
-                <p>Map layers had become fragmented and difficult to extend.</p>
-            </article>
-            <article class="map-card">
-                <h3>Objective</h3>
-                <p>Simplify selection, support Pro conversion, and accommodate future layers.</p>
-            </article>
-            <article class="map-card">
-                <h3>Challenge</h3>
-                <p>Make multiple layers easy to select, compare, and change.</p>
-            </article>
-        </div>
-
-        <article class="map-role">
-            <h3>My role</h3>
+        <section class="map-role" aria-labelledby="map-role-heading">
+            <h3 id="map-role-heading">My role</h3>
             <p>I led the project from early concepts through developer handoff.</p>
-        </article>
+        </section>
+
+        <section class="map-overview-goals map-overview-subsection" aria-labelledby="map-goals">
+            <h3 id="map-goals">Goals</h3>
+            <ul class="map-goals-list">
+                <li>Bring every map option into one familiar entry point.</li>
+                <li>Clarify the difference between base maps and stackable overlays.</li>
+                <li>Create a framework that could support Pro features and future layers.</li>
+            </ul>
+        </section>
+
+        <section class="map-overview-current-state" aria-labelledby="map-current-state">
+            <div class="map-overview-current-state-copy map-overview-subsection">
+                <h3 id="map-current-state">Current state</h3>
+                <p>Map layers had become fragmented and difficult to extend. Base maps and overlay categories lived behind separate controls, forcing RVers to remember where each option was stored.</p>
+            </div>
+
+            <figure class="map-media wide">
+                <div class="map-image-frame">
+                    <img src="images/Map%20Overlays/overview.png" width="982" height="720" alt="Current Campendium map architecture showing three separate controls leading to individual drawers for base maps and two overlay categories" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Three entry points split related map tools across separate drawers.</figcaption>
+            </figure>
+        </section>
     </section>
 
     <section class="map-section" aria-labelledby="map-challenges">
@@ -703,21 +859,56 @@
     <section class="map-section" aria-labelledby="map-approach">
         <div class="map-section-heading">
             <h2 id="map-approach">Approach</h2>
-            <p>I worked mobile-first, then adapted the strongest direction across devices.</p>
+            <p>I treated the smoke-layer request as a systems problem, balancing customer behavior, product growth, and platform constraints through four decision principles.</p>
         </div>
 
-        <div class="map-card-grid three">
-            <article class="map-card">
-                <h3>High-level strategy</h3>
-                <p>Resolve the smallest screen first, then scale the interaction up.</p>
+        <div class="map-approach-framework">
+            <article class="map-approach-item">
+                <span class="map-approach-number">01</span>
+                <div class="map-approach-signal">
+                    <h3>Solve the system, not the request</h3>
+                    <p>A fourth control would deepen the fragmentation users already felt.</p>
+                </div>
+                <div class="map-approach-response">
+                    <span class="map-step-label">Design response</span>
+                    <p>Use the smoke layer as the catalyst to consolidate every map option.</p>
+                </div>
             </article>
-            <article class="map-card">
-                <h3>Methodologies</h3>
-                <p>Human-centered design within a lean product framework.</p>
+
+            <article class="map-approach-item">
+                <span class="map-approach-number">02</span>
+                <div class="map-approach-signal">
+                    <h3>Preserve what already worked</h3>
+                    <p>The drawer was familiar, thumb-friendly, and adaptable across screen sizes.</p>
+                </div>
+                <div class="map-approach-response">
+                    <span class="map-step-label">Design response</span>
+                    <p>Keep the interaction pattern; redesign the architecture inside it.</p>
+                </div>
             </article>
-            <article class="map-card">
-                <h3>Collaboration</h3>
-                <p>Frequent product, engineering, and design reviews.</p>
+
+            <article class="map-approach-item">
+                <span class="map-approach-number">03</span>
+                <div class="map-approach-signal">
+                    <h3>Make different behaviors explicit</h3>
+                    <p>Base maps replace one another; overlays can be combined.</p>
+                </div>
+                <div class="map-approach-response">
+                    <span class="map-step-label">Design response</span>
+                    <p>Separate them visually and use selection patterns that reveal those rules.</p>
+                </div>
+            </article>
+
+            <article class="map-approach-item">
+                <span class="map-approach-number">04</span>
+                <div class="map-approach-signal">
+                    <h3>Design beyond launch</h3>
+                    <p>The system needed to handle Pro access, dark mode, and future layers.</p>
+                </div>
+                <div class="map-approach-response">
+                    <span class="map-step-label">Design response</span>
+                    <p>Define scalable categories, states, and handoff specifications—not a one-off smoke interface.</p>
+                </div>
             </article>
         </div>
     </section>
@@ -730,7 +921,7 @@
 
         <details class="case-study-disclosure map-section-disclosure">
             <summary>
-                <span class="case-study-summary-closed map-summary-closed">View 5 process steps</span>
+                <span class="case-study-summary-closed map-summary-closed">View 7 process steps</span>
                 <span class="case-study-summary-open map-summary-open">Hide process steps</span>
                 <span class="case-study-summary-icon map-summary-icon" aria-hidden="true">⌄</span>
             </summary>
@@ -805,22 +996,63 @@
                     <figcaption>Each pass resolved a different layer of hierarchy and interaction feedback.</figcaption>
                 </figure>
             </article>
+
+            <article class="map-process-step">
+                <div class="map-copy">
+                    <span class="map-step-label">06 · Prepare for development</span>
+                    <h3>Document the interaction flow</h3>
+                    <p>I mapped states, transitions, and edge cases so engineering could build the behavior—not just the screens.</p>
+                </div>
+                <figure class="map-media wide">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/interaction%20design.png" width="1747" height="1859" alt="Developer handoff flow connecting the blank map, open drawer, selected base map, selected smoke overlay, applied smoke layer, and open disclaimer states" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>The handoff connected each screen to its trigger, state change, and resulting map behavior.</figcaption>
+                </figure>
+            </article>
+
+            <article class="map-process-step">
+                <div class="map-copy">
+                    <span class="map-step-label">07 · Hand off the system</span>
+                    <h3>Annotate final states</h3>
+                    <p>I packaged the final screens with specifications for light and dark modes, Pro access, locked states, and edge cases.</p>
+                </div>
+                <figure class="map-media wide">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/additional%20states.png" width="1881" height="1970" alt="Developer handoff screens documenting light and dark mode map drawers with selected base maps and locked Pro overlays" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>The final handoff documented visual and access states engineering needed to build consistently.</figcaption>
+                </figure>
+            </article>
         </div>
         </details>
     </section>
 
     <section class="map-section" aria-labelledby="map-solution">
-        <div class="map-section-heading">
-            <h2 id="map-solution">Proposed solution</h2>
-            <p>One drawer organizes base maps and overlays across mobile and desktop.</p>
-        </div>
-
-        <figure class="map-media wide">
-            <div class="map-image-frame">
-                <img src="images/Map%20Overlays/proposed%20solution.png" width="1293" height="1205" alt="Final mobile flow from the default map through drawer selections, a smoke disclaimer, and the applied smoke overlay" loading="lazy" decoding="async">
+        <div class="map-solution-layout">
+            <div class="map-solution-copy">
+                <h2 id="map-solution">Proposed solution</h2>
+                <p>One drawer organizes base maps and overlays across mobile and desktop.</p>
             </div>
-            <figcaption>The final flow brings every map type into one drawer and keeps selected overlays visible on the map.</figcaption>
-        </figure>
+
+            <figure class="map-result-media map-solution-media">
+                <div class="map-animation-shell">
+                    <img
+                        src="images/Map%20Overlays/final%20gif.png"
+                        data-map-animation
+                        data-animated-src="images/Map%20Overlays/final-map-overlays.gif"
+                        data-static-src="images/Map%20Overlays/final%20gif.png"
+                        width="222"
+                        height="480"
+                        alt="Launched Campendium map with the consolidated layers control, map markers, filters, and campground details"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                    <button class="map-animation-toggle" type="button" data-map-animation-toggle>Pause animation</button>
+                </div>
+                <figcaption>The final experience keeps layers inside the primary browsing flow.</figcaption>
+            </figure>
+        </div>
     </section>
 
     <section class="map-section" aria-labelledby="map-decisions">
@@ -968,22 +1200,11 @@
                 <p class="map-impact-reflection"><strong>Leadership takeaway:</strong> Connecting each interaction decision to customer comprehension and product scalability made the case for one unified system.</p>
             </div>
 
-            <figure class="map-result-media">
-                <div class="map-animation-shell">
-                    <img
-                        src="images/Map%20Overlays/final%20gif.png"
-                        data-map-animation
-                        data-animated-src="images/Map%20Overlays/final-map-overlays.gif"
-                        data-static-src="images/Map%20Overlays/final%20gif.png"
-                        width="222"
-                        height="480"
-                        alt="Launched Campendium map with the consolidated layers control, map markers, filters, and campground details"
-                        loading="lazy"
-                        decoding="async"
-                    >
-                    <button class="map-animation-toggle" type="button" data-map-animation-toggle>Pause animation</button>
+            <figure class="map-result-media map-outcome-media">
+                <div class="map-image-frame map-outcome-image-frame">
+                    <img src="images/Map%20Overlays/Design%20Decision%20Screenshots/Screenshot%202026-08-06%20at%2011.06.23%E2%80%AFAM.png" width="730" height="742" alt="Before and after comparison showing separate map-layer controls replaced by one consolidated drawer" loading="lazy" decoding="async">
                 </div>
-                <figcaption>The launched map experience keeps layers inside the primary browsing flow.</figcaption>
+                <figcaption>Before: fragmented controls. After: one scalable system.</figcaption>
             </figure>
         </div>
     </section>
