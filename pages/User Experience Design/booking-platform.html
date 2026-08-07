@@ -141,6 +141,15 @@
         line-height: var(--type-section-copy-line-height);
     }
 
+    .booking-process-chapter h3,
+    .booking-overview-approach > h3,
+    .booking-reflection h3 {
+        font-family: var(--font-display);
+        font-size: var(--booking-subheading-size);
+        line-height: var(--booking-subheading-line-height);
+        letter-spacing: var(--booking-subheading-spacing);
+    }
+
     .booking-star {
         display: grid;
         margin: 0;
@@ -218,11 +227,9 @@
     }
 
     .booking-process-chapter h3 {
+        max-width: 26ch;
         margin: 0 0 1rem;
-        font-family: var(--font-display);
-        font-size: var(--booking-subheading-size);
-        line-height: var(--booking-subheading-line-height);
-        letter-spacing: var(--booking-subheading-spacing);
+        text-wrap: balance;
     }
 
     .booking-process-intro p,
@@ -340,7 +347,8 @@
         gap: clamp(1rem, 2.5vw, 1.5rem);
     }
 
-    .booking-card {
+    .booking-card,
+    .booking-proof article {
         min-width: 0;
         padding: var(--card-padding);
         border-radius: var(--card-radius);
@@ -348,13 +356,18 @@
         box-shadow: var(--shadow-card);
     }
 
-    .booking-card h3 {
+    .booking-card h3,
+    .booking-proof h3 {
         margin: 0 0 0.65rem;
         font-size: var(--card-heading-size);
         line-height: var(--card-heading-line-height);
     }
 
-    .booking-card p { margin: 0; line-height: 1.65; }
+    .booking-card p,
+    .booking-proof p {
+        margin: 0;
+        line-height: var(--type-body-line-height);
+    }
 
     .booking-role { margin-top: clamp(1rem, 2.5vw, 1.5rem); }
 
@@ -366,10 +379,6 @@
 
     .booking-overview-approach > h3 {
         margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
-        font-family: var(--font-display);
-        font-size: var(--booking-subheading-size);
-        line-height: var(--booking-subheading-line-height);
-        letter-spacing: var(--booking-subheading-spacing);
     }
 
     .booking-proposed-solution { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
@@ -380,21 +389,6 @@
         gap: clamp(1rem, 2.5vw, 1.5rem);
         margin-top: clamp(2.5rem, 6vw, 4rem);
     }
-
-    .booking-proof article {
-        padding: var(--card-padding);
-        border-radius: var(--card-radius);
-        background: var(--surface-card);
-        box-shadow: var(--shadow-card);
-    }
-
-    .booking-proof h3 {
-        margin: 0 0 0.65rem;
-        font-size: var(--card-heading-size);
-        line-height: var(--card-heading-line-height);
-    }
-
-    .booking-proof p { margin: 0; line-height: var(--type-body-line-height); }
 
     .booking-outcome-media { margin-top: clamp(3rem, 7vw, 5rem); }
 
@@ -407,10 +401,6 @@
     .booking-reflection h3 {
         max-width: 18ch;
         margin: 0 0 1rem;
-        font-family: var(--font-display);
-        font-size: var(--booking-subheading-size);
-        line-height: var(--booking-subheading-line-height);
-        letter-spacing: var(--booking-subheading-spacing);
     }
 
     .booking-reflection p {
@@ -517,7 +507,7 @@
             <div class="booking-process-chapter-header">
                 <span class="booking-kicker">Frame the service</span>
                 <div>
-                    <h3 id="booking-process-frame">Find where trust broke</h3>
+                    <h3 id="booking-process-frame">Map the broken handoff</h3>
                     <p>I traced the third-party handoff, then mapped the decisions and data Campendium would need to own.</p>
                 </div>
             </div>
@@ -542,7 +532,7 @@
             <div class="booking-process-chapter-header">
                 <span class="booking-kicker">Choose the entry point</span>
                 <div>
-                    <h3 id="booking-process-entry">Add booking without replacing research</h3>
+                    <h3 id="booking-process-entry">Add booking without disrupting research</h3>
                     <p>I tested how prominently booking should appear, then extended Campendium’s familiar map-and-list results.</p>
                 </div>
             </div>
@@ -567,7 +557,7 @@
             <div class="booking-process-chapter-header">
                 <span class="booking-kicker">Find an available campsite</span>
                 <div>
-                    <h3 id="booking-process-fit">Show which campsites are available for their dates</h3>
+                    <h3 id="booking-process-fit">Show date-specific campsite availability</h3>
                     <p>Travelers wanted to see which specific campsites they could book for their trip without leaving Campendium.</p>
                 </div>
             </div>
@@ -586,7 +576,7 @@
             <div class="booking-process-chapter-header">
                 <span class="booking-kicker">Resolve the transaction</span>
                 <div>
-                    <h3 id="booking-process-checkout">Keep the booking reviewable</h3>
+                    <h3 id="booking-process-checkout">Make booking easy to review</h3>
                     <p>A stepped flow separated details customers needed together, so I consolidated the reservation into one page.</p>
                 </div>
             </div>

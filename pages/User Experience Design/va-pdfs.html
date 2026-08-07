@@ -360,7 +360,7 @@
     .va-media.va-proposed-solution {
         width: min(420px, 100%);
         margin-right: 0;
-        margin-left: calc(26.47% + clamp(1.5rem, 4.4vw, 3.7rem));
+        margin-left: var(--case-study-content-inset);
     }
 
     .va-media.va-proposed-solution,
@@ -645,11 +645,6 @@
         margin-top: 0;
     }
 
-    .va-process-disclosure > summary,
-    .va-decision-disclosure > summary {
-        margin-left: calc(26.47% + clamp(1.5rem, 4.4vw, 3.7rem));
-    }
-
     .va-section-disclosure summary {
         display: inline-flex;
         align-items: center;
@@ -864,11 +859,6 @@
             min-height: 330px;
         }
 
-        .va-process-disclosure > summary,
-        .va-decision-disclosure > summary {
-            margin-left: 0;
-        }
-
         .va-solution-heading {
             row-gap: 2rem;
         }
@@ -1019,11 +1009,11 @@
             <p>I moved from service mapping to tested interactions and an accessible handoff.</p>
         </div>
 
-        <details class="va-section-disclosure va-process-disclosure">
+        <details class="case-study-disclosure va-section-disclosure va-process-disclosure">
             <summary>
-                <span class="va-summary-closed">View 6 process steps</span>
-                <span class="va-summary-open">Hide process steps</span>
-                <span class="va-summary-icon" aria-hidden="true">⌄</span>
+                <span class="case-study-summary-closed va-summary-closed">View 6 process steps</span>
+                <span class="case-study-summary-open va-summary-open">Hide process steps</span>
+                <span class="case-study-summary-icon va-summary-icon" aria-hidden="true">⌄</span>
             </summary>
 
         <div class="va-process-list">
@@ -1117,8 +1107,9 @@
 
         <figure class="va-media wide va-proposed-solution">
             <video controls muted playsinline preload="metadata" aria-label="Walkthrough of the proposed digital CHAMPVA application">
+                <source src="images/PDF%20Digitization/PDF%20Digitization%20Proposed%20Solution.mp4" type="video/mp4">
                 <source src="images/PDF%20Digitization/PDF%20Digitization%20Proposed%20Solution.mov" type="video/quicktime">
-                <a href="images/PDF%20Digitization/PDF%20Digitization%20Proposed%20Solution.mov">Watch the proposed solution walkthrough</a>
+                <a href="images/PDF%20Digitization/PDF%20Digitization%20Proposed%20Solution.mp4">Watch the proposed solution walkthrough</a>
             </video>
         </figure>
     </section>
@@ -1129,11 +1120,11 @@
             <p>Research shaped patterns for complex households and flexible document submission.</p>
         </div>
 
-        <details class="va-section-disclosure va-decision-disclosure">
+        <details class="case-study-disclosure va-section-disclosure va-decision-disclosure">
             <summary>
-                <span class="va-summary-closed">View 10 design decisions</span>
-                <span class="va-summary-open">Hide design decisions</span>
-                <span class="va-summary-icon" aria-hidden="true">⌄</span>
+                <span class="case-study-summary-closed va-summary-closed">View 10 design decisions</span>
+                <span class="case-study-summary-open va-summary-open">Hide design decisions</span>
+                <span class="case-study-summary-icon va-summary-icon" aria-hidden="true">⌄</span>
             </summary>
 
         <div class="va-decision-list">

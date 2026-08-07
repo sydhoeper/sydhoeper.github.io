@@ -54,6 +54,7 @@
     --sidebar-width: 300px;
     --page-padding: 24px;
     --content-gutter: 48px;
+    --case-study-content-inset: calc(26.47% + clamp(1.5rem, 4.4vw, 3.7rem));
 
 }
 
@@ -214,21 +215,25 @@ a:hover {
 }
 
 .navigation h2 {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 28px;
     align-items: center;
-    gap: 8px;
-    margin: 0 0 9px;
-    font-size: var(--text-base);
-    line-height: 1.25;
+    column-gap: 10px;
+    min-height: 28px;
+    margin: 0 0 12px;
+    font-size: 0.95rem;
+    line-height: 1.2;
     font-weight: 650;
+    white-space: nowrap;
 }
 
 .navigation-heading-icon {
     display: grid;
-    width: 26px;
-    height: 26px;
-    margin: 0 0 0 auto;
-    font-size: 1.6rem;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+    justify-self: end;
+    font-size: 1.45rem;
     font-weight: 400;
     line-height: 1;
     place-items: center;
@@ -627,6 +632,70 @@ body:has(.gallery-lightbox[open]) {
     border-color: var(--color-accent);
     outline: 3px solid var(--color-accent);
     outline-offset: 3px;
+}
+
+/* Reusable case-study disclosure: aligns its toggle with section body copy. */
+.case-study-disclosure {
+    margin-top: clamp(1.75rem, 4vw, 3rem);
+}
+
+.case-study-disclosure > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: var(--case-study-content-inset);
+    padding: 0.9rem 1.2rem;
+    border: 2px solid var(--color-dark);
+    border-radius: 999px;
+    color: var(--color-dark);
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    transition: background-color 180ms ease, color 180ms ease;
+}
+
+.case-study-disclosure > summary::-webkit-details-marker {
+    display: none;
+}
+
+.case-study-disclosure > summary:hover,
+.case-study-disclosure > summary:focus-visible {
+    background: var(--color-accent);
+    color: white;
+}
+
+.case-study-disclosure > summary:focus-visible {
+    outline: 3px solid var(--color-dark);
+    outline-offset: 4px;
+}
+
+.case-study-disclosure .case-study-summary-open {
+    display: none;
+}
+
+.case-study-disclosure[open] .case-study-summary-closed {
+    display: none;
+}
+
+.case-study-disclosure[open] .case-study-summary-open {
+    display: inline;
+}
+
+.case-study-summary-icon {
+    display: inline-block;
+    font-size: 1.15em;
+    line-height: 1;
+    transition: transform 180ms ease;
+}
+
+.case-study-disclosure[open] .case-study-summary-icon {
+    transform: rotate(180deg);
+}
+
+@container (max-width: 720px) {
+    .case-study-disclosure > summary {
+        margin-left: 0;
+    }
 }
 
 .cursor-sparkle {
