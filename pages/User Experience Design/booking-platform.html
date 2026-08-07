@@ -1,6 +1,11 @@
 <style>
     .booking-study {
         --booking-surface: rgba(252, 250, 246, 0.96);
+        --booking-rule: 1px solid rgba(var(--color-dark-rgb), 0.16);
+        --booking-subheading-size: clamp(1.75rem, 3.8cqi, 2.65rem);
+        --booking-subheading-line-height: 1.05;
+        --booking-subheading-spacing: -0.025em;
+        --booking-copy-width: 58ch;
         width: 100%;
         max-width: 980px;
         container: booking-study / inline-size;
@@ -107,14 +112,14 @@
 
     .booking-section {
         padding: clamp(3.5rem, 8vw, 7rem) 0;
-        border-top: 1px solid rgba(var(--color-dark-rgb), 0.18);
+        border-top: var(--booking-rule);
     }
 
     .booking-section-heading {
         display: grid;
         grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
         gap: clamp(2rem, 6vw, 5rem);
-        align-items: start;
+        align-items: center;
         max-width: none;
         margin-bottom: clamp(2.5rem, 6vw, 5rem);
     }
@@ -130,7 +135,7 @@
     }
 
     .booking-section-heading p {
-        max-width: 58ch;
+        max-width: var(--booking-copy-width);
         margin: 0;
         font-size: var(--type-section-copy-size);
         line-height: var(--type-section-copy-line-height);
@@ -139,7 +144,7 @@
     .booking-star {
         display: grid;
         margin: 0;
-        border-top: 1px solid rgba(var(--color-dark-rgb), 0.2);
+        border-top: var(--booking-rule);
     }
 
     .booking-star-row {
@@ -147,7 +152,7 @@
         grid-template-columns: minmax(100px, 0.24fr) minmax(0, 1fr);
         gap: clamp(1rem, 4vw, 3rem);
         padding: 1.15rem 0;
-        border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.2);
+        border-bottom: var(--booking-rule);
     }
 
     .booking-star-row dt,
@@ -215,20 +220,21 @@
     .booking-process-chapter h3 {
         margin: 0 0 1rem;
         font-family: var(--font-display);
-        font-size: clamp(1.65rem, 3.6cqi, 2.5rem);
-        line-height: 1.06;
-        letter-spacing: -0.025em;
+        font-size: var(--booking-subheading-size);
+        line-height: var(--booking-subheading-line-height);
+        letter-spacing: var(--booking-subheading-spacing);
     }
 
     .booking-process-intro p,
     .booking-process-chapter-header p {
+        max-width: var(--booking-copy-width);
         margin: 0;
-        line-height: 1.7;
+        line-height: var(--type-body-line-height);
     }
 
     .booking-process-chapter {
         padding-top: clamp(3rem, 7vw, 5rem);
-        border-top: 1px solid rgba(var(--color-dark-rgb), 0.18);
+        border-top: var(--booking-rule);
     }
 
     .booking-process-chapter + .booking-process-chapter {
@@ -240,6 +246,7 @@
         grid-template-columns: minmax(0, 1fr);
         gap: clamp(0.75rem, 1.5vw, 1.1rem);
         align-items: start;
+        max-width: 760px;
         margin-bottom: clamp(2rem, 5vw, 3.5rem);
     }
 
@@ -270,10 +277,9 @@
 
     .booking-process-decision {
         margin: clamp(2rem, 5vw, 3rem) 0 0;
-        padding: 1rem 1.25rem;
-        border-left: 4px solid var(--color-dark);
-        background: rgba(var(--color-dark-rgb), 0.045);
-        line-height: 1.65;
+        padding: 1.25rem 0 0;
+        border-top: var(--booking-rule);
+        line-height: var(--type-body-line-height);
     }
 
     .booking-process-decision strong { margin-right: 0.25rem; }
@@ -292,9 +298,9 @@
     .booking-solution-heading h3 {
         margin: 0 0 0.65rem;
         font-family: var(--font-display);
-        font-size: clamp(1.7rem, 3.8cqi, 2.65rem);
-        line-height: 1.05;
-        letter-spacing: -0.025em;
+        font-size: var(--booking-subheading-size);
+        line-height: var(--booking-subheading-line-height);
+        letter-spacing: var(--booking-subheading-spacing);
     }
 
     .booking-solution-heading p { margin: 0; line-height: 1.65; }
@@ -313,9 +319,9 @@
     .booking-decision-copy h3 {
         margin: 0 0 1rem;
         font-family: var(--font-display);
-        font-size: clamp(1.7rem, 3.8cqi, 2.65rem);
-        line-height: 1.05;
-        letter-spacing: -0.025em;
+        font-size: var(--booking-subheading-size);
+        line-height: var(--booking-subheading-line-height);
+        letter-spacing: var(--booking-subheading-spacing);
     }
 
     .booking-decision-copy p { margin: 0; line-height: 1.68; }
@@ -355,15 +361,15 @@
     .booking-overview-approach {
         margin-top: clamp(3rem, 7vw, 5rem);
         padding-top: clamp(2rem, 5vw, 3.5rem);
-        border-top: 1px solid rgba(var(--color-dark-rgb), 0.18);
+        border-top: var(--booking-rule);
     }
 
     .booking-overview-approach > h3 {
         margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
         font-family: var(--font-display);
-        font-size: clamp(1.55rem, 3.4cqi, 2.3rem);
-        line-height: 1.08;
-        letter-spacing: -0.025em;
+        font-size: var(--booking-subheading-size);
+        line-height: var(--booking-subheading-line-height);
+        letter-spacing: var(--booking-subheading-spacing);
     }
 
     .booking-proposed-solution { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
@@ -375,42 +381,47 @@
         margin-top: clamp(2.5rem, 6vw, 4rem);
     }
 
-    .booking-proof article,
-    .booking-reflection {
+    .booking-proof article {
         padding: var(--card-padding);
         border-radius: var(--card-radius);
         background: var(--surface-card);
         box-shadow: var(--shadow-card);
     }
 
-    .booking-proof h3,
-    .booking-reflection h3 {
+    .booking-proof h3 {
         margin: 0 0 0.65rem;
         font-size: var(--card-heading-size);
         line-height: var(--card-heading-line-height);
     }
 
-    .booking-proof p,
-    .booking-reflection p { margin: 0; line-height: 1.65; }
+    .booking-proof p { margin: 0; line-height: var(--type-body-line-height); }
 
     .booking-outcome-media { margin-top: clamp(3rem, 7vw, 5rem); }
 
     .booking-reflection {
-        display: grid;
-        grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr);
-        gap: clamp(1.5rem, 5vw, 4rem);
         margin-top: clamp(2.5rem, 6vw, 4rem);
+        padding-top: clamp(2rem, 5vw, 3.5rem);
+        border-top: var(--booking-rule);
     }
 
     .booking-reflection h3 {
+        max-width: 18ch;
+        margin: 0 0 1rem;
         font-family: var(--font-display);
-        font-size: clamp(1.4rem, 3cqi, 2rem);
+        font-size: var(--booking-subheading-size);
+        line-height: var(--booking-subheading-line-height);
+        letter-spacing: var(--booking-subheading-spacing);
+    }
+
+    .booking-reflection p {
+        max-width: var(--booking-copy-width);
+        margin: 0;
+        line-height: var(--type-body-line-height);
     }
 
     @container booking-study (max-width: 760px) {
         .booking-section-heading,
-        .booking-decision,
-        .booking-reflection { grid-template-columns: 1fr; }
+        .booking-decision { grid-template-columns: 1fr; }
 
         .booking-facts,
         .booking-proof,
@@ -613,8 +624,8 @@
 
     <section class="booking-section" aria-labelledby="booking-outcomes">
         <div class="booking-section-heading">
-            <h2 id="booking-outcomes">The experience shipped. Supply limited growth.</h2>
-            <p>Launched in May 2022 after two months of design.</p>
+            <h2 id="booking-outcomes">Outcomes</h2>
+            <p>The experience shipped in May 2022 after two months of design, but limited supply constrained growth.</p>
         </div>
 
         <div class="booking-proof">
