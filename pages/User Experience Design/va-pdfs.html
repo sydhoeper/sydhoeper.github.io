@@ -27,12 +27,14 @@
         display: grid;
         grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
         align-items: center;
-        gap: clamp(0.75rem, 2vw, 1.5rem);
+        gap: clamp(2.5rem, 6vw, 5rem);
+        margin-bottom: -2.5rem;
         padding-top: 0;
     }
 
     .va-hero-copy {
         text-align: left;
+        transform: translateY(-2.5rem);
     }
 
     .va-eyebrow {
@@ -101,8 +103,8 @@
     .va-card,
     .va-role,
     .va-quote {
-        padding: clamp(1.35rem, 3vw, 2rem);
-        border-radius: 16px;
+        padding: var(--card-padding);
+        border-radius: var(--card-radius);
         background: var(--surface-card);
         box-shadow: var(--shadow-card);
     }
@@ -113,8 +115,8 @@
     .va-process-copy h3,
     .va-impact-grid h3 {
         margin: 0 0 0.65rem;
-        font-size: var(--type-card-heading-size);
-        line-height: var(--type-card-heading-line-height);
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
     }
 
     .va-card p,
@@ -201,7 +203,7 @@
     }
 
     .va-media.va-hero-phone {
-        transform: translateX(-12%);
+        transform: translate(-12%, -2.5rem);
     }
 
     .va-media.portrait > img {
@@ -492,6 +494,7 @@
         color: var(--color-muted);
         font-size: var(--type-eyebrow-size);
         font-weight: var(--type-eyebrow-weight);
+        line-height: var(--type-eyebrow-line-height);
         letter-spacing: var(--type-eyebrow-spacing);
         text-transform: uppercase;
     }
@@ -508,6 +511,24 @@
 
     .va-section-disclosure {
         margin-top: clamp(1.75rem, 4vw, 3rem);
+    }
+
+    .va-process-disclosure,
+    .va-decision-disclosure {
+        display: grid;
+        grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
+        gap: 0 clamp(2rem, 6vw, 5rem);
+    }
+
+    .va-process-disclosure > summary,
+    .va-decision-disclosure > summary {
+        grid-column: 2;
+        justify-self: start;
+    }
+
+    .va-process-disclosure > .va-process-list,
+    .va-decision-disclosure > .va-decision-list {
+        grid-column: 1 / -1;
     }
 
     .va-section-disclosure summary {
@@ -609,6 +630,11 @@
 
         .va-hero-copy {
             order: -1;
+            transform: none;
+        }
+
+        .va-hero {
+            margin-bottom: 0;
         }
 
         .va-media.va-hero-phone {
@@ -635,6 +661,16 @@
 
         .va-media.tall .va-media-frame {
             min-height: 330px;
+        }
+
+        .va-process-disclosure,
+        .va-decision-disclosure {
+            grid-template-columns: 1fr;
+        }
+
+        .va-process-disclosure > summary,
+        .va-decision-disclosure > summary {
+            grid-column: 1;
         }
     }
 
@@ -668,7 +704,7 @@
 <article class="va-case-study">
     <header class="va-hero">
         <div class="va-hero-copy">
-            <p class="va-eyebrow">U.S. Department of Veterans Affairs</p>
+            <p class="va-eyebrow">Veterans Affairs · 2024</p>
             <h1>PDF Digitization</h1>
             <p class="va-lede">Helping disabled Veterans’ families apply for health care through a clearer, accessible digital experience.</p>
         </div>
@@ -791,7 +827,7 @@
             <p>I moved from service mapping to tested interactions and an accessible handoff.</p>
         </div>
 
-        <details class="va-section-disclosure">
+        <details class="va-section-disclosure va-process-disclosure">
             <summary>
                 <span class="va-summary-closed">View 6 process steps</span>
                 <span class="va-summary-open">Hide process steps</span>
@@ -898,7 +934,7 @@
             <p>Research shaped patterns for complex households and flexible document submission.</p>
         </div>
 
-        <details class="va-section-disclosure">
+        <details class="va-section-disclosure va-decision-disclosure">
             <summary>
                 <span class="va-summary-closed">View 10 design decisions</span>
                 <span class="va-summary-open">Hide design decisions</span>

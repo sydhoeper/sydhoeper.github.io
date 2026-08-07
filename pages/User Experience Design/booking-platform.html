@@ -8,17 +8,18 @@
 
     .booking-study * { box-sizing: border-box; }
 
-    .booking-hero { padding: 0 0 clamp(4rem, 9vw, 7rem); }
+    .booking-hero { padding: 0 0 clamp(3.5rem, 8vw, 7rem); }
 
     .booking-eyebrow,
     .booking-kicker,
     .booking-star-label {
         display: block;
-        margin: 0 0 0.75rem;
+        margin: 0 0 0.85rem;
         color: var(--color-muted);
-        font-size: 0.78rem;
-        font-weight: 650;
-        letter-spacing: 0.11em;
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        line-height: var(--type-eyebrow-line-height);
+        letter-spacing: var(--type-eyebrow-spacing);
         text-transform: uppercase;
     }
 
@@ -26,17 +27,17 @@
         max-width: 12ch;
         margin: 0 0 1.25rem;
         font-family: var(--font-display);
-        font-size: clamp(3rem, 8cqi, 6.2rem);
+        font-size: var(--type-hero-size);
         font-weight: 700;
-        line-height: 0.94;
-        letter-spacing: -0.045em;
+        line-height: var(--type-hero-line-height);
+        letter-spacing: var(--type-hero-spacing);
     }
 
     .booking-lede {
-        max-width: 61ch;
+        max-width: 48ch;
         margin: 0;
-        font-size: clamp(1.12rem, 2.4cqi, 1.42rem);
-        line-height: 1.55;
+        font-size: var(--type-lede-size);
+        line-height: var(--type-lede-line-height);
     }
 
     .booking-media { margin: 0; }
@@ -105,30 +106,34 @@
     }
 
     .booking-section {
-        padding: clamp(4.5rem, 9vw, 7.5rem) 0;
+        padding: clamp(3.5rem, 8vw, 7rem) 0;
         border-top: 1px solid rgba(var(--color-dark-rgb), 0.18);
     }
 
     .booking-section-heading {
-        max-width: 720px;
-        margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+        display: grid;
+        grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: start;
+        max-width: none;
+        margin-bottom: clamp(2.5rem, 6vw, 5rem);
     }
 
     .booking-section-heading h2 {
-        max-width: 15ch;
-        margin: 0 0 1rem;
+        max-width: none;
+        margin: 0;
         font-family: var(--font-display);
-        font-size: clamp(2.1rem, 5cqi, 3.75rem);
+        font-size: var(--type-section-heading-size);
         font-weight: 700;
-        line-height: 1;
-        letter-spacing: -0.035em;
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
     }
 
     .booking-section-heading p {
-        max-width: 60ch;
+        max-width: 58ch;
         margin: 0;
-        font-size: 1.08rem;
-        line-height: 1.7;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .booking-star {
@@ -165,18 +170,20 @@
 
     .booking-fact {
         min-width: 0;
-        padding: clamp(1.15rem, 2.5vw, 1.6rem);
-        border-radius: 16px;
-        background: var(--booking-surface);
-        box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+        padding: var(--card-padding);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
     .booking-fact strong,
     .booking-fact span { display: block; }
 
-    .booking-fact strong { margin-bottom: 0.35rem; }
+    .booking-fact strong {
+        margin-bottom: 0.65rem;
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
+    }
 
     .booking-fact span {
         color: var(--color-muted);
@@ -329,18 +336,16 @@
 
     .booking-card {
         min-width: 0;
-        padding: clamp(1.35rem, 3vw, 2rem);
-        border-radius: 16px;
-        background: var(--booking-surface);
-        box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+        padding: var(--card-padding);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
     .booking-card h3 {
         margin: 0 0 0.65rem;
-        font-size: 1.12rem;
-        line-height: 1.25;
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
     }
 
     .booking-card p { margin: 0; line-height: 1.65; }
@@ -372,19 +377,17 @@
 
     .booking-proof article,
     .booking-reflection {
-        padding: clamp(1.35rem, 3vw, 2rem);
-        border-radius: 16px;
-        background: var(--booking-surface);
-        box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+        padding: var(--card-padding);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
     .booking-proof h3,
     .booking-reflection h3 {
         margin: 0 0 0.65rem;
-        font-size: 1.12rem;
-        line-height: 1.25;
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
     }
 
     .booking-proof p,
@@ -405,6 +408,7 @@
     }
 
     @container booking-study (max-width: 760px) {
+        .booking-section-heading,
         .booking-decision,
         .booking-reflection { grid-template-columns: 1fr; }
 
@@ -431,7 +435,7 @@
 
 <article class="booking-study">
     <header class="booking-hero">
-        <p class="booking-eyebrow">Product Design · Campendium · 2022</p>
+        <p class="booking-eyebrow">Campendium · 2022</p>
         <h1>Campground Booking</h1>
         <p class="booking-lede">I led Campendium’s first native reservation experience, connecting campground discovery to payment without losing the context RV travelers needed.</p>
 

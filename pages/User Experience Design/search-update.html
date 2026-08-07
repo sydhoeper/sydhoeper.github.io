@@ -8,13 +8,19 @@
 
     .search-study * { box-sizing: border-box; }
 
+    .search-study h1,
+    .search-study h2 {
+        font-family: var(--font-display);
+        font-optical-sizing: auto;
+    }
+
     .search-hero,
     .search-section { padding: clamp(3.5rem, 8vw, 7rem) 0; }
 
     .search-hero {
         display: grid;
         grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
-        align-items: center;
+        align-items: start;
         gap: clamp(2.5rem, 6vw, 5rem);
         padding-top: 0;
     }
@@ -22,10 +28,12 @@
     .search-eyebrow,
     .search-step-label {
         display: block;
-        margin: 0 0 0.75rem;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
+        margin: 0 0 0.85rem;
+        color: var(--color-muted);
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        line-height: var(--type-eyebrow-line-height);
+        letter-spacing: var(--type-eyebrow-spacing);
         text-transform: uppercase;
     }
 
@@ -34,16 +42,16 @@
     .search-hero h1 {
         max-width: 12ch;
         margin: 0 0 1.25rem;
-        font-size: clamp(2.6rem, 7cqi, 5.6rem);
-        line-height: 0.96;
-        letter-spacing: -0.045em;
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-line-height);
+        letter-spacing: var(--type-hero-spacing);
     }
 
     .search-lede {
         max-width: 48ch;
         margin: 0;
-        font-size: clamp(1.1rem, 2.2cqi, 1.35rem);
-        line-height: 1.55;
+        font-size: var(--type-lede-size);
+        line-height: var(--type-lede-line-height);
     }
 
     .search-section { border-top: 1px solid rgba(var(--color-dark-rgb), 0.16); }
@@ -58,16 +66,16 @@
 
     .search-section-heading h2 {
         margin: 0;
-        font-size: clamp(2rem, 5cqi, 3.6rem);
-        line-height: 1;
-        letter-spacing: -0.035em;
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
     }
 
     .search-section-heading p {
         max-width: 58ch;
         margin: 0;
-        font-size: 1.08rem;
-        line-height: 1.7;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .search-card-grid,
@@ -85,12 +93,10 @@
     .search-impact,
     .search-lesson,
     .search-kpi {
-        padding: clamp(1.35rem, 3vw, 2rem);
-        border-radius: 16px;
-        background: var(--study-card);
-        box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+        padding: var(--card-padding);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
     .search-card h3,
@@ -99,8 +105,8 @@
     .search-copy h3,
     .search-lesson h3 {
         margin: 0 0 0.65rem;
-        font-size: 1.12rem;
-        line-height: 1.2;
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
     }
 
     .search-card p,
@@ -121,52 +127,55 @@
 
     .search-media { margin: 0; }
 
-    .search-media-frame {
-        display: grid;
-        min-height: 250px;
-        padding: clamp(1.5rem, 4vw, 3rem);
-        border: 1px dashed rgba(var(--color-dark-rgb), 0.34);
+    .search-image-frame {
+        display: block;
+        overflow: hidden;
         border-radius: 16px;
-        background:
-            radial-gradient(circle at 18% 18%, rgba(237, 178, 218, 0.5), transparent 38%),
-            radial-gradient(circle at 82% 78%, rgba(201, 184, 239, 0.52), transparent 40%),
-            var(--color-sidebar-background);
+        background: #202020;
         box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.3),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.2);
-        place-items: center;
-        text-align: center;
+            0 3px 8px rgba(var(--color-dark-rgb), 0.2),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.14);
     }
 
-    .search-media-frame span,
-    .search-media-frame strong,
-    .search-media-frame small { display: block; }
+    .search-media img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+    }
 
-    .search-media-frame span {
-        margin-bottom: 0.45rem;
-        font-size: 0.72rem;
+    .search-media.hero-art .search-image-frame {
+        overflow: visible;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .search-media.hero-art img {
+        filter:
+            drop-shadow(0 3px 8px rgba(var(--color-dark-rgb), 0.2))
+            drop-shadow(0 12px 24px rgba(var(--color-dark-rgb), 0.14));
+    }
+
+    .search-comparison,
+    .search-artifact-stack {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(0.75rem, 2vw, 1.25rem);
+    }
+
+    .search-artifact-stack { grid-template-columns: 1fr; }
+
+    .search-comparison-item { min-width: 0; }
+
+    .search-comparison-label {
+        display: block;
+        margin: 0 0 0.65rem;
+        color: var(--color-muted);
+        font-size: 0.78rem;
         font-weight: 700;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
     }
-
-    .search-media-frame strong { font-size: clamp(1.15rem, 2.5cqi, 1.6rem); }
-
-    .search-media-frame small {
-        max-width: 40ch;
-        margin-top: 0.5rem;
-        line-height: 1.45;
-    }
-
-    .search-media figcaption {
-        margin-top: 0.85rem;
-        color: var(--color-muted);
-        font-size: 0.86rem;
-        line-height: 1.5;
-    }
-
-    .search-media.tall .search-media-frame { min-height: 440px; }
-    .search-media.wide .search-media-frame { min-height: clamp(280px, 44cqi, 430px); }
 
     .search-step {
         display: grid;
@@ -194,21 +203,19 @@
         gap: clamp(1.25rem, 4vw, 2.5rem);
         align-items: center;
         margin-top: clamp(2rem, 5vw, 4rem);
-        background: rgba(175, 238, 194, 0.48);
+        background: var(--surface-card);
     }
 
     .search-kpi strong {
-        font-size: clamp(3rem, 8cqi, 6rem);
-        line-height: 0.9;
+        font-family: var(--font-display);
+        font-size: var(--metric-size);
+        line-height: 0.95;
         letter-spacing: -0.05em;
     }
 
     .search-kpi p { margin: 0; font-size: 1.08rem; line-height: 1.55; }
 
     .search-impact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .search-impact-grid .search-impact:nth-child(1) { background: rgba(175, 238, 194, 0.48); }
-    .search-impact-grid .search-impact:nth-child(2) { background: rgba(169, 204, 239, 0.42); }
-    .search-impact-grid .search-impact:nth-child(3) { background: rgba(201, 184, 239, 0.38); }
 
     .search-accessibility {
         display: grid;
@@ -224,15 +231,12 @@
     }
 
     .search-lesson-number {
-        display: grid;
-        width: 2.5rem;
-        height: 2.5rem;
-        margin-bottom: 1rem;
-        border-radius: 50%;
-        background: var(--color-dark);
-        color: var(--color-background);
-        font-weight: 700;
-        place-items: center;
+        display: block;
+        margin-bottom: 1.6rem;
+        color: var(--color-muted);
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        letter-spacing: var(--type-eyebrow-spacing);
     }
 
     @container search-study (max-width: 720px) {
@@ -247,7 +251,6 @@
         .search-card-grid.three,
         .search-impact-grid,
         .search-lessons { grid-template-columns: 1fr; }
-        .search-media.tall .search-media-frame { min-height: 330px; }
     }
 
     @container search-study (max-width: 520px) {
@@ -260,18 +263,14 @@
 <article class="search-study">
     <header class="search-hero">
         <div class="search-hero-copy">
-            <p class="search-eyebrow">User Experience Design · Roadpass Digital · 2023</p>
+            <p class="search-eyebrow">Roadtrippers · 2023</p>
             <h1>Search Results Updates</h1>
             <p class="search-lede">Rethinking how Roadtrippers presents search results—and helping travelers add more meaningful stops to their trips.</p>
         </div>
 
-        <figure class="search-media tall">
-            <div class="search-media-frame" role="img" aria-label="Placeholder for mobile and desktop Roadtrippers search results">
-                <div>
-                    <span>Image placeholder</span>
-                    <strong>Updated search results</strong>
-                    <small>Add the primary mobile and desktop search-results screens here.</small>
-                </div>
+        <figure class="search-media hero-art">
+            <div class="search-image-frame">
+                <img src="images/Search%20Results%20Redesign/Screen%20Shot%202023-07-06%20at%207.55%201.png" width="1535" height="1443" alt="Final Roadtrippers desktop search results displayed beside the map" loading="eager" decoding="async">
             </div>
         </figure>
     </header>
@@ -375,8 +374,8 @@
                 <p>I added clearer calls to action directly to result cards so users could add a waypoint without interrupting their search flow.</p>
             </div>
             <figure class="search-media wide">
-                <div class="search-media-frame" role="img" aria-label="Placeholder for before and after mobile waypoint actions">
-                    <div><span>Image placeholder</span><strong>Mobile CTA additions</strong><small>Add the before-and-after mobile screens here.</small></div>
+                <div class="search-image-frame">
+                    <img src="images/Search%20Results%20Redesign/Mobile%20CTA%20Additions.png" width="690" height="671" alt="Mobile Roadtrippers screens with the new Add to Trip actions highlighted on map and list results" loading="lazy" decoding="async">
                 </div>
             </figure>
         </div>
@@ -396,57 +395,76 @@
         <div class="search-step-list">
             <article class="search-step">
                 <div class="search-copy">
-                    <span class="search-step-label">01 · Main flow</span>
-                    <h3>Make results easier to scan and act on</h3>
-                    <p>The updated structure strengthened result hierarchy and brought the waypoint action into a consistent location throughout the list.</p>
+                    <span class="search-step-label">Build from evidence</span>
+                    <h3>Carry the proven action into desktop</h3>
+                    <p>I began with the mobile pattern that had already moved the KPI, then mapped that action across the existing desktop results.</p>
                 </div>
                 <figure class="search-media wide">
-                    <div class="search-media-frame" role="img" aria-label="Placeholder for before and after desktop search-result flows"><div><span>Image placeholder</span><strong>Main flow: before and after</strong></div></div>
+                    <div class="search-image-frame">
+                        <img src="images/Search%20Results%20Redesign/Desktop%20Research.png" width="816" height="652" alt="Desktop search results annotated to show the mobile Add to Trip action applied to each result" loading="lazy" decoding="async">
+                    </div>
                 </figure>
             </article>
 
             <article class="search-step">
                 <div class="search-copy">
-                    <span class="search-step-label">02 · Desktop research</span>
-                    <h3>Audit every action in the results</h3>
-                    <p>I mapped the existing “button farm” across desktop result cards to understand redundant controls, competing actions, and opportunities to simplify the interface.</p>
+                    <span class="search-step-label">Explore the structure</span>
+                    <h3>Test list density against visual discovery</h3>
+                    <p>I explored both single-column rows and image-led tiles to find the right balance of comparison, context, and space.</p>
+                </div>
+                <div class="search-comparison" role="group" aria-label="Early desktop search-result layout explorations">
+                    <figure class="search-media search-comparison-item">
+                        <span class="search-comparison-label">List</span>
+                        <div class="search-image-frame"><img src="images/Search%20Results%20Redesign/image%2050.png" width="487" height="685" alt="Early desktop concept using one full-width result per row" loading="lazy" decoding="async"></div>
+                    </figure>
+                    <figure class="search-media search-comparison-item">
+                        <span class="search-comparison-label">Tiles</span>
+                        <div class="search-image-frame"><img src="images/Search%20Results%20Redesign/image%2051.png" width="479" height="685" alt="Early desktop concept using a two-column grid of result cards" loading="lazy" decoding="async"></div>
+                    </figure>
+                </div>
+            </article>
+
+            <article class="search-step">
+                <div class="search-copy">
+                    <span class="search-step-label">Refine the pattern</span>
+                    <h3>Adapt mobile clarity to a larger canvas</h3>
+                    <p>The compact row kept the mobile hierarchy familiar while letting travelers scan more results without losing the map.</p>
                 </div>
                 <figure class="search-media wide">
-                    <div class="search-media-frame" role="img" aria-label="Placeholder for the desktop button audit"><div><span>Image placeholder</span><strong>Desktop interaction audit</strong></div></div>
+                    <div class="search-image-frame">
+                        <img src="images/Search%20Results%20Redesign/image%2052.png" width="477" height="499" alt="Mobile search result pattern translated into a compact desktop results list" loading="lazy" decoding="async">
+                    </div>
                 </figure>
             </article>
 
             <article class="search-step">
                 <div class="search-copy">
-                    <span class="search-step-label">03 · Ideation</span>
-                    <h3>Explore clearer card structures</h3>
-                    <p>I tested different ways to balance place information, imagery, ratings, and trip actions without overwhelming the map-and-list layout.</p>
+                    <span class="search-step-label">Resolve the flow</span>
+                    <h3>Make results easier to compare and act on</h3>
+                    <p>The final direction replaced large image tiles with scannable rows and a consistent Add to Trip action.</p>
                 </div>
-                <figure class="search-media wide">
-                    <div class="search-media-frame" role="img" aria-label="Placeholder for search-result ideation screens"><div><span>Image placeholder</span><strong>Search-result concepts</strong></div></div>
-                </figure>
+                <div class="search-comparison" role="group" aria-label="Desktop search results before and after the redesign">
+                    <figure class="search-media search-comparison-item">
+                        <span class="search-comparison-label">Before</span>
+                        <div class="search-image-frame"><img src="images/Search%20Results%20Redesign/Main%20Flow%20Before.png" width="500" height="688" alt="Original desktop search results presented as large image tiles" loading="lazy" decoding="async"></div>
+                    </figure>
+                    <figure class="search-media search-comparison-item">
+                        <span class="search-comparison-label">After</span>
+                        <div class="search-image-frame"><img src="images/Search%20Results%20Redesign/Main%20Flow%20After.png" width="500" height="688" alt="Redesigned desktop search results presented as compact rows with Add to Trip actions" loading="lazy" decoding="async"></div>
+                    </figure>
+                </div>
             </article>
 
             <article class="search-step">
                 <div class="search-copy">
-                    <span class="search-step-label">04 · Iteration</span>
-                    <h3>Carry mobile learning into desktop</h3>
-                    <p>I translated the strongest mobile pattern into desktop layouts and iterated across list density, button placement, content hierarchy, and map behavior.</p>
+                    <span class="search-step-label">Define the system</span>
+                    <h3>Document every state for development</h3>
+                    <p>I turned the direction into reusable components and specified default, hover, partner, and waypoint states for handoff.</p>
                 </div>
-                <figure class="search-media wide">
-                    <div class="search-media-frame" role="img" aria-label="Placeholder for mobile and desktop design iterations"><div><span>Image placeholder</span><strong>Mobile-to-desktop iterations</strong></div></div>
-                </figure>
-            </article>
-
-            <article class="search-step">
-                <div class="search-copy">
-                    <span class="search-step-label">05 · Deliverables</span>
-                    <h3>Prepare the system for development</h3>
-                    <p>The final handoff documented desktop search states, waypoint interactions, card patterns, and supporting components.</p>
+                <div class="search-artifact-stack">
+                    <figure class="search-media wide"><div class="search-image-frame"><img src="images/Search%20Results%20Redesign/image%2053.png" width="929" height="625" alt="Desktop search component library shown alongside four interaction states" loading="lazy" decoding="async"></div></figure>
+                    <figure class="search-media wide"><div class="search-image-frame"><img src="images/Search%20Results%20Redesign/Deliverable.png" width="1313" height="771" alt="Final desktop search handoff board documenting result cards, button states, hover behavior, and prototypes" loading="lazy" decoding="async"></div></figure>
                 </div>
-                <figure class="search-media wide">
-                    <div class="search-media-frame" role="img" aria-label="Placeholder for desktop search design deliverables"><div><span>Image placeholder</span><strong>Developer handoff</strong></div></div>
-                </figure>
             </article>
         </div>
     </section>
@@ -459,7 +477,9 @@
 
         <div class="search-accessibility">
             <figure class="search-media tall">
-                <div class="search-media-frame" role="img" aria-label="Placeholder for annotated accessibility improvements"><div><span>Image placeholder</span><strong>Accessibility annotations</strong><small>Add the annotated result-card screen here.</small></div></div>
+                <div class="search-image-frame">
+                    <img src="images/Search%20Results%20Redesign/Screenshot%202026-08-06%20at%2011.58.44%E2%80%AFAM.png" width="1226" height="1170" alt="Annotated desktop results showing stronger title contrast, clearer calls to action, 48-pixel targets, and non-color hover cues" loading="lazy" decoding="async">
+                </div>
             </figure>
             <div class="search-copy">
                 <h3>Key improvements</h3>
@@ -505,17 +525,17 @@
 
         <div class="search-lessons">
             <article class="search-lesson">
-                <span class="search-lesson-number">1</span>
+                <span class="search-lesson-number">01</span>
                 <h3>Actively listen</h3>
                 <p>The concerns of teammates are important signals, especially when joining an established product.</p>
             </article>
             <article class="search-lesson">
-                <span class="search-lesson-number">2</span>
+                <span class="search-lesson-number">02</span>
                 <h3>Ask developers early</h3>
                 <p>Frequent technical questions help expose constraints and improve the design before handoff.</p>
             </article>
             <article class="search-lesson">
-                <span class="search-lesson-number">3</span>
+                <span class="search-lesson-number">03</span>
                 <h3>Watch and listen</h3>
                 <p>In user testing, many of the most useful answers are waiting to be observed rather than directly stated.</p>
             </article>

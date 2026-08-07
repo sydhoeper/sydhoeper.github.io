@@ -1,6 +1,4 @@
 <style>
-    @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
-
     .spc-study {
         --spc-card: rgba(252, 250, 246, 0.94);
         --spc-purple: rgba(201, 184, 239, 0.3);
@@ -19,13 +17,13 @@
     .spc-study h2,
     .spc-study h3,
     .spc-study .spc-pullquote {
-        font-family: "Fraunces", Georgia, "Times New Roman", serif;
+        font-family: var(--font-display);
         font-optical-sizing: auto;
     }
 
     .spc-hero,
     .spc-section {
-        padding: clamp(3rem, 6vw, 5rem) 0;
+        padding: clamp(3.5rem, 8vw, 7rem) 0;
     }
 
     .spc-hero {
@@ -35,27 +33,28 @@
     .spc-eyebrow,
     .spc-label {
         display: block;
-        margin: 0 0 0.75rem;
+        margin: 0 0 0.85rem;
         color: var(--color-muted);
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        line-height: var(--type-eyebrow-line-height);
+        letter-spacing: var(--type-eyebrow-spacing);
         text-transform: uppercase;
     }
 
     .spc-hero h1 {
-        max-width: 11ch;
-        margin: 0 0 1.35rem;
-        font-size: clamp(2.8rem, 7cqi, 5.8rem);
-        line-height: 0.95;
-        letter-spacing: -0.025em;
+        max-width: 12ch;
+        margin: 0 0 1.25rem;
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-line-height);
+        letter-spacing: var(--type-hero-spacing);
     }
 
     .spc-lede {
-        max-width: 55ch;
+        max-width: 48ch;
         margin: 0;
-        font-size: clamp(1.15rem, 2.4cqi, 1.5rem);
-        line-height: 1.55;
+        font-size: var(--type-lede-size);
+        line-height: var(--type-lede-line-height);
     }
 
     .spc-facts,
@@ -73,8 +72,10 @@
     }
 
     .spc-fact {
-        padding-top: 1rem;
-        border-top: 2px solid var(--color-dark);
+        padding: var(--card-padding);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
     .spc-fact strong,
@@ -83,8 +84,9 @@
     }
 
     .spc-fact strong {
-        margin-bottom: 0.35rem;
-        font-size: 1rem;
+        margin-bottom: 0.65rem;
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
     }
 
     .spc-fact span {
@@ -102,50 +104,45 @@
         grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
         gap: clamp(2rem, 6vw, 5rem);
         align-items: start;
-        margin-bottom: clamp(2rem, 4vw, 3.25rem);
+        margin-bottom: clamp(2.5rem, 6vw, 5rem);
     }
 
     .spc-section-heading h2 {
         margin: 0;
-        font-size: clamp(2rem, 5cqi, 3.6rem);
-        line-height: 1;
-        letter-spacing: -0.02em;
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
     }
 
     .spc-section-heading p {
         max-width: 58ch;
         margin: 0;
-        font-size: 1.08rem;
-        line-height: 1.6;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .spc-card,
     .spc-summary-card,
     .spc-result-card,
     .spc-retrospective {
-        padding: clamp(1.35rem, 3vw, 2rem);
-        border-radius: 16px;
-        background: var(--spc-card);
-        box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.1),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.07);
+        padding: var(--card-padding);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
     .spc-summary-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .spc-summary-card:nth-child(1) { background: var(--spc-blue); }
-    .spc-summary-card:nth-child(2) { background: var(--spc-purple); }
-    .spc-summary-card:nth-child(3) { background: var(--spc-green); }
-
     .spc-card h3,
     .spc-summary-card h3,
     .spc-result-card h3,
     .spc-retrospective h3 {
         margin: 0 0 0.65rem;
-        font-size: clamp(1.25rem, 2.8cqi, 1.7rem);
-        line-height: 1.15;
+        font-family: var(--font-body);
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
     }
 
     .spc-card p,
@@ -272,17 +269,13 @@
         display: block;
         margin-bottom: 0.5rem;
         font-family: "Fraunces", Georgia, "Times New Roman", serif;
-        font-size: clamp(2.4rem, 6cqi, 4.2rem);
+        font-size: var(--metric-size);
         line-height: 0.95;
     }
 
     .spc-results-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-
-    .spc-result-card:nth-child(1) { background: var(--spc-blue); }
-    .spc-result-card:nth-child(2) { background: var(--spc-green); }
-    .spc-result-card:nth-child(3) { background: var(--spc-purple); }
 
     .spc-retrospective {
         margin-top: clamp(2rem, 5vw, 3.5rem);
@@ -338,7 +331,7 @@
 
 <article class="spc-study">
     <header class="spc-hero">
-        <span class="spc-eyebrow">Active911 · 0→1 product strategy · 2020</span>
+        <span class="spc-eyebrow">Active911 · 2020</span>
         <h1>Scheduling Product Creation</h1>
         <p class="spc-lede">How I turned an ambiguous mandate into a research-led scheduling product—and used weak beta adoption to redirect the strategy toward mobile.</p>
 

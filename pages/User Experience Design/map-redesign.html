@@ -10,6 +10,12 @@
         box-sizing: border-box;
     }
 
+    .map-case-study h1,
+    .map-case-study h2 {
+        font-family: var(--font-display);
+        font-optical-sizing: auto;
+    }
+
     .map-hero,
     .map-section {
         padding: clamp(3.5rem, 8vw, 7rem) 0;
@@ -20,17 +26,19 @@
         grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
         align-items: center;
         gap: clamp(2.5rem, 6vw, 5rem);
+        margin-bottom: -6rem;
         padding-top: 0;
     }
 
     .map-eyebrow,
     .map-step-label {
         display: block;
-        margin: 0 0 0.75rem;
-        color: var(--color-text);
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
+        margin: 0 0 0.85rem;
+        color: var(--color-muted);
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        line-height: var(--type-eyebrow-line-height);
+        letter-spacing: var(--type-eyebrow-spacing);
         text-transform: uppercase;
     }
 
@@ -41,16 +49,16 @@
     .map-hero h1 {
         max-width: 12ch;
         margin: 0 0 1.25rem;
-        font-size: clamp(2.6rem, 7cqi, 5.6rem);
-        line-height: 0.96;
-        letter-spacing: -0.045em;
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-line-height);
+        letter-spacing: var(--type-hero-spacing);
     }
 
     .map-lede {
         max-width: 48ch;
         margin: 0;
-        font-size: clamp(1.1rem, 2.2cqi, 1.35rem);
-        line-height: 1.55;
+        font-size: var(--type-lede-size);
+        line-height: var(--type-lede-line-height);
     }
 
     .map-section {
@@ -67,16 +75,16 @@
 
     .map-section-heading h2 {
         margin: 0;
-        font-size: clamp(2rem, 5cqi, 3.6rem);
-        line-height: 1;
-        letter-spacing: -0.035em;
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
     }
 
     .map-section-heading p {
         max-width: 58ch;
         margin: 0;
-        font-size: 1.08rem;
-        line-height: 1.7;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .map-card-grid,
@@ -95,12 +103,10 @@
     .map-role,
     .map-impact-card,
     .map-quote {
-        padding: clamp(1.35rem, 3vw, 2rem);
-        border-radius: 16px;
-        background: var(--map-card);
-        box-shadow:
-            0 3px 8px rgba(var(--color-dark-rgb), 0.11),
-            0 12px 30px rgba(var(--color-dark-rgb), 0.08);
+        padding: var(--card-padding);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
     .map-card h3,
@@ -109,8 +115,8 @@
     .map-copy h3,
     .map-decision-copy h3 {
         margin: 0 0 0.65rem;
-        font-size: 1.12rem;
-        line-height: 1.2;
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
     }
 
     .map-card p,
@@ -180,7 +186,7 @@
         margin: 0;
     }
 
-    .map-image-link {
+    .map-image-frame {
         display: block;
         overflow: hidden;
         border-radius: 16px;
@@ -188,19 +194,6 @@
         box-shadow:
             0 3px 8px rgba(var(--color-dark-rgb), 0.2),
             0 12px 30px rgba(var(--color-dark-rgb), 0.14);
-        transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .map-image-link:hover {
-        transform: translateY(-2px);
-        box-shadow:
-            0 5px 12px rgba(var(--color-dark-rgb), 0.22),
-            0 16px 36px rgba(var(--color-dark-rgb), 0.16);
-    }
-
-    .map-image-link:focus-visible {
-        outline: 3px solid var(--color-accent);
-        outline-offset: 4px;
     }
 
     .map-media img {
@@ -210,17 +203,27 @@
         margin: 0;
     }
 
-    .map-media.hero-art .map-image-link {
+    .map-media.hero-art {
+        transform: translateY(-4.25rem);
+    }
+
+    .map-hero-copy {
+        transform: translateY(-4.25rem);
+    }
+
+    .map-media.hero-art .map-image-frame {
         overflow: visible;
         background: transparent;
         box-shadow: none;
     }
 
-    .map-media.hero-art .map-image-link:hover {
-        box-shadow: none;
+    .map-media.hero-art img {
+        filter:
+            drop-shadow(0 3px 8px rgba(var(--color-dark-rgb), 0.2))
+            drop-shadow(0 12px 24px rgba(var(--color-dark-rgb), 0.14));
     }
 
-    .map-media.contained .map-image-link {
+    .map-media.contained .map-image-frame {
         display: grid;
         min-height: 100%;
         padding: clamp(1rem, 3vw, 2rem);
@@ -290,6 +293,11 @@
 
     .map-process-grid .map-media {
         min-width: 0;
+    }
+
+    .map-decision .map-media {
+        width: min(100%, 300px);
+        justify-self: center;
     }
 
     .map-process-step,
@@ -362,6 +370,7 @@
         transform: rotate(180deg);
     }
 
+    .map-section-disclosure .map-process-list,
     .map-section-disclosure .map-decision-list {
         margin-top: clamp(3rem, 7vw, 5rem);
     }
@@ -411,18 +420,137 @@
         line-height: 1.45;
     }
 
+    .map-impact-story {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 0.52fr);
+        gap: clamp(2.5rem, 7vw, 5.5rem);
+        align-items: center;
+    }
+
+    .map-impact-copy h3 {
+        max-width: 18ch;
+        margin: 0 0 1rem;
+        font-size: clamp(1.65rem, 3.5cqi, 2.5rem);
+        line-height: 1.12;
+        letter-spacing: -0.025em;
+    }
+
+    .map-impact-intro {
+        max-width: 54ch;
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.65;
+    }
+
+    .map-impact-list {
+        margin: clamp(2rem, 5vw, 3.5rem) 0 0;
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.2);
+    }
+
+    .map-impact-item {
+        display: grid;
+        grid-template-columns: 7rem minmax(0, 1fr);
+        gap: 1.25rem;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid rgba(var(--color-dark-rgb), 0.2);
+    }
+
+    .map-impact-item dt {
+        color: var(--color-muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    .map-impact-item dd {
+        margin: 0;
+        line-height: 1.55;
+    }
+
+    .map-impact-reflection {
+        margin: clamp(2rem, 4vw, 3rem) 0 0;
+        line-height: 1.65;
+    }
+
+    .map-result-media {
+        width: min(100%, 280px);
+        margin: 0;
+        justify-self: center;
+    }
+
+    .map-animation-shell {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+        background: var(--color-dark);
+        box-shadow:
+            0 3px 8px rgba(var(--color-dark-rgb), 0.2),
+            0 12px 30px rgba(var(--color-dark-rgb), 0.14);
+    }
+
+    .map-animation-shell img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+    }
+
+    .map-animation-toggle {
+        position: absolute;
+        right: 0.75rem;
+        bottom: 0.75rem;
+        min-height: 44px;
+        padding: 0.65rem 0.9rem;
+        border: 2px solid white;
+        border-radius: 999px;
+        background: rgba(var(--color-dark-rgb), 0.9);
+        color: white;
+        font: inherit;
+        font-size: 0.82rem;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .map-animation-toggle:hover,
+    .map-animation-toggle:focus-visible {
+        background: var(--color-accent);
+    }
+
+    .map-animation-toggle:focus-visible {
+        outline: 3px solid white;
+        outline-offset: 3px;
+    }
+
+    .map-result-media figcaption {
+        margin-top: 0.85rem;
+        color: var(--color-muted);
+        font-size: 0.86rem;
+        line-height: 1.5;
+    }
+
     @container map-case-study (max-width: 720px) {
         .map-hero,
         .map-section-heading,
         .map-process-step,
         .map-process-step:nth-child(even),
         .map-decision,
-        .map-decision:nth-child(even) {
+        .map-decision:nth-child(even),
+        .map-impact-story {
             grid-template-columns: 1fr;
         }
 
         .map-hero-copy {
             order: -1;
+            transform: none;
+        }
+
+        .map-hero {
+            margin-bottom: 0;
+        }
+
+        .map-media.hero-art {
+            transform: none;
         }
 
         .map-process-step:nth-child(even) .map-copy,
@@ -451,6 +579,11 @@
             grid-column: auto;
         }
 
+        .map-impact-item {
+            grid-template-columns: 1fr;
+            gap: 0.4rem;
+        }
+
         .map-challenge-table {
             grid-template-columns: 1fr;
         }
@@ -472,17 +605,17 @@
 
 <article class="map-case-study">
     <header class="map-hero">
+        <figure class="map-media hero-art">
+            <div class="map-image-frame">
+                <img src="images/Map%20Overlays/Hero%20image-no-blobs.png" width="604" height="817" alt="Mobile map overlay drawer showing base maps, cell coverage, public lands, and a selected smoke overlay" decoding="async">
+            </div>
+        </figure>
+
         <div class="map-hero-copy">
-            <p class="map-eyebrow">User Experience Design · Campendium</p>
+            <p class="map-eyebrow">Campendium · 2023</p>
             <h1>Map Overlay Redesign</h1>
             <p class="map-lede">Helping RVers efficiently explore, compare, and navigate map overlays.</p>
         </div>
-
-        <figure class="map-media hero-art">
-            <a class="map-image-link" href="images/Map%20Overlays/Hero%20image.png" target="_blank" rel="noopener" aria-label="Open the final mobile map overlay design at full size in a new tab">
-                <img src="images/Map%20Overlays/Hero%20image.png" width="604" height="817" alt="Mobile map overlay drawer showing base maps, cell coverage, public lands, and a selected smoke overlay" decoding="async">
-            </a>
-        </figure>
     </header>
 
     <section class="map-section" aria-labelledby="map-overview">
@@ -584,8 +717,15 @@
     <section class="map-section" aria-labelledby="map-process">
         <div class="map-section-heading">
             <h2 id="map-process">Process</h2>
-            <p>Research, synthesis, and prototyping shaped a flexible interaction system.</p>
+            <p>Research narrowed the problem; wireframes and UI iteration shaped the final system.</p>
         </div>
+
+        <details class="map-section-disclosure">
+            <summary>
+                <span class="map-summary-closed">View 5 process steps</span>
+                <span class="map-summary-open">Hide process steps</span>
+                <span class="map-summary-icon" aria-hidden="true">⌄</span>
+            </summary>
 
         <div class="map-process-list">
             <article class="map-process-step">
@@ -595,9 +735,10 @@
                     <p>I reviewed mapping apps to identify familiar patterns and opportunities.</p>
                 </div>
                 <figure class="map-media wide">
-                    <div class="map-media-frame" role="img" aria-label="Placeholder for competitive mapping-app research">
-                        <div><span>Image placeholder</span><strong>Competitive research</strong><small>Add the state-of-the-art research board here.</small></div>
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/state%20of%20the%20art%20research.png" width="3389" height="2985" alt="Research board comparing map and overlay patterns across outdoor, weather, and navigation products" loading="lazy" decoding="async">
                     </div>
+                    <figcaption>Comparative research surfaced six patterns worth testing.</figcaption>
                 </figure>
             </article>
 
@@ -608,9 +749,10 @@
                     <p>I grouped current and planned overlays into categories that could scale.</p>
                 </div>
                 <figure class="map-media wide">
-                    <div class="map-media-frame" role="img" aria-label="Placeholder for the map-layer sorting exercise">
-                        <div><span>Image placeholder</span><strong>Layer inventory and sorting</strong></div>
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/Inventory.png" width="3385" height="3295" alt="Inventory sorting base maps, cell coverage, land types, environmental layers, and weather into scalable categories" loading="lazy" decoding="async">
                     </div>
+                    <figcaption>The inventory separated base maps from optional overlays and identified Pro content.</figcaption>
                 </figure>
             </article>
 
@@ -620,48 +762,43 @@
                     <h3>Interviews and user journey</h3>
                     <p>Interviews with full-time RVers revealed when and why they compare map types.</p>
                 </div>
-                <div class="map-process-grid">
-                    <figure class="map-media">
-                        <div class="map-media-frame" role="img" aria-label="Placeholder for interview notes"><div><span>Image placeholder</span><strong>Interview notes</strong></div></div>
-                    </figure>
-                    <figure class="map-media">
-                        <div class="map-media-frame" role="img" aria-label="Placeholder for the RVer user journey"><div><span>Image placeholder</span><strong>User journey</strong></div></div>
-                    </figure>
-                </div>
+                <figure class="map-media contained">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/user%20expert.png" width="1354" height="1809" alt="Annotated journey from an expert RVer interview highlighting difficulty reaching and changing map overlays" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>The journey exposed a key usability issue: the drawer moved the control out of thumb reach.</figcaption>
+                </figure>
             </article>
 
             <article class="map-process-step">
                 <div class="map-copy">
                     <span class="map-step-label">04 · Explore the interface</span>
-                    <h3>Wireframes and visual experimentation</h3>
-                    <p>I tested familiar patterns and visual directions for fast selection.</p>
+                    <h3>Wireframe familiar patterns</h3>
+                    <p>I translated the strongest research patterns into Campendium’s map experience.</p>
                 </div>
-                <div class="map-process-grid">
-                    <figure class="map-media">
-                        <div class="map-media-frame" role="img" aria-label="Placeholder for early wireframes"><div><span>Image placeholder</span><strong>Wireframes</strong></div></div>
-                    </figure>
-                    <figure class="map-media">
-                        <div class="map-media-frame" role="img" aria-label="Placeholder for visual design variations"><div><span>Image placeholder</span><strong>Visual experiments</strong></div></div>
-                    </figure>
-                </div>
+                <figure class="map-media">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/Wireframes.png" width="2506" height="1579" alt="Six wireframe directions translating familiar competitor patterns into Campendium" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Six directions tested navigation, grouping, and selection patterns.</figcaption>
+                </figure>
             </article>
 
             <article class="map-process-step">
                 <div class="map-copy">
-                    <span class="map-step-label">05 · Prototype and extend</span>
-                    <h3>Interaction design and additional states</h3>
-                    <p>I prototyped the interaction, then extended it to desktop, Android, dark mode, and locked states.</p>
+                    <span class="map-step-label">05 · Refine the system</span>
+                    <h3>Iterate from structure to UI</h3>
+                    <p>I carried the strongest wireframe into higher fidelity, testing hierarchy, tile treatments, density, and selection feedback until the experience felt clear and cohesive.</p>
                 </div>
-                <div class="map-process-grid">
-                    <figure class="map-media">
-                        <div class="map-media-frame" role="img" aria-label="Placeholder for the interaction prototype"><div><span>Image placeholder</span><strong>Interaction prototype</strong></div></div>
-                    </figure>
-                    <figure class="map-media">
-                        <div class="map-media-frame" role="img" aria-label="Placeholder for desktop Android locked and dark-mode states"><div><span>Image placeholder</span><strong>Responsive and alternate states</strong></div></div>
-                    </figure>
-                </div>
+                <figure class="map-media">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/Ui%20experimentation.png" width="3721" height="1265" alt="Six interface iterations exploring tile hierarchy, section spacing, selection outlines, radios, checkboxes, counts, and Clear All placement" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Each pass resolved a different layer of hierarchy and interaction feedback.</figcaption>
+                </figure>
             </article>
         </div>
+        </details>
     </section>
 
     <section class="map-section" aria-labelledby="map-solution">
@@ -671,13 +808,10 @@
         </div>
 
         <figure class="map-media wide">
-            <div class="map-media-frame" role="img" aria-label="Placeholder for the complete proposed map overlays redesign">
-                <div>
-                    <span>Image placeholder</span>
-                    <strong>Complete map overlays system</strong>
-                    <small>Add the mobile, drawer, modal, and in-map solution screens here.</small>
-                </div>
+            <div class="map-image-frame">
+                <img src="images/Map%20Overlays/proposed%20solution.png" width="1293" height="1205" alt="Final mobile flow from the default map through drawer selections, a smoke disclaimer, and the applied smoke overlay" loading="lazy" decoding="async">
             </div>
+            <figcaption>The final flow brings every map type into one drawer and keeps selected overlays visible on the map.</figcaption>
         </figure>
     </section>
 
@@ -689,7 +823,7 @@
 
         <details class="map-section-disclosure">
             <summary>
-                <span class="map-summary-closed">View 9 design decisions</span>
+                <span class="map-summary-closed">View 7 design decisions</span>
                 <span class="map-summary-open">Hide design decisions</span>
                 <span class="map-summary-icon" aria-hidden="true">⌄</span>
             </summary>
@@ -697,29 +831,16 @@
         <div class="map-decision-list">
             <article class="map-decision">
                 <div class="map-decision-copy">
-                    <span class="map-step-label">Mobile-first</span>
-                    <h3>Start where most people use the feature</h3>
-                    <p>Starting on mobile clarified priorities before adapting the system for desktop.</p>
-                </div>
-                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for mobile-first designs"><div><span>Image placeholder</span><strong>Mobile-first designs</strong></div></div></figure>
-            </article>
-
-            <article class="map-decision">
-                <div class="map-decision-copy">
-                    <span class="map-step-label">Consolidation</span>
-                    <h3>Replace three buttons with one entry point</h3>
-                    <p>One control gives every layer a consistent home.</p>
-                </div>
-                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for before and after overlay buttons"><div><span>Image placeholder</span><strong>Consolidated map button</strong></div></div></figure>
-            </article>
-
-            <article class="map-decision">
-                <div class="map-decision-copy">
                     <span class="map-step-label">Drawer pattern</span>
                     <h3>Keep behavior users already understand</h3>
                     <p>The existing drawer already supported scrolling, varied screen heights, and thumb-friendly use.</p>
                 </div>
-                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for the updated map drawer"><div><span>Image placeholder</span><strong>Updated drawer</strong></div></div></figure>
+                <figure class="map-media">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/Design%20Decision%20Screenshots/decision-drawer-pattern-clean.png" width="730" height="742" alt="Before and after comparison showing the short base-map drawer expanded into a full drawer for base maps and overlays" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Before: one short drawer. After: one scalable home for the full system.</figcaption>
+                </figure>
             </article>
 
             <article class="map-decision">
@@ -728,7 +849,12 @@
                     <h3>Make options visual and easy to tap</h3>
                     <p>Image-and-text tiles preview each overlay and provide large tap targets.</p>
                 </div>
-                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for before and after overlay tiles"><div><span>Image placeholder</span><strong>Updated tile pattern</strong></div></div></figure>
+                <figure class="map-media">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/Design%20Decision%20Screenshots/Screenshot%202026-08-06%20at%2011.06.39%E2%80%AFAM.png" width="732" height="768" alt="Before and after comparison highlighting the familiar visual tile pattern reused for the new smoke overlay" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>The same preview-and-label pattern now works across map types.</figcaption>
+                </figure>
             </article>
 
             <article class="map-decision">
@@ -737,7 +863,12 @@
                     <h3>Use categories to reduce cognitive load</h3>
                     <p>Familiar categories make a growing collection easier to scan.</p>
                 </div>
-                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for categorized overlay drawer"><div><span>Image placeholder</span><strong>Internal categories</strong></div></div></figure>
+                <figure class="map-media">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/Design%20Decision%20Screenshots/decision-information-architecture-clean-v3.png" width="500" height="878" alt="Map overlay drawer highlighting categories for cell coverage, public lands, and environmental information" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Category labels create structure without adding another navigation level.</figcaption>
+                </figure>
             </article>
 
             <article class="map-decision">
@@ -746,7 +877,12 @@
                     <h3>Make single selection unmistakable</h3>
                     <p>Distinct selected and unselected states clarify the active base map.</p>
                 </div>
-                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for base-map selection states"><div><span>Image placeholder</span><strong>Base-map selection</strong></div></div></figure>
+                <figure class="map-media">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/Design%20Decision%20Screenshots/decision-base-maps-clean-v2.png" width="502" height="868" alt="Map drawer highlighting the base-map section and its selected default map" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Base maps stay visually separate because they replace one another.</figcaption>
+                </figure>
             </article>
 
             <article class="map-decision">
@@ -755,7 +891,12 @@
                     <h3>Support multiple simultaneous selections</h3>
                     <p>Checkboxes show that multiple overlays can be active at once.</p>
                 </div>
-                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for multi-select map overlay tiles"><div><span>Image placeholder</span><strong>Overlay multi-selection</strong></div></div></figure>
+                <figure class="map-media">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/Design%20Decision%20Screenshots/Screenshot%202026-08-06%20at%2011.06.56%E2%80%AFAM.png" width="454" height="860" alt="Map drawer highlighting the multi-select overlay section with smoke selected" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Unlike base maps, overlays can work together.</figcaption>
+                </figure>
             </article>
 
             <article class="map-decision">
@@ -764,16 +905,26 @@
                     <h3>Keep the current state visible</h3>
                     <p>A count pill keeps the number of active overlays visible.</p>
                 </div>
-                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for the number-of-selections pill"><div><span>Image placeholder</span><strong>Selection-count pill</strong></div></div></figure>
+                <figure class="map-media">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/Design%20Decision%20Screenshots/Screenshot%202026-08-06%20at%2011.07.01%E2%80%AFAM.png" width="412" height="836" alt="Map drawer highlighting a pill that says one overlay is selected" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>The count stays visible even when the selected tile is below the fold.</figcaption>
+                </figure>
             </article>
 
             <article class="map-decision">
                 <div class="map-decision-copy">
                     <span class="map-step-label">Bulk action</span>
-                    <h3>Reveal “Clear all” only when it is useful</h3>
+                    <h3>Reveal “Clear All” only when it is useful</h3>
                     <p>The action appears only when users have something to clear.</p>
                 </div>
-                <figure class="map-media tall"><div class="map-media-frame" role="img" aria-label="Placeholder for the conditional Clear all action"><div><span>Image placeholder</span><strong>Clear-all action</strong></div></div></figure>
+                <figure class="map-media">
+                    <div class="map-image-frame">
+                        <img src="images/Map%20Overlays/Design%20Decision%20Screenshots/decision-clear-all-clean-v2.png" width="470" height="856" alt="Map drawer highlighting the Clear All action beside the overlay selection count" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>One action removes every active overlay and returns the map to its base state.</figcaption>
+                </figure>
             </article>
         </div>
         </details>
@@ -782,40 +933,51 @@
     <section class="map-section" aria-labelledby="map-outcomes">
         <div class="map-section-heading">
             <h2 id="map-outcomes">Outcomes and impact</h2>
-            <p>The redesign launched with positive feedback and a clearer home for Pro features.</p>
+            <p>The redesign launched as one clearer, more scalable system for Campendium’s map tools.</p>
         </div>
 
-        <div class="map-outcome-grid">
-            <article class="map-impact-card">
-                <h3>Results and metrics</h3>
-                <p>Users immediately shared positive feedback.</p>
-            </article>
-            <article class="map-impact-card">
-                <h3>Business impact</h3>
-                <p>Product reported higher conversion and engagement; exact metrics were unavailable.</p>
-            </article>
-            <article class="map-impact-card">
-                <h3>User impact</h3>
-                <p>One view makes overlays easier to compare and combine.</p>
-            </article>
-        </div>
+        <div class="map-impact-story">
+            <div class="map-impact-copy">
+                <span class="map-step-label">Launched outcome</span>
+                <h3>One control made the map easier to use—and easier to grow.</h3>
+                <p class="map-impact-intro">RVers could compare and combine map context without bouncing between disconnected controls. Campendium gained a clearer surface for Pro features and future layers.</p>
 
-        <div class="map-outcomes" style="margin-top: clamp(3rem, 6vw, 5rem);">
-            <div>
-                <h3>What I learned</h3>
-                <ul>
-                    <li>Clearly justifying design decisions strengthened my communication</li>
-                    <li>Collaboration and adaptability matter when joining a team as the newcomer</li>
-                    <li>At some point, exploration must turn into a decision and forward momentum</li>
-                </ul>
+                <dl class="map-impact-list">
+                    <div class="map-impact-item">
+                        <dt>User</dt>
+                        <dd>One drawer made layers easier to find, combine, review, and clear.</dd>
+                    </div>
+                    <div class="map-impact-item">
+                        <dt>Business</dt>
+                        <dd>The team reported stronger engagement and Pro conversion after launch; exact figures were not retained.</dd>
+                    </div>
+                    <div class="map-impact-item">
+                        <dt>Product</dt>
+                        <dd>Future maps, overlays, and access states gained a reusable framework.</dd>
+                    </div>
+                </dl>
+
+                <p class="map-impact-reflection"><strong>Leadership takeaway:</strong> Connecting each interaction decision to customer comprehension and product scalability made the case for one unified system.</p>
             </div>
-            <div>
-                <h3>A scalable foundation</h3>
-                <p>The system supports future maps, overlays, and paid features.</p>
-            </div>
-        </div>
 
-        <p class="map-quote">One organized system replaced a collection of disconnected map controls.</p>
+            <figure class="map-result-media">
+                <div class="map-animation-shell">
+                    <img
+                        src="images/Map%20Overlays/final%20gif.png"
+                        data-map-animation
+                        data-animated-src="images/Map%20Overlays/final-map-overlays.gif"
+                        data-static-src="images/Map%20Overlays/final%20gif.png"
+                        width="222"
+                        height="480"
+                        alt="Launched Campendium map with the consolidated layers control, map markers, filters, and campground details"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                    <button class="map-animation-toggle" type="button" data-map-animation-toggle>Pause animation</button>
+                </div>
+                <figcaption>The launched map experience keeps layers inside the primary browsing flow.</figcaption>
+            </figure>
+        </div>
     </section>
 
     <nav class="case-study-navigation" aria-label="More UX case studies">

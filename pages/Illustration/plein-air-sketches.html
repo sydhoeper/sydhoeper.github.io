@@ -1,4 +1,47 @@
-<article class="project-placeholder">
+<style>
+  .main-content:has(.plein-air-page) {
+    max-width: none;
+  }
+
+  .plein-air-page h1 {
+    margin-bottom: 2rem;
+  }
+
+  .plein-air-gallery {
+    display: grid;
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  .plein-air-gallery img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+  }
+</style>
+
+<article class="plein-air-page" data-gallery-page>
   <h1>Plein Air Sketches</h1>
-  <p>This project page is coming soon.</p>
+
+  <div class="plein-air-gallery" data-gallery>
+    <button class="art-gallery-item" type="button" data-gallery-item>
+      <img src="/images/Plein%20Air%20Sketches/porch-and-flamingos.png" width="2400" height="1448" alt="Colorful plein air sketch of a porch decorated with prayer flags, tapestries, flowers, and pink flamingos" loading="eager" decoding="async">
+    </button>
+
+    <button class="art-gallery-item" type="button" data-gallery-item>
+      <img src="/images/Plein%20Air%20Sketches/dogs-in-the-yard.png" width="2400" height="1577" alt="Plein air sketch of two white dogs resting together on a raised blue cot in a backyard" loading="lazy" decoding="async">
+    </button>
+
+    <button class="art-gallery-item" type="button" data-gallery-item>
+      <img src="/images/Plein%20Air%20Sketches/lake-and-inner-tube.png" width="2400" height="1525" alt="Plein air sketch of a wooded lake with a dock, American flag, and yellow and blue inner tube" loading="lazy" decoding="async">
+    </button>
+  </div>
+
+  <dialog class="gallery-lightbox" data-gallery-dialog aria-label="Plein air sketches viewer">
+    <button class="gallery-lightbox-close" type="button" data-gallery-close aria-label="Close full-screen image">&times;</button>
+    <button class="gallery-lightbox-nav" type="button" data-gallery-previous aria-label="Previous image">&#8592;</button>
+    <figure><img data-gallery-image alt=""><figcaption data-gallery-counter aria-live="polite"></figcaption></figure>
+    <button class="gallery-lightbox-nav" type="button" data-gallery-next aria-label="Next image">&#8594;</button>
+  </dialog>
 </article>

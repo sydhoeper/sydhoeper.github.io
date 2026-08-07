@@ -1,5 +1,11 @@
 const contentArea = document.querySelector("#main-content");
 const navigationLinks = document.querySelectorAll("[data-page]");
+const sidebar = document.querySelector(".sidebar");
+const navigationMenu = document.querySelector("#navigation-menu");
+const mobileNavigationToggle = document.querySelector(".mobile-nav-toggle");
+const mobileNavigationOverlay = document.querySelector(".mobile-nav-overlay");
+const siteFooter = document.querySelector(".site-footer");
+const mobileNavigationQuery = window.matchMedia("(max-width: 850px)");
 let pageLoadRequest = 0;
 
 const pageMap = {
@@ -14,6 +20,7 @@ const pageMap = {
     emora: "pages/Games and Interactive Media/oracle-deck.html",
     "desire-chamber": "pages/Games and Interactive Media/desire-chamber.html",
     "buffalo-jump": "pages/Games and Interactive Media/buffalo-jump.html",
+    "aria-engine": "pages/Games and Interactive Media/aria-engine.html",
     "vr-bee": "pages/Games and Interactive Media/bee-game.html",
     frokost: "pages/Games and Interactive Media/frokost-game.html",
 
@@ -28,6 +35,83 @@ const pageMap = {
     "marker-doodles": "pages/Illustration/marker-doodles.html",
     "plein-air": "pages/Illustration/plein-air-sketches.html"
 };
+
+function setMobileNavigation(isOpen, { restoreFocus = false } = {}) {
+    if (!navigationMenu || !mobileNavigationToggle || !mobileNavigationOverlay) {
+        return;
+    }
+
+    const shouldOpen = mobileNavigationQuery.matches && isOpen;
+
+    document.body.classList.toggle("mobile-navigation-open", shouldOpen);
+    mobileNavigationToggle.setAttribute("aria-expanded", String(shouldOpen));
+    mobileNavigationToggle.setAttribute(
+        "aria-label",
+        shouldOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+    navigationMenu.hidden = mobileNavigationQuery.matches && !shouldOpen;
+    mobileNavigationOverlay.setAttribute("aria-hidden", String(!shouldOpen));
+    contentArea.inert = shouldOpen;
+    siteFooter.inert = shouldOpen;
+
+    if (restoreFocus && mobileNavigationQuery.matches) {
+        mobileNavigationToggle.focus();
+    }
+}
+
+function initializeMobileNavigation() {
+    if (!sidebar || !navigationMenu || !mobileNavigationToggle || !mobileNavigationOverlay) {
+        return;
+    }
+
+    setMobileNavigation(false);
+
+    mobileNavigationToggle.addEventListener("click", () => {
+        const isOpen = mobileNavigationToggle.getAttribute("aria-expanded") === "true";
+        setMobileNavigation(!isOpen);
+    });
+
+    mobileNavigationOverlay.addEventListener("click", () => {
+        setMobileNavigation(false, { restoreFocus: true });
+    });
+
+    sidebar.addEventListener("click", (event) => {
+        if (event.target.closest("a[href]")) {
+            setMobileNavigation(false);
+        }
+    });
+
+    sidebar.addEventListener("keydown", (event) => {
+        const isOpen = mobileNavigationToggle.getAttribute("aria-expanded") === "true";
+
+        if (!isOpen || event.key !== "Tab") {
+            return;
+        }
+
+        const focusableItems = [...sidebar.querySelectorAll("a[href], button:not([disabled])")]
+            .filter((element) => !element.hidden && element.getClientRects().length > 0);
+        const firstItem = focusableItems[0];
+        const lastItem = focusableItems.at(-1);
+
+        if (event.shiftKey && document.activeElement === firstItem) {
+            event.preventDefault();
+            lastItem.focus();
+        } else if (!event.shiftKey && document.activeElement === lastItem) {
+            event.preventDefault();
+            firstItem.focus();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && mobileNavigationToggle.getAttribute("aria-expanded") === "true") {
+            setMobileNavigation(false, { restoreFocus: true });
+        }
+    });
+
+    mobileNavigationQuery.addEventListener("change", () => {
+        setMobileNavigation(false);
+    });
+}
 
 async function loadPage(pageName, { focusContent = false } = {}) {
     const requestId = ++pageLoadRequest;
@@ -59,6 +143,7 @@ async function loadPage(pageName, { focusContent = false } = {}) {
         requestAnimationFrame(() => {
             fitGameEmbeds(contentArea);
             initializeGalleries(contentArea);
+            initializeMapAnimations(contentArea);
             finishPageLoad(pageName, focusContent);
         });
     } catch (error) {
@@ -100,6 +185,32 @@ function fitGameEmbeds(root = document) {
 
         iframe.style.transform = `scale(${scale})`;
         container.style.height = `${embedHeight * scale}px`;
+    });
+}
+
+function initializeMapAnimations(root = document) {
+    root.querySelectorAll("[data-map-animation-toggle]").forEach((button) => {
+        const shell = button.closest(".map-animation-shell");
+        const image = shell?.querySelector("[data-map-animation]");
+        const animatedSource = image?.dataset.animatedSrc;
+        const staticSource = image?.dataset.staticSrc;
+
+        if (!image || !animatedSource || !staticSource) {
+            return;
+        }
+
+        const setPlaying = (shouldPlay) => {
+            image.src = shouldPlay ? animatedSource : staticSource;
+            button.textContent = shouldPlay ? "Pause animation" : "Play animation";
+            button.dataset.playing = String(shouldPlay);
+        };
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        setPlaying(!prefersReducedMotion);
+
+        button.addEventListener("click", () => {
+            setPlaying(button.dataset.playing !== "true");
+        });
     });
 }
 
@@ -248,6 +359,8 @@ window.addEventListener("hashchange", () => {
 window.addEventListener("resize", () => {
     fitGameEmbeds(contentArea);
 });
+
+initializeMobileNavigation();
 
 const initialPage = getCurrentPage();
 if (initialPage) {

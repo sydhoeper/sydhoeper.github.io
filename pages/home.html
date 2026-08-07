@@ -100,9 +100,10 @@
         gap: 0.6rem;
         padding: 0.88rem 1.2rem;
         border: 2px solid var(--color-dark);
-        background: var(--color-dark);
-        color: var(--color-background);
-        font-weight: 750;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--color-dark);
+        font-weight: var(--type-eyebrow-weight);
         line-height: 1.2;
         text-decoration: none;
     }
@@ -134,9 +135,9 @@
     }
 
     .snapshot-card,
-    .career-list li {
-        padding: clamp(1.35rem, 3vw, 2rem);
-        border-radius: 16px;
+    .practice-card {
+        padding: var(--card-padding);
+        border-radius: var(--card-radius);
         background: var(--surface-card);
         box-shadow: var(--shadow-card);
     }
@@ -154,7 +155,7 @@
     .snapshot-card strong {
         display: block;
         margin: 0;
-        font-size: clamp(1.5rem, 3cqi, 2rem);
+        font-size: var(--card-heading-size);
         line-height: 1.05;
     }
 
@@ -194,72 +195,32 @@
     }
 
     .career-list {
+        position: relative;
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: clamp(1rem, 3vw, 1.75rem);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(1.25rem, 3vw, 3rem);
         margin: 0;
         padding: 0;
         list-style: none;
-        counter-reset: career;
     }
 
-    .career-list li {
-        position: relative;
-        min-height: 210px;
-        text-align: left;
-        counter-increment: career;
-    }
-
-    .career-list li::before {
-        content: "0" counter(career);
-        display: block;
-        margin-bottom: 1.6rem;
-        color: var(--color-muted);
-        font-size: var(--type-eyebrow-size);
-        font-weight: var(--type-eyebrow-weight);
-        letter-spacing: var(--type-eyebrow-spacing);
-        text-align: left;
-    }
-
-    .career-list h3 {
-        margin: 0 0 0.6rem;
-        font-size: var(--type-card-heading-size);
-        line-height: var(--type-card-heading-line-height);
-    }
-
-    .career-list p {
-        margin: 0;
-        line-height: var(--type-body-line-height);
-    }
-
-    .home-practice {
-        padding-top: clamp(4rem, 7vw, 6.5rem);
-    }
-
-    .practice-grid {
-        position: relative;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: clamp(1.5rem, 4vw, 4rem);
-    }
-
-    .practice-grid::before {
+    .career-list::before {
         content: "";
         position: absolute;
         top: 7px;
-        right: 16.666%;
-        left: 16.666%;
+        right: 12.5%;
+        left: 12.5%;
         height: 1px;
         background: rgba(var(--color-dark-rgb), 0.32);
     }
 
-    .practice-card {
+    .career-list li {
         position: relative;
-        padding: 3.25rem 0.75rem 0;
+        padding: 3.25rem 0.5rem 0;
         text-align: center;
     }
 
-    .practice-card::before {
+    .career-list li::before {
         content: "";
         position: absolute;
         z-index: 1;
@@ -274,7 +235,7 @@
         transform: translateX(-50%);
     }
 
-    .practice-card::after {
+    .career-list li::after {
         content: "";
         position: absolute;
         top: 15px;
@@ -284,9 +245,45 @@
         background: rgba(var(--color-dark-rgb), 0.32);
     }
 
-    .practice-card .practice-number {
+    .career-number {
         display: block;
         margin-bottom: 1.6rem;
+        color: var(--color-muted);
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        letter-spacing: var(--type-eyebrow-spacing);
+    }
+
+    .career-list h3 {
+        margin: 0 0 0.6rem;
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
+    }
+
+    .career-list p {
+        margin: 0;
+        line-height: var(--type-body-line-height);
+    }
+
+    .home-practice {
+        padding-top: clamp(4rem, 7vw, 6.5rem);
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .practice-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .practice-card {
+        min-height: 180px;
+        text-align: left;
+    }
+
+    .practice-card .practice-number {
+        display: block;
+        margin-bottom: 1rem;
         color: var(--color-muted);
         font-size: var(--type-eyebrow-size);
         font-weight: var(--type-eyebrow-weight);
@@ -304,12 +301,16 @@
     }
 
     .home-personal {
+        padding-top: clamp(3rem, 5vw, 4.5rem);
+        padding-bottom: clamp(3rem, 5vw, 4.5rem);
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .home-personal-intro {
         display: grid;
         grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-        gap: clamp(2.5rem, 7vw, 6rem);
+        gap: clamp(2rem, 5vw, 4rem);
         align-items: start;
-        padding-top: clamp(4rem, 7vw, 6.5rem);
-        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
     }
 
     .home-personal h2 {
@@ -317,26 +318,72 @@
     }
 
     .home-personal-copy p {
-        margin: 0 0 1.15rem;
-        font-size: var(--type-section-copy-size);
-        line-height: var(--type-section-copy-line-height);
+        margin: 0 0 1rem;
+        font-size: var(--text-base);
+        line-height: 1.55;
+    }
+
+    .home-personal-copy p:last-of-type {
+        margin-bottom: 1.75rem;
+    }
+
+    .home-personal-gallery {
+        display: grid;
+        width: 100%;
+        max-width: none;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: clamp(0.55rem, 1vw, 0.8rem);
+        align-items: stretch;
+        margin: clamp(1.5rem, 3vw, 2.25rem) auto 0;
+    }
+
+    .home-personal-photo {
+        min-width: 0;
+        margin: 0;
+        overflow: hidden;
+        aspect-ratio: 5 / 4;
+        border-radius: 14px;
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
+    }
+
+    .home-personal-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        margin: 0;
+        object-fit: cover;
+    }
+
+    .home-personal-photo-skiing img,
+    .home-personal-photo-olive img {
+        transform: scale(1.06);
+    }
+
+    .home-personal-photo-house img {
+        object-position: center 18%;
     }
 
     .interest-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.7rem;
+        gap: 0.4rem;
         margin: 0;
         padding: 0;
         list-style: none;
     }
 
     .interest-list li {
-        padding: 0.55rem 0.8rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.3rem 0.55rem;
         border: 1px solid rgba(var(--color-dark-rgb), 0.2);
         border-radius: 999px;
         background: var(--surface-card);
-        font-weight: 650;
+        font-size: 0.82rem;
+        font-weight: 600;
     }
 
     .contact-section {
@@ -404,13 +451,42 @@
 
         .home-hero,
         .home-section-heading,
-        .home-personal,
+        .home-personal-intro,
         .contact-section {
             grid-template-columns: 1fr;
         }
 
+        .home-personal-gallery {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-rows: none;
+        }
+
+        .home-personal-photo,
+        .home-personal-photo-travel,
+        .home-personal-photo-house,
+        .home-personal-photo-rollerblading,
+        .home-personal-photo-skiing,
+        .home-personal-photo-olive {
+            grid-column: auto;
+            grid-row: auto;
+        }
+
+        .home-personal-intro {
+            gap: 1.5rem;
+        }
+
+        .home-personal-photo {
+            aspect-ratio: 1;
+        }
+
         .home-portrait {
-            max-width: 440px;
+            width: min(82%, 320px);
+            max-width: 320px;
+            justify-self: center;
+        }
+
+        .home-hero-copy {
+            order: -1;
         }
 
         .home-snapshot,
@@ -418,11 +494,12 @@
             grid-template-columns: 1fr;
         }
 
-        .practice-grid {
+        .career-list {
+            grid-template-columns: 1fr;
             gap: 2.25rem;
         }
 
-        .practice-grid::before {
+        .career-list::before {
             top: 7px;
             right: auto;
             bottom: 0;
@@ -431,29 +508,25 @@
             height: auto;
         }
 
-        .practice-card {
+        .career-list li {
             padding: 0 0 0 3rem;
             text-align: left;
         }
 
-        .practice-card::before {
+        .career-list li::before {
             left: 0;
             transform: none;
         }
 
-        .practice-card::after {
+        .career-list li::after {
             top: 7px;
             left: 15px;
             width: 24px;
             height: 1px;
         }
 
-        .career-list {
-            grid-template-columns: 1fr;
-        }
-
         .snapshot-card,
-        .career-list li {
+        .practice-card {
             min-height: 0;
         }
 
@@ -468,20 +541,24 @@
 
         <div class="home-hero-copy">
             <p class="home-eyebrow">Senior Product Designer</p>
-            <h1 id="home-title">Making complexity human.</h1>
-            <p class="home-lede">Clear, inclusive products for real people.</p>
-
+            <h1 id="home-title">Turning ambiguity into intuitive experiences.</h1>
+            <p class="home-lede">I untangle complex systems into clear paths that work for real people.</p>
+            <div class="home-actions">
+                <a class="home-button" href="/documents/syd-hoeper-resume.pdf?v=3" target="_blank" rel="noopener noreferrer">
+                    View my resume <span aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span>
+                </a>
+            </div>
         </div>
     </section>
 
     <section class="home-block home-snapshot" aria-label="Experience at a glance">
         <div class="snapshot-card">
-            <strong>8.5+ years</strong>
-            <span>Designing products from research through delivery.</span>
+            <strong>9 years experience</strong>
+            <span>Designing software from research through delivery.</span>
         </div>
         <div class="snapshot-card">
-            <strong>0→1 launches</strong>
-            <span>Taking new ideas from first concept to launch.</span>
+            <strong>Products from 0→1</strong>
+            <span>Giving early ideas structure, direction, and momentum.</span>
         </div>
         <div class="snapshot-card">
             <strong>Systems thinking</strong>
@@ -493,29 +570,31 @@
         <div class="home-section-heading">
             <div>
                 <p class="home-eyebrow">Background</p>
-                <h2 id="background-title">A nonlinear path to better products.</h2>
+                <h2 id="background-title">From details to systems.</h2>
             </div>
-            <p>
-                I started with physical products and followed the work toward increasingly complex, human problems.
-            </p>
+            <p>My scope grew from hands-on design to end-to-end ownership, complex services, and new forms of interaction.</p>
         </div>
 
         <ol class="career-list">
             <li>
-                <h3>Physical products taught me constraints</h3>
-                <p>I designed off-road motorcycle gear at Giant Loop Moto.</p>
+                <span class="career-number">2016</span>
+                <h3>Designed within constraints</h3>
+                <p>My physical product design background taught me to balance user needs, materials, and manufacturing.</p>
             </li>
             <li>
-                <h3>Startups taught me ownership</h3>
-                <p>As Trip Pilot’s sole designer, I guided products from research through launch.</p>
+                <span class="career-number">2018</span>
+                <h3>Owned products end to end</h3>
+                <p>As Trip Pilot’s sole designer, I led research, strategy, design, and delivery.</p>
             </li>
             <li>
-                <h3>Platforms taught me systems thinking</h3>
-                <p>At Active911, Roadpass, and Ad Hoc, I designed complex services for responders, travelers, and Veterans’ families.</p>
+                <span class="career-number">2020</span>
+                <h3>Shaped connected systems</h3>
+                <p>I designed high-stakes services for responders, travelers, and Veterans’ families.</p>
             </li>
             <li>
-                <h3>Graduate school keeps my perspective fresh</h3>
-                <p>I’m pursuing an MFA in Game Design and Interactive Media, expanding how I think about interaction, play, and experience design.</p>
+                <span class="career-number">2025</span>
+                <h3>Expanding my perspective</h3>
+                <p>I’m pursuing an MFA in games and interactive media, exploring new ways to think about interaction, behavior, and play.</p>
             </li>
         </ol>
     </section>
@@ -551,28 +630,53 @@
     </section>
 
     <section class="home-block home-personal" aria-labelledby="personal-title">
-        <div>
-            <p class="home-eyebrow">Beyond the work</p>
-            <h2 id="personal-title">Curious by nature, maker by habit.</h2>
+        <div class="home-personal-intro">
+            <div>
+                <p class="home-eyebrow">Beyond the work</p>
+                <h2 id="personal-title">A little about me.</h2>
+            </div>
+
+            <div class="home-personal-copy">
+                <p>
+                    I’m a proud trans/nonbinary designer (they/them) living in a little log cabin in Missoula, MT with my black cat, Olive.
+                </p>
+                <p>
+                    I’m happiest outside skiing, rollerblading with my partner, Carly, or traveling in my Scamp trailer.
+                </p>
+
+                <ul class="interest-list" aria-label="Interests">
+                    <li><span aria-hidden="true">⛷️</span> Skiing</li>
+                    <li><span aria-hidden="true">🎨</span> Painting</li>
+                    <li><span aria-hidden="true">🪟</span> Stained glass</li>
+                    <li><span aria-hidden="true">🕹️</span> Game design</li>
+                    <li><span aria-hidden="true">⛺</span> Camping</li>
+                    <li><span aria-hidden="true">🌱</span> Gardening</li>
+                    <li><span aria-hidden="true">✈️</span> Traveling</li>
+                    <li><span aria-hidden="true">🛼</span> Rollerblading</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="home-personal-copy">
-            <p>
-                I’m a proud trans/nonbinary designer (they/them) living in Missoula, Montana.
-            </p>
-            <p>
-                Away from work, I’m usually outside or experimenting with games, creative technology, and new ways to make something funky.
-            </p>
+        <div class="home-personal-gallery" aria-label="Life beyond design">
+            <figure class="home-personal-photo home-personal-photo-tile home-personal-photo-travel">
+                <img src="images/syd-and-carly-traveling.jpeg" width="5712" height="4284" alt="Syd and their partner, Carly, smiling together in front of a waterfall while traveling" loading="lazy" decoding="async">
+            </figure>
 
-            <ul class="interest-list" aria-label="Interests">
-                <li>Game design</li>
-                <li>Creative technology</li>
-                <li>Skiing</li>
-                <li>Stained glass</li>
-                <li>Painting</li>
-                <li>River surfing</li>
-                <li>Camping</li>
-            </ul>
+            <figure class="home-personal-photo home-personal-photo-tile home-personal-photo-olive">
+                <img src="images/olive.png" width="2113" height="1511" alt="Olive, Syd’s black cat, lying down with wide curious eyes" loading="lazy" decoding="async">
+            </figure>
+
+            <figure class="home-personal-photo home-personal-photo-house">
+                <img src="images/syd-house.png" width="1268" height="1643" alt="Syd smiling in front of their log cabin in Missoula" loading="lazy" decoding="async">
+            </figure>
+
+            <figure class="home-personal-photo home-personal-photo-tile home-personal-photo-skiing">
+                <img src="images/syd-skiing.png" width="2147" height="1615" alt="Syd posing on skis above a snowy Montana valley" loading="lazy" decoding="async">
+            </figure>
+
+            <figure class="home-personal-photo home-personal-photo-tile home-personal-photo-rollerblading">
+                <img src="images/syd-and-carly-rollerblading.jpeg" width="4896" height="3672" alt="Syd and Carly smiling in helmets while rollerblading together at sunset" loading="lazy" decoding="async">
+            </figure>
         </div>
     </section>
 
