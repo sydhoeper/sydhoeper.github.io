@@ -681,15 +681,29 @@ body:has(.gallery-lightbox[open]) {
     display: inline;
 }
 
-.case-study-summary-icon {
-    display: inline-block;
-    font-size: 1.15em;
-    line-height: 1;
-    transition: transform 180ms ease;
+.case-study-disclosure > summary .case-study-summary-icon {
+    display: block;
+    width: 0.8rem;
+    height: 0.8rem;
+    flex: 0 0 0.8rem;
+    background: currentColor;
+    font-size: 0;
+    line-height: 0;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 3.5 6 8.5 10 3.5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 3.5 6 8.5 10 3.5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+    transform: none;
+    transform-origin: center;
 }
 
-.case-study-disclosure[open] .case-study-summary-icon {
-    transform: rotate(180deg);
+.case-study-disclosure[open] > summary .case-study-summary-icon {
+    transform: scaleY(-1);
+}
+
+.case-study-disclosure > :not(summary) {
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: var(--card-radius);
+    background: rgba(var(--color-dark-rgb), 0.035);
+    box-shadow: inset 0 0 0 1px rgba(var(--color-dark-rgb), 0.035);
 }
 
 @container (max-width: 720px) {
