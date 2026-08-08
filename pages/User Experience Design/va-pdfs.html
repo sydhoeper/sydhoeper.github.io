@@ -671,7 +671,21 @@
 
     .va-decision-list {
         display: grid;
-        gap: clamp(4rem, 9vw, 8rem);
+        gap: 0;
+    }
+
+    .va-decision-list .va-decision {
+        padding: clamp(2rem, 4.5vw, 4rem) 0;
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .va-decision-list .va-decision:first-child {
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    .va-decision-list .va-decision:last-child {
+        padding-bottom: 0;
     }
 
     .va-section-disclosure {
