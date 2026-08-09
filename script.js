@@ -117,21 +117,44 @@ function initializeMobileNavigation() {
 function initializeSparkleTrail() {
     const finePointerQuery = window.matchMedia("(pointer: fine)");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const toggle = document.querySelector("[data-sparkler-toggle]");
+    let sparklesEnabled = false;
     let lastSparkleTime = 0;
     let lastX = 0;
     let lastY = 0;
 
+    const setSparklesEnabled = (enabled) => {
+        sparklesEnabled = enabled;
+        toggle?.setAttribute("aria-checked", String(enabled));
+
+        if (!enabled) {
+            document.querySelectorAll(".cursor-sparkle").forEach((sparkle) => sparkle.remove());
+        }
+    };
+
+    setSparklesEnabled(false);
+    toggle?.addEventListener("click", () => {
+        setSparklesEnabled(!sparklesEnabled);
+    });
+
     document.addEventListener("pointermove", (event) => {
-        if (!finePointerQuery.matches || reducedMotionQuery.matches) {
+        if (!sparklesEnabled || !finePointerQuery.matches || reducedMotionQuery.matches) {
             return;
         }
 
         const now = performance.now();
         const distance = Math.hypot(event.clientX - lastX, event.clientY - lastY);
 
-        if (now - lastSparkleTime < 64 || distance < 7) {
+        if (now - lastSparkleTime < 72 || distance < 9) {
             return;
         }
+
+        const directionX = (event.clientX - lastX) / distance;
+        const directionY = (event.clientY - lastY) / distance;
+        const perpendicularX = -directionY;
+        const perpendicularY = directionX;
+        const spread = Math.random() * 22 - 11;
+        const trailDistance = 10 + Math.random() * 7;
 
         lastSparkleTime = now;
         lastX = event.clientX;
@@ -139,13 +162,13 @@ function initializeSparkleTrail() {
 
         const sparkle = document.createElement("span");
         sparkle.className = "cursor-sparkle";
-        sparkle.textContent = "✨";
+        sparkle.textContent = "✦";
         sparkle.setAttribute("aria-hidden", "true");
-        sparkle.style.left = `${event.clientX + (Math.random() * 8 - 4)}px`;
-        sparkle.style.top = `${event.clientY + (Math.random() * 8 - 4)}px`;
-        sparkle.style.fontSize = `${11 + Math.random() * 5}px`;
-        sparkle.style.setProperty("--sparkle-drift-x", `${Math.random() * 14 - 7}px`);
-        sparkle.style.setProperty("--sparkle-drift-y", `${8 + Math.random() * 10}px`);
+        sparkle.style.left = `${event.clientX - directionX * 7 + perpendicularX * spread}px`;
+        sparkle.style.top = `${event.clientY - directionY * 7 + perpendicularY * spread}px`;
+        sparkle.style.fontSize = `${10 + Math.random() * 12}px`;
+        sparkle.style.setProperty("--sparkle-drift-x", `${-directionX * trailDistance + perpendicularX * spread * 0.5}px`);
+        sparkle.style.setProperty("--sparkle-drift-y", `${-directionY * trailDistance + perpendicularY * spread * 0.5}px`);
         sparkle.style.setProperty("--sparkle-rotation", `${Math.random() * 40 - 20}deg`);
 
         document.body.append(sparkle);
@@ -285,6 +308,10 @@ function initializeCarousels(root = document) {
         if (slides.length === 0 || !previousButton || !nextButton) {
             return;
         }
+
+        const hasMultipleSlides = slides.length > 1;
+        previousButton.hidden = !hasMultipleSlides;
+        nextButton.hidden = !hasMultipleSlides;
 
         let currentIndex = 0;
         let pointerStartX = null;

@@ -1,9 +1,376 @@
-<article class="project-video-page">
-  <p class="project-eyebrow">Interactive Media · 2025</p>
-  <h1>VR Flight of the Honeybee</h1>
+<style>
+  .bee-study {
+    width: 100%;
+    max-width: 980px;
+    container: bee-study / inline-size;
+  }
 
-  <video class="project-video" controls playsinline preload="metadata" poster="/images/Videos/web/flight-of-the-honey-bee-poster.jpg" aria-label="VR Flight of the Honeybee video">
-    <source src="/images/Flight%20of%20the%20Honey%20Bee%20(Hoeper%20%2725).MP4" type="video/mp4">
-    Your browser does not support embedded video.
-  </video>
+  .bee-study h1,
+  .bee-study h2,
+  .bee-study h3 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  .bee-hero,
+  .bee-section {
+    padding: clamp(var(--space-7), 6vw, var(--space-8)) 0;
+  }
+
+  .bee-hero {
+    padding-top: 0;
+  }
+
+  .bee-eyebrow,
+  .bee-label {
+    display: block;
+    margin: 0 0 0.85rem;
+    color: var(--color-muted);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    line-height: var(--type-eyebrow-line-height);
+    letter-spacing: var(--type-eyebrow-spacing);
+    text-transform: uppercase;
+  }
+
+  .bee-hero h1 {
+    max-width: 13ch;
+    margin: 0 0 1.2rem;
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+  }
+
+  .bee-lede {
+    max-width: 56ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .bee-facts,
+  .bee-card-grid,
+  .bee-loop {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+  }
+
+  .bee-facts {
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+  }
+
+  .bee-fact,
+  .bee-card,
+  .bee-loop-step {
+    padding: var(--card-padding);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .bee-fact strong,
+  .bee-fact span {
+    display: block;
+  }
+
+  .bee-fact strong {
+    margin-bottom: var(--space-2);
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .bee-fact span {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .bee-carousel {
+    margin-top: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .bee-carousel .emora-carousel-viewport {
+    height: clamp(420px, 68vh, 680px);
+    border-radius: 28px;
+  }
+
+  .bee-section {
+    border-top: var(--border-subtle);
+  }
+
+  .bee-section-heading {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+    margin-bottom: clamp(var(--space-6), 4vw, var(--space-7));
+  }
+
+  .bee-section-heading h2 {
+    margin: 0;
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .bee-section-heading p {
+    max-width: 58ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .bee-loop {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .bee-loop-step {
+    position: relative;
+    min-width: 0;
+  }
+
+  .bee-loop-step:not(:last-child)::after {
+    content: "\2192";
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: calc(0px - clamp(var(--space-3), 2vw, var(--space-5)));
+    width: clamp(var(--space-3), 2vw, var(--space-5));
+    color: var(--color-muted);
+    font-size: 1rem;
+    line-height: 1;
+    text-align: center;
+    transform: translate(50%, -50%);
+  }
+
+  .bee-loop-number {
+    display: block;
+    margin-bottom: var(--space-5);
+    color: var(--color-muted);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    letter-spacing: var(--type-eyebrow-spacing);
+  }
+
+  .bee-loop-step h3,
+  .bee-card h3 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .bee-loop-step p,
+  .bee-card p,
+  .bee-card li {
+    line-height: var(--type-body-line-height);
+  }
+
+  .bee-loop-step p,
+  .bee-card p {
+    margin: 0;
+  }
+
+  .bee-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .bee-card ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .bee-card li + li {
+    margin-top: var(--space-2);
+  }
+
+  .bee-result {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+  }
+
+  .bee-result h2 {
+    margin: 0;
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .bee-result-copy {
+    max-width: 58ch;
+  }
+
+  .bee-result-copy strong {
+    display: block;
+    margin-bottom: var(--space-3);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .bee-result-copy p {
+    margin: 0;
+    line-height: var(--type-body-line-height);
+  }
+
+  @container bee-study (max-width: 760px) {
+    .bee-facts,
+    .bee-loop,
+    .bee-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bee-loop-step::after {
+      display: none;
+    }
+  }
+
+  @container bee-study (max-width: 560px) {
+    .bee-section-heading,
+    .bee-result,
+    .bee-facts,
+    .bee-loop,
+    .bee-card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bee-carousel .emora-carousel-viewport {
+      height: min(68vh, 560px);
+    }
+  }
+</style>
+
+<article class="bee-study">
+  <header class="bee-hero">
+    <span class="bee-eyebrow">Unity · VR class project · 2025</span>
+    <h1>VR Flight of the Honeybee</h1>
+    <p class="bee-lede">A virtual-reality game about completing a honeybee’s working loop: forage for nectar, return to the hive, and pass it to other bees.</p>
+
+    <div class="bee-facts" aria-label="Project facts">
+      <div class="bee-fact"><strong>Role</strong><span>Solo designer and developer</span></div>
+      <div class="bee-fact"><strong>Format</strong><span>VR game</span></div>
+      <div class="bee-fact"><strong>Core loop</strong><span>Forage, return, and exchange</span></div>
+      <div class="bee-fact"><strong>Result</strong><span>100% class grade</span></div>
+    </div>
+
+    <section class="emora-carousel bee-carousel" data-carousel aria-label="VR Flight of the Honeybee media gallery" aria-roledescription="carousel">
+      <div class="emora-carousel-viewport">
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Video 1 of 1">
+          <video controls playsinline preload="metadata" poster="/images/Videos/web/flight-of-the-honey-bee-poster.jpg" aria-label="VR Flight of the Honeybee gameplay recording">
+            <source src="/images/Flight%20of%20the%20Honey%20Bee%20(Hoeper%20%2725).MP4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+        </figure>
+
+        <button class="emora-carousel-arrow previous" type="button" data-carousel-previous aria-label="Previous slide">&#8249;</button>
+        <button class="emora-carousel-arrow next" type="button" data-carousel-next aria-label="Next slide">&#8250;</button>
+      </div>
+
+      <div class="emora-carousel-controls">
+        <div class="emora-carousel-thumbnails" data-carousel-thumbnails aria-label="Choose a honeybee media item by thumbnail"></div>
+        <p class="visually-hidden" data-carousel-status aria-live="polite">Video 1 of 1</p>
+      </div>
+    </section>
+  </header>
+
+  <section class="bee-section" aria-labelledby="bee-loop-heading">
+    <div class="bee-section-heading">
+      <h2 id="bee-loop-heading">The game loop</h2>
+      <p>I built the experience around one complete trip between the landscape and the hive. Each stage gives the player a different task while preserving one clear goal: bring nectar home.</p>
+    </div>
+
+    <ol class="bee-loop" aria-label="VR Flight of the Honeybee game loop">
+      <li class="bee-loop-step">
+        <span class="bee-loop-number">01</span>
+        <h3>Fly</h3>
+        <p>Control the bee and navigate through the environment.</p>
+      </li>
+      <li class="bee-loop-step">
+        <span class="bee-loop-number">02</span>
+        <h3>Collect</h3>
+        <p>Visit flowers and gather nectar before returning home.</p>
+      </li>
+      <li class="bee-loop-step">
+        <span class="bee-loop-number">03</span>
+        <h3>Return</h3>
+        <p>Carry the collected nectar back into the hive.</p>
+      </li>
+      <li class="bee-loop-step">
+        <span class="bee-loop-number">04</span>
+        <h3>Exchange</h3>
+        <p>Shoot small nectar spheres toward the other bees to pass it along.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="bee-section" aria-labelledby="bee-built-heading">
+    <div class="bee-section-heading">
+      <h2 id="bee-built-heading">What I built</h2>
+      <p>The assignment pushed me beyond a single interaction. I had to connect movement, collection, two environments, and a final exchange into one understandable VR sequence.</p>
+    </div>
+
+    <div class="bee-card-grid">
+      <article class="bee-card">
+        <span class="bee-label">Movement</span>
+        <h3>Bee-scale flight</h3>
+        <p>The player directly controls the bee, making navigation the foundation of every other action.</p>
+      </article>
+      <article class="bee-card">
+        <span class="bee-label">Progress</span>
+        <h3>Nectar collection</h3>
+        <p>Flowers turn exploration into a clear task and give the return trip a purpose.</p>
+      </article>
+      <article class="bee-card">
+        <span class="bee-label">Completion</span>
+        <h3>Hive exchange</h3>
+        <p>The nectar-sphere interaction gives players a distinct final action inside the hive.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bee-section bee-result" aria-labelledby="bee-result-heading">
+    <h2 id="bee-result-heading">Result</h2>
+    <div class="bee-result-copy">
+      <strong>A complete VR loop from flower to hive.</strong>
+      <p>I earned 100% on the class project and finished with a playable experience that connected locomotion, collection, environment transitions, and object exchange.</p>
+    </div>
+  </section>
+
+  <section class="bee-section" aria-labelledby="bee-next-heading">
+    <div class="bee-section-heading">
+      <h2 id="bee-next-heading">Next steps</h2>
+      <p>If I continued the project, I would focus on making the flight more comfortable, the goals easier to read, and the hive feel more alive.</p>
+    </div>
+
+    <div class="bee-card-grid">
+      <article class="bee-card">
+        <span class="bee-label">Comfort</span>
+        <h3>Tune flight controls</h3>
+        <p>Add sensitivity options and test movement with more players to reduce VR discomfort.</p>
+      </article>
+      <article class="bee-card">
+        <span class="bee-label">Feedback</span>
+        <h3>Clarify each action</h3>
+        <p>Strengthen visual and audio feedback for collecting, carrying, and exchanging nectar.</p>
+      </article>
+      <article class="bee-card">
+        <span class="bee-label">World</span>
+        <h3>Expand the hive</h3>
+        <p>Add more bee behaviors and environmental responses so the exchange feels connected to a living system.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bee-section" aria-labelledby="bee-reflection-heading">
+    <div class="bee-section-heading">
+      <h2 id="bee-reflection-heading">What I’d do differently</h2>
+      <p>I would prototype locomotion and comfort settings before building the full environment, test the complete game loop earlier, and make the nectar exchange understandable without verbal explanation.</p>
+    </div>
+  </section>
 </article>

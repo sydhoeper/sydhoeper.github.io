@@ -1,9 +1,267 @@
-<article class="project-video-page">
-  <p class="project-eyebrow">Interactive Media · 2025</p>
-  <h1>AR Frokost for Beginners</h1>
+<style>
+  .frokost-study {
+    width: 100%;
+    max-width: 980px;
+    container: frokost-study / inline-size;
+  }
 
-  <video class="project-video" controls playsinline preload="metadata" poster="/images/Videos/web/frokost-for-beginners-poster.jpg" aria-label="AR Frokost video">
-    <source src="/images/Videos/web/frokost-for-beginners.mp4" type="video/mp4">
-    Your browser does not support embedded video.
-  </video>
+  .frokost-study h1,
+  .frokost-study h2,
+  .frokost-study h3 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  .frokost-hero,
+  .frokost-section {
+    padding: clamp(var(--space-7), 6vw, var(--space-8)) 0;
+  }
+
+  .frokost-hero {
+    padding-top: 0;
+  }
+
+  .frokost-eyebrow,
+  .frokost-label {
+    display: block;
+    margin: 0 0 0.85rem;
+    color: var(--color-muted);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    line-height: var(--type-eyebrow-line-height);
+    letter-spacing: var(--type-eyebrow-spacing);
+    text-transform: uppercase;
+  }
+
+  .frokost-hero h1 {
+    max-width: 12ch;
+    margin: 0 0 1.2rem;
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+  }
+
+  .frokost-lede {
+    max-width: 54ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .frokost-facts,
+  .frokost-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+  }
+
+  .frokost-facts {
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+  }
+
+  .frokost-fact,
+  .frokost-card {
+    padding: var(--card-padding);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .frokost-fact strong,
+  .frokost-fact span {
+    display: block;
+  }
+
+  .frokost-fact strong {
+    margin-bottom: var(--space-2);
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .frokost-fact span {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .frokost-carousel {
+    margin-top: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .frokost-carousel .emora-carousel-viewport {
+    height: clamp(420px, 68vh, 680px);
+    border-radius: 28px;
+  }
+
+  .frokost-carousel-note {
+    max-width: 62ch;
+    margin: var(--space-3) auto 0;
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .frokost-section {
+    border-top: var(--border-subtle);
+  }
+
+  .frokost-section-heading {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+    margin-bottom: clamp(var(--space-6), 4vw, var(--space-7));
+  }
+
+  .frokost-section-heading h2 {
+    margin: 0;
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .frokost-section-heading p {
+    max-width: 58ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .frokost-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .frokost-card h3 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .frokost-card p {
+    margin: 0;
+    line-height: var(--type-body-line-height);
+  }
+
+  .frokost-takeaway {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+  }
+
+  .frokost-takeaway h2 {
+    margin: 0;
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .frokost-takeaway-copy {
+    max-width: 58ch;
+  }
+
+  .frokost-takeaway-copy strong {
+    display: block;
+    margin-bottom: var(--space-3);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .frokost-takeaway-copy p {
+    margin: 0;
+    line-height: var(--type-body-line-height);
+  }
+
+  @container frokost-study (max-width: 760px) {
+    .frokost-facts,
+    .frokost-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @container frokost-study (max-width: 560px) {
+    .frokost-section-heading,
+    .frokost-takeaway,
+    .frokost-facts,
+    .frokost-card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .frokost-carousel .emora-carousel-viewport {
+      height: min(68vh, 560px);
+    }
+  }
+</style>
+
+<article class="frokost-study">
+  <header class="frokost-hero">
+    <span class="frokost-eyebrow">Unity · AR class project · 2025</span>
+    <h1>Frokost for Beginners</h1>
+    <p class="frokost-lede">My first Unity project: an augmented-reality recipe game inspired by a trip to Norway and my attempt to learn the language through something practical.</p>
+
+    <div class="frokost-facts" aria-label="Project facts">
+      <div class="frokost-fact"><strong>Role</strong><span>Solo designer and developer</span></div>
+      <div class="frokost-fact"><strong>Format</strong><span>AR recipe game</span></div>
+      <div class="frokost-fact"><strong>Milestone</strong><span>First Unity project</span></div>
+      <div class="frokost-fact"><strong>Result</strong><span>100% class grade</span></div>
+    </div>
+
+    <section class="emora-carousel frokost-carousel" data-carousel aria-label="Frokost for Beginners media gallery" aria-roledescription="carousel">
+      <div class="emora-carousel-viewport">
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Video 1 of 1">
+          <video controls playsinline preload="metadata" poster="/images/Videos/web/frokost-for-beginners-poster.jpg" aria-label="Frokost for Beginners augmented-reality game recording">
+            <source src="/images/Videos/web/frokost-for-beginners.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+        </figure>
+
+        <button class="emora-carousel-arrow previous" type="button" data-carousel-previous aria-label="Previous slide">&#8249;</button>
+        <button class="emora-carousel-arrow next" type="button" data-carousel-next aria-label="Next slide">&#8250;</button>
+      </div>
+
+      <div class="emora-carousel-controls">
+        <div class="emora-carousel-thumbnails" data-carousel-thumbnails aria-label="Choose a Frokost media item by thumbnail"></div>
+        <p class="visually-hidden" data-carousel-status aria-live="polite">Video 1 of 1</p>
+      </div>
+    </section>
+
+    <p class="frokost-carousel-note"><strong>Recording note:</strong> The experience runs in AR. The black area is where the live camera view appeared during play; the screen recording did not capture that passthrough.</p>
+  </header>
+
+  <section class="frokost-section" aria-labelledby="frokost-idea">
+    <div class="frokost-section-heading">
+      <h2 id="frokost-idea">The idea</h2>
+      <p>After visiting Norway, I wanted to make language practice feel less like memorizing vocabulary and more like completing a familiar task. A recipe gave the lesson a natural order and a concrete outcome.</p>
+    </div>
+
+    <div class="frokost-card-grid">
+      <article class="frokost-card">
+        <span class="frokost-label">Inspiration</span>
+        <h3>Learn through context</h3>
+        <p>Norwegian words and instructions appeared as part of making breakfast instead of as isolated flash cards.</p>
+      </article>
+      <article class="frokost-card">
+        <span class="frokost-label">Structure</span>
+        <h3>Use the recipe as the flow</h3>
+        <p>The order of ingredients and actions created a simple beginning-to-end learning sequence.</p>
+      </article>
+      <article class="frokost-card">
+        <span class="frokost-label">Challenge</span>
+        <h3>Learn Unity by building</h3>
+        <p>I taught myself the basics of scenes, interactions, sequencing, and AR while making the project.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="frokost-section frokost-takeaway" aria-labelledby="frokost-result">
+    <h2 id="frokost-result">Result</h2>
+    <div class="frokost-takeaway-copy">
+      <strong>A small project with a useful first.</strong>
+      <p>I earned 100% on the assignment and finished with a working AR game—and, more importantly, a foundation in Unity that I could build on in later interactive projects.</p>
+    </div>
+  </section>
 </article>

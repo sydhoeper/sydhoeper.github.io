@@ -591,6 +591,10 @@ a:hover {
     right: 1rem;
 }
 
+.emora-carousel-arrow[hidden] {
+    display: none;
+}
+
 .emora-carousel-arrow:hover,
 .emora-carousel-arrow:focus-visible {
     background: rgba(255, 255, 255, 0.96);
@@ -938,21 +942,23 @@ body:has(.gallery-lightbox[open]) {
     pointer-events: none;
     user-select: none;
     opacity: 0;
-    font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+    color: #f4c430;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
     line-height: 1;
-    filter: drop-shadow(0 1px 3px rgba(89, 100, 180, 0.22));
-    animation: cursor-sparkle-fade 720ms ease-out forwards;
+    filter: drop-shadow(0 1px 3px rgba(155, 103, 0, 0.24));
+    animation: cursor-sparkle-fade 600ms ease-out forwards;
     will-change: transform, opacity;
 }
 
 @keyframes cursor-sparkle-fade {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.35) rotate(0deg);
+        transform: translate(-50%, -50%) scale(0.45) rotate(0deg);
     }
 
     24% {
-        opacity: 0.62;
+        opacity: 0.72;
     }
 
     100% {
@@ -962,7 +968,7 @@ body:has(.gallery-lightbox[open]) {
                 calc(-50% + var(--sparkle-drift-x)),
                 calc(-50% + var(--sparkle-drift-y))
             )
-            scale(0.78)
+            scale(0.9)
             rotate(var(--sparkle-rotation));
     }
 }
@@ -989,8 +995,12 @@ body:has(.gallery-lightbox[open]) {
 .site-footer {
     position: relative;
     z-index: 1;
+    display: flex;
     grid-column: 1 / -1;
     width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
     padding: 24px;
     background: var(--color-text);
     color: var(--color-background);
@@ -998,6 +1008,67 @@ body:has(.gallery-lightbox[open]) {
 
 .site-footer p {
     margin: 0;
+}
+
+.sparkler-toggle {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.45rem 0.55rem 0.45rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.sparkler-toggle:hover {
+    border-color: currentColor;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+.sparkler-toggle:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.sparkler-toggle-track {
+    position: relative;
+    display: block;
+    width: 42px;
+    height: 24px;
+    flex: 0 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.16);
+    transition: background-color 180ms ease;
+}
+
+.sparkler-toggle-track::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-background);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+    transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.sparkler-toggle[aria-checked="true"] .sparkler-toggle-track {
+    background: #f4c430;
+}
+
+.sparkler-toggle[aria-checked="true"] .sparkler-toggle-track::after {
+    background: var(--color-dark);
+    transform: translateX(18px);
 }
 
 @media screen and (max-width: 850px) {
