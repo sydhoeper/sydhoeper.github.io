@@ -1,0 +1,826 @@
+<style>
+    .design-system {
+        width: 100%;
+        max-width: 980px;
+        container: design-system / inline-size;
+    }
+
+    .design-system h1,
+    .design-system h2,
+    .design-system h3,
+    .design-system p {
+        color: var(--color-dark);
+    }
+
+    .ds-hero {
+        padding-bottom: clamp(var(--space-8), 8vw, var(--space-9));
+    }
+
+    .ds-eyebrow,
+    .ds-label {
+        display: block;
+        margin: 0 0 0.85rem;
+        color: var(--color-muted);
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        line-height: var(--type-eyebrow-line-height);
+        letter-spacing: var(--type-eyebrow-spacing);
+        text-transform: uppercase;
+    }
+
+    .ds-hero h1 {
+        max-width: 13ch;
+        margin: 0 0 1.25rem;
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-line-height);
+        letter-spacing: var(--type-hero-spacing);
+    }
+
+    .ds-lede {
+        max-width: 58ch;
+        margin: 0;
+        font-size: var(--type-lede-size);
+        line-height: var(--type-lede-line-height);
+    }
+
+    .ds-status {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+        align-items: center;
+        margin-top: var(--space-6);
+    }
+
+    .ds-badge {
+        display: inline-flex;
+        min-height: 32px;
+        align-items: center;
+        padding: 0.4rem 0.75rem;
+        border: var(--border-subtle);
+        border-radius: var(--radius-pill);
+        background: var(--surface-card);
+        color: var(--color-dark);
+        font-size: 0.82rem;
+        font-weight: 650;
+        line-height: 1;
+    }
+
+    .ds-badge.current {
+        border-color: var(--color-dark);
+        background: var(--color-dark);
+        color: var(--color-background);
+    }
+
+    .ds-jump-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2) var(--space-4);
+        margin-top: var(--space-7);
+        padding: var(--space-5);
+        border: var(--border-subtle);
+        border-radius: var(--radius-md);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
+    }
+
+    .ds-jump-nav a {
+        color: var(--color-dark);
+        font-weight: 650;
+        text-underline-offset: 3px;
+    }
+
+    .ds-section {
+        padding: clamp(var(--space-8), 8vw, var(--space-9)) 0;
+        border-top: var(--border-subtle);
+        scroll-margin-top: var(--space-7);
+    }
+
+    .ds-section-heading {
+        display: grid;
+        grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+        gap: clamp(var(--space-6), 6vw, 5rem);
+        align-items: start;
+        margin-bottom: clamp(var(--space-7), 6vw, 5rem);
+    }
+
+    .ds-section-heading h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
+    }
+
+    .ds-section-heading p {
+        max-width: 58ch;
+        margin: 0;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
+    }
+
+    .ds-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(var(--space-4), 3vw, var(--space-6));
+    }
+
+    .ds-grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .ds-card {
+        min-width: 0;
+        padding: var(--card-padding);
+        border: var(--border-subtle);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
+    }
+
+    .ds-card h3 {
+        margin: 0 0 var(--space-3);
+        font-family: var(--font-body);
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
+    }
+
+    .ds-card p,
+    .ds-card li {
+        line-height: var(--type-body-line-height);
+    }
+
+    .ds-card p {
+        margin: 0;
+    }
+
+    .ds-card ul {
+        margin: var(--space-3) 0 0;
+        padding-left: 1.25rem;
+    }
+
+    .ds-card li + li {
+        margin-top: var(--space-2);
+    }
+
+    .ds-color-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-4);
+    }
+
+    .ds-color {
+        overflow: hidden;
+        border: var(--border-subtle);
+        border-radius: var(--radius-md);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
+    }
+
+    .ds-color-swatch {
+        min-height: 126px;
+        border-bottom: var(--border-subtle);
+    }
+
+    .ds-color-copy {
+        padding: var(--space-4);
+    }
+
+    .ds-color-copy strong,
+    .ds-color-copy code,
+    .ds-color-copy span {
+        display: block;
+    }
+
+    .ds-color-copy code {
+        margin: var(--space-1) 0 var(--space-2);
+        color: var(--color-muted);
+        font-size: 0.84rem;
+    }
+
+    .ds-color-copy span {
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    .ds-type-stack {
+        display: grid;
+        gap: var(--space-4);
+    }
+
+    .ds-type-row {
+        display: grid;
+        grid-template-columns: minmax(135px, 0.3fr) minmax(0, 1fr);
+        gap: var(--space-6);
+        align-items: baseline;
+        padding: var(--space-5) 0;
+        border-bottom: var(--border-subtle);
+    }
+
+    .ds-type-row:first-child {
+        padding-top: 0;
+    }
+
+    .ds-type-meta {
+        color: var(--color-muted);
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+
+    .ds-type-sample {
+        margin: 0;
+    }
+
+    .ds-type-sample.display {
+        font-family: var(--font-display);
+        font-size: clamp(2.6rem, 7cqi, 4.5rem);
+        font-weight: 700;
+        line-height: 0.98;
+        letter-spacing: -0.04em;
+    }
+
+    .ds-type-sample.section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5cqi, 3.25rem);
+        font-weight: 700;
+        line-height: 1.02;
+        letter-spacing: -0.035em;
+    }
+
+    .ds-type-sample.lede {
+        font-size: var(--type-lede-size);
+        line-height: var(--type-lede-line-height);
+    }
+
+    .ds-type-sample.body {
+        max-width: 58ch;
+        font-size: 1rem;
+        line-height: var(--type-body-line-height);
+    }
+
+    .ds-type-sample.eyebrow {
+        color: var(--color-muted);
+        font-size: var(--type-eyebrow-size);
+        font-weight: var(--type-eyebrow-weight);
+        letter-spacing: var(--type-eyebrow-spacing);
+        text-transform: uppercase;
+    }
+
+    .ds-token-list {
+        display: grid;
+        gap: var(--space-3);
+        margin: 0;
+    }
+
+    .ds-space-token {
+        display: grid;
+        grid-template-columns: 76px minmax(0, 1fr) 52px;
+        gap: var(--space-4);
+        align-items: center;
+    }
+
+    .ds-space-token code,
+    .ds-space-token span:last-child {
+        color: var(--color-muted);
+        font-size: 0.82rem;
+    }
+
+    .ds-space-bar {
+        width: var(--token-width);
+        max-width: 100%;
+        height: 12px;
+        border-radius: var(--radius-pill);
+        background: var(--color-accent);
+    }
+
+    .ds-shape-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-5);
+        align-items: flex-end;
+    }
+
+    .ds-shape {
+        display: grid;
+        width: 116px;
+        height: 84px;
+        border: var(--border-subtle);
+        background: var(--surface-card);
+        color: var(--color-muted);
+        font-size: 0.78rem;
+        place-items: center;
+    }
+
+    .ds-shape.small { border-radius: var(--radius-sm); }
+    .ds-shape.medium { border-radius: var(--radius-md); }
+    .ds-shape.large { border-radius: var(--radius-lg); }
+    .ds-shape.pill { height: 48px; border-radius: var(--radius-pill); }
+
+    .ds-layout-demo {
+        display: grid;
+        grid-template-columns: 0.32fr 0.68fr;
+        min-height: 220px;
+        overflow: hidden;
+        border: var(--border-subtle);
+        border-radius: var(--radius-md);
+        background: var(--color-background);
+        box-shadow: var(--shadow-card);
+    }
+
+    .ds-layout-sidebar {
+        padding: var(--space-5);
+        background: var(--color-sidebar-background);
+        box-shadow: 4px 0 14px rgba(var(--color-dark-rgb), 0.07);
+    }
+
+    .ds-layout-main {
+        display: grid;
+        grid-template-columns: 0.7fr 1.3fr;
+        gap: var(--space-5);
+        align-content: start;
+        padding: var(--space-6);
+    }
+
+    .ds-placeholder {
+        height: 10px;
+        margin-bottom: var(--space-3);
+        border-radius: var(--radius-pill);
+        background: rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .ds-placeholder.dark { width: 72%; background: var(--color-dark); }
+    .ds-placeholder.short { width: 54%; }
+    .ds-placeholder.accent { width: 38%; background: var(--color-accent); }
+
+    .ds-component-block + .ds-component-block {
+        margin-top: var(--space-8);
+        padding-top: var(--space-7);
+        border-top: var(--border-subtle);
+    }
+
+    .ds-component-heading {
+        margin: 0 0 var(--space-5);
+        font-family: var(--font-display);
+        font-size: clamp(1.7rem, 4cqi, 2.4rem);
+        line-height: 1.05;
+    }
+
+    .ds-component-stage {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4);
+        align-items: center;
+        padding: clamp(var(--space-5), 4vw, var(--space-7));
+        border-radius: var(--radius-md);
+        background: rgba(var(--color-dark-rgb), 0.035);
+        box-shadow: inset 0 0 0 1px rgba(var(--color-dark-rgb), 0.05);
+    }
+
+    .ds-button {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 0.85rem 1.2rem;
+        border: 2px solid var(--color-dark);
+        border-radius: var(--radius-pill);
+        background: transparent;
+        color: var(--color-dark);
+        font-weight: 650;
+        line-height: 1.1;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color var(--transition-ui), border-color var(--transition-ui), color var(--transition-ui);
+    }
+
+    .ds-button.primary {
+        background: var(--color-dark);
+        color: var(--color-background);
+    }
+
+    .ds-button:hover,
+    .ds-button:focus-visible {
+        border-color: var(--color-accent);
+        background: var(--color-accent);
+        color: white;
+        text-decoration: none;
+    }
+
+    .ds-button[disabled] {
+        border-color: rgba(var(--color-dark-rgb), 0.22);
+        background: transparent;
+        color: var(--color-muted);
+        cursor: not-allowed;
+        opacity: 0.62;
+    }
+
+    .ds-text-link {
+        color: var(--color-dark);
+        font-weight: 650;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+    }
+
+    .ds-disclosure {
+        width: 100%;
+    }
+
+    .ds-disclosure summary {
+        display: flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+        padding: var(--space-4) 0;
+        border-bottom: var(--border-subtle);
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .ds-disclosure summary::after {
+        content: "+";
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+
+    .ds-disclosure[open] summary::after {
+        content: "\2212";
+    }
+
+    .ds-disclosure p {
+        max-width: 62ch;
+        margin: 0;
+        padding: var(--space-4) 0 0;
+        line-height: var(--type-body-line-height);
+    }
+
+    .ds-checklist {
+        display: grid;
+        gap: var(--space-3);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .ds-checklist li {
+        position: relative;
+        padding-left: 1.8rem;
+        line-height: var(--type-body-line-height);
+    }
+
+    .ds-checklist li::before {
+        content: "\2713";
+        position: absolute;
+        left: 0;
+        color: var(--color-accent);
+        font-weight: 700;
+    }
+
+    .ds-rule {
+        padding: var(--space-5);
+        border-left: 4px solid var(--color-accent);
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        background: rgba(26, 112, 199, 0.07);
+    }
+
+    .ds-rule strong,
+    .ds-rule span {
+        display: block;
+    }
+
+    .ds-rule span {
+        margin-top: var(--space-2);
+        line-height: var(--type-body-line-height);
+    }
+
+    @container design-system (max-width: 720px) {
+        .ds-section-heading,
+        .ds-type-row,
+        .ds-layout-main {
+            grid-template-columns: 1fr;
+        }
+
+        .ds-grid.three,
+        .ds-color-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @container design-system (max-width: 520px) {
+        .ds-grid,
+        .ds-grid.three,
+        .ds-color-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .ds-layout-demo {
+            grid-template-columns: 1fr;
+        }
+
+        .ds-layout-sidebar {
+            min-height: 82px;
+        }
+
+        .ds-space-token {
+            grid-template-columns: 68px minmax(0, 1fr) 42px;
+            gap: var(--space-3);
+        }
+    }
+</style>
+
+<article class="design-system">
+    <header class="ds-hero">
+        <span class="ds-eyebrow">Local design system · Version 0.1</span>
+        <h1>A shared language for Syd’s portfolio.</h1>
+        <p class="ds-lede">This living reference documents the visual and interaction decisions already used across the website. It is intentionally practical: complete enough to keep current pages cohesive, and flexible enough to grow with the portfolio.</p>
+
+        <div class="ds-status" aria-label="Design system status">
+            <span class="ds-badge current">Current baseline</span>
+            <span class="ds-badge">Responsive</span>
+            <span class="ds-badge">Keyboard ready</span>
+            <span class="ds-badge">WCAG-minded</span>
+        </div>
+
+        <nav class="ds-jump-nav" aria-label="Design system sections">
+            <a href="#local-design-system" data-scroll-target="ds-principles">Principles</a>
+            <a href="#local-design-system" data-scroll-target="ds-foundations">Foundations</a>
+            <a href="#local-design-system" data-scroll-target="ds-layout">Layout</a>
+            <a href="#local-design-system" data-scroll-target="ds-components">Components</a>
+            <a href="#local-design-system" data-scroll-target="ds-content">Content &amp; media</a>
+            <a href="#local-design-system" data-scroll-target="ds-accessibility">Accessibility</a>
+        </nav>
+    </header>
+
+    <section class="ds-section" id="ds-principles">
+        <div class="ds-section-heading">
+            <h2>Principles</h2>
+            <p>The system should feel warm, direct, expressive, and usable. Editorial typography gives the work personality; restrained components keep that personality from competing with the projects.</p>
+        </div>
+
+        <div class="ds-grid three">
+            <article class="ds-card">
+                <span class="ds-label">01 · Clarity</span>
+                <h3>Let the work lead</h3>
+                <p>Use generous space, direct labels, and predictable hierarchy so project imagery and outcomes remain the focus.</p>
+            </article>
+            <article class="ds-card">
+                <span class="ds-label">02 · Character</span>
+                <h3>Warm, not sterile</h3>
+                <p>Cream surfaces, deep aubergine text, and Fraunces headings create a distinct editorial voice without reducing utility.</p>
+            </article>
+            <article class="ds-card">
+                <span class="ds-label">03 · Access</span>
+                <h3>Make states obvious</h3>
+                <p>Links look like links, focus is visible, controls have names, and interactions never depend on color alone.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="ds-section" id="ds-foundations">
+        <div class="ds-section-heading">
+            <h2>Foundations</h2>
+            <p>Foundations are the site-wide source of truth. Components should use these CSS custom properties instead of introducing close-but-different colors, spacing, radii, or type treatments.</p>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Color</h3>
+            <div class="ds-color-grid">
+                <article class="ds-color">
+                    <div class="ds-color-swatch" style="background:#1C1220"></div>
+                    <div class="ds-color-copy"><strong>Ink</strong><code>--color-dark · #1C1220</code><span>Primary text, selected states, strong controls.</span></div>
+                </article>
+                <article class="ds-color">
+                    <div class="ds-color-swatch" style="background:#FFF9F0"></div>
+                    <div class="ds-color-copy"><strong>Canvas</strong><code>--color-background · #FFF9F0</code><span>Main page background and inverse text.</span></div>
+                </article>
+                <article class="ds-color">
+                    <div class="ds-color-swatch" style="background:#FFFEFB"></div>
+                    <div class="ds-color-copy"><strong>Paper</strong><code>--color-sidebar-background · #FFFEFB</code><span>Navigation and quiet elevated areas.</span></div>
+                </article>
+                <article class="ds-color">
+                    <div class="ds-color-swatch" style="background:#1A70C7"></div>
+                    <div class="ds-color-copy"><strong>Action blue</strong><code>--color-accent · #1A70C7</code><span>Hover, focus, active media, and progress.</span></div>
+                </article>
+                <article class="ds-color">
+                    <div class="ds-color-swatch" style="background:#6F6677"></div>
+                    <div class="ds-color-copy"><strong>Muted ink</strong><code>--color-muted · #6F6677</code><span>Supporting labels and secondary information.</span></div>
+                </article>
+                <article class="ds-color">
+                    <div class="ds-color-swatch" style="background:rgba(252,250,246,.92)"></div>
+                    <div class="ds-color-copy"><strong>Card surface</strong><code>--surface-card</code><span>Warm translucent surface for grouped content.</span></div>
+                </article>
+                <article class="ds-color">
+                    <div class="ds-color-swatch" style="background:#E8E3DC"></div>
+                    <div class="ds-color-copy"><strong>Media canvas</strong><code>--color-media-canvas · #E8E3DC</code><span>Neutral letterboxing and image placeholders.</span></div>
+                </article>
+                <article class="ds-color">
+                    <div class="ds-color-swatch" style="background:#232323"></div>
+                    <div class="ds-color-copy"><strong>Media stage</strong><code>--color-media-stage · #232323</code><span>Dark framing for videos and light media artifacts.</span></div>
+                </article>
+            </div>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Typography</h3>
+            <div class="ds-type-stack">
+                <div class="ds-type-row">
+                    <div class="ds-type-meta">Display<br>Fraunces 700</div>
+                    <p class="ds-type-sample display">Make the complex feel clear.</p>
+                </div>
+                <div class="ds-type-row">
+                    <div class="ds-type-meta">Section heading<br>Fraunces 700</div>
+                    <p class="ds-type-sample section-title">A system built to scale.</p>
+                </div>
+                <div class="ds-type-row">
+                    <div class="ds-type-meta">Lead copy<br>Avenir Next 400</div>
+                    <p class="ds-type-sample lede">Use lead copy once near the top of a page to frame the story and establish its purpose.</p>
+                </div>
+                <div class="ds-type-row">
+                    <div class="ds-type-meta">Body<br>Avenir Next 400</div>
+                    <p class="ds-type-sample body">Body copy explains decisions in plain language. Keep lines near 58 characters when possible, use sentence case, and break long ideas into meaningful sections.</p>
+                </div>
+                <div class="ds-type-row">
+                    <div class="ds-type-meta">Eyebrow<br>Avenir Next 650</div>
+                    <p class="ds-type-sample eyebrow">Research · Interaction design</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ds-component-block">
+            <div class="ds-grid">
+                <article class="ds-card">
+                    <span class="ds-label">Spacing scale</span>
+                    <div class="ds-token-list" aria-label="Spacing tokens">
+                        <div class="ds-space-token"><code>space-1</code><span class="ds-space-bar" style="--token-width:4px"></span><span>4px</span></div>
+                        <div class="ds-space-token"><code>space-2</code><span class="ds-space-bar" style="--token-width:8px"></span><span>8px</span></div>
+                        <div class="ds-space-token"><code>space-3</code><span class="ds-space-bar" style="--token-width:12px"></span><span>12px</span></div>
+                        <div class="ds-space-token"><code>space-4</code><span class="ds-space-bar" style="--token-width:16px"></span><span>16px</span></div>
+                        <div class="ds-space-token"><code>space-5</code><span class="ds-space-bar" style="--token-width:24px"></span><span>24px</span></div>
+                        <div class="ds-space-token"><code>space-6</code><span class="ds-space-bar" style="--token-width:32px"></span><span>32px</span></div>
+                        <div class="ds-space-token"><code>space-7</code><span class="ds-space-bar" style="--token-width:48px"></span><span>48px</span></div>
+                        <div class="ds-space-token"><code>space-8</code><span class="ds-space-bar" style="--token-width:64px"></span><span>64px</span></div>
+                        <div class="ds-space-token"><code>space-9</code><span class="ds-space-bar" style="--token-width:96px"></span><span>96px</span></div>
+                    </div>
+                </article>
+
+                <article class="ds-card">
+                    <span class="ds-label">Shape</span>
+                    <div class="ds-shape-row" aria-label="Corner radius tokens">
+                        <div class="ds-shape small">Small · 10</div>
+                        <div class="ds-shape medium">Medium · 16</div>
+                        <div class="ds-shape large">Large · 24</div>
+                        <div class="ds-shape pill">Pill · 999</div>
+                    </div>
+                    <p style="margin-top:var(--space-5)">Use the shared card shadow for elevated groups. Use borders for structure; reserve heavier shadows for media viewers and modal layers.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="ds-section" id="ds-layout">
+        <div class="ds-section-heading">
+            <h2>Layout</h2>
+            <p>The desktop shell uses a persistent 300-pixel navigation rail and a focused content column. Below 850 pixels, navigation becomes a sticky compact header and content uses a 24-pixel page inset.</p>
+        </div>
+
+        <div class="ds-layout-demo" aria-label="Diagram of the portfolio page shell">
+            <div class="ds-layout-sidebar">
+                <div class="ds-placeholder dark"></div>
+                <div class="ds-placeholder short"></div>
+                <div class="ds-placeholder"></div>
+                <div class="ds-placeholder accent"></div>
+            </div>
+            <div class="ds-layout-main">
+                <div>
+                    <div class="ds-placeholder dark"></div>
+                    <div class="ds-placeholder short"></div>
+                </div>
+                <div>
+                    <div class="ds-placeholder"></div>
+                    <div class="ds-placeholder"></div>
+                    <div class="ds-placeholder short"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ds-grid three" style="margin-top:var(--space-6)">
+            <article class="ds-card"><span class="ds-label">Page shell</span><h3>Focused width</h3><p>Keep narrative content within the shared 1,050-pixel main column unless immersive media needs more room.</p></article>
+            <article class="ds-card"><span class="ds-label">Section pattern</span><h3>Heading left, copy right</h3><p>Use the recurring split heading for major case-study sections, then stack it at narrow widths.</p></article>
+            <article class="ds-card"><span class="ds-label">Responsive rule</span><h3>Reflow, do not shrink</h3><p>Collapse grids to one column, preserve readable type, and allow media controls to remain comfortably tappable.</p></article>
+        </div>
+    </section>
+
+    <section class="ds-section" id="ds-components">
+        <div class="ds-section-heading">
+            <h2>Components</h2>
+            <p>Components inherit the foundations above. Their default, hover, focus, active, and unavailable states should stay recognizable across every case study.</p>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Actions and links</h3>
+            <div class="ds-component-stage">
+                <a class="ds-button primary" href="#local-design-system" data-scroll-target="ds-accessibility">Primary action</a>
+                <a class="ds-button" href="#local-design-system" data-scroll-target="ds-content">Secondary action</a>
+                <button class="ds-button" type="button" disabled>Unavailable</button>
+                <a class="ds-text-link" href="#local-design-system" data-scroll-target="ds-layout">Text link</a>
+            </div>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Cards</h3>
+            <div class="ds-grid three">
+                <article class="ds-card"><span class="ds-label">Summary</span><h3>Scannable title</h3><p>Use for concise facts, outcomes, or supporting context. Keep one idea per card.</p></article>
+                <article class="ds-card"><span class="ds-label">Metric</span><h3 style="font-family:var(--font-display);font-size:var(--metric-size);line-height:.95">48 × 48</h3><p>Preferred minimum touch target for prominent controls.</p></article>
+                <article class="ds-card"><span class="ds-label">Evidence</span><h3>Show the artifact</h3><p>Pair claims with screenshots, prototypes, research notes, or a clear outcome.</p></article>
+            </div>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Progressive disclosure</h3>
+            <div class="ds-component-stage">
+                <details class="ds-disclosure">
+                    <summary>View supporting process</summary>
+                    <p>Expandable areas keep the main narrative concise while preserving access to detailed process work. Separate items within long expanded zones using the shared subtle divider.</p>
+                </details>
+            </div>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Component rules</h3>
+            <div class="ds-grid">
+                <div class="ds-rule"><strong>Use one blue action color.</strong><span>Blue communicates hover, focus, progress, and selected media. Do not introduce project-specific interaction colors.</span></div>
+                <div class="ds-rule"><strong>Keep controls explicit.</strong><span>Pair familiar icons with accessible names. Use visible text whenever an icon alone could be ambiguous.</span></div>
+                <div class="ds-rule"><strong>Preserve native behavior.</strong><span>Use buttons for actions, links for destinations, details for disclosure, and native video controls unless a project needs more.</span></div>
+                <div class="ds-rule"><strong>Show every state.</strong><span>Interactive components need default, hover, keyboard-focus, active or selected, and disabled states where relevant.</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ds-section" id="ds-content">
+        <div class="ds-section-heading">
+            <h2>Content &amp; media</h2>
+            <p>Case studies should explain the problem, the designer’s role, the decisions made, the evidence behind them, and what changed. Images support that story rather than functioning as decoration.</p>
+        </div>
+
+        <div class="ds-grid">
+            <article class="ds-card">
+                <span class="ds-label">Writing</span>
+                <h3>Use an outcome-first narrative</h3>
+                <ul>
+                    <li>Lead with the project’s purpose and result.</li>
+                    <li>Use short descriptive headings in sentence case.</li>
+                    <li>Name decisions and tradeoffs, not only activities.</li>
+                    <li>Prefer direct language over internal jargon.</li>
+                </ul>
+            </article>
+            <article class="ds-card">
+                <span class="ds-label">Imagery</span>
+                <h3>Show only useful views</h3>
+                <ul>
+                    <li>Choose the clearest screenshots and strongest artifact photos.</li>
+                    <li>Use descriptive alternative text for meaningful images.</li>
+                    <li>Keep text labels in HTML whenever possible.</li>
+                    <li>Provide video controls, captions when speech is present, and poster images where useful.</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <section class="ds-section" id="ds-accessibility">
+        <div class="ds-section-heading">
+            <h2>Accessibility</h2>
+            <p>Accessibility is part of the component definition, not a later review. These checks describe the current site baseline and should be revisited whenever a new pattern is introduced.</p>
+        </div>
+
+        <div class="ds-grid">
+            <article class="ds-card">
+                <span class="ds-label">Required now</span>
+                <ul class="ds-checklist">
+                    <li>Semantic headings follow a meaningful hierarchy.</li>
+                    <li>Every function is reachable with a keyboard.</li>
+                    <li>Focus remains clearly visible on all interactive elements.</li>
+                    <li>Selected and hover states do not rely only on color.</li>
+                    <li>Body text and controls maintain readable contrast.</li>
+                    <li>Tap targets meet a 24-pixel minimum; 44–48 pixels is preferred.</li>
+                    <li>Motion respects reduced-motion preferences.</li>
+                    <li>Images, videos, dialogs, and carousels have useful accessible names.</li>
+                </ul>
+            </article>
+            <article class="ds-card">
+                <span class="ds-label">Release check</span>
+                <h3>Before publishing a page</h3>
+                <ul class="ds-checklist">
+                    <li>Navigate the entire page using Tab, Shift+Tab, Enter, Space, and arrow keys where expected.</li>
+                    <li>Review at 320, 768, and 1,440 pixels without horizontal page scrolling.</li>
+                    <li>Confirm zoom at 200% preserves content and controls.</li>
+                    <li>Check alternative text, link purpose, labels, and media behavior.</li>
+                    <li>Verify new values use a system token or are documented as a deliberate exception.</li>
+                </ul>
+            </article>
+        </div>
+
+        <div class="ds-rule" style="margin-top:var(--space-6)">
+            <strong>Living-system note</strong>
+            <span>This is the current baseline, not a finished library. Add a token or component only when the site has a real repeated need, then update this page and the shared stylesheet together.</span>
+        </div>
+    </section>
+</article>

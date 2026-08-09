@@ -15,6 +15,7 @@ const pageMap = {
     "map-redesign": "pages/User Experience Design/map-redesign.html",
     "search-redesign": "pages/User Experience Design/search-update.html",
     "scheduling-product-creation": "pages/User Experience Design/scheduling-product-creation.html",
+    "local-design-system": "pages/User Experience Design/local-design-system.html",
 
     "under-the-eye": "pages/Games and Interactive Media/under-the-eye.html",
     emora: "pages/Games and Interactive Media/oracle-deck.html",
@@ -181,6 +182,7 @@ async function loadPage(pageName, { focusContent = false } = {}) {
         contentArea.innerHTML = pageContent;
         requestAnimationFrame(() => {
             fitGameEmbeds(contentArea);
+            initializeLocalAnchors(contentArea);
             initializeCarousels(contentArea);
             initializeGalleries(contentArea);
             initializeMapAnimations(contentArea);
@@ -209,6 +211,24 @@ function finishPageLoad(pageName, focusContent) {
         focusTarget.setAttribute("tabindex", "-1");
         focusTarget.focus({ preventScroll: true });
     }
+}
+
+function initializeLocalAnchors(root = document) {
+    root.querySelectorAll("[data-scroll-target]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const target = root.querySelector(`#${CSS.escape(link.dataset.scrollTarget)}`);
+
+            if (!target) {
+                return;
+            }
+
+            event.preventDefault();
+            const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                ? "auto"
+                : "smooth";
+            target.scrollIntoView({ behavior, block: "start" });
+        });
+    });
 }
 
 function fitGameEmbeds(root = document) {
@@ -284,6 +304,11 @@ function initializeCarousels(root = document) {
             const sourceMedia = slide.querySelector("img, video");
             const thumbnail = document.createElement("button");
             const isVideo = sourceMedia?.tagName === "VIDEO";
+            const setThumbnailRatio = (width, height) => {
+                if (width > 0 && height > 0) {
+                    thumbnail.style.setProperty("--thumbnail-aspect-ratio", `${width} / ${height}`);
+                }
+            };
 
             thumbnail.className = "emora-carousel-thumbnail";
             thumbnail.type = "button";
@@ -302,6 +327,10 @@ function initializeCarousels(root = document) {
                     preview.src = source;
                 }
 
+                preview.addEventListener("loadedmetadata", () => {
+                    setThumbnailRatio(preview.videoWidth, preview.videoHeight);
+                }, { once: true });
+
                 thumbnail.dataset.videoThumbnail = "";
                 thumbnail.append(preview);
             } else if (sourceMedia) {
@@ -309,6 +338,9 @@ function initializeCarousels(root = document) {
                 preview.src = sourceMedia.getAttribute("src");
                 preview.alt = "";
                 preview.loading = "lazy";
+                preview.addEventListener("load", () => {
+                    setThumbnailRatio(preview.naturalWidth, preview.naturalHeight);
+                }, { once: true });
                 thumbnail.append(preview);
             }
 
@@ -316,6 +348,10 @@ function initializeCarousels(root = document) {
             thumbnailsContainer.append(thumbnail);
             return thumbnail;
         }) : [];
+
+        if (thumbnailsContainer) {
+            thumbnailsContainer.style.setProperty("--thumbnail-count", thumbnails.length);
+        }
 
         const showSlide = (index) => {
             slides[currentIndex]?.querySelector("video")?.pause();
