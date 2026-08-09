@@ -181,6 +181,7 @@ async function loadPage(pageName, { focusContent = false } = {}) {
         contentArea.innerHTML = pageContent;
         requestAnimationFrame(() => {
             fitGameEmbeds(contentArea);
+            initializeCarousels(contentArea);
             initializeGalleries(contentArea);
             initializeMapAnimations(contentArea);
             finishPageLoad(pageName, focusContent);
@@ -250,6 +251,152 @@ function initializeMapAnimations(root = document) {
         button.addEventListener("click", () => {
             setPlaying(button.dataset.playing !== "true");
         });
+    });
+}
+
+function initializeCarousels(root = document) {
+    root.querySelectorAll("[data-carousel]").forEach((carousel) => {
+        const slides = [...carousel.querySelectorAll("[data-carousel-slide]")];
+        const previousButton = carousel.querySelector("[data-carousel-previous]");
+        const nextButton = carousel.querySelector("[data-carousel-next]");
+        const dotsContainer = carousel.querySelector("[data-carousel-dots]");
+        const thumbnailsContainer = carousel.querySelector("[data-carousel-thumbnails]");
+        const status = carousel.querySelector("[data-carousel-status]");
+
+        if (slides.length === 0 || !previousButton || !nextButton || !dotsContainer) {
+            return;
+        }
+
+        let currentIndex = 0;
+        let pointerStartX = null;
+
+        const dots = slides.map((slide, index) => {
+            const dot = document.createElement("button");
+            dot.className = "emora-carousel-dot";
+            dot.type = "button";
+            dot.setAttribute("aria-label", `Show slide ${index + 1} of ${slides.length}`);
+            dot.addEventListener("click", () => showSlide(index));
+            dotsContainer.append(dot);
+            return dot;
+        });
+
+        const thumbnails = thumbnailsContainer ? slides.map((slide, index) => {
+            const sourceMedia = slide.querySelector("img, video");
+            const thumbnail = document.createElement("button");
+            const isVideo = sourceMedia?.tagName === "VIDEO";
+
+            thumbnail.className = "emora-carousel-thumbnail";
+            thumbnail.type = "button";
+            thumbnail.setAttribute("aria-label", `Show ${isVideo ? "video" : "photo"} slide ${index + 1} of ${slides.length}`);
+
+            if (isVideo) {
+                const preview = document.createElement("video");
+                const source = sourceMedia.querySelector("source")?.getAttribute("src");
+                preview.muted = true;
+                preview.playsInline = true;
+                preview.preload = "metadata";
+                preview.setAttribute("aria-hidden", "true");
+                preview.tabIndex = -1;
+
+                if (source) {
+                    preview.src = source;
+                }
+
+                thumbnail.dataset.videoThumbnail = "";
+                thumbnail.append(preview);
+            } else if (sourceMedia) {
+                const preview = document.createElement("img");
+                preview.src = sourceMedia.getAttribute("src");
+                preview.alt = "";
+                preview.loading = "lazy";
+                thumbnail.append(preview);
+            }
+
+            thumbnail.addEventListener("click", () => showSlide(index));
+            thumbnailsContainer.append(thumbnail);
+            return thumbnail;
+        }) : [];
+
+        const showSlide = (index) => {
+            slides[currentIndex]?.querySelector("video")?.pause();
+            currentIndex = (index + slides.length) % slides.length;
+
+            slides.forEach((slide, slideIndex) => {
+                const isCurrent = slideIndex === currentIndex;
+                slide.hidden = !isCurrent;
+                slide.setAttribute("aria-hidden", String(!isCurrent));
+            });
+
+            dots.forEach((dot, dotIndex) => {
+                if (dotIndex === currentIndex) {
+                    dot.setAttribute("aria-current", "true");
+                } else {
+                    dot.removeAttribute("aria-current");
+                }
+            });
+
+            thumbnails.forEach((thumbnail, thumbnailIndex) => {
+                if (thumbnailIndex === currentIndex) {
+                    thumbnail.setAttribute("aria-current", "true");
+                } else {
+                    thumbnail.removeAttribute("aria-current");
+                }
+            });
+
+            const currentThumbnail = thumbnails[currentIndex];
+
+            if (currentThumbnail && thumbnailsContainer) {
+                const centeredPosition = currentThumbnail.offsetLeft
+                    - (thumbnailsContainer.clientWidth - currentThumbnail.offsetWidth) / 2;
+                thumbnailsContainer.scrollTo({ left: centeredPosition, behavior: "smooth" });
+            }
+
+            if (status) {
+                status.textContent = `Slide ${currentIndex + 1} of ${slides.length}`;
+            }
+        };
+
+        previousButton.addEventListener("click", () => showSlide(currentIndex - 1));
+        nextButton.addEventListener("click", () => showSlide(currentIndex + 1));
+
+        carousel.addEventListener("keydown", (event) => {
+            if (event.target.closest("video")) {
+                return;
+            }
+
+            if (event.key === "ArrowLeft") {
+                event.preventDefault();
+                showSlide(currentIndex - 1);
+            }
+
+            if (event.key === "ArrowRight") {
+                event.preventDefault();
+                showSlide(currentIndex + 1);
+            }
+        });
+
+        carousel.addEventListener("pointerdown", (event) => {
+            if (event.pointerType === "touch") {
+                pointerStartX = event.clientX;
+            }
+        });
+
+        carousel.addEventListener("pointerup", (event) => {
+            if (pointerStartX === null) {
+                return;
+            }
+
+            const distance = event.clientX - pointerStartX;
+            pointerStartX = null;
+
+            if (Math.abs(distance) < 48) {
+                return;
+            }
+
+            showSlide(currentIndex + (distance < 0 ? 1 : -1));
+        });
+
+        showSlide(0);
     });
 }
 

@@ -674,16 +674,25 @@
         gap: 0;
     }
 
+    .va-process-list {
+        display: grid;
+        gap: 0;
+    }
+
+    .va-process-list .va-process-step,
     .va-decision-list .va-decision {
+        margin: 0;
         padding: clamp(2rem, 4.5vw, 4rem) 0;
         border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
     }
 
+    .va-process-list .va-process-step:first-child,
     .va-decision-list .va-decision:first-child {
         padding-top: 0;
         border-top: 0;
     }
 
+    .va-process-list .va-process-step:last-child,
     .va-decision-list .va-decision:last-child {
         padding-bottom: 0;
     }

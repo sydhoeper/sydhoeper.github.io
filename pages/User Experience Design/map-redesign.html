@@ -423,7 +423,24 @@
     .map-process-list,
     .map-decision-list {
         display: grid;
-        gap: clamp(4rem, 9vw, 8rem);
+        gap: 0;
+    }
+
+    .map-process-list .map-process-step,
+    .map-decision-list .map-decision {
+        padding: clamp(2rem, 4.5vw, 4rem) 0;
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .map-process-list .map-process-step:first-child,
+    .map-decision-list .map-decision:first-child {
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    .map-process-list .map-process-step:last-child,
+    .map-decision-list .map-decision:last-child {
+        padding-bottom: 0;
     }
 
     .map-section-disclosure {
