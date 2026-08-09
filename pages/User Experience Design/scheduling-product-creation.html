@@ -60,8 +60,7 @@
 
     .spc-facts,
     .spc-summary-grid,
-    .spc-card-grid,
-    .spc-results-grid {
+    .spc-card-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: clamp(1rem, 3vw, 1.6rem);
@@ -123,9 +122,7 @@
     }
 
     .spc-card,
-    .spc-summary-card,
-    .spc-result-card,
-    .spc-retrospective {
+    .spc-summary-card {
         padding: var(--card-padding);
         border-radius: var(--card-radius);
         background: var(--surface-card);
@@ -133,8 +130,7 @@
     }
 
     .spc-card,
-    .spc-summary-card,
-    .spc-result-card {
+    .spc-summary-card {
         border: var(--border-subtle);
     }
 
@@ -144,8 +140,7 @@
 
     .spc-card h3,
     .spc-summary-card h3,
-    .spc-result-card h3,
-    .spc-retrospective h3 {
+    .spc-reflection h3 {
         margin: 0 0 0.65rem;
         font-family: var(--font-body);
         font-size: var(--card-heading-size);
@@ -154,15 +149,13 @@
 
     .spc-card p,
     .spc-summary-card p,
-    .spc-result-card p,
-    .spc-retrospective p {
+    .spc-reflection p {
         margin: 0;
         line-height: 1.65;
     }
 
     .spc-card ul,
-    .spc-result-card ul,
-    .spc-retrospective ul {
+    .spc-reflection ul {
         margin: 0.7rem 0 0;
         padding-left: 1.2rem;
         line-height: 1.6;
@@ -268,10 +261,6 @@
         place-items: center;
     }
 
-    .spc-arc-step:last-child .spc-arc-dot {
-        background: var(--color-accent);
-    }
-
     .spc-staffing-diagram {
         display: grid;
         gap: 0.45rem;
@@ -302,32 +291,33 @@
     .spc-shift-row i.variable { background: var(--spc-purple); }
     .spc-shift-row i.empty { background: transparent; border-style: dashed; }
 
-    .spc-mvp-flow {
-        display: grid;
-        grid-template-columns: repeat(7, auto);
-        gap: 0.55rem;
-        align-items: center;
-        justify-content: center;
-        margin-top: clamp(1.5rem, 4vw, 2.5rem);
-        padding: clamp(1.25rem, 3vw, 2rem);
-        border-radius: var(--radius-md);
-        background: var(--spc-blue);
+    .spc-market-card .spc-label {
+        min-height: 2.6em;
     }
 
-    .spc-mvp-node {
-        padding: 0.8rem 0.9rem;
-        border: 1px solid rgba(var(--color-dark-rgb), 0.16);
-        border-radius: var(--radius-sm);
-        background: var(--surface-card);
-        font-size: 0.88rem;
-        font-weight: 700;
-        line-height: 1.3;
-        text-align: center;
+    .spc-priority-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .spc-mvp-arrow {
-        color: var(--color-muted);
-        font-weight: 700;
+    .spc-priority-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .spc-priority-card::before {
+        content: "";
+        display: block;
+        height: 6px;
+        margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding)) var(--card-padding);
+        background: rgba(var(--color-dark-rgb), 0.72);
+    }
+
+    .spc-priority-card.should::before {
+        background: rgba(var(--color-dark-rgb), 0.42);
+    }
+
+    .spc-priority-card.could::before {
+        background: rgba(var(--color-dark-rgb), 0.2);
     }
 
     .spc-research-signal {
@@ -451,31 +441,47 @@
     }
 
     .spc-pivot {
+        position: relative;
         display: grid;
         grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 0.75rem;
+        gap: 1rem;
         margin-top: 1.5rem;
+    }
+
+    .spc-pivot::before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        right: 10%;
+        left: 10%;
+        height: 2px;
+        background: rgba(var(--color-dark-rgb), 0.18);
     }
 
     .spc-pivot-step {
         position: relative;
-        padding: 1rem;
-        border-radius: 12px;
-        background: var(--spc-purple);
-        font-size: 0.9rem;
+        z-index: 1;
+        display: grid;
+        gap: 0.8rem;
+        justify-items: center;
+        font-size: 0.82rem;
         font-weight: 700;
-        line-height: 1.4;
+        line-height: 1.35;
         text-align: center;
     }
 
-    .spc-pivot-step:not(:last-child)::after {
-        content: "→";
-        position: absolute;
-        top: 50%;
-        right: -0.72rem;
-        z-index: 1;
-        color: var(--color-muted);
-        transform: translateY(-50%);
+    .spc-pivot-step::before {
+        content: attr(data-step);
+        display: grid;
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--spc-card);
+        border-radius: 50%;
+        background: var(--color-dark);
+        box-shadow: 0 0 0 1px rgba(var(--color-dark-rgb), 0.18);
+        color: var(--color-background);
+        font-size: 0.72rem;
+        place-items: center;
     }
 
     .spc-pullquote {
@@ -486,30 +492,21 @@
         text-align: center;
     }
 
-    .spc-result-card strong {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-family: var(--font-display);
-        font-size: var(--metric-size);
-        line-height: 0.95;
-        color: var(--color-accent);
-    }
-
-    .spc-results-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .spc-retrospective {
+    .spc-reflection {
         margin-top: clamp(2rem, 5vw, 3.5rem);
-        background: var(--color-dark);
-        color: var(--color-background);
+        padding-top: clamp(2rem, 5vw, 3.5rem);
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .spc-reflection h3 {
+        max-width: 20ch;
     }
 
     @container spc-study (max-width: 720px) {
         .spc-facts,
         .spc-summary-grid,
         .spc-card-grid.three,
-        .spc-results-grid {
+        .spc-priority-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
@@ -536,14 +533,24 @@
 
         .spc-pivot {
             grid-template-columns: 1fr;
+            gap: 0.9rem;
         }
 
-        .spc-pivot-step:not(:last-child)::after {
-            content: "↓";
-            top: auto;
-            right: 50%;
-            bottom: -0.8rem;
-            transform: translateX(50%);
+        .spc-pivot::before {
+            top: 20px;
+            right: auto;
+            bottom: 20px;
+            left: 20px;
+            width: 2px;
+            height: auto;
+        }
+
+        .spc-pivot-step {
+            grid-template-columns: 40px minmax(0, 1fr);
+            gap: 1rem;
+            align-items: center;
+            justify-items: start;
+            text-align: left;
         }
     }
 
@@ -553,21 +560,16 @@
         .spc-summary-grid,
         .spc-card-grid,
         .spc-card-grid.three,
-        .spc-results-grid {
+        .spc-priority-grid {
             grid-template-columns: 1fr;
+        }
+
+        .spc-market-card .spc-label {
+            min-height: 0;
         }
 
         .spc-system-map {
             grid-template-columns: 1fr;
-        }
-
-        .spc-mvp-flow {
-            grid-template-columns: 1fr;
-        }
-
-        .spc-mvp-arrow {
-            transform: rotate(90deg);
-            text-align: center;
         }
 
         .spc-system-arrow {
@@ -581,7 +583,7 @@
     <header class="spc-hero">
         <span class="spc-eyebrow">Active911 · 2020</span>
         <h1>Scheduling Product</h1>
-        <p class="spc-lede">How I turned an ambiguous mandate into a research-led scheduling product—and used weak beta adoption to redirect the strategy toward mobile.</p>
+        <p class="spc-lede">How I turned an ambiguous mandate into a focused scheduling product by mapping operational complexity, testing the riskiest workflows, and learning from real adoption.</p>
 
         <div class="spc-facts" role="list" aria-label="Project facts">
             <div class="spc-fact" role="listitem"><strong>Role</strong><span>Sole product designer</span></div>
@@ -590,18 +592,18 @@
             <div class="spc-fact" role="listitem"><strong>Partners</strong><span>Product, engineering, and QA</span></div>
         </div>
 
-        <div class="spc-product-arc" role="img" aria-label="The product evolved from an ambiguous mandate to a desktop beta, then an adoption signal, and finally a paid mobile-enabled product">
+        <div class="spc-product-arc" role="img" aria-label="The product evolved from an ambiguous mandate through a desktop beta, adoption learning, and a mobile companion">
             <div class="spc-arc-step" aria-hidden="true"><span>Input</span><strong>Ambiguous mandate</strong><i class="spc-arc-dot">01</i></div>
             <div class="spc-arc-step" aria-hidden="true"><span>Release</span><strong>Desktop beta</strong><i class="spc-arc-dot">02</i></div>
             <div class="spc-arc-step" aria-hidden="true"><span>Signal</span><strong>Weak adoption</strong><i class="spc-arc-dot">03</i></div>
-            <div class="spc-arc-step" aria-hidden="true"><span>Pivot</span><strong>Mobile product</strong><i class="spc-arc-dot">04</i></div>
+            <div class="spc-arc-step" aria-hidden="true"><span>Extension</span><strong>Mobile companion</strong><i class="spc-arc-dot">04</i></div>
         </div>
     </header>
 
     <section class="spc-section" aria-labelledby="spc-overview">
         <div class="spc-section-heading">
             <h2 id="spc-overview">In brief</h2>
-            <p>I led the definition of a new scheduling product, then used weak beta adoption to identify a larger access problem and redirect the strategy toward mobile.</p>
+            <p>I led the product from early research through beta, translating varied staffing models into a scheduling system departments could actually configure.</p>
         </div>
 
         <div class="spc-summary-grid">
@@ -612,13 +614,13 @@
             </article>
             <article class="spc-summary-card">
                 <span class="spc-label">Direction</span>
-                <h3>Build, learn, redirect</h3>
-                <p>I defined the desktop MVP, tested the schedule engine, and reframed low adoption as a strategy signal.</p>
+                <h3>Research, model, test</h3>
+                <p>I defined the MVP, clarified the schedule model, and tested the engine against real department rotations.</p>
             </article>
             <article class="spc-summary-card">
                 <span class="spc-label">Impact</span>
                 <h3>From beta to paid product</h3>
-                <p>The beta reached 100+ agencies; the mobile follow-up helped the product move beyond beta and generate revenue.</p>
+                <p>The beta reached 100+ agencies and the scheduling platform later became a revenue-generating product.</p>
             </article>
         </div>
     </section>
@@ -630,7 +632,7 @@
         </div>
 
         <div class="spc-card-grid three">
-            <article class="spc-card">
+            <article class="spc-card spc-market-card">
                 <span class="spc-label">Paid departments</span>
                 <div class="spc-staffing-diagram" role="img" aria-label="A repeating staffing pattern with predictable on and off shifts">
                     <div class="spc-shift-row" aria-hidden="true"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i></div>
@@ -639,7 +641,7 @@
                 <h3>Stable teams</h3>
                 <p>The same people often worked predictable rotating shifts.</p>
             </article>
-            <article class="spc-card">
+            <article class="spc-card spc-market-card">
                 <span class="spc-label">Volunteer departments</span>
                 <div class="spc-staffing-diagram" role="img" aria-label="Availability submissions vary by person and day">
                     <div class="spc-shift-row" aria-hidden="true"><i class="available"></i><i class="empty"></i><i class="available"></i><i class="available"></i><i class="empty"></i><i class="available"></i></div>
@@ -648,7 +650,7 @@
                 <h3>Availability first</h3>
                 <p>Leaders gathered availability, then built coverage around submissions.</p>
             </article>
-            <article class="spc-card">
+            <article class="spc-card spc-market-card">
                 <span class="spc-label">Combination departments</span>
                 <div class="spc-staffing-diagram" role="img" aria-label="Stable paid shifts are supplemented with variable volunteer coverage">
                     <div class="spc-shift-row" aria-hidden="true"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i></div>
@@ -668,36 +670,37 @@
             <p>The desktop MVP had to support real fire-service operations without becoming another dense configuration tool.</p>
         </div>
 
-        <div class="spc-card-grid">
-            <article class="spc-card">
-                <h3>What the MVP had to enable</h3>
+        <div class="spc-card-grid spc-priority-grid" aria-label="MVP feature priorities">
+            <article class="spc-card spc-priority-card must">
+                <span class="spc-label">Must</span>
+                <h3>Core scheduling</h3>
                 <ul>
-                    <li>Create multiple schedules and rotating shifts</li>
-                    <li>Start from common templates or customize a rotation</li>
+                    <li>Create multiple schedules and rotations</li>
+                    <li>Use a template or customize a cycle</li>
                     <li>Create positions and personnel</li>
-                    <li>Assign qualified people to positions on shifts</li>
+                    <li>Assign qualified people to shifts</li>
                 </ul>
             </article>
-            <article class="spc-card">
-                <h3>What we intentionally deferred</h3>
+            <article class="spc-card spc-priority-card should">
+                <span class="spc-label">Should</span>
+                <h3>Team coordination</h3>
                 <ul>
                     <li>Self-service shift claiming and requests</li>
-                    <li>Coverage notifications and mass communication</li>
-                    <li>Detailed schedule history and printing</li>
-                    <li>A native mobile experience</li>
+                    <li>Coverage notifications</li>
+                    <li>Detailed schedule history</li>
+                </ul>
+            </article>
+            <article class="spc-card spc-priority-card could">
+                <span class="spc-label">Could</span>
+                <h3>Extended access</h3>
+                <ul>
+                    <li>Printing and exports</li>
+                    <li>Mass communication</li>
+                    <li>Native mobile access</li>
                 </ul>
             </article>
         </div>
 
-        <div class="spc-mvp-flow" role="img" aria-label="The focused MVP workflow moves from creating a schedule to defining a rotation, adding positions, and assigning qualified people">
-            <span class="spc-mvp-node">Create schedule</span>
-            <span class="spc-mvp-arrow" aria-hidden="true">→</span>
-            <span class="spc-mvp-node">Define rotation</span>
-            <span class="spc-mvp-arrow" aria-hidden="true">→</span>
-            <span class="spc-mvp-node">Add positions</span>
-            <span class="spc-mvp-arrow" aria-hidden="true">→</span>
-            <span class="spc-mvp-node">Assign people</span>
-        </div>
     </section>
 
     <section class="spc-section" aria-labelledby="spc-decisions">
@@ -768,18 +771,18 @@
 
             <article class="spc-action">
                 <div class="spc-action-copy">
-                    <span class="spc-label">04 · Respond to adoption</span>
-                    <h3>Reframe a weak beta as a strategy signal</h3>
-                    <p>Low adoption revealed an access problem: non-admin users needed a simpler mobile entry point.</p>
+                    <span class="spc-label">04 · Learn from adoption</span>
+                    <h3>Use beta behavior to refine access</h3>
+                    <p>Beta usage showed that the core scheduler worked for administrators, while other members needed a simpler way to view schedules.</p>
                 </div>
                 <div class="spc-evidence">
-                    <h4>How the strategy changed</h4>
-                    <div class="spc-pivot" role="img" aria-label="Product strategy pivot from beta launch through mobile validation">
-                        <span class="spc-pivot-step">Desktop beta</span>
-                        <span class="spc-pivot-step">Low adoption</span>
-                        <span class="spc-pivot-step">More interviews</span>
-                        <span class="spc-pivot-step">Mobile access gap</span>
-                        <span class="spc-pivot-step">10-day mobile MVP</span>
+                    <h4>What beta taught us</h4>
+                    <div class="spc-pivot" role="img" aria-label="Beta adoption led to more interviews, an identified access gap, and a focused mobile companion">
+                        <span class="spc-pivot-step" data-step="01">Desktop beta</span>
+                        <span class="spc-pivot-step" data-step="02">Adoption lagged</span>
+                        <span class="spc-pivot-step" data-step="03">Member interviews</span>
+                        <span class="spc-pivot-step" data-step="04">Viewing gap</span>
+                        <span class="spc-pivot-step" data-step="05">Mobile companion</span>
                     </div>
                 </div>
             </article>
@@ -789,29 +792,29 @@
     <section class="spc-section" aria-labelledby="spc-outcome">
         <div class="spc-section-heading">
             <h2 id="spc-outcome">What changed after launch</h2>
-            <p>The first release did not validate every assumption. It did expose the access model the product needed to serve people beyond department administrators.</p>
+            <p>The first release validated the core scheduling model, exposed where access still broke down, and created a foundation the team could continue extending.</p>
         </div>
 
-        <div class="spc-results-grid">
-            <article class="spc-result-card">
-                <strong>100+</strong>
-                <h3>Agencies in desktop beta</h3>
+        <div class="spc-card-grid three">
+            <article class="spc-card">
+                <span class="spc-label">Reached</span>
+                <h3>100+ agencies</h3>
                 <p>The initial product reached a meaningful customer cohort within three months.</p>
             </article>
-            <article class="spc-result-card">
-                <strong>10 days</strong>
-                <h3>To design the mobile MVP</h3>
-                <p>A focused native experience addressed onboarding, account access, and schedule visibility.</p>
+            <article class="spc-card">
+                <span class="spc-label">Extended</span>
+                <h3>10-day follow-up sprint</h3>
+                <p>A small companion experience addressed onboarding, account access, and schedule visibility.</p>
             </article>
-            <article class="spc-result-card">
-                <strong>2021</strong>
-                <h3>Moved beyond beta</h3>
-                <p>The scheduling platform became a revenue-generating product for Active911.</p>
+            <article class="spc-card">
+                <span class="spc-label">Established</span>
+                <h3>Revenue-generating product</h3>
+                <p>The platform moved beyond beta and began generating revenue for Active911.</p>
             </article>
         </div>
 
-        <div class="spc-retrospective">
-            <span class="spc-label">Senior retrospective</span>
+        <div class="spc-reflection">
+            <span class="spc-label">Reflection</span>
             <h3>What I would do differently today</h3>
             <ul>
                 <li>Include administrators, volunteers, and paid personnel in discovery from the start—not only department leadership</li>

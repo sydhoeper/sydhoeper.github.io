@@ -143,7 +143,7 @@ function initializeSparkleTrail() {
         sparkle.setAttribute("aria-hidden", "true");
         sparkle.style.left = `${event.clientX + (Math.random() * 8 - 4)}px`;
         sparkle.style.top = `${event.clientY + (Math.random() * 8 - 4)}px`;
-        sparkle.style.fontSize = `${9 + Math.random() * 4}px`;
+        sparkle.style.fontSize = `${11 + Math.random() * 5}px`;
         sparkle.style.setProperty("--sparkle-drift-x", `${Math.random() * 14 - 7}px`);
         sparkle.style.setProperty("--sparkle-drift-y", `${8 + Math.random() * 10}px`);
         sparkle.style.setProperty("--sparkle-rotation", `${Math.random() * 40 - 20}deg`);
