@@ -4,6 +4,7 @@
         --spc-purple: rgba(201, 184, 239, 0.3);
         --spc-blue: rgba(169, 204, 239, 0.32);
         --spc-green: rgba(175, 238, 194, 0.32);
+        --spc-yellow: rgba(245, 213, 123, 0.34);
         width: 100%;
         max-width: 980px;
         container: spc-study / inline-size;
@@ -23,7 +24,7 @@
 
     .spc-hero,
     .spc-section {
-        padding: clamp(3.5rem, 8vw, 7rem) 0;
+        padding: clamp(3rem, 6vw, 5rem) 0;
     }
 
     .spc-hero {
@@ -68,7 +69,7 @@
 
     .spc-facts {
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        margin-top: clamp(2.5rem, 6vw, 4.5rem);
+        margin-top: clamp(2rem, 5vw, 3.5rem);
     }
 
     .spc-fact {
@@ -104,7 +105,7 @@
         grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
         gap: clamp(2rem, 6vw, 5rem);
         align-items: start;
-        margin-bottom: clamp(2.5rem, 6vw, 5rem);
+        margin-bottom: clamp(2rem, 4vw, 3.5rem);
     }
 
     .spc-section-heading h2 {
@@ -129,6 +130,12 @@
         border-radius: var(--card-radius);
         background: var(--surface-card);
         box-shadow: var(--shadow-card);
+    }
+
+    .spc-card,
+    .spc-summary-card,
+    .spc-result-card {
+        border: var(--border-subtle);
     }
 
     .spc-summary-grid {
@@ -167,7 +174,7 @@
 
     .spc-action-list {
         display: grid;
-        gap: clamp(2.75rem, 5vw, 4.5rem);
+        gap: clamp(1.5rem, 4vw, 2.5rem);
     }
 
     .spc-action {
@@ -175,6 +182,11 @@
         grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1.2fr);
         gap: clamp(2rem, 6vw, 5rem);
         align-items: start;
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+        border: var(--border-subtle);
+        border-radius: var(--radius-lg);
+        background: rgba(252, 250, 246, 0.72);
+        box-shadow: var(--shadow-card);
     }
 
     .spc-action-copy h3 {
@@ -193,6 +205,215 @@
         border: 1px solid rgba(var(--color-dark-rgb), 0.14);
         border-radius: 16px;
         background: var(--spc-card);
+    }
+
+    .spc-product-arc {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(0.75rem, 2vw, 1.25rem);
+        margin-top: clamp(2rem, 5vw, 3.5rem);
+        padding: clamp(1.25rem, 3vw, 2rem);
+        border: var(--border-subtle);
+        border-radius: var(--radius-lg);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
+    }
+
+    .spc-product-arc::before {
+        content: "";
+        position: absolute;
+        top: calc(50% + 0.55rem);
+        right: 10%;
+        left: 10%;
+        height: 3px;
+        border-radius: var(--radius-pill);
+        background: rgba(var(--color-dark-rgb), 0.16);
+    }
+
+    .spc-arc-step {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        min-width: 0;
+        gap: 0.6rem;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .spc-arc-step span {
+        color: var(--color-muted);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .spc-arc-step strong {
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+
+    .spc-arc-dot {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        border: 3px solid var(--color-background);
+        border-radius: 50%;
+        background: var(--color-dark);
+        box-shadow: 0 0 0 1px rgba(var(--color-dark-rgb), 0.2);
+        color: var(--color-background);
+        font-size: 0.82rem;
+        font-style: normal;
+        place-items: center;
+    }
+
+    .spc-arc-step:last-child .spc-arc-dot {
+        background: var(--color-accent);
+    }
+
+    .spc-staffing-diagram {
+        display: grid;
+        gap: 0.45rem;
+        min-height: 88px;
+        align-content: center;
+        margin-bottom: 1.1rem;
+        padding: 0.8rem;
+        border-radius: var(--radius-sm);
+        background: rgba(var(--color-dark-rgb), 0.035);
+    }
+
+    .spc-shift-row {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0.3rem;
+    }
+
+    .spc-shift-row i {
+        display: block;
+        min-height: 18px;
+        border: 1px solid rgba(var(--color-dark-rgb), 0.12);
+        border-radius: 4px;
+        background: white;
+    }
+
+    .spc-shift-row i.on { background: var(--spc-blue); }
+    .spc-shift-row i.available { background: var(--spc-green); }
+    .spc-shift-row i.variable { background: var(--spc-purple); }
+    .spc-shift-row i.empty { background: transparent; border-style: dashed; }
+
+    .spc-mvp-flow {
+        display: grid;
+        grid-template-columns: repeat(7, auto);
+        gap: 0.55rem;
+        align-items: center;
+        justify-content: center;
+        margin-top: clamp(1.5rem, 4vw, 2.5rem);
+        padding: clamp(1.25rem, 3vw, 2rem);
+        border-radius: var(--radius-md);
+        background: var(--spc-blue);
+    }
+
+    .spc-mvp-node {
+        padding: 0.8rem 0.9rem;
+        border: 1px solid rgba(var(--color-dark-rgb), 0.16);
+        border-radius: var(--radius-sm);
+        background: var(--surface-card);
+        font-size: 0.88rem;
+        font-weight: 700;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    .spc-mvp-arrow {
+        color: var(--color-muted);
+        font-weight: 700;
+    }
+
+    .spc-research-signal {
+        display: grid;
+        grid-template-columns: 0.7fr auto 0.7fr auto 1.4fr;
+        gap: 0.6rem;
+        align-items: center;
+    }
+
+    .spc-signal-metric,
+    .spc-signal-result {
+        display: grid;
+        min-height: 86px;
+        align-content: center;
+        padding: 0.9rem;
+        border-radius: var(--radius-sm);
+        text-align: center;
+    }
+
+    .spc-signal-metric {
+        background: var(--spc-blue);
+    }
+
+    .spc-signal-metric strong {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 2rem;
+        line-height: 1;
+    }
+
+    .spc-signal-metric span,
+    .spc-signal-result {
+        font-size: 0.82rem;
+        font-weight: 700;
+        line-height: 1.35;
+    }
+
+    .spc-signal-result {
+        background: var(--spc-green);
+    }
+
+    .spc-signal-arrow {
+        color: var(--color-muted);
+    }
+
+    .spc-rotation-comparison {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .spc-rotation-row {
+        display: grid;
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 0.8rem;
+        align-items: center;
+    }
+
+    .spc-rotation-row > strong {
+        font-size: 0.78rem;
+        line-height: 1.3;
+        text-transform: uppercase;
+    }
+
+    .spc-rotation-track {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.35rem;
+    }
+
+    .spc-rotation-track span {
+        padding: 0.7rem 0.35rem;
+        border-radius: 7px;
+        background: var(--spc-purple);
+        font-size: 0.72rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    .spc-rotation-row.after .spc-rotation-track span {
+        background: var(--spc-green);
+    }
+
+    .spc-rotation-track span.locked {
+        opacity: 0.45;
+        text-decoration: line-through;
     }
 
     .spc-evidence h4 {
@@ -271,6 +492,7 @@
         font-family: var(--font-display);
         font-size: var(--metric-size);
         line-height: 0.95;
+        color: var(--color-accent);
     }
 
     .spc-results-grid {
@@ -293,6 +515,23 @@
 
         .spc-action {
             grid-template-columns: 1fr;
+        }
+
+        .spc-product-arc {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .spc-product-arc::before {
+            display: none;
+        }
+
+        .spc-research-signal {
+            grid-template-columns: 1fr;
+        }
+
+        .spc-signal-arrow {
+            transform: rotate(90deg);
+            text-align: center;
         }
 
         .spc-pivot {
@@ -322,6 +561,15 @@
             grid-template-columns: 1fr;
         }
 
+        .spc-mvp-flow {
+            grid-template-columns: 1fr;
+        }
+
+        .spc-mvp-arrow {
+            transform: rotate(90deg);
+            text-align: center;
+        }
+
         .spc-system-arrow {
             transform: rotate(90deg);
             text-align: center;
@@ -340,6 +588,13 @@
             <div class="spc-fact" role="listitem"><strong>Scope</strong><span>Research through delivery</span></div>
             <div class="spc-fact" role="listitem"><strong>Initial design</strong><span>Approximately 2 months</span></div>
             <div class="spc-fact" role="listitem"><strong>Partners</strong><span>Product, engineering, and QA</span></div>
+        </div>
+
+        <div class="spc-product-arc" role="img" aria-label="The product evolved from an ambiguous mandate to a desktop beta, then an adoption signal, and finally a paid mobile-enabled product">
+            <div class="spc-arc-step" aria-hidden="true"><span>Input</span><strong>Ambiguous mandate</strong><i class="spc-arc-dot">01</i></div>
+            <div class="spc-arc-step" aria-hidden="true"><span>Release</span><strong>Desktop beta</strong><i class="spc-arc-dot">02</i></div>
+            <div class="spc-arc-step" aria-hidden="true"><span>Signal</span><strong>Weak adoption</strong><i class="spc-arc-dot">03</i></div>
+            <div class="spc-arc-step" aria-hidden="true"><span>Pivot</span><strong>Mobile product</strong><i class="spc-arc-dot">04</i></div>
         </div>
     </header>
 
@@ -377,16 +632,28 @@
         <div class="spc-card-grid three">
             <article class="spc-card">
                 <span class="spc-label">Paid departments</span>
+                <div class="spc-staffing-diagram" role="img" aria-label="A repeating staffing pattern with predictable on and off shifts">
+                    <div class="spc-shift-row" aria-hidden="true"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i></div>
+                    <div class="spc-shift-row" aria-hidden="true"><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></div>
+                </div>
                 <h3>Stable teams</h3>
                 <p>The same people often worked predictable rotating shifts.</p>
             </article>
             <article class="spc-card">
                 <span class="spc-label">Volunteer departments</span>
+                <div class="spc-staffing-diagram" role="img" aria-label="Availability submissions vary by person and day">
+                    <div class="spc-shift-row" aria-hidden="true"><i class="available"></i><i class="empty"></i><i class="available"></i><i class="available"></i><i class="empty"></i><i class="available"></i></div>
+                    <div class="spc-shift-row" aria-hidden="true"><i class="empty"></i><i class="available"></i><i class="empty"></i><i class="available"></i><i class="available"></i><i class="empty"></i></div>
+                </div>
                 <h3>Availability first</h3>
                 <p>Leaders gathered availability, then built coverage around submissions.</p>
             </article>
             <article class="spc-card">
                 <span class="spc-label">Combination departments</span>
+                <div class="spc-staffing-diagram" role="img" aria-label="Stable paid shifts are supplemented with variable volunteer coverage">
+                    <div class="spc-shift-row" aria-hidden="true"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i></div>
+                    <div class="spc-shift-row" aria-hidden="true"><i class="variable"></i><i class="empty"></i><i class="empty"></i><i class="variable"></i><i class="empty"></i><i class="variable"></i></div>
+                </div>
                 <h3>Mixed staffing</h3>
                 <p>Fixed paid crews were supplemented by volunteers as needed.</p>
             </article>
@@ -421,6 +688,16 @@
                 </ul>
             </article>
         </div>
+
+        <div class="spc-mvp-flow" role="img" aria-label="The focused MVP workflow moves from creating a schedule to defining a rotation, adding positions, and assigning qualified people">
+            <span class="spc-mvp-node">Create schedule</span>
+            <span class="spc-mvp-arrow" aria-hidden="true">→</span>
+            <span class="spc-mvp-node">Define rotation</span>
+            <span class="spc-mvp-arrow" aria-hidden="true">→</span>
+            <span class="spc-mvp-node">Add positions</span>
+            <span class="spc-mvp-arrow" aria-hidden="true">→</span>
+            <span class="spc-mvp-node">Assign people</span>
+        </div>
     </section>
 
     <section class="spc-section" aria-labelledby="spc-decisions">
@@ -434,16 +711,17 @@
                 <div class="spc-action-copy">
                     <span class="spc-label">01 · Discover the real job</span>
                     <h3>Research beyond feature requests</h3>
-                    <p>I interviewed six fire-service leaders and trialed four scheduling products to understand how coverage was assembled—not simply which features people requested.</p>
+                    <p>I studied how departments assembled coverage—not simply which features leaders requested.</p>
                 </div>
                 <div class="spc-evidence">
-                    <h4>Evidence that shaped the strategy</h4>
-                    <ul>
-                        <li>Pen, paper, and spreadsheets remained common</li>
-                        <li>Irregular rotations were the core unmet need</li>
-                        <li>Departments shared concepts, but not one workflow</li>
-                        <li>Too many configuration options made competitors difficult to use</li>
-                    </ul>
+                    <h4>Research signal</h4>
+                    <div class="spc-research-signal" role="img" aria-label="Six fire-service leader interviews and four competitor trials revealed a need for irregular rotations with simpler setup">
+                        <div class="spc-signal-metric" aria-hidden="true"><strong>6</strong><span>leader interviews</span></div>
+                        <span class="spc-signal-arrow" aria-hidden="true">+</span>
+                        <div class="spc-signal-metric" aria-hidden="true"><strong>4</strong><span>product trials</span></div>
+                        <span class="spc-signal-arrow" aria-hidden="true">→</span>
+                        <div class="spc-signal-result" aria-hidden="true">Irregular rotations<br>+ simpler setup</div>
+                    </div>
                 </div>
             </article>
 
@@ -451,7 +729,7 @@
                 <div class="spc-action-copy">
                     <span class="spc-label">02 · Model the domain</span>
                     <h3>Turn operational complexity into a clear system</h3>
-                    <p>I defined how the core objects related, giving product and engineering a shared language before detailed interface work began.</p>
+                    <p>I gave product and engineering a shared language before detailed interface work began.</p>
                 </div>
                 <div class="spc-evidence">
                     <h4>Core product model</h4>
@@ -471,16 +749,20 @@
                 <div class="spc-action-copy">
                     <span class="spc-label">03 · Test the riskiest assumption</span>
                     <h3>Use failure to improve the schedule engine</h3>
-                    <p>Testing with four fire-service leaders validated the language and flow—but exposed that the schedule engine could not represent enough real rotations.</p>
+                    <p>Four usability sessions exposed that the schedule engine could not represent enough real rotations.</p>
                 </div>
                 <div class="spc-evidence">
-                    <h4>Decision after testing</h4>
-                    <ul>
-                        <li>Make the rotation itself directly configurable</li>
-                        <li>Preview the pattern before saving</li>
-                        <li>Ship 24-hour shifts first to protect the timeline</li>
-                        <li>Keep variable shift lengths in the near-term roadmap</li>
-                    </ul>
+                    <h4>Engine change after testing</h4>
+                    <div class="spc-rotation-comparison" role="img" aria-label="The prototype used a fixed template; after testing, the rotation became editable and previewable">
+                        <div class="spc-rotation-row" aria-hidden="true">
+                            <strong>Prototype</strong>
+                            <div class="spc-rotation-track"><span>24 on</span><span>48 off</span><span class="locked">Change</span><span class="locked">Preview</span></div>
+                        </div>
+                        <div class="spc-rotation-row after" aria-hidden="true">
+                            <strong>Revised</strong>
+                            <div class="spc-rotation-track"><span>Edit cycle</span><span>24 on</span><span>48 off</span><span>Preview</span></div>
+                        </div>
+                    </div>
                 </div>
             </article>
 
@@ -488,7 +770,7 @@
                 <div class="spc-action-copy">
                     <span class="spc-label">04 · Respond to adoption</span>
                     <h3>Reframe a weak beta as a strategy signal</h3>
-                    <p>Low beta adoption revealed a problem larger than polish: non-admin users could not participate easily, and customers expected mobile access.</p>
+                    <p>Low adoption revealed an access problem: non-admin users needed a simpler mobile entry point.</p>
                 </div>
                 <div class="spc-evidence">
                     <h4>How the strategy changed</h4>
