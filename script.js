@@ -279,26 +279,15 @@ function initializeCarousels(root = document) {
         const slides = [...carousel.querySelectorAll("[data-carousel-slide]")];
         const previousButton = carousel.querySelector("[data-carousel-previous]");
         const nextButton = carousel.querySelector("[data-carousel-next]");
-        const dotsContainer = carousel.querySelector("[data-carousel-dots]");
         const thumbnailsContainer = carousel.querySelector("[data-carousel-thumbnails]");
         const status = carousel.querySelector("[data-carousel-status]");
 
-        if (slides.length === 0 || !previousButton || !nextButton || !dotsContainer) {
+        if (slides.length === 0 || !previousButton || !nextButton) {
             return;
         }
 
         let currentIndex = 0;
         let pointerStartX = null;
-
-        const dots = slides.map((slide, index) => {
-            const dot = document.createElement("button");
-            dot.className = "emora-carousel-dot";
-            dot.type = "button";
-            dot.setAttribute("aria-label", `Show slide ${index + 1} of ${slides.length}`);
-            dot.addEventListener("click", () => showSlide(index));
-            dotsContainer.append(dot);
-            return dot;
-        });
 
         const thumbnails = thumbnailsContainer ? slides.map((slide, index) => {
             const sourceMedia = slide.querySelector("img, video");
@@ -351,6 +340,10 @@ function initializeCarousels(root = document) {
 
         if (thumbnailsContainer) {
             thumbnailsContainer.style.setProperty("--thumbnail-count", thumbnails.length);
+            thumbnailsContainer.style.setProperty(
+                "--thumbnail-mobile-columns",
+                Math.ceil(thumbnails.length / 2)
+            );
         }
 
         const showSlide = (index) => {
@@ -361,14 +354,6 @@ function initializeCarousels(root = document) {
                 const isCurrent = slideIndex === currentIndex;
                 slide.hidden = !isCurrent;
                 slide.setAttribute("aria-hidden", String(!isCurrent));
-            });
-
-            dots.forEach((dot, dotIndex) => {
-                if (dotIndex === currentIndex) {
-                    dot.setAttribute("aria-current", "true");
-                } else {
-                    dot.removeAttribute("aria-current");
-                }
             });
 
             thumbnails.forEach((thumbnail, thumbnailIndex) => {

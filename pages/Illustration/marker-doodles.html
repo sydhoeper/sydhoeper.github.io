@@ -97,11 +97,15 @@
         background: rgba(255, 255, 255, 0.12);
         color: white;
         cursor: pointer;
+        transition: background-color var(--transition-ui), transform var(--transition-ui), box-shadow var(--transition-ui);
     }
 
     .marker-lightbox button:hover,
     .marker-lightbox button:focus-visible {
         background: var(--color-accent);
+        color: white;
+        box-shadow: 0 0 0 2px white;
+        transform: scale(1.08);
     }
 
     .marker-lightbox button:focus-visible {

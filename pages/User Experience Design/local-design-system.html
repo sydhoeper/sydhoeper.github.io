@@ -389,7 +389,7 @@
         line-height: 1.1;
         text-decoration: none;
         cursor: pointer;
-        transition: background-color var(--transition-ui), border-color var(--transition-ui), color var(--transition-ui);
+        transition: background-color var(--transition-ui), border-color var(--transition-ui), color var(--transition-ui), transform var(--transition-ui), box-shadow var(--transition-ui);
     }
 
     .ds-button.primary {
@@ -403,6 +403,8 @@
         background: var(--color-accent);
         color: white;
         text-decoration: none;
+        box-shadow: 0 5px 14px rgba(var(--color-dark-rgb), 0.2);
+        transform: translateY(-2px);
     }
 
     .ds-button[disabled] {
@@ -479,7 +481,7 @@
         padding: var(--space-5);
         border-left: 4px solid var(--color-accent);
         border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-        background: rgba(26, 112, 199, 0.07);
+        background: rgba(50, 108, 188, 0.07);
     }
 
     .ds-rule strong,
@@ -597,8 +599,8 @@
                     <div class="ds-color-copy"><strong>Paper</strong><code>--color-sidebar-background · #FFFEFB</code><span>Navigation and quiet elevated areas.</span></div>
                 </article>
                 <article class="ds-color">
-                    <div class="ds-color-swatch" style="background:#1A70C7"></div>
-                    <div class="ds-color-copy"><strong>Action blue</strong><code>--color-accent · #1A70C7</code><span>Hover, focus, active media, and progress.</span></div>
+                    <div class="ds-color-swatch" style="background:#326CBC"></div>
+                    <div class="ds-color-copy"><strong>Action blue</strong><code>--color-accent · #326CBC</code><span>Hover, focus, active media, and progress.</span></div>
                 </article>
                 <article class="ds-color">
                     <div class="ds-color-swatch" style="background:#6F6677"></div>
@@ -747,10 +749,10 @@
         <div class="ds-component-block">
             <h3 class="ds-component-heading">Component rules</h3>
             <div class="ds-grid">
-                <div class="ds-rule"><strong>Use one blue action color.</strong><span>Blue communicates hover, focus, progress, and selected media. Do not introduce project-specific interaction colors.</span></div>
+                <div class="ds-rule"><strong>Use one blue action color.</strong><span>Blue communicates hover, focus, progress, and selected media. Navigation selection remains black for strong location awareness.</span></div>
                 <div class="ds-rule"><strong>Keep controls explicit.</strong><span>Pair familiar icons with accessible names. Use visible text whenever an icon alone could be ambiguous.</span></div>
                 <div class="ds-rule"><strong>Preserve native behavior.</strong><span>Use buttons for actions, links for destinations, details for disclosure, and native video controls unless a project needs more.</span></div>
-                <div class="ds-rule"><strong>Show every state.</strong><span>Interactive components need default, hover, keyboard-focus, active or selected, and disabled states where relevant.</span></div>
+                <div class="ds-rule"><strong>Show every state.</strong><span>Interactive components need default, hover, keyboard-focus, active or selected, and disabled states. Hover must add a non-color cue such as an underline change, outline, elevation, or movement.</span></div>
             </div>
         </div>
     </section>

@@ -106,6 +106,7 @@
         font-weight: var(--type-eyebrow-weight);
         line-height: 1.2;
         text-decoration: none;
+        transition: background-color var(--transition-ui), border-color var(--transition-ui), color var(--transition-ui), transform var(--transition-ui), box-shadow var(--transition-ui);
     }
 
     .home-button.secondary {
@@ -118,6 +119,8 @@
         background: var(--color-accent);
         border-color: var(--color-accent);
         color: #fff;
+        box-shadow: 0 5px 14px rgba(var(--color-dark-rgb), 0.2);
+        transform: translateY(-2px);
     }
 
     .home-button svg {
