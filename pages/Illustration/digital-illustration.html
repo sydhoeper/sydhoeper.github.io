@@ -1,0 +1,240 @@
+<style>
+  .digital-illustration-page {
+    width: 100%;
+    max-width: 1120px;
+  }
+
+  .digital-illustration-header {
+    padding-bottom: clamp(var(--space-7), 6vw, var(--space-9));
+  }
+
+  .digital-illustration-header h1,
+  .digital-collection h2 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  .digital-illustration-header h1 {
+    max-width: 12ch;
+    margin: 0 0 var(--space-5);
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+  }
+
+  .digital-illustration-header > p {
+    max-width: 55ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .digital-collection-index {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+  }
+
+  .digital-collection-index article {
+    padding: var(--card-padding);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .digital-collection-index strong,
+  .digital-collection-index span {
+    display: block;
+  }
+
+  .digital-collection-index strong {
+    margin-bottom: var(--space-2);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .digital-collection-index span {
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+
+  .digital-collection {
+    padding: clamp(var(--space-7), 7vw, var(--space-9)) 0;
+    border-top: var(--border-subtle);
+  }
+
+  .digital-collection-heading {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+    margin-bottom: clamp(var(--space-6), 5vw, var(--space-8));
+  }
+
+  .digital-collection h2 {
+    margin: 0;
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .digital-collection-heading p {
+    max-width: 54ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .digital-portrait-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .digital-worlds-grid {
+    display: block;
+    columns: 2;
+    column-gap: clamp(16px, 3vw, 30px);
+  }
+
+  .digital-worlds-grid .art-gallery-item {
+    margin-bottom: clamp(16px, 3vw, 30px);
+    break-inside: avoid;
+  }
+
+  .digital-portrait-grid .art-gallery-item:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .digital-poster-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .digital-oracle-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 760px) {
+    .digital-collection-index,
+    .digital-oracle-grid,
+    .digital-poster-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .digital-collection-heading {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .digital-collection-index,
+    .digital-oracle-grid,
+    .digital-portrait-grid,
+    .digital-poster-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .digital-portrait-grid .art-gallery-item:first-child {
+      grid-column: auto;
+    }
+
+    .digital-worlds-grid {
+      columns: 1;
+    }
+  }
+</style>
+
+<article class="digital-illustration-page" data-gallery-page>
+  <header class="digital-illustration-header">
+    <h1>Digital Illustration</h1>
+    <p>Oracle cards, illustrated worlds, portraits, and event graphics collected by medium instead of split across several small pages.</p>
+
+    <div class="digital-collection-index" aria-label="Digital illustration collections">
+      <article><strong>11 oracle cards</strong><span>A cohesive illustrated series from the World of Emora</span></article>
+      <article><strong>12 illustrations</strong><span>Characters, creatures, environments, and visual experiments</span></article>
+      <article><strong>3 portraits</strong><span>Expressive studies built through shape and saturated color</span></article>
+      <article><strong>5 posters</strong><span>Event graphics combining illustration, hierarchy, and typography</span></article>
+    </div>
+  </header>
+
+  <div data-gallery>
+    <section class="digital-collection" aria-labelledby="digital-oracle-heading">
+      <div class="digital-collection-heading">
+        <h2 id="digital-oracle-heading">Oracle deck</h2>
+        <p>A connected card series translating the World of Emora into symbols, places, creatures, and moments.</p>
+      </div>
+
+      <div class="art-grid digital-oracle-grid">
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2411.PNG" alt="Oracle deck illustration 1 of 11 by Syd Hoeper" loading="eager" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2424.PNG" alt="Oracle deck illustration 2 of 11 by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2425.PNG" alt="Oracle deck illustration 3 of 11 by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2426.PNG" alt="Oracle deck illustration 4 of 11 by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2496.PNG" alt="Oracle deck illustration 5 of 11 by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2497.PNG" alt="Oracle deck illustration 6 of 11 by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2498.PNG" alt="Oracle deck illustration 7 of 11 by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2499.PNG" alt="Oracle deck illustration 8 of 11 by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2501.PNG" alt="Oracle deck illustration 9 of 11 by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2503.PNG" alt="Oracle deck illustration 10 of 11 by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Oracle%20Deck/web/IMG_2506.PNG" alt="Oracle deck illustration 11 of 11 by Syd Hoeper" loading="lazy" decoding="async"></button>
+      </div>
+    </section>
+
+    <section class="digital-collection" aria-labelledby="digital-worlds-heading">
+      <div class="digital-collection-heading">
+        <h2 id="digital-worlds-heading">Illustrated worlds</h2>
+        <p>Standalone drawings exploring surreal creatures, imagined places, color, texture, and visual storytelling.</p>
+      </div>
+
+      <div class="art-grid digital-worlds-grid">
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/Cosmic%20Squid%20on%20Black.jpg" alt="Cosmic squid digital illustration" loading="eager" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2493.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2508.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2509.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2510.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2511.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2512.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2513.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2514.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2515.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2516.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_6845.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+      </div>
+    </section>
+
+    <section class="digital-collection" aria-labelledby="digital-portraits-heading">
+      <div class="digital-collection-heading">
+        <h2 id="digital-portraits-heading">Portraits</h2>
+        <p>Color-forward portraits that prioritize mood, graphic shape, and expression over realism.</p>
+      </div>
+
+      <div class="art-grid digital-portrait-grid">
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digitial%20Portraits/web/hot-press-dimplex.jpg" alt="Colorful illustrated portrait in green, teal, pink, and lavender" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digitial%20Portraits/web/portrait-2471.jpg" alt="Illustrated portrait in shades of pink and purple" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digitial%20Portraits/web/portrait-2483.jpg" alt="Illustrated portrait in pink, mint green, and light blue" loading="lazy" decoding="async"></button>
+      </div>
+    </section>
+
+    <section class="digital-collection" aria-labelledby="digital-posters-heading">
+      <div class="digital-collection-heading">
+        <h2 id="digital-posters-heading">Event posters</h2>
+        <p>Promotional graphics where illustration works alongside event information, hierarchy, and type.</p>
+      </div>
+
+      <div class="art-grid digital-poster-grid">
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digitial%20Portraits/Posters/web/IMG_1873.jpg" alt="Event poster designed by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digitial%20Portraits/Posters/web/IMG_1874.jpg" alt="Event poster designed by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digitial%20Portraits/Posters/web/IMG_2364.jpg" alt="Event poster designed by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digitial%20Portraits/Posters/web/IMG_2394.jpg" alt="Event poster designed by Syd Hoeper" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digitial%20Portraits/Posters/web/IMG_2494.jpg" alt="Event poster designed by Syd Hoeper" loading="lazy" decoding="async"></button>
+      </div>
+    </section>
+  </div>
+
+  <dialog class="gallery-lightbox" data-gallery-dialog aria-label="Digital illustration viewer">
+    <button class="gallery-lightbox-close" type="button" data-gallery-close aria-label="Close full-screen image">&times;</button>
+    <button class="gallery-lightbox-nav" type="button" data-gallery-previous aria-label="Previous image">&#8592;</button>
+    <figure><img data-gallery-image alt=""><figcaption data-gallery-counter aria-live="polite"></figcaption></figure>
+    <button class="gallery-lightbox-nav" type="button" data-gallery-next aria-label="Next image">&#8594;</button>
+  </dialog>
+</article>

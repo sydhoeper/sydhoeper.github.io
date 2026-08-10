@@ -1,5 +1,510 @@
-<article class="project-placeholder">
-  <p class="project-eyebrow">Worldbuilding · 2026</p>
-  <h1>Chambers of Becoming</h1>
-  <p>This project page is coming soon.</p>
+<style>
+  .chamber-study {
+    --chamber-desire: rgba(208, 170, 225, 0.42);
+    --chamber-warm: rgba(236, 182, 139, 0.34);
+    --chamber-cool: rgba(154, 200, 202, 0.32);
+    width: 100%;
+    max-width: 980px;
+    container: chamber-study / inline-size;
+  }
+
+  .chamber-study h1,
+  .chamber-study h2,
+  .chamber-study h3,
+  .chamber-callout p {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  .chamber-hero,
+  .chamber-section {
+    padding: clamp(var(--space-7), 6vw, var(--space-8)) 0;
+  }
+
+  .chamber-hero {
+    padding-top: 0;
+  }
+
+  .chamber-eyebrow,
+  .chamber-label {
+    display: block;
+    margin: 0 0 0.85rem;
+    color: var(--color-muted);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    line-height: var(--type-eyebrow-line-height);
+    letter-spacing: var(--type-eyebrow-spacing);
+    text-transform: uppercase;
+  }
+
+  .chamber-hero h1 {
+    max-width: 12ch;
+    margin: 0 0 1.2rem;
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+  }
+
+  .chamber-lede {
+    max-width: 58ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .chamber-facts,
+  .chamber-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+  }
+
+  .chamber-facts {
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+  }
+
+  .chamber-fact,
+  .chamber-card,
+  .chamber-callout {
+    padding: var(--card-padding);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .chamber-fact strong,
+  .chamber-fact span {
+    display: block;
+  }
+
+  .chamber-fact strong {
+    margin-bottom: var(--space-2);
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .chamber-fact span {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .chamber-manifesto {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
+    gap: clamp(var(--space-5), 4vw, var(--space-7));
+    align-items: center;
+    margin-top: clamp(var(--space-7), 7vw, var(--space-9));
+    padding: clamp(var(--space-6), 5vw, var(--space-8));
+    border: var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at 88% 22%, var(--chamber-desire), transparent 28%),
+      radial-gradient(circle at 72% 78%, var(--chamber-cool), transparent 32%),
+      var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .chamber-manifesto strong {
+    display: block;
+    max-width: 18ch;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 5cqi, 3.4rem);
+    line-height: 1.05;
+  }
+
+  .chamber-manifesto p {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: var(--type-body-line-height);
+  }
+
+  .chamber-section {
+    border-top: var(--border-subtle);
+  }
+
+  .chamber-section-heading,
+  .chamber-result {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+  }
+
+  .chamber-section-heading {
+    margin-bottom: clamp(var(--space-6), 4vw, var(--space-7));
+  }
+
+  .chamber-section-heading h2,
+  .chamber-result h2 {
+    margin: 0;
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .chamber-section-heading p,
+  .chamber-result-copy p {
+    max-width: 60ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .chamber-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .chamber-card h3 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .chamber-card p,
+  .chamber-card li {
+    line-height: var(--type-body-line-height);
+  }
+
+  .chamber-card p {
+    margin: 0;
+  }
+
+  .chamber-card ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .chamber-card li + li {
+    margin-top: var(--space-2);
+  }
+
+  .chamber-callout {
+    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
+    border-left: 5px solid var(--color-accent);
+    box-shadow: none;
+  }
+
+  .chamber-callout p {
+    max-width: 31ch;
+    margin: 0;
+    font-size: clamp(1.35rem, 3.4cqi, 2rem);
+    line-height: 1.25;
+  }
+
+  .chamber-map {
+    position: relative;
+    display: grid;
+    gap: clamp(var(--space-4), 3vw, var(--space-6));
+    padding: clamp(var(--space-6), 5vw, var(--space-8));
+    overflow: hidden;
+    border: var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at 50% 33%, rgba(var(--color-dark-rgb), 0.04) 0 17%, transparent 17.5%),
+      var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .chamber-foyer {
+    display: grid;
+    width: min(100%, 310px);
+    aspect-ratio: 1;
+    justify-self: center;
+    align-content: center;
+    justify-items: center;
+    padding: var(--space-7);
+    border: 2px solid rgba(var(--color-dark-rgb), 0.32);
+    border-radius: 50%;
+    background: rgba(255, 249, 240, 0.86);
+    text-align: center;
+  }
+
+  .chamber-skylight {
+    display: block;
+    width: 38px;
+    height: 38px;
+    margin-bottom: var(--space-4);
+    border: 1px solid rgba(var(--color-dark-rgb), 0.22);
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 30px rgba(255, 215, 128, 0.72);
+  }
+
+  .chamber-foyer strong {
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    line-height: 1.1;
+  }
+
+  .chamber-foyer span:last-child {
+    margin-top: var(--space-2);
+    color: var(--color-muted);
+    font-size: 0.86rem;
+  }
+
+  .chamber-doors {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .chamber-door {
+    display: grid;
+    min-height: 112px;
+    align-content: center;
+    padding: var(--space-4);
+    border: 1px dashed rgba(var(--color-dark-rgb), 0.25);
+    border-radius: 48% 48% var(--radius-sm) var(--radius-sm);
+    background: rgba(var(--color-dark-rgb), 0.025);
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .chamber-door.active {
+    border-style: solid;
+    background: var(--chamber-desire);
+    color: var(--color-dark);
+    box-shadow: 0 8px 20px rgba(var(--color-dark-rgb), 0.1);
+  }
+
+  .chamber-door small {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .chamber-pipeline {
+    display: grid;
+    grid-template-columns: repeat(9, auto);
+    gap: var(--space-3);
+    align-items: center;
+    justify-content: center;
+    padding: clamp(var(--space-5), 4vw, var(--space-7));
+    border: var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background: var(--surface-card);
+  }
+
+  .chamber-pipeline-step {
+    display: grid;
+    min-height: 92px;
+    align-content: center;
+    padding: var(--space-4);
+    border-radius: var(--radius-sm);
+    background: rgba(var(--color-dark-rgb), 0.045);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .chamber-pipeline-step strong {
+    display: block;
+    margin-bottom: var(--space-1);
+  }
+
+  .chamber-pipeline-arrow {
+    color: var(--color-muted);
+  }
+
+  .chamber-result-copy strong {
+    display: block;
+    margin-bottom: var(--space-3);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  @container chamber-study (max-width: 760px) {
+    .chamber-facts,
+    .chamber-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .chamber-manifesto {
+      grid-template-columns: 1fr;
+    }
+
+    .chamber-doors {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .chamber-pipeline {
+      grid-template-columns: 1fr;
+    }
+
+    .chamber-pipeline-arrow {
+      transform: rotate(90deg);
+      text-align: center;
+    }
+
+    .chamber-pipeline-step {
+      min-height: 0;
+    }
+  }
+
+  @container chamber-study (max-width: 560px) {
+    .chamber-section-heading,
+    .chamber-result,
+    .chamber-facts,
+    .chamber-card-grid,
+    .chamber-doors {
+      grid-template-columns: 1fr;
+    }
+
+    .chamber-door {
+      min-height: 82px;
+      border-radius: var(--radius-md);
+    }
+  }
+</style>
+
+<article class="chamber-study">
+  <header class="chamber-hero">
+    <span class="chamber-eyebrow">Worldbuilding class · “Structures” assignment · 2026</span>
+    <h1>Chambers of Becoming</h1>
+    <p class="chamber-lede">An explorable tunnel system built around a civilization that treated emotional honesty as a public good—not something to hide or feel ashamed of.</p>
+
+    <div class="chamber-facts" aria-label="Project facts">
+      <div class="chamber-fact"><strong>Context</strong><span>Worldbuilding class project</span></div>
+      <div class="chamber-fact"><strong>Prompt</strong><span>Design a structure</span></div>
+      <div class="chamber-fact"><strong>Focus</strong><span>The desire chamber</span></div>
+      <div class="chamber-fact"><strong>Format</strong><span>3D Unity walkthrough</span></div>
+    </div>
+
+    <div class="chamber-manifesto">
+      <strong>Emotions are signals, not moral failures.</strong>
+      <p>The civilization of Emora believed suffering comes less from emotion itself than from shame, repression, and the belief that difficult feelings should not exist.</p>
+    </div>
+  </header>
+
+  <section class="chamber-section" aria-labelledby="chamber-premise-heading">
+    <div class="chamber-section-heading">
+      <h2 id="chamber-premise-heading">The premise</h2>
+      <p>The Chambers of Becoming were created as safe, communal spaces for confronting emotions that people often avoid—desire, grief, rage, envy, and fear. Visitors could acknowledge what they felt, consider what it was pointing toward, and choose how to respond.</p>
+    </div>
+
+    <div class="chamber-card-grid">
+      <article class="chamber-card">
+        <span class="chamber-label">Belief</span>
+        <h3>No emotion requires shame</h3>
+        <p>Feelings were understood as information about unmet needs, boundaries, attachments, and change.</p>
+      </article>
+      <article class="chamber-card">
+        <span class="chamber-label">Practice</span>
+        <h3>Make reflection physical</h3>
+        <p>Architecture gave people a place to pause, enter deliberately, and sit with an emotion instead of suppressing it.</p>
+      </article>
+      <article class="chamber-card">
+        <span class="chamber-label">Tone</span>
+        <h3>Safe, strange, and sacred</h3>
+        <p>Organic cave forms, filtered light, alcoves, crystals, mushrooms, and glitter made introspection feel protected rather than clinical.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="chamber-section" aria-labelledby="chamber-structure-heading">
+    <div class="chamber-section-heading">
+      <h2 id="chamber-structure-heading">The structure</h2>
+      <p>A circular foyer acts as the threshold into the psyche. Light enters from above, symbolic objects identify each emotion, and arched tunnels invite visitors to choose what they are ready to explore.</p>
+    </div>
+
+    <div class="chamber-map" role="img" aria-label="A circular foyer opens into chambers for grief, rage, envy, fear, and desire; the desire chamber is the one developed for this project">
+      <div class="chamber-foyer" aria-hidden="true">
+        <span class="chamber-skylight"></span>
+        <strong>Foyer</strong>
+        <span>Enter · reflect · choose</span>
+      </div>
+      <div class="chamber-doors" aria-hidden="true">
+        <span class="chamber-door">Grief<small>Future chamber</small></span>
+        <span class="chamber-door">Rage<small>Future chamber</small></span>
+        <span class="chamber-door active">Desire<small>Explored</small></span>
+        <span class="chamber-door">Envy<small>Future chamber</small></span>
+        <span class="chamber-door">Fear<small>Future chamber</small></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="chamber-section" aria-labelledby="chamber-desire-heading">
+    <div class="chamber-section-heading">
+      <h2 id="chamber-desire-heading">Why desire?</h2>
+      <p>I focused the build on desire after revisiting the Devil tarot card. Its imagery became a way to explore the line between pleasure and compulsion—and the illusion that people have no agency over their shadow selves.</p>
+    </div>
+
+    <div class="chamber-card-grid">
+      <article class="chamber-card">
+        <span class="chamber-label">Symbol</span>
+        <h3>Loose chains</h3>
+        <p>The figures on the card appear bound, but their chains can be removed. Restriction is partly sustained by believing it is absolute.</p>
+      </article>
+      <article class="chamber-card">
+        <span class="chamber-label">Question</span>
+        <h3>Pleasure or compulsion?</h3>
+        <p>The chamber does not condemn indulgence. It asks when desire supports a life and when it begins to control one.</p>
+      </article>
+      <article class="chamber-card">
+        <span class="chamber-label">Guardian</span>
+        <h3>Face the shadow self</h3>
+        <p>A devil figure watches over the space as a guardian of honesty about attachment, appetite, sexuality, and control.</p>
+      </article>
+    </div>
+
+    <div class="chamber-callout">
+      <span class="chamber-label">Core idea</span>
+      <p>The chamber does not tell visitors what they should want. It asks them to be honest about why they want it.</p>
+    </div>
+  </section>
+
+  <section class="chamber-section" aria-labelledby="chamber-build-heading">
+    <div class="chamber-section-heading">
+      <h2 id="chamber-build-heading">From sculpture to walkthrough</h2>
+      <p>I built the chamber as an end-to-end 3D environment: sculpting the architecture spatially in VR, surfacing it, assembling the world in Unity, and creating a first-person route through the finished space.</p>
+    </div>
+
+    <div class="chamber-pipeline" role="img" aria-label="The chamber moved from VR sculpting in Adobe Medium to texturing in Substance Painter, assembly in Unity, environmental detailing, and a first-person walkthrough">
+      <span class="chamber-pipeline-step"><strong>Adobe Medium</strong>VR sculpting</span>
+      <span class="chamber-pipeline-arrow" aria-hidden="true">→</span>
+      <span class="chamber-pipeline-step"><strong>Substance Painter</strong>Surface and texture</span>
+      <span class="chamber-pipeline-arrow" aria-hidden="true">→</span>
+      <span class="chamber-pipeline-step"><strong>Unity</strong>Scene assembly</span>
+      <span class="chamber-pipeline-arrow" aria-hidden="true">→</span>
+      <span class="chamber-pipeline-step"><strong>Asset mix</strong>Free + Meshy AI</span>
+      <span class="chamber-pipeline-arrow" aria-hidden="true">→</span>
+      <span class="chamber-pipeline-step"><strong>POV build</strong>Walkable experience</span>
+    </div>
+
+    <div class="chamber-card-grid" style="margin-top:clamp(var(--space-7),6vw,var(--space-8))">
+      <article class="chamber-card">
+        <span class="chamber-label">Architecture</span>
+        <h3>Sculpt from inside the space</h3>
+        <p>Working in Medium let me shape the tunnels at human scale and think about how curves, thresholds, and alcoves would feel while moving through them.</p>
+      </article>
+      <article class="chamber-card">
+        <span class="chamber-label">Environment</span>
+        <h3>Carry Emora’s visual language forward</h3>
+        <p>Crystals, mushrooms, glittering surfaces, organic forms, and saturated color connect the chamber to the wider world.</p>
+      </article>
+      <article class="chamber-card">
+        <span class="chamber-label">Composition</span>
+        <h3>Design places to pause</h3>
+        <p>Alcoves and smaller zones break up the tunnel and create distinct moments for contemplation, indulgence, or retreat.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="chamber-section chamber-result" aria-labelledby="chamber-result-heading">
+    <h2 id="chamber-result-heading">Result</h2>
+    <div class="chamber-result-copy">
+      <strong>A philosophical concept became a place I could walk through.</strong>
+      <p>The final Unity scene stayed true to the original desire chamber proposal while giving it spatial rhythm, material detail, and a clear point of view. It became one of the school projects I am most proud of—and a foundation for expanding the other chambers later.</p>
+    </div>
+  </section>
 </article>

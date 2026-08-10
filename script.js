@@ -29,10 +29,11 @@ const pageMap = {
     "stained-glass": "pages/Sculpture/stained-glass.html",
     felting: "pages/Sculpture/felting-works.html",
 
-    "digital-portraits": "pages/Illustration/digital-portraits.html",
-    "digital-drawings": "pages/Illustration/digital-drawings.html",
-    "event-posters": "pages/Illustration/event-posters.html",
-    "oracle-deck": "pages/Illustration/oracle-deck.html",
+    "digital-portraits": "pages/Illustration/digital-illustration.html",
+    "digital-drawings": "pages/Illustration/digital-illustration.html",
+    "event-posters": "pages/Illustration/digital-illustration.html",
+    "digital-illustration": "pages/Illustration/digital-illustration.html",
+    "oracle-deck": "pages/Illustration/digital-illustration.html",
     "marker-doodles": "pages/Illustration/marker-doodles.html",
     "plein-air": "pages/Illustration/plein-air-sketches.html"
 };
@@ -563,9 +564,17 @@ function showComingSoon(pageName, pagePath = "", focusContent = false) {
 }
 
 function updateActiveLink(pageName) {
+    const pageAliases = {
+        "digital-portraits": "digital-illustration",
+        "digital-drawings": "digital-illustration",
+        "event-posters": "digital-illustration",
+        "oracle-deck": "digital-illustration"
+    };
+    const activePageName = pageAliases[pageName] || pageName;
+
     navigationLinks.forEach((link) => {
         const isHomeLink = link.dataset.page === "home";
-        const isCurrentPage = link.dataset.page === pageName;
+        const isCurrentPage = link.dataset.page === activePageName;
 
         if (isCurrentPage && !isHomeLink) {
             link.classList.add("active");
