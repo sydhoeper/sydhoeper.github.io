@@ -90,12 +90,20 @@
     line-height: 1.45;
   }
 
-  .eye-carousel {
+  .eye-video-frame {
     margin-top: clamp(var(--space-7), 7vw, var(--space-9));
+    overflow: hidden;
+    border-radius: 28px;
+    background: var(--color-media-canvas);
+    box-shadow: var(--shadow-card);
   }
 
-  .eye-carousel .emora-carousel-viewport {
-    height: clamp(300px, 44cqi, 520px);
+  .eye-video-frame video {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
     border-radius: 28px;
   }
 
@@ -264,9 +272,6 @@
       grid-template-columns: 1fr;
     }
 
-    .eye-carousel .emora-carousel-viewport {
-      height: 300px;
-    }
   }
 </style>
 
@@ -274,33 +279,21 @@
   <header class="eye-hero">
     <span class="eye-eyebrow">Contract AR installation · 2026</span>
     <h1>Under the Eye</h1>
-    <p class="eye-lede">I led Unity scene production for a four-week guerrilla AR installation, turning an ambitious creative brief into a cohesive experience that launched at AWE.</p>
+    <p class="eye-lede">I led Unity production and art direction for a four-week guerrilla AR installation that launched at AWE.</p>
 
     <div class="eye-facts" aria-label="Project facts">
-      <div class="eye-fact"><strong>My role</strong><span>Unity scene lead and art direction</span></div>
-      <div class="eye-fact"><strong>Timeline</strong><span>Approximately four weeks</span></div>
-      <div class="eye-fact"><strong>Team</strong><span>Artist, engineer, and three NYU interns</span></div>
+      <div class="eye-fact"><strong>My role</strong><span>Unity lead + art direction</span></div>
+      <div class="eye-fact"><strong>Timeline</strong><span>Four weeks</span></div>
+      <div class="eye-fact"><strong>Team</strong><span>Artist, engineer + 3 interns</span></div>
       <div class="eye-fact"><strong>Platform</strong><span>The Outernet Foundation</span></div>
     </div>
 
-    <section class="emora-carousel eye-carousel" data-carousel aria-label="Under the Eye media gallery" aria-roledescription="carousel">
-      <div class="emora-carousel-viewport">
-        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Video 1 of 1">
-          <video controls muted playsinline preload="metadata" poster="/images/Videos/web/under-the-eye-ar-installation-poster.jpg" aria-label="Under the Eye installation recording">
-            <source src="/images/Videos/web/under-the-eye-ar-installation.m4v" type="video/x-m4v">
-            Your browser does not support embedded video.
-          </video>
-        </figure>
-
-        <button class="emora-carousel-arrow previous" type="button" data-carousel-previous aria-label="Previous slide">&#8249;</button>
-        <button class="emora-carousel-arrow next" type="button" data-carousel-next aria-label="Next slide">&#8250;</button>
-      </div>
-
-      <div class="emora-carousel-controls">
-        <div class="emora-carousel-thumbnails" data-carousel-thumbnails aria-label="Choose an Under the Eye media item by thumbnail"></div>
-        <p class="visually-hidden" data-carousel-status aria-live="polite">Video 1 of 1</p>
-      </div>
-    </section>
+    <div class="eye-video-frame">
+      <video controls muted playsinline preload="metadata" poster="/images/Videos/web/under-the-eye-ar-installation-poster.jpg" aria-label="Under the Eye installation recording">
+        <source src="/images/Videos/web/under-the-eye-ar-installation.m4v" type="video/x-m4v">
+        Your browser does not support embedded video.
+      </video>
+    </div>
 
     <p class="eye-carousel-caption">The final scene used Outernet’s shared positioning platform to anchor the installation in the AWE conference courtyard.</p>
   </header>
@@ -308,118 +301,100 @@
   <section class="eye-section" aria-labelledby="eye-brief-heading">
     <div class="eye-section-heading">
       <h2 id="eye-brief-heading">The brief</h2>
-      <p>The Outernet Foundation brought the team a deliberately provocative idea: use its shared AR platform to stage a “punk rock” installation at an AR conference. The experience contrasted AR’s creative potential with questions about surveillance, data collection, and commercial influence.</p>
+      <p>Create a site-specific “punk rock” AR artwork that paired the medium’s creative potential with a critique of surveillance, data collection, and commerce.</p>
     </div>
 
     <div class="eye-card-grid">
       <article class="eye-card">
         <span class="eye-label">Experience</span>
-        <h3>Make it site-specific</h3>
-        <p>The scene needed to feel anchored in the courtyard rather than like content floating on top of it.</p>
+        <h3>Anchor it to place</h3>
+        <p>Make the scene feel built for the courtyard.</p>
       </article>
       <article class="eye-card">
         <span class="eye-label">Tone</span>
-        <h3>Beautiful and unsettling</h3>
-        <p>The visual world had to invite people in while supporting a critique of the systems behind AR.</p>
+        <h3>Invite, then unsettle</h3>
+        <p>Use beauty to draw people into a critical idea.</p>
       </article>
       <article class="eye-card">
         <span class="eye-label">Constraint</span>
-        <h3>Four weeks to install</h3>
-        <p>Creative development, technical integration, team production, and polish happened against one fixed event deadline.</p>
+        <h3>Meet the event</h3>
+        <p>Design, integrate, and polish before AWE.</p>
       </article>
-    </div>
-
-    <div class="eye-callout">
-      <span class="eye-label">The balancing act</span>
-      <p>Make a strange idea feel intentional, technically coherent, and ready for a live audience.</p>
     </div>
   </section>
 
   <section class="eye-section" aria-labelledby="eye-role-heading">
     <div class="eye-section-heading">
       <h2 id="eye-role-heading">What I owned</h2>
-      <p>I was the primary person building and managing the Unity scene. I translated the brief into a working environment, made artistic and interaction decisions, and kept contributions from the wider team moving toward one experience.</p>
+      <p>I owned the Unity scene, made the core artistic decisions, and kept the creative and technical work moving toward one experience.</p>
     </div>
 
     <div class="eye-card-grid">
       <article class="eye-card">
         <span class="eye-label">Unity</span>
-        <h3>Own the complete scene</h3>
-        <p>I greyboxed the environment, integrated systems and assets, increased fidelity, and maintained the build as it evolved.</p>
+        <h3>Manage the scene</h3>
+        <p>Greybox, integrate, increase fidelity, and maintain the build.</p>
       </article>
       <article class="eye-card">
         <span class="eye-label">Art direction</span>
-        <h3>Make the world cohere</h3>
-        <p>I made visual and experiential decisions so the objects, movement, sound, materials, and shader effects supported the same tone.</p>
+        <h3>Set the direction</h3>
+        <p>Align objects, movement, sound, materials, and shaders.</p>
       </article>
       <article class="eye-card">
         <span class="eye-label">Production</span>
-        <h3>Direct intern contributions</h3>
-        <p>I managed three NYU interns as they developed finalized assets, materials, and shader graphs for the scene.</p>
+        <h3>Lead production</h3>
+        <p>Direct three NYU interns and coordinate with the artist and engineer.</p>
       </article>
     </div>
   </section>
 
   <section class="eye-section" aria-labelledby="eye-process-heading">
     <div class="eye-section-heading">
-      <h2 id="eye-process-heading">How I built it</h2>
-      <p>I started with spatial relationships and flow, then increased fidelity only after the scene worked as a whole. Daily check-ins with the lead artist and engineer kept the creative and technical work aligned.</p>
+      <h2 id="eye-process-heading">The build</h2>
+      <p>I worked from whole to detail: establish the space first, then add assets, team contributions, materials, sound, and effects.</p>
     </div>
 
     <ol class="eye-build-flow" aria-label="Under the Eye production process">
       <li data-step="01">Greybox the scene</li>
       <li data-step="02">Validate scale and flow</li>
-      <li data-step="03">Build and source assets</li>
-      <li data-step="04">Add materials, shaders, and sound</li>
-      <li data-step="05">Integrate and polish</li>
+      <li data-step="03">Prototype in Blender + Meshy</li>
+      <li data-step="04">Integrate team work</li>
+      <li data-step="05">Polish shaders, sound + flow</li>
     </ol>
 
-    <div class="eye-card-grid" style="margin-top:clamp(var(--space-7),6vw,var(--space-8))">
-      <article class="eye-card">
-        <span class="eye-label">Create</span>
-        <h3>Mix real and placeholder assets</h3>
-        <p>I used Blender and Meshy AI to create or rapidly prototype assets while the final visual language took shape.</p>
-      </article>
-      <article class="eye-card">
-        <span class="eye-label">Coordinate</span>
-        <h3>Check in every day</h3>
-        <p>The artist, engineer, and I reviewed progress daily so visual changes and technical implementation stayed connected.</p>
-      </article>
-      <article class="eye-card">
-        <span class="eye-label">Integrate</span>
-        <h3>Protect the full experience</h3>
-        <p>I reviewed incoming work in context and filled the gaps needed to make the complete installation feel deliberate.</p>
-      </article>
+    <div class="eye-callout">
+      <span class="eye-label">Working rhythm</span>
+      <p>Daily check-ins kept art, engineering, and intern production aligned.</p>
     </div>
   </section>
 
   <section class="eye-section" aria-labelledby="eye-result-heading">
     <div class="eye-section-heading">
-      <h2 id="eye-result-heading">Result</h2>
-      <p>The team delivered the installation on schedule. It ran successfully at AWE, and the client publicly praised both the demo and the team that brought it to life.</p>
+      <h2 id="eye-result-heading">What shipped</h2>
+      <p>A functioning courtyard installation delivered on schedule for AWE, with an enthusiastic public response from the client.</p>
     </div>
 
     <div class="eye-outcomes">
       <article class="eye-outcome">
         <span class="eye-label">Delivery</span>
         <h3>Installed at AWE</h3>
-        <p>The shared AR scene moved from an unusual brief to a functioning courtyard installation in about four weeks.</p>
+        <p>A live shared-AR experience built in four weeks.</p>
       </article>
       <article class="eye-outcome">
         <span class="eye-label">Client</span>
         <h3>Positive reception</h3>
-        <p>The Outernet Foundation described the conference demo enthusiastically and credited the team’s work.</p>
+        <p>The Outernet Foundation publicly celebrated the demo and team.</p>
       </article>
       <article class="eye-outcome">
         <span class="eye-label">Leadership</span>
         <h3>One cohesive scene</h3>
-        <p>I connected art direction, Unity production, engineering constraints, and intern work into the final build.</p>
+        <p>Creative, technical, and intern work resolved into one scene.</p>
       </article>
     </div>
 
     <div class="eye-callout">
-      <span class="eye-label">Takeaway</span>
-      <p>My job was not only to build the scene. It was to keep a fast-moving creative and technical team pointed at the same experience.</p>
+      <span class="eye-label">My contribution</span>
+      <p>I held the full experience while still working through the details that made it feel complete.</p>
     </div>
   </section>
 </article>
