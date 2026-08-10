@@ -257,6 +257,13 @@
     list-style: none;
   }
 
+  .oracle-subheading {
+    margin: clamp(var(--space-6), 5vw, var(--space-8)) 0 var(--space-5);
+    font-family: var(--font-body);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
   .oracle-flow::before {
     content: "";
     position: absolute;
@@ -342,6 +349,29 @@
   .oracle-links a {
     color: var(--color-accent);
     font-weight: 750;
+  }
+
+  .oracle-continuity {
+    display: grid;
+    grid-template-columns: minmax(170px, 0.35fr) minmax(0, 1fr);
+    gap: clamp(var(--space-5), 4vw, var(--space-7));
+    align-items: start;
+    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
+    padding: var(--card-padding);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+  }
+
+  .oracle-continuity strong {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3cqi, 2rem);
+    line-height: 1.15;
+  }
+
+  .oracle-continuity p {
+    margin: 0;
+    line-height: var(--type-body-line-height);
   }
 
   .oracle-presentation-gallery {
@@ -459,6 +489,10 @@
       grid-template-columns: 38px minmax(0, 1fr);
     }
 
+    .oracle-continuity {
+      grid-template-columns: 1fr;
+    }
+
     .oracle-build-list p {
       grid-column: 2;
     }
@@ -469,13 +503,13 @@
   <header class="oracle-hero">
     <span class="oracle-eyebrow">Worldbuilding class · “Environment” final project</span>
     <h1>The World of Emora Oracle Deck</h1>
-    <p class="oracle-lede">An oracle deck presented as a video game, where hand-drawn cards reveal a fictional world while inviting the player to reflect on their own.</p>
+    <p class="oracle-lede">A hand-drawn oracle deck and Unity game that lets players discover a fictional world through chance, symbolism, and reflection.</p>
 
     <div class="oracle-facts" aria-label="Project facts">
-      <div class="oracle-fact"><strong>Context</strong><span>School assignment</span></div>
+      <div class="oracle-fact"><strong>Context</strong><span>Worldbuilding final</span></div>
       <div class="oracle-fact"><strong>Role</strong><span>Solo creator</span></div>
       <div class="oracle-fact"><strong>Tools</strong><span>Procreate + Unity</span></div>
-      <div class="oracle-fact"><strong>Format</strong><span>Interactive game + installation</span></div>
+      <div class="oracle-fact"><strong>Presented</strong><span>Roxy Annex</span></div>
     </div>
 
     <div class="oracle-card-fan" aria-label="Five cards from The World of Emora Oracle Deck">
@@ -490,7 +524,7 @@
   <section class="oracle-section" aria-labelledby="oracle-play-heading">
     <div class="oracle-section-heading">
       <h2 id="oracle-play-heading">Play the deck</h2>
-      <p>Shuffle the cards, fan them out, choose one, and reveal its place in Emora alongside a divination reading.</p>
+      <p>Shuffle, choose a card, and reveal its place in Emora alongside a personal reading.</p>
     </div>
 
     <div class="oracle-demo-frame">
@@ -512,21 +546,21 @@
   <section class="oracle-section" aria-labelledby="oracle-shift-heading">
     <div class="oracle-section-heading">
       <h2 id="oracle-shift-heading">From field guide to divination</h2>
-      <p>My original idea was a field guide. I changed direction because I wanted people to experience the world through symbols, images, chance, and interpretation instead of receiving a complete encyclopedia of its lore.</p>
+      <p>I replaced an encyclopedic field guide with a divination game built around symbols, chance, and interpretation.</p>
     </div>
 
     <div class="oracle-card-grid">
       <article class="oracle-card">
         <h3>Worldbuilding material</h3>
-        <p>Inhabitants, structures, artifacts, and natural phenomena became individual cards with their own histories and meanings.</p>
+        <p>Inhabitants, structures, artifacts, and phenomena became individual cards.</p>
       </article>
       <article class="oracle-card">
         <h3>Player-led discovery</h3>
-        <p>Shuffling and choosing lets curiosity determine which fragment of the world a player encounters next.</p>
+        <p>Chance determines which fragment of the world appears next.</p>
       </article>
       <article class="oracle-card">
         <h3>Intentional ambiguity</h3>
-        <p>No reading explains everything. Players connect fragments and imagine the systems and conflicts between them.</p>
+        <p>Players connect incomplete fragments and imagine what lies between them.</p>
       </article>
     </div>
 
@@ -538,7 +572,7 @@
   <section class="oracle-section" aria-labelledby="oracle-two-readings-heading">
     <div class="oracle-section-heading">
       <h2 id="oracle-two-readings-heading">One card, two readings</h2>
-      <p>Every selection works in two directions: it reveals part of Emora and reflects a symbolic question back onto the player.</p>
+      <p>Every selection reveals part of Emora and reflects a symbolic question back onto the player.</p>
     </div>
 
     <div class="oracle-double-reading">
@@ -564,13 +598,8 @@
         </ul>
       </article>
     </div>
-  </section>
 
-  <section class="oracle-section" aria-labelledby="oracle-flow-heading">
-    <div class="oracle-section-heading">
-      <h2 id="oracle-flow-heading">Interaction flow</h2>
-      <p>I designed the Unity experience around a short ritual that keeps the cards tactile, understandable, and satisfying to reveal.</p>
-    </div>
+    <h3 class="oracle-subheading">Player flow</h3>
 
     <ol class="oracle-flow" aria-label="Oracle deck interaction flow">
       <li data-step="01">Shuffle the deck</li>
@@ -584,38 +613,36 @@
   <section class="oracle-section" aria-labelledby="oracle-making-heading">
     <div class="oracle-section-heading">
       <h2 id="oracle-making-heading">How I made it</h2>
-      <p>The project combined my drawing practice with a more ambitious Unity interaction system.</p>
+      <p>I moved from worldbuilding concepts to original Procreate cards, then built the shuffle-and-reveal system in Unity.</p>
     </div>
 
     <ol class="oracle-build-list">
       <li>
         <span>01</span>
         <strong>Develop the symbols</strong>
-        <p>I selected ideas from across Emora and defined how each could communicate both lore and a broader symbolic meaning.</p>
+        <p>Selected inhabitants, structures, artifacts, and phenomena from across Emora.</p>
       </li>
       <li>
         <span>02</span>
         <strong>Draw every card</strong>
-        <p>I hand-drew the card artwork in Procreate, building a consistent visual language across the deck.</p>
+        <p>Hand-drew every card in Procreate using one consistent visual language.</p>
       </li>
       <li>
         <span>03</span>
         <strong>Build the Unity system</strong>
-        <p>I imported the cards into Unity and designed and vibe-coded the mechanics for shuffling, fanning, selecting, and flipping.</p>
+        <p>Designed and vibe-coded the shuffle, fan, selection, and flip mechanics.</p>
       </li>
       <li>
         <span>04</span>
         <strong>Choreograph the reveal</strong>
-        <p>When a card turns over, a panel slides in with its name, meaning, world explanation, and divination reading.</p>
+        <p>Added the flip and sliding panel containing lore and the divination reading.</p>
       </li>
     </ol>
-  </section>
 
-  <section class="oracle-section" aria-labelledby="oracle-continuity-heading">
-    <div class="oracle-section-heading">
-      <h2 id="oracle-continuity-heading">One world, three projects</h2>
+    <div class="oracle-continuity">
+      <strong>One world, three projects</strong>
       <div>
-        <p>The deck connects the symbols and lore developed through my previous Worldbuilding assignments. It revisits ideas from the inhabitants and structures projects, then expands them through new imagery and interpretation.</p>
+        <p>The deck connects and expands symbols from my earlier “Inhabitants” and “Structures” assignments.</p>
         <div class="oracle-links">
           <a href="#emora-diorama">Explore the inhabitants project →</a>
           <a href="#desire-chamber">Explore the structures project →</a>
@@ -627,7 +654,7 @@
   <section class="oracle-section" aria-labelledby="oracle-presentation-heading">
     <div class="oracle-section-heading">
       <h2 id="oracle-presentation-heading">Presented at the Roxy Annex</h2>
-      <p>For our final presentation, the class exhibited its projects together at the Roxy Annex. I set up the Oracle Deck as a small playable table installation where visitors could sit down, shuffle the deck, and choose a reading.</p>
+      <p>Our class exhibited its final projects together at the Roxy Annex. I created a table installation where visitors could sit down and choose a reading.</p>
     </div>
 
     <div class="oracle-presentation-gallery" aria-label="Oracle Deck presentation at the Roxy Annex">
@@ -638,14 +665,6 @@
       <figure><img src="/images/Oracle%20Deck/presentation/IMG_1291.jpg" alt="A visitor smiling after revealing the Collective Consciousness card" loading="lazy" decoding="async"></figure>
     </div>
 
-    <p class="oracle-presentation-note">The exhibition moved the project beyond an individual screen experience and gave people a shared space to take turns, compare cards, and talk through their readings.</p>
-  </section>
-
-  <section class="oracle-section oracle-result" aria-labelledby="oracle-result-heading">
-    <h2 id="oracle-result-heading">Final experience</h2>
-    <div class="oracle-result-copy">
-      <strong>A world assembled through chance and curiosity.</strong>
-      <p>The finished deck lets players discover Emora without fully explaining it. Each card stands alone as an illustration, a piece of lore, and a reflective prompt—while the relationships between cards suggest a civilization with a deeper history, internal conflict, and hidden systems.</p>
-    </div>
+    <p class="oracle-presentation-note"><strong>A world assembled through chance and curiosity.</strong> The exhibition turned the deck into a shared experience where people could take turns, compare cards, and discuss their readings.</p>
   </section>
 </article>
