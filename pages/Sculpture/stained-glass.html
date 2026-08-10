@@ -1,5 +1,115 @@
-<article class="art-gallery-page" data-gallery-page>
-  <h1>Stained Glass Works</h1>
+<style>
+  .stained-glass-page {
+    width: 100%;
+    max-width: 1120px;
+  }
+
+  .stained-glass-intro {
+    padding-bottom: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .stained-glass-intro h1 {
+    max-width: 12ch;
+    margin: 0 0 var(--space-5);
+    font-family: var(--font-display);
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+    text-wrap: balance;
+  }
+
+  .stained-glass-intro > p {
+    max-width: 58ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .stained-glass-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+  }
+
+  .stained-glass-facts article {
+    padding: var(--card-padding);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .stained-glass-facts strong,
+  .stained-glass-facts span {
+    display: block;
+  }
+
+  .stained-glass-facts strong {
+    margin-bottom: var(--space-2);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .stained-glass-facts span {
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+
+  .stained-glass-work-heading {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+    padding: clamp(var(--space-7), 7vw, var(--space-9)) 0 clamp(var(--space-6), 5vw, var(--space-8));
+    border-top: var(--border-subtle);
+  }
+
+  .stained-glass-work-heading h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .stained-glass-work-heading p {
+    max-width: 52ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  @media (max-width: 760px) {
+    .stained-glass-facts,
+    .stained-glass-work-heading {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<article class="art-gallery-page stained-glass-page" data-gallery-page>
+  <header class="stained-glass-intro">
+    <span class="project-eyebrow">Ongoing practice · January 2025–present</span>
+    <h1>Stained Glass</h1>
+    <p>I began working in stained glass in January 2025. Every piece starts with an original design that I develop into a finished glass object.</p>
+
+    <div class="stained-glass-facts" aria-label="Stained glass practice details">
+      <article>
+        <strong>Original designs</strong>
+        <span>I create every pattern myself rather than working from premade templates.</span>
+      </article>
+      <article>
+        <strong>Learning through making</strong>
+        <span>Each finished piece helps me refine how an idea translates into shape, color, and light.</span>
+      </article>
+    </div>
+  </header>
+
+  <div class="stained-glass-work-heading">
+    <h2>Selected work</h2>
+    <p>A growing collection of finished pieces and process videos from my stained-glass practice.</p>
+  </div>
 
   <div class="art-grid stained-glass-grid" data-gallery>
     <button class="art-gallery-item" type="button" data-gallery-item aria-label="Open stained glass image 1 full screen"><img src="/images/Stained%20Glass/web/IMG_7543.jpg?v=2" alt="Stained glass work by Syd Hoeper" loading="eager" decoding="async"></button>

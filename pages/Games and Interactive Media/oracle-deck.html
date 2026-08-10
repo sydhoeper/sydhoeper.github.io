@@ -1,35 +1,651 @@
 <style>
-    .itch-widget {
-        width: 100%;
-        max-width: 980px;
-        overflow: hidden;
+  .oracle-study {
+    --oracle-mint: rgba(145, 212, 190, 0.34);
+    --oracle-pink: rgba(239, 168, 182, 0.28);
+    --oracle-gold: rgba(238, 194, 96, 0.3);
+    width: 100%;
+    max-width: 980px;
+    container: oracle-study / inline-size;
+  }
+
+  .oracle-study h1,
+  .oracle-study h2,
+  .oracle-study h3,
+  .oracle-callout p {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  .oracle-hero,
+  .oracle-section {
+    padding: clamp(var(--space-7), 6vw, var(--space-8)) 0;
+  }
+
+  .oracle-hero {
+    padding-top: 0;
+  }
+
+  .oracle-eyebrow,
+  .oracle-label {
+    display: block;
+    margin: 0 0 0.85rem;
+    color: var(--color-muted);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    line-height: var(--type-eyebrow-line-height);
+    letter-spacing: var(--type-eyebrow-spacing);
+    text-transform: uppercase;
+  }
+
+  .oracle-hero h1 {
+    max-width: 13ch;
+    margin: 0 0 1.2rem;
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+  }
+
+  .oracle-lede {
+    max-width: 58ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .oracle-facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+  }
+
+  .oracle-fact,
+  .oracle-card,
+  .oracle-callout,
+  .oracle-reading,
+  .oracle-demo-frame {
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .oracle-fact {
+    padding: var(--card-padding);
+  }
+
+  .oracle-fact strong,
+  .oracle-fact span {
+    display: block;
+  }
+
+  .oracle-fact strong {
+    margin-bottom: var(--space-2);
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .oracle-fact span {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .oracle-card-fan {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: end;
+    margin: clamp(var(--space-8), 8vw, var(--space-9)) auto var(--space-4);
+    padding: clamp(var(--space-6), 5vw, var(--space-8));
+    overflow: hidden;
+    border: var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at 18% 25%, var(--oracle-mint), transparent 30%),
+      radial-gradient(circle at 84% 30%, var(--oracle-pink), transparent 31%),
+      radial-gradient(circle at 50% 100%, var(--oracle-gold), transparent 42%),
+      var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .oracle-card-fan img {
+    position: relative;
+    width: 128%;
+    max-width: none;
+    height: auto;
+    margin: 0 -14%;
+    border-radius: 4% / 2.6%;
+    box-shadow: 0 12px 30px rgba(var(--color-dark-rgb), 0.18);
+    transform-origin: 50% 110%;
+  }
+
+  .oracle-card-fan img:nth-child(1) { transform: rotate(-10deg) translateY(17%); }
+  .oracle-card-fan img:nth-child(2) { transform: rotate(-5deg) translateY(6%); }
+  .oracle-card-fan img:nth-child(3) { z-index: 2; transform: translateY(0); }
+  .oracle-card-fan img:nth-child(4) { transform: rotate(5deg) translateY(6%); }
+  .oracle-card-fan img:nth-child(5) { transform: rotate(10deg) translateY(17%); }
+
+  .oracle-section {
+    border-top: var(--border-subtle);
+  }
+
+  .oracle-section-heading,
+  .oracle-result {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+  }
+
+  .oracle-section-heading {
+    margin-bottom: clamp(var(--space-6), 4vw, var(--space-7));
+  }
+
+  .oracle-section-heading h2,
+  .oracle-result h2 {
+    margin: 0;
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .oracle-section-heading p,
+  .oracle-result-copy p {
+    max-width: 60ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .oracle-demo-frame {
+    padding: clamp(var(--space-3), 2vw, var(--space-5));
+    overflow: hidden;
+  }
+
+  .itch-widget {
+    width: 100%;
+    aspect-ratio: 49 / 29;
+    overflow: hidden;
+    border-radius: calc(var(--card-radius) - 4px);
+    background: var(--color-media-canvas);
+  }
+
+  .itch-widget iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .oracle-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+  }
+
+  .oracle-card {
+    padding: var(--card-padding);
+  }
+
+  .oracle-card h3,
+  .oracle-reading h3 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .oracle-card p,
+  .oracle-reading p {
+    margin: 0;
+    line-height: var(--type-body-line-height);
+  }
+
+  .oracle-callout {
+    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
+    padding: var(--card-padding);
+    border-left: 5px solid var(--color-accent);
+    box-shadow: none;
+  }
+
+  .oracle-callout p {
+    max-width: 33ch;
+    margin: 0;
+    font-size: clamp(1.35rem, 3.4cqi, 2rem);
+    line-height: 1.25;
+  }
+
+  .oracle-double-reading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 0.55fr) minmax(0, 1fr);
+    gap: clamp(var(--space-4), 3vw, var(--space-6));
+    align-items: center;
+  }
+
+  .oracle-reading {
+    min-height: 230px;
+    padding: var(--card-padding);
+  }
+
+  .oracle-reading ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    line-height: var(--type-body-line-height);
+  }
+
+  .oracle-reading li + li {
+    margin-top: var(--space-2);
+  }
+
+  .oracle-double-reading img {
+    width: 100%;
+    max-width: 230px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 4% / 2.6%;
+    box-shadow: var(--shadow-card);
+  }
+
+  .oracle-flow {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .oracle-flow::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: 10%;
+    left: 10%;
+    height: 2px;
+    background: rgba(var(--color-dark-rgb), 0.18);
+  }
+
+  .oracle-flow li {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-3);
+    justify-items: center;
+    font-size: 0.9rem;
+    font-weight: 650;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .oracle-flow li::before {
+    content: attr(data-step);
+    display: grid;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-background);
+    border-radius: 50%;
+    background: var(--color-dark);
+    box-shadow: 0 0 0 1px rgba(var(--color-dark-rgb), 0.18);
+    color: var(--color-background);
+    font-size: 0.72rem;
+    place-items: center;
+  }
+
+  .oracle-build-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border-top: var(--border-subtle);
+    list-style: none;
+  }
+
+  .oracle-build-list li {
+    display: grid;
+    grid-template-columns: 42px minmax(150px, 0.45fr) minmax(0, 1fr);
+    gap: var(--space-5);
+    align-items: start;
+    padding: var(--space-5) 0;
+    border-bottom: var(--border-subtle);
+    line-height: var(--type-body-line-height);
+  }
+
+  .oracle-build-list span {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-dark);
+    color: var(--color-background);
+    font-size: 0.75rem;
+    font-weight: 750;
+    place-items: center;
+  }
+
+  .oracle-build-list strong {
+    font-size: 1rem;
+  }
+
+  .oracle-build-list p {
+    margin: 0;
+  }
+
+  .oracle-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .oracle-links a {
+    color: var(--color-accent);
+    font-weight: 750;
+  }
+
+  .oracle-presentation-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+  }
+
+  .oracle-presentation-gallery figure {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .oracle-presentation-gallery figure:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .oracle-presentation-gallery img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+  }
+
+  .oracle-presentation-note {
+    margin: clamp(var(--space-5), 4vw, var(--space-7)) 0 0;
+    padding-left: var(--space-5);
+    border-left: 4px solid var(--color-accent);
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .oracle-result-copy strong {
+    display: block;
+    margin-bottom: var(--space-3);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  @container oracle-study (max-width: 760px) {
+    .oracle-facts,
+    .oracle-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .itch-widget iframe {
-        display: block;
-        width: 980px;
-        height: 580px;
-        border: 0;
-        transform-origin: top left;
+    .oracle-double-reading {
+      grid-template-columns: 1fr 0.55fr 1fr;
     }
+
+    .oracle-flow {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+
+    .oracle-flow::before {
+      top: 20px;
+      right: auto;
+      bottom: 20px;
+      left: 20px;
+      width: 2px;
+      height: auto;
+    }
+
+    .oracle-flow li {
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: var(--space-4);
+      align-items: center;
+      justify-items: start;
+      text-align: left;
+    }
+  }
+
+  @container oracle-study (max-width: 560px) {
+    .oracle-section-heading,
+    .oracle-result,
+    .oracle-facts,
+    .oracle-card-grid,
+    .oracle-double-reading {
+      grid-template-columns: 1fr;
+    }
+
+    .oracle-card-fan {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .oracle-presentation-gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .oracle-presentation-gallery figure:first-child {
+      grid-column: auto;
+    }
+
+    .oracle-card-fan img:nth-child(1),
+    .oracle-card-fan img:nth-child(5) {
+      display: none;
+    }
+
+    .oracle-card-fan img:nth-child(2) { transform: rotate(-6deg) translateY(8%); }
+    .oracle-card-fan img:nth-child(4) { transform: rotate(6deg) translateY(8%); }
+
+    .oracle-reading {
+      min-height: 0;
+    }
+
+    .oracle-double-reading img {
+      grid-row: 1;
+      max-width: 180px;
+    }
+
+    .oracle-build-list li {
+      grid-template-columns: 38px minmax(0, 1fr);
+    }
+
+    .oracle-build-list p {
+      grid-column: 2;
+    }
+  }
 </style>
 
-<article>
-    <p class="project-eyebrow">Worldbuilding · 2026</p>
+<article class="oracle-study">
+  <header class="oracle-hero">
+    <span class="oracle-eyebrow">Worldbuilding class · “Environment” final project</span>
     <h1>The World of Emora Oracle Deck</h1>
+    <p class="oracle-lede">An oracle deck presented as a video game, where hand-drawn cards reveal a fictional world while inviting the player to reflect on their own.</p>
 
-    <div class="itch-widget">
-        <iframe
-            src="https://itch.io/embed-upload/17770495?color=ffffff"
-            width="980"
-            height="580"
-            title="Play The World of Emora Oracle Deck on itch.io"
-            loading="lazy"
-            allowfullscreen
-        >
-            <a href="https://cosmicsquid46.itch.io/the-world-of-emora-digital-oracle-deck-desktop">
-                Play The World of Emora Oracle Deck on itch.io
-            </a>
-        </iframe>
+    <div class="oracle-facts" aria-label="Project facts">
+      <div class="oracle-fact"><strong>Context</strong><span>School assignment</span></div>
+      <div class="oracle-fact"><strong>Role</strong><span>Solo creator</span></div>
+      <div class="oracle-fact"><strong>Tools</strong><span>Procreate + Unity</span></div>
+      <div class="oracle-fact"><strong>Format</strong><span>Interactive game + installation</span></div>
     </div>
+
+    <div class="oracle-card-fan" aria-label="Five cards from The World of Emora Oracle Deck">
+      <img src="/images/Oracle%20Deck/web/IMG_2411.PNG" alt="Oracle card showing an eye above a rainbow path" loading="eager" decoding="async">
+      <img src="/images/Oracle%20Deck/web/IMG_2424.PNG" alt="Thunderstorms oracle card" loading="eager" decoding="async">
+      <img src="/images/Oracle%20Deck/web/IMG_2503.PNG" alt="Fernip oracle card" loading="eager" decoding="async">
+      <img src="/images/Oracle%20Deck/web/IMG_2498.PNG" alt="The Selka River oracle card" loading="eager" decoding="async">
+      <img src="/images/Oracle%20Deck/web/IMG_2506.PNG" alt="Witness Tree oracle card" loading="eager" decoding="async">
+    </div>
+  </header>
+
+  <section class="oracle-section" aria-labelledby="oracle-play-heading">
+    <div class="oracle-section-heading">
+      <h2 id="oracle-play-heading">Play the deck</h2>
+      <p>Shuffle the cards, fan them out, choose one, and reveal its place in Emora alongside a divination reading.</p>
+    </div>
+
+    <div class="oracle-demo-frame">
+      <div class="itch-widget">
+        <iframe
+          src="https://itch.io/embed-upload/17770495?color=ffffff"
+          width="980"
+          height="580"
+          title="Play The World of Emora Oracle Deck on itch.io"
+          loading="lazy"
+          allowfullscreen
+        >
+          <a href="https://cosmicsquid46.itch.io/the-world-of-emora-digital-oracle-deck-desktop">Play The World of Emora Oracle Deck on itch.io</a>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="oracle-section" aria-labelledby="oracle-shift-heading">
+    <div class="oracle-section-heading">
+      <h2 id="oracle-shift-heading">From field guide to divination</h2>
+      <p>My original idea was a field guide. I changed direction because I wanted people to experience the world through symbols, images, chance, and interpretation instead of receiving a complete encyclopedia of its lore.</p>
+    </div>
+
+    <div class="oracle-card-grid">
+      <article class="oracle-card">
+        <h3>Worldbuilding material</h3>
+        <p>Inhabitants, structures, artifacts, and natural phenomena became individual cards with their own histories and meanings.</p>
+      </article>
+      <article class="oracle-card">
+        <h3>Player-led discovery</h3>
+        <p>Shuffling and choosing lets curiosity determine which fragment of the world a player encounters next.</p>
+      </article>
+      <article class="oracle-card">
+        <h3>Intentional ambiguity</h3>
+        <p>No reading explains everything. Players connect fragments and imagine the systems and conflicts between them.</p>
+      </article>
+    </div>
+
+    <aside class="oracle-callout">
+      <p>The goal was to make worldbuilding feel experiential rather than encyclopedic.</p>
+    </aside>
+  </section>
+
+  <section class="oracle-section" aria-labelledby="oracle-two-readings-heading">
+    <div class="oracle-section-heading">
+      <h2 id="oracle-two-readings-heading">One card, two readings</h2>
+      <p>Every selection works in two directions: it reveals part of Emora and reflects a symbolic question back onto the player.</p>
+    </div>
+
+    <div class="oracle-double-reading">
+      <article class="oracle-reading">
+        <span class="oracle-label">The world</span>
+        <h3>Lore layer</h3>
+        <ul>
+          <li>Name of the object or phenomenon</li>
+          <li>Short meaning</li>
+          <li>Its history and role in Emora</li>
+        </ul>
+      </article>
+
+      <img src="/images/Oracle%20Deck/web/IMG_2499.PNG" alt="Mycorrhizal Network oracle card" loading="lazy" decoding="async">
+
+      <article class="oracle-reading">
+        <span class="oracle-label">The player</span>
+        <h3>Divination layer</h3>
+        <ul>
+          <li>Symbolic interpretation</li>
+          <li>Personal reflection</li>
+          <li>Meaning shaped by the moment of selection</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="oracle-section" aria-labelledby="oracle-flow-heading">
+    <div class="oracle-section-heading">
+      <h2 id="oracle-flow-heading">Interaction flow</h2>
+      <p>I designed the Unity experience around a short ritual that keeps the cards tactile, understandable, and satisfying to reveal.</p>
+    </div>
+
+    <ol class="oracle-flow" aria-label="Oracle deck interaction flow">
+      <li data-step="01">Shuffle the deck</li>
+      <li data-step="02">Fan out the cards</li>
+      <li data-step="03">Choose one card</li>
+      <li data-step="04">Flip and reveal</li>
+      <li data-step="05">Read both meanings</li>
+    </ol>
+  </section>
+
+  <section class="oracle-section" aria-labelledby="oracle-making-heading">
+    <div class="oracle-section-heading">
+      <h2 id="oracle-making-heading">How I made it</h2>
+      <p>The project combined my drawing practice with a more ambitious Unity interaction system.</p>
+    </div>
+
+    <ol class="oracle-build-list">
+      <li>
+        <span>01</span>
+        <strong>Develop the symbols</strong>
+        <p>I selected ideas from across Emora and defined how each could communicate both lore and a broader symbolic meaning.</p>
+      </li>
+      <li>
+        <span>02</span>
+        <strong>Draw every card</strong>
+        <p>I hand-drew the card artwork in Procreate, building a consistent visual language across the deck.</p>
+      </li>
+      <li>
+        <span>03</span>
+        <strong>Build the Unity system</strong>
+        <p>I imported the cards into Unity and designed and vibe-coded the mechanics for shuffling, fanning, selecting, and flipping.</p>
+      </li>
+      <li>
+        <span>04</span>
+        <strong>Choreograph the reveal</strong>
+        <p>When a card turns over, a panel slides in with its name, meaning, world explanation, and divination reading.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="oracle-section" aria-labelledby="oracle-continuity-heading">
+    <div class="oracle-section-heading">
+      <h2 id="oracle-continuity-heading">One world, three projects</h2>
+      <div>
+        <p>The deck connects the symbols and lore developed through my previous Worldbuilding assignments. It revisits ideas from the inhabitants and structures projects, then expands them through new imagery and interpretation.</p>
+        <div class="oracle-links">
+          <a href="#emora-diorama">Explore the inhabitants project →</a>
+          <a href="#desire-chamber">Explore the structures project →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="oracle-section" aria-labelledby="oracle-presentation-heading">
+    <div class="oracle-section-heading">
+      <h2 id="oracle-presentation-heading">Presented at the Roxy Annex</h2>
+      <p>For our final presentation, the class exhibited its projects together at the Roxy Annex. I set up the Oracle Deck as a small playable table installation where visitors could sit down, shuffle the deck, and choose a reading.</p>
+    </div>
+
+    <div class="oracle-presentation-gallery" aria-label="Oracle Deck presentation at the Roxy Annex">
+      <figure><img src="/images/Oracle%20Deck/presentation/IMG_1285.jpg" alt="A visitor playing the Oracle Deck at Syd's table installation while Syd watches" loading="lazy" decoding="async"></figure>
+      <figure><img src="/images/Oracle%20Deck/presentation/IMG_1282.jpg" alt="Two visitors beside the Oracle Deck installation with the Needroot card displayed" loading="lazy" decoding="async"></figure>
+      <figure><img src="/images/Oracle%20Deck/presentation/IMG_1287.jpg" alt="A visitor reading the Fernip card at the Oracle Deck installation" loading="lazy" decoding="async"></figure>
+      <figure><img src="/images/Oracle%20Deck/presentation/IMG_1283.jpg" alt="The complete Oracle Deck table setup with monitor, mouse, and speakers" loading="lazy" decoding="async"></figure>
+      <figure><img src="/images/Oracle%20Deck/presentation/IMG_1291.jpg" alt="A visitor smiling after revealing the Collective Consciousness card" loading="lazy" decoding="async"></figure>
+    </div>
+
+    <p class="oracle-presentation-note">The exhibition moved the project beyond an individual screen experience and gave people a shared space to take turns, compare cards, and talk through their readings.</p>
+  </section>
+
+  <section class="oracle-section oracle-result" aria-labelledby="oracle-result-heading">
+    <h2 id="oracle-result-heading">Final experience</h2>
+    <div class="oracle-result-copy">
+      <strong>A world assembled through chance and curiosity.</strong>
+      <p>The finished deck lets players discover Emora without fully explaining it. Each card stands alone as an illustration, a piece of lore, and a reflective prompt—while the relationships between cards suggest a civilization with a deeper history, internal conflict, and hidden systems.</p>
+    </div>
+  </section>
 </article>

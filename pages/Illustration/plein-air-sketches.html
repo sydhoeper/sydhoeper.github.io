@@ -3,8 +3,54 @@
     max-width: none;
   }
 
-  .plein-air-page h1 {
-    margin-bottom: 2rem;
+  .plein-air-page {
+    width: 100%;
+    max-width: 1120px;
+  }
+
+  .plein-air-intro {
+    padding-bottom: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .plein-air-intro h1 {
+    max-width: 12ch;
+    margin: 0 0 var(--space-5);
+    font-family: var(--font-display);
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+    text-wrap: balance;
+  }
+
+  .plein-air-intro > p {
+    max-width: 58ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .plein-air-work-heading {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+    padding: clamp(var(--space-7), 7vw, var(--space-9)) 0 clamp(var(--space-6), 5vw, var(--space-8));
+    border-top: var(--border-subtle);
+  }
+
+  .plein-air-work-heading h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .plein-air-work-heading p {
+    max-width: 52ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
   }
 
   .plein-air-gallery {
@@ -19,10 +65,25 @@
     height: auto;
     margin: 0;
   }
+
+  @media (max-width: 760px) {
+    .plein-air-work-heading {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 
 <article class="plein-air-page" data-gallery-page>
-  <h1>Plein Air Sketches</h1>
+  <header class="plein-air-intro">
+    <span class="project-eyebrow">New practice · Started summer 2026</span>
+    <h1>Plein Air Sketches</h1>
+    <p>I started this plein air practice about a month ago, drawing directly from the places and moments around me. It is a new and growing part of my studio work.</p>
+  </header>
+
+  <div class="plein-air-work-heading">
+    <h2>Current series</h2>
+    <p>Three completed sketches so far, with another piece coming soon.</p>
+  </div>
 
   <div class="plein-air-gallery" data-gallery>
     <button class="art-gallery-item" type="button" data-gallery-item>

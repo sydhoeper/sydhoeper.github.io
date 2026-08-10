@@ -1,6 +1,83 @@
 <style>
-    .marker-gallery-page h1 {
-        margin-bottom: 2rem;
+    .marker-gallery-page {
+        width: 100%;
+        max-width: 1120px;
+    }
+
+    .marker-gallery-intro {
+        padding-bottom: clamp(var(--space-7), 7vw, var(--space-9));
+    }
+
+    .marker-gallery-intro h1 {
+        max-width: 12ch;
+        margin: 0 0 var(--space-5);
+        font-family: var(--font-display);
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-line-height);
+        letter-spacing: var(--type-hero-spacing);
+        text-wrap: balance;
+    }
+
+    .marker-gallery-intro > p {
+        max-width: 58ch;
+        margin: 0;
+        font-size: var(--type-lede-size);
+        line-height: var(--type-lede-line-height);
+    }
+
+    .marker-gallery-facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(var(--space-3), 2vw, var(--space-5));
+        margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+    }
+
+    .marker-gallery-facts article {
+        padding: var(--card-padding);
+        border: var(--border-subtle);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
+    }
+
+    .marker-gallery-facts strong,
+    .marker-gallery-facts span {
+        display: block;
+    }
+
+    .marker-gallery-facts strong {
+        margin-bottom: var(--space-2);
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
+    }
+
+    .marker-gallery-facts span {
+        color: var(--color-muted);
+        line-height: 1.5;
+    }
+
+    .marker-work-heading {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.4fr) minmax(0, 1fr);
+        gap: clamp(var(--space-6), 6vw, 5rem);
+        align-items: start;
+        padding: clamp(var(--space-7), 7vw, var(--space-9)) 0 clamp(var(--space-6), 5vw, var(--space-8));
+        border-top: var(--border-subtle);
+    }
+
+    .marker-work-heading h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
+    }
+
+    .marker-work-heading p {
+        max-width: 52ch;
+        margin: 0;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
     }
 
     .marker-grid {
@@ -137,6 +214,11 @@
     }
 
     @media (max-width: 600px) {
+        .marker-gallery-facts,
+        .marker-work-heading {
+            grid-template-columns: 1fr;
+        }
+
         .marker-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
@@ -157,7 +239,27 @@
 </style>
 
 <article class="marker-gallery-page">
-    <h1>Marker Doodles</h1>
+    <header class="marker-gallery-intro">
+        <span class="project-eyebrow">Ongoing practice · Since 2023</span>
+        <h1>Marker Doodles</h1>
+        <p>I have been building this collection of hand-drawn characters, patterns, and visual experiments since around 2023.</p>
+
+        <div class="marker-gallery-facts" aria-label="Marker drawing practice details">
+            <article>
+                <strong>Copic alcohol markers</strong>
+                <span>I use layered marker color to build bold, saturated shapes and gradients.</span>
+            </article>
+            <article>
+                <strong>Micron fineliners</strong>
+                <span>Fine black ink adds outlines, texture, and the smallest hand-drawn details.</span>
+            </article>
+        </div>
+    </header>
+
+    <div class="marker-work-heading">
+        <h2>Selected drawings</h2>
+        <p>An evolving sketchbook of playful ideas developed through color, line, and repetition.</p>
+    </div>
 
     <div class="marker-grid" data-gallery>
         <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/B80D1FF8-BF4C-4718-96FC-8BF21908A2C6.jpg" aria-label="Open marker doodle 1 of 72">

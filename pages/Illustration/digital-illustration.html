@@ -30,37 +30,6 @@
     line-height: var(--type-lede-line-height);
   }
 
-  .digital-collection-index {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-    gap: clamp(var(--space-3), 2vw, var(--space-5));
-    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
-  }
-
-  .digital-collection-index article {
-    padding: var(--card-padding);
-    border: var(--border-subtle);
-    border-radius: var(--card-radius);
-    background: var(--surface-card);
-    box-shadow: var(--shadow-card);
-  }
-
-  .digital-collection-index strong,
-  .digital-collection-index span {
-    display: block;
-  }
-
-  .digital-collection-index strong {
-    margin-bottom: var(--space-2);
-    font-size: var(--card-heading-size);
-    line-height: var(--card-heading-line-height);
-  }
-
-  .digital-collection-index span {
-    color: var(--color-muted);
-    line-height: 1.5;
-  }
-
   .digital-collection {
     padding: clamp(var(--space-7), 7vw, var(--space-9)) 0;
     border-top: var(--border-subtle);
@@ -117,7 +86,6 @@
   }
 
   @media (max-width: 760px) {
-    .digital-collection-index,
     .digital-oracle-grid,
     .digital-logo-grid,
     .digital-poster-grid {
@@ -130,7 +98,6 @@
   }
 
   @media (max-width: 560px) {
-    .digital-collection-index,
     .digital-oracle-grid,
     .digital-logo-grid,
     .digital-portrait-grid,
@@ -146,16 +113,9 @@
 
 <article class="digital-illustration-page" data-gallery-page>
   <header class="digital-illustration-header">
-    <h1>Digital Illustration</h1>
+    <span class="project-eyebrow">Ongoing practice</span>
+    <h1>Digital Drawings</h1>
     <p>Oracle cards, illustrated worlds, logos, portraits, and event graphics collected by medium instead of split across several small pages.</p>
-
-    <div class="digital-collection-index" aria-label="Digital illustration collections">
-      <article><strong>11 oracle cards</strong><span>A cohesive illustrated series from the World of Emora</span></article>
-      <article><strong>9 illustrations</strong><span>Characters, creatures, environments, and visual experiments</span></article>
-      <article><strong>3 logos</strong><span>Identity marks developed through illustration and geometry</span></article>
-      <article><strong>3 portraits</strong><span>Expressive studies built through shape and saturated color</span></article>
-      <article><strong>5 posters</strong><span>Event graphics combining illustration, hierarchy, and typography</span></article>
-    </div>
   </header>
 
   <div data-gallery>
@@ -241,7 +201,7 @@
     </section>
   </div>
 
-  <dialog class="gallery-lightbox" data-gallery-dialog aria-label="Digital illustration viewer">
+  <dialog class="gallery-lightbox" data-gallery-dialog aria-label="Digital drawings viewer">
     <button class="gallery-lightbox-close" type="button" data-gallery-close aria-label="Close full-screen image">&times;</button>
     <button class="gallery-lightbox-nav" type="button" data-gallery-previous aria-label="Previous image">&#8592;</button>
     <figure><img data-gallery-image alt=""><figcaption data-gallery-counter aria-live="polite"></figcaption></figure>
