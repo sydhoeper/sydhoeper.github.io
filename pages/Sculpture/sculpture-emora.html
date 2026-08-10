@@ -1,53 +1,286 @@
-<article class="art-gallery-page emora-gallery-page">
-  <h1>The World of Emora Diorama</h1>
+<style>
+  .emora-study {
+    width: 100%;
+    max-width: 980px;
+    container: emora-study / inline-size;
+  }
+
+  .emora-study h1,
+  .emora-study h2,
+  .emora-study h3,
+  .emora-study .emora-callout p {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  .emora-hero,
+  .emora-section {
+    padding: clamp(var(--space-7), 6vw, var(--space-8)) 0;
+  }
+
+  .emora-hero {
+    padding-top: 0;
+  }
+
+  .emora-eyebrow,
+  .emora-label {
+    display: block;
+    margin: 0 0 0.85rem;
+    color: var(--color-muted);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    line-height: var(--type-eyebrow-line-height);
+    letter-spacing: var(--type-eyebrow-spacing);
+    text-transform: uppercase;
+  }
+
+  .emora-hero h1 {
+    max-width: 13ch;
+    margin: 0 0 1.2rem;
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+  }
+
+  .emora-lede {
+    max-width: 57ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .emora-facts,
+  .emora-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+  }
+
+  .emora-facts {
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+  }
+
+  .emora-fact,
+  .emora-card,
+  .emora-callout {
+    padding: var(--card-padding);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .emora-fact strong,
+  .emora-fact span {
+    display: block;
+  }
+
+  .emora-fact strong {
+    margin-bottom: var(--space-2);
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .emora-fact span {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .emora-study .emora-carousel {
+    margin-top: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .emora-section {
+    border-top: var(--border-subtle);
+  }
+
+  .emora-section-heading,
+  .emora-result {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+  }
+
+  .emora-section-heading {
+    margin-bottom: clamp(var(--space-6), 4vw, var(--space-7));
+  }
+
+  .emora-section-heading h2,
+  .emora-result h2 {
+    margin: 0;
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .emora-section-heading p,
+  .emora-result-copy p {
+    max-width: 60ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .emora-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .emora-card h3 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .emora-card p {
+    margin: 0;
+    line-height: var(--type-body-line-height);
+  }
+
+  .emora-callout {
+    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
+    border-left: 5px solid var(--color-accent);
+    box-shadow: none;
+  }
+
+  .emora-callout p {
+    max-width: 30ch;
+    margin: 0;
+    font-size: clamp(1.35rem, 3.4cqi, 2rem);
+    line-height: 1.25;
+  }
+
+  .emora-build-flow {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .emora-build-flow::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: 10%;
+    left: 10%;
+    height: 2px;
+    background: rgba(var(--color-dark-rgb), 0.18);
+  }
+
+  .emora-build-flow li {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-3);
+    justify-items: center;
+    font-size: 0.86rem;
+    font-weight: 650;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .emora-build-flow li::before {
+    content: attr(data-step);
+    display: grid;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-background);
+    border-radius: 50%;
+    background: var(--color-dark);
+    box-shadow: 0 0 0 1px rgba(var(--color-dark-rgb), 0.18);
+    color: var(--color-background);
+    font-size: 0.72rem;
+    place-items: center;
+  }
+
+  .emora-result-copy strong {
+    display: block;
+    margin-bottom: var(--space-3);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  @container emora-study (max-width: 760px) {
+    .emora-facts,
+    .emora-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .emora-build-flow {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+
+    .emora-build-flow::before {
+      top: 20px;
+      right: auto;
+      bottom: 20px;
+      left: 20px;
+      width: 2px;
+      height: auto;
+    }
+
+    .emora-build-flow li {
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: var(--space-4);
+      align-items: center;
+      justify-items: start;
+      text-align: left;
+    }
+  }
+
+  @container emora-study (max-width: 560px) {
+    .emora-section-heading,
+    .emora-result,
+    .emora-facts,
+    .emora-card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<article class="emora-study emora-gallery-page">
+  <header class="emora-hero">
+    <span class="emora-eyebrow">Worldbuilding class · “Inhabitants” assignment</span>
+    <h1>The World of Emora Diorama</h1>
+    <p class="emora-lede">A dream school project where I treated the plants of an imagined world as its inhabitants—and built their ecosystem as a physical, mixed-media diorama.</p>
+
+    <div class="emora-facts" aria-label="Project facts">
+      <div class="emora-fact"><strong>Context</strong><span>School assignment</span></div>
+      <div class="emora-fact"><strong>Class</strong><span>Worldbuilding</span></div>
+      <div class="emora-fact"><strong>Prompt</strong><span>Design the world’s inhabitants</span></div>
+      <div class="emora-fact"><strong>Focus</strong><span>Imagined plant life</span></div>
+    </div>
 
   <section class="emora-carousel" data-carousel aria-label="The World of Emora photo and video slideshow" aria-roledescription="carousel">
     <div class="emora-carousel-viewport">
-      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 1 of 10">
+      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 1 of 6">
         <img src="/images/World%20of%20Emora%20Scuplture/IMG_0555.jpeg" alt="Full view of the World of Emora diorama with its eye-covered tree, glowing river, creatures, and coral-like plants" loading="eager" decoding="async">
       </figure>
 
-      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 2 of 10" hidden>
+      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 2 of 6" hidden>
         <img src="/images/World%20of%20Emora%20Scuplture/IMG_0562.jpeg" alt="Overhead view showing the full landscape and winding river of the World of Emora diorama" loading="lazy" decoding="async">
       </figure>
 
-      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 3 of 10" hidden>
+      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 3 of 6" hidden>
         <img src="/images/World%20of%20Emora%20Scuplture/IMG_0560.jpeg" alt="Close view of the many-eyed tree and its cascading multicolored foliage" loading="lazy" decoding="async">
       </figure>
 
-      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 4 of 10" hidden>
+      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 4 of 6" hidden>
         <img src="/images/World%20of%20Emora%20Scuplture/IMG_0559.jpeg" alt="Low close view along the sparkling lavender river and surrounding alien plants" loading="lazy" decoding="async">
       </figure>
 
-      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 5 of 10" hidden>
+      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 5 of 6" hidden>
         <img src="/images/World%20of%20Emora%20Scuplture/IMG_0558.jpeg" alt="Close view of the crystal-covered mushroom creatures and blue feathered ground details" loading="lazy" decoding="async">
       </figure>
 
-      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 6 of 10" hidden>
-        <video controls playsinline preload="metadata" aria-label="Video tour of the World of Emora diorama">
-          <source src="/images/World%20of%20Emora%20Scuplture/IMG_0527.m4v" type="video/mp4">
-        </video>
-      </figure>
-
-      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 7 of 10" hidden>
-        <video controls playsinline preload="metadata" aria-label="Video detail of the World of Emora landscape">
-          <source src="/images/World%20of%20Emora%20Scuplture/IMG_0530.m4v" type="video/mp4">
-        </video>
-      </figure>
-
-      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 8 of 10" hidden>
-        <video controls playsinline preload="metadata" aria-label="Video detail of the World of Emora creatures">
-          <source src="/images/World%20of%20Emora%20Scuplture/IMG_0535.m4v" type="video/mp4">
-        </video>
-      </figure>
-
-      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 9 of 10" hidden>
-        <video controls playsinline preload="metadata" aria-label="Video view across the World of Emora river">
-          <source src="/images/World%20of%20Emora%20Scuplture/IMG_0538.m4v" type="video/mp4">
-        </video>
-      </figure>
-
-      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 10 of 10" hidden>
+      <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 6 of 6" hidden>
         <video controls playsinline preload="metadata" aria-label="Video tour of the completed World of Emora diorama">
           <source src="/images/World%20of%20Emora%20Scuplture/IMG_0556.m4v" type="video/mp4">
         </video>
@@ -59,7 +292,87 @@
 
     <div class="emora-carousel-controls">
       <div class="emora-carousel-thumbnails" data-carousel-thumbnails aria-label="Choose a slide by thumbnail"></div>
-      <p class="visually-hidden" data-carousel-status aria-live="polite">Slide 1 of 10</p>
+      <p class="visually-hidden" data-carousel-status aria-live="polite">Slide 1 of 6</p>
+    </div>
+  </section>
+
+  </header>
+
+  <section class="emora-section" aria-labelledby="emora-assignment-heading">
+    <div class="emora-section-heading">
+      <h2 id="emora-assignment-heading">The assignment</h2>
+      <p>“Inhabitants” asked us to decide what lives in our invented worlds. I chose not to begin with people or animals. Instead, I focused on the plant life that would define how Emora looks, feels, and functions.</p>
+    </div>
+
+    <div class="emora-card-grid">
+      <article class="emora-card">
+        <span class="emora-label">Starting point</span>
+        <h3>Plants as characters</h3>
+        <p>Each species needed enough personality and visual identity to feel like an inhabitant rather than background decoration.</p>
+      </article>
+      <article class="emora-card">
+        <span class="emora-label">World logic</span>
+        <h3>An ecosystem, not a lineup</h3>
+        <p>I grouped forms around shared terrain and water so the inhabitants felt connected to one place.</p>
+      </article>
+      <article class="emora-card">
+        <span class="emora-label">Medium</span>
+        <h3>Build the world physically</h3>
+        <p>A diorama let color, texture, scale, and placement carry parts of the story that words could not.</p>
+      </article>
+    </div>
+
+    <div class="emora-callout">
+      <span class="emora-label">Creative direction</span>
+      <p>The landscape was not a container for the inhabitants. The landscape was the cast.</p>
+    </div>
+  </section>
+
+  <section class="emora-section" aria-labelledby="emora-decisions-heading">
+    <div class="emora-section-heading">
+      <h2 id="emora-decisions-heading">Building a living system</h2>
+      <p>I used a few recurring visual rules to make many strange forms feel related: recognizable plant silhouettes, unexpected creature-like details, repeated species, and one terrain system tying everything together.</p>
+    </div>
+
+    <div class="emora-card-grid">
+      <article class="emora-card">
+        <span class="emora-label">Focal inhabitant</span>
+        <h3>Blur plant and creature</h3>
+        <p>The many-eyed tree makes the world feel observant and alive while remaining rooted in a plant form.</p>
+      </article>
+      <article class="emora-card">
+        <span class="emora-label">Species</span>
+        <h3>Design families of forms</h3>
+        <p>Repeated branching, hanging, feathered, and mushroom-like shapes suggest populations rather than one-off props.</p>
+      </article>
+      <article class="emora-card">
+        <span class="emora-label">Habitat</span>
+        <h3>Let the river connect them</h3>
+        <p>The winding lavender river creates a visual path through the piece and gives the plant clusters a shared environment.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="emora-section" aria-labelledby="emora-process-heading">
+    <div class="emora-section-heading">
+      <h2 id="emora-process-heading">From world to diorama</h2>
+      <p>I organized the physical piece from large environmental decisions to small organism details, using composition and material contrast to keep a dense world readable.</p>
+    </div>
+
+    <ol class="emora-build-flow" aria-label="World of Emora diorama design sequence">
+      <li data-step="01">Shape the terrain</li>
+      <li data-step="02">Establish the river</li>
+      <li data-step="03">Place the anchor organism</li>
+      <li data-step="04">Build species families</li>
+      <li data-step="05">Layer color and texture</li>
+    </ol>
+  </section>
+
+  <section class="emora-section emora-result" aria-labelledby="emora-result-heading">
+    <h2 id="emora-result-heading">Result</h2>
+    <div class="emora-result-copy">
+      <strong>A world revealed through what grows there.</strong>
+      <p>The final diorama turned the assignment into the project I had been hoping to make: a dense, tactile ecosystem where plants carry character, narrative, and a sense of place. It also established a visual foundation I could continue exploring across the wider World of Emora.</p>
     </div>
   </section>
 </article>

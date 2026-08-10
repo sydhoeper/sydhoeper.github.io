@@ -1,9 +1,425 @@
-<article class="project-video-page">
-  <p class="project-eyebrow">Contract · 2026</p>
-  <h1>Under the Eye</h1>
+<style>
+  .eye-study {
+    width: 100%;
+    max-width: 980px;
+    container: eye-study / inline-size;
+  }
 
-  <video class="project-video" controls muted playsinline preload="metadata" poster="/images/Videos/web/under-the-eye-ar-installation-poster.jpg" aria-label="Under the Eye video">
-    <source src="/images/Videos/web/under-the-eye-ar-installation.m4v" type="video/x-m4v">
-    Your browser does not support embedded video.
-  </video>
+  .eye-study h1,
+  .eye-study h2,
+  .eye-study h3,
+  .eye-callout p {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  .eye-hero,
+  .eye-section {
+    padding: clamp(var(--space-7), 6vw, var(--space-8)) 0;
+  }
+
+  .eye-hero {
+    padding-top: 0;
+  }
+
+  .eye-eyebrow,
+  .eye-label {
+    display: block;
+    margin: 0 0 0.85rem;
+    color: var(--color-muted);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    line-height: var(--type-eyebrow-line-height);
+    letter-spacing: var(--type-eyebrow-spacing);
+    text-transform: uppercase;
+  }
+
+  .eye-hero h1 {
+    max-width: 12ch;
+    margin: 0 0 1.2rem;
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+  }
+
+  .eye-lede {
+    max-width: 57ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .eye-facts,
+  .eye-card-grid,
+  .eye-outcomes {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+  }
+
+  .eye-facts {
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+  }
+
+  .eye-fact,
+  .eye-card,
+  .eye-outcome,
+  .eye-callout {
+    padding: var(--card-padding);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .eye-fact strong,
+  .eye-fact span {
+    display: block;
+  }
+
+  .eye-fact strong {
+    margin-bottom: var(--space-2);
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .eye-fact span {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .eye-carousel {
+    margin-top: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .eye-carousel .emora-carousel-viewport {
+    height: clamp(300px, 44cqi, 520px);
+    border-radius: 28px;
+  }
+
+  .eye-carousel-caption {
+    max-width: 64ch;
+    margin: var(--space-3) auto 0;
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .eye-section {
+    border-top: var(--border-subtle);
+  }
+
+  .eye-section-heading {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+    margin-bottom: clamp(var(--space-6), 4vw, var(--space-7));
+  }
+
+  .eye-section-heading h2 {
+    margin: 0;
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .eye-section-heading p {
+    max-width: 60ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .eye-card-grid,
+  .eye-outcomes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .eye-card h3,
+  .eye-outcome h3 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .eye-card p,
+  .eye-card li,
+  .eye-outcome p {
+    line-height: var(--type-body-line-height);
+  }
+
+  .eye-card p,
+  .eye-outcome p {
+    margin: 0;
+  }
+
+  .eye-card ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .eye-card li + li {
+    margin-top: var(--space-2);
+  }
+
+  .eye-callout {
+    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
+    border-left: 5px solid var(--color-accent);
+    box-shadow: none;
+  }
+
+  .eye-callout p {
+    max-width: 32ch;
+    margin: 0;
+    font-size: clamp(1.35rem, 3.4cqi, 2rem);
+    line-height: 1.25;
+  }
+
+  .eye-build-flow {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .eye-build-flow::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: 10%;
+    left: 10%;
+    height: 2px;
+    background: rgba(var(--color-dark-rgb), 0.18);
+  }
+
+  .eye-build-flow li {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-3);
+    justify-items: center;
+    font-size: 0.86rem;
+    font-weight: 650;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .eye-build-flow li::before {
+    content: attr(data-step);
+    display: grid;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-background);
+    border-radius: 50%;
+    background: var(--color-dark);
+    box-shadow: 0 0 0 1px rgba(var(--color-dark-rgb), 0.18);
+    color: var(--color-background);
+    font-size: 0.72rem;
+    place-items: center;
+  }
+
+  @container eye-study (max-width: 760px) {
+    .eye-facts,
+    .eye-card-grid,
+    .eye-outcomes {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .eye-build-flow {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+
+    .eye-build-flow::before {
+      top: 20px;
+      right: auto;
+      bottom: 20px;
+      left: 20px;
+      width: 2px;
+      height: auto;
+    }
+
+    .eye-build-flow li {
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: var(--space-4);
+      align-items: center;
+      justify-items: start;
+      text-align: left;
+    }
+  }
+
+  @container eye-study (max-width: 560px) {
+    .eye-section-heading,
+    .eye-facts,
+    .eye-card-grid,
+    .eye-outcomes {
+      grid-template-columns: 1fr;
+    }
+
+    .eye-carousel .emora-carousel-viewport {
+      height: 300px;
+    }
+  }
+</style>
+
+<article class="eye-study">
+  <header class="eye-hero">
+    <span class="eye-eyebrow">Contract AR installation · 2026</span>
+    <h1>Under the Eye</h1>
+    <p class="eye-lede">I led Unity scene production for a four-week guerrilla AR installation, turning an ambitious creative brief into a cohesive experience that launched at AWE.</p>
+
+    <div class="eye-facts" aria-label="Project facts">
+      <div class="eye-fact"><strong>My role</strong><span>Unity scene lead and art direction</span></div>
+      <div class="eye-fact"><strong>Timeline</strong><span>Approximately four weeks</span></div>
+      <div class="eye-fact"><strong>Team</strong><span>Artist, engineer, and three NYU interns</span></div>
+      <div class="eye-fact"><strong>Platform</strong><span>The Outernet Foundation</span></div>
+    </div>
+
+    <section class="emora-carousel eye-carousel" data-carousel aria-label="Under the Eye media gallery" aria-roledescription="carousel">
+      <div class="emora-carousel-viewport">
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Video 1 of 1">
+          <video controls muted playsinline preload="metadata" poster="/images/Videos/web/under-the-eye-ar-installation-poster.jpg" aria-label="Under the Eye installation recording">
+            <source src="/images/Videos/web/under-the-eye-ar-installation.m4v" type="video/x-m4v">
+            Your browser does not support embedded video.
+          </video>
+        </figure>
+
+        <button class="emora-carousel-arrow previous" type="button" data-carousel-previous aria-label="Previous slide">&#8249;</button>
+        <button class="emora-carousel-arrow next" type="button" data-carousel-next aria-label="Next slide">&#8250;</button>
+      </div>
+
+      <div class="emora-carousel-controls">
+        <div class="emora-carousel-thumbnails" data-carousel-thumbnails aria-label="Choose an Under the Eye media item by thumbnail"></div>
+        <p class="visually-hidden" data-carousel-status aria-live="polite">Video 1 of 1</p>
+      </div>
+    </section>
+
+    <p class="eye-carousel-caption">The final scene used Outernet’s shared positioning platform to anchor the installation in the AWE conference courtyard.</p>
+  </header>
+
+  <section class="eye-section" aria-labelledby="eye-brief-heading">
+    <div class="eye-section-heading">
+      <h2 id="eye-brief-heading">The brief</h2>
+      <p>The Outernet Foundation brought the team a deliberately provocative idea: use its shared AR platform to stage a “punk rock” installation at an AR conference. The experience contrasted AR’s creative potential with questions about surveillance, data collection, and commercial influence.</p>
+    </div>
+
+    <div class="eye-card-grid">
+      <article class="eye-card">
+        <span class="eye-label">Experience</span>
+        <h3>Make it site-specific</h3>
+        <p>The scene needed to feel anchored in the courtyard rather than like content floating on top of it.</p>
+      </article>
+      <article class="eye-card">
+        <span class="eye-label">Tone</span>
+        <h3>Beautiful and unsettling</h3>
+        <p>The visual world had to invite people in while supporting a critique of the systems behind AR.</p>
+      </article>
+      <article class="eye-card">
+        <span class="eye-label">Constraint</span>
+        <h3>Four weeks to install</h3>
+        <p>Creative development, technical integration, team production, and polish happened against one fixed event deadline.</p>
+      </article>
+    </div>
+
+    <div class="eye-callout">
+      <span class="eye-label">The balancing act</span>
+      <p>Make a strange idea feel intentional, technically coherent, and ready for a live audience.</p>
+    </div>
+  </section>
+
+  <section class="eye-section" aria-labelledby="eye-role-heading">
+    <div class="eye-section-heading">
+      <h2 id="eye-role-heading">What I owned</h2>
+      <p>I was the primary person building and managing the Unity scene. I translated the brief into a working environment, made artistic and interaction decisions, and kept contributions from the wider team moving toward one experience.</p>
+    </div>
+
+    <div class="eye-card-grid">
+      <article class="eye-card">
+        <span class="eye-label">Unity</span>
+        <h3>Own the complete scene</h3>
+        <p>I greyboxed the environment, integrated systems and assets, increased fidelity, and maintained the build as it evolved.</p>
+      </article>
+      <article class="eye-card">
+        <span class="eye-label">Art direction</span>
+        <h3>Make the world cohere</h3>
+        <p>I made visual and experiential decisions so the objects, movement, sound, materials, and shader effects supported the same tone.</p>
+      </article>
+      <article class="eye-card">
+        <span class="eye-label">Production</span>
+        <h3>Direct intern contributions</h3>
+        <p>I managed three NYU interns as they developed finalized assets, materials, and shader graphs for the scene.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="eye-section" aria-labelledby="eye-process-heading">
+    <div class="eye-section-heading">
+      <h2 id="eye-process-heading">How I built it</h2>
+      <p>I started with spatial relationships and flow, then increased fidelity only after the scene worked as a whole. Daily check-ins with the lead artist and engineer kept the creative and technical work aligned.</p>
+    </div>
+
+    <ol class="eye-build-flow" aria-label="Under the Eye production process">
+      <li data-step="01">Greybox the scene</li>
+      <li data-step="02">Validate scale and flow</li>
+      <li data-step="03">Build and source assets</li>
+      <li data-step="04">Add materials, shaders, and sound</li>
+      <li data-step="05">Integrate and polish</li>
+    </ol>
+
+    <div class="eye-card-grid" style="margin-top:clamp(var(--space-7),6vw,var(--space-8))">
+      <article class="eye-card">
+        <span class="eye-label">Create</span>
+        <h3>Mix real and placeholder assets</h3>
+        <p>I used Blender and Meshy AI to create or rapidly prototype assets while the final visual language took shape.</p>
+      </article>
+      <article class="eye-card">
+        <span class="eye-label">Coordinate</span>
+        <h3>Check in every day</h3>
+        <p>The artist, engineer, and I reviewed progress daily so visual changes and technical implementation stayed connected.</p>
+      </article>
+      <article class="eye-card">
+        <span class="eye-label">Integrate</span>
+        <h3>Protect the full experience</h3>
+        <p>I reviewed incoming work in context and filled the gaps needed to make the complete installation feel deliberate.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="eye-section" aria-labelledby="eye-result-heading">
+    <div class="eye-section-heading">
+      <h2 id="eye-result-heading">Result</h2>
+      <p>The team delivered the installation on schedule. It ran successfully at AWE, and the client publicly praised both the demo and the team that brought it to life.</p>
+    </div>
+
+    <div class="eye-outcomes">
+      <article class="eye-outcome">
+        <span class="eye-label">Delivery</span>
+        <h3>Installed at AWE</h3>
+        <p>The shared AR scene moved from an unusual brief to a functioning courtyard installation in about four weeks.</p>
+      </article>
+      <article class="eye-outcome">
+        <span class="eye-label">Client</span>
+        <h3>Positive reception</h3>
+        <p>The Outernet Foundation described the conference demo enthusiastically and credited the team’s work.</p>
+      </article>
+      <article class="eye-outcome">
+        <span class="eye-label">Leadership</span>
+        <h3>One cohesive scene</h3>
+        <p>I connected art direction, Unity production, engineering constraints, and intern work into the final build.</p>
+      </article>
+    </div>
+
+    <div class="eye-callout">
+      <span class="eye-label">Takeaway</span>
+      <p>My job was not only to build the scene. It was to keep a fast-moving creative and technical team pointed at the same experience.</p>
+    </div>
+  </section>
 </article>
