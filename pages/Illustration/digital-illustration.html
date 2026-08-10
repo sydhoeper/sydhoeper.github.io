@@ -32,7 +32,7 @@
 
   .digital-collection-index {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
     gap: clamp(var(--space-3), 2vw, var(--space-5));
     margin-top: clamp(var(--space-7), 6vw, var(--space-8));
   }
@@ -103,12 +103,13 @@
     break-inside: avoid;
   }
 
-  .digital-portrait-grid .art-gallery-item:first-child {
-    grid-column: 1 / -1;
-  }
-
   .digital-poster-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .digital-logo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
   }
 
   .digital-oracle-grid {
@@ -118,6 +119,7 @@
   @media (max-width: 760px) {
     .digital-collection-index,
     .digital-oracle-grid,
+    .digital-logo-grid,
     .digital-poster-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -130,13 +132,10 @@
   @media (max-width: 560px) {
     .digital-collection-index,
     .digital-oracle-grid,
+    .digital-logo-grid,
     .digital-portrait-grid,
     .digital-poster-grid {
       grid-template-columns: 1fr;
-    }
-
-    .digital-portrait-grid .art-gallery-item:first-child {
-      grid-column: auto;
     }
 
     .digital-worlds-grid {
@@ -148,11 +147,12 @@
 <article class="digital-illustration-page" data-gallery-page>
   <header class="digital-illustration-header">
     <h1>Digital Illustration</h1>
-    <p>Oracle cards, illustrated worlds, portraits, and event graphics collected by medium instead of split across several small pages.</p>
+    <p>Oracle cards, illustrated worlds, logos, portraits, and event graphics collected by medium instead of split across several small pages.</p>
 
     <div class="digital-collection-index" aria-label="Digital illustration collections">
       <article><strong>11 oracle cards</strong><span>A cohesive illustrated series from the World of Emora</span></article>
-      <article><strong>12 illustrations</strong><span>Characters, creatures, environments, and visual experiments</span></article>
+      <article><strong>9 illustrations</strong><span>Characters, creatures, environments, and visual experiments</span></article>
+      <article><strong>3 logos</strong><span>Identity marks developed through illustration and geometry</span></article>
       <article><strong>3 portraits</strong><span>Expressive studies built through shape and saturated color</span></article>
       <article><strong>5 posters</strong><span>Event graphics combining illustration, hierarchy, and typography</span></article>
     </div>
@@ -187,8 +187,6 @@
       </div>
 
       <div class="art-grid digital-worlds-grid">
-        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/Cosmic%20Squid%20on%20Black.jpg" alt="Cosmic squid digital illustration" loading="eager" decoding="async"></button>
-        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2493.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
         <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2508.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
         <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2509.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
         <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2510.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
@@ -198,7 +196,19 @@
         <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2514.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
         <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2515.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
         <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2516.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
-        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_6845.jpg" alt="Digital illustration by Syd Hoeper" loading="lazy" decoding="async"></button>
+      </div>
+    </section>
+
+    <section class="digital-collection" aria-labelledby="digital-logos-heading">
+      <div class="digital-collection-heading">
+        <h2 id="digital-logos-heading">Logos</h2>
+        <p>Illustrated and geometric identity marks made for personal projects and small businesses.</p>
+      </div>
+
+      <div class="art-grid digital-logo-grid">
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/Cosmic%20Squid%20on%20Black.jpg" alt="Cosmic squid logo in white on black" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_2493.jpg" alt="Mountain Arnica Massage logo with a yellow flower and purple mountains" loading="lazy" decoding="async"></button>
+        <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Digital%20Illustration/web/IMG_6845.jpg" alt="Geometric green monogram logo on black" loading="lazy" decoding="async"></button>
       </div>
     </section>
 
