@@ -81,6 +81,10 @@
         margin-bottom: 0;
     }
 
+    .map-section-heading:has(+ .map-overview-details) {
+        margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+    }
+
     .map-section-heading h2 {
         margin: 0;
         font-size: var(--type-section-heading-size);
@@ -194,12 +198,46 @@
         line-height: var(--type-section-copy-line-height);
     }
 
+    .map-overview-details {
+        display: grid;
+        width: calc(100% - var(--case-study-content-inset));
+        max-width: 58ch;
+        grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+        gap: clamp(1.5rem, 4vw, 3rem);
+        margin: 0 0 clamp(2.5rem, 5vw, 4rem) var(--case-study-content-inset);
+    }
+
+    .map-overview-detail {
+        padding-top: 1rem;
+        border-top: 2px solid rgba(var(--color-dark-rgb), 0.2);
+    }
+
+    .map-overview-detail h3 {
+        margin: 0 0 0.65rem;
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
+    }
+
+    .map-overview-detail p,
+    .map-overview-detail ul {
+        margin: 0;
+        line-height: 1.55;
+    }
+
+    .map-overview-detail ul {
+        padding-left: 1.15rem;
+    }
+
+    .map-overview-detail li + li {
+        margin-top: 0.35rem;
+    }
+
     .map-overview-goals {
         margin-bottom: clamp(3rem, 6vw, 4rem);
     }
 
     .map-overview-current-state-copy {
-        margin-bottom: clamp(2rem, 4vw, 3rem);
+        margin-bottom: clamp(1.25rem, 3vw, 2rem);
     }
 
     .map-approach-framework {
@@ -778,6 +816,12 @@
             margin-left: 0;
         }
 
+        .map-overview-details {
+            width: 100%;
+            grid-template-columns: 1fr;
+            margin-left: 0;
+        }
+
         .map-overview-current-state > .map-media {
             width: 100%;
             margin-left: 0;
@@ -849,27 +893,29 @@
     <section class="map-section" aria-labelledby="map-overview">
         <div class="map-section-heading">
             <h2 id="map-overview">Overview</h2>
-            <p>When I was asked to add a smoke layer, the existing map had no clear place for it. I proposed redesigning the layer system instead, and the team gave me the green light.</p>
+            <p>A smoke-layer request exposed a fragmented map system. I proposed redesigning the architecture instead of adding another control.</p>
         </div>
 
-        <section class="map-role" aria-labelledby="map-role-heading">
-            <h3 id="map-role-heading">My role</h3>
-            <p>I led the project from early concepts through developer handoff.</p>
-        </section>
+        <div class="map-overview-details">
+            <section class="map-overview-detail" aria-labelledby="map-role-heading">
+                <h3 id="map-role-heading">My role</h3>
+                <p>Led design from concept through developer handoff.</p>
+            </section>
 
-        <section class="map-overview-goals map-overview-subsection" aria-labelledby="map-goals">
-            <h3 id="map-goals">Goals</h3>
-            <ul class="map-goals-list">
-                <li>Bring every map option into one familiar entry point.</li>
-                <li>Clarify the difference between base maps and stackable overlays.</li>
-                <li>Create a framework that could support Pro features and future layers.</li>
-            </ul>
-        </section>
+            <section class="map-overview-detail" aria-labelledby="map-goals">
+                <h3 id="map-goals">Goals</h3>
+                <ul>
+                    <li>One familiar entry point</li>
+                    <li>Clear base-map and overlay behavior</li>
+                    <li>A scalable foundation for future layers</li>
+                </ul>
+            </section>
+        </div>
 
         <section class="map-overview-current-state" aria-labelledby="map-current-state">
             <div class="map-overview-current-state-copy map-overview-subsection">
                 <h3 id="map-current-state">Current state</h3>
-                <p>Map layers had become fragmented and difficult to extend. Base maps and overlay categories lived behind separate controls, forcing RVers to remember where each option was stored.</p>
+                <p>Base maps and overlays lived behind separate controls. RVers had to remember where each option was stored, and every new layer added more fragmentation.</p>
             </div>
 
             <figure class="map-media wide map-overview-subsection">
