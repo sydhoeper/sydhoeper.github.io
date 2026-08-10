@@ -209,6 +209,19 @@
     box-shadow: var(--shadow-card);
   }
 
+  .chamber-subheading {
+    margin: clamp(var(--space-7), 6vw, var(--space-8)) 0 var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .chamber-subcopy {
+    max-width: 60ch;
+    margin: 0 0 var(--space-6);
+    line-height: var(--type-body-line-height);
+  }
+
   .chamber-foyer {
     display: grid;
     width: min(100%, 310px);
@@ -371,51 +384,47 @@
   <header class="chamber-hero">
     <span class="chamber-eyebrow">Worldbuilding class · “Structures” assignment · 2026</span>
     <h1>Chambers of Becoming</h1>
-    <p class="chamber-lede">An explorable tunnel system built around a civilization that treated emotional honesty as a public good—not something to hide or feel ashamed of.</p>
+    <p class="chamber-lede">A walkable tunnel system where a fictional civilization practices emotional honesty without shame.</p>
 
     <div class="chamber-facts" aria-label="Project facts">
-      <div class="chamber-fact"><strong>Context</strong><span>Worldbuilding class project</span></div>
-      <div class="chamber-fact"><strong>Prompt</strong><span>Design a structure</span></div>
-      <div class="chamber-fact"><strong>Focus</strong><span>The desire chamber</span></div>
-      <div class="chamber-fact"><strong>Format</strong><span>3D Unity walkthrough</span></div>
+      <div class="chamber-fact"><strong>Context</strong><span>School project</span></div>
+      <div class="chamber-fact"><strong>Prompt</strong><span>Structures</span></div>
+      <div class="chamber-fact"><strong>Focus</strong><span>Desire</span></div>
+      <div class="chamber-fact"><strong>Format</strong><span>Unity walkthrough</span></div>
     </div>
 
     <div class="chamber-manifesto">
       <strong>Emotions are signals, not moral failures.</strong>
-      <p>The civilization of Emora believed suffering comes less from emotion itself than from shame, repression, and the belief that difficult feelings should not exist.</p>
+      <p>Emora believed suffering came less from emotion itself than from shame and repression.</p>
     </div>
   </header>
 
   <section class="chamber-section" aria-labelledby="chamber-premise-heading">
     <div class="chamber-section-heading">
-      <h2 id="chamber-premise-heading">The premise</h2>
-      <p>The Chambers of Becoming were created as safe, communal spaces for confronting emotions that people often avoid—desire, grief, rage, envy, and fear. Visitors could acknowledge what they felt, consider what it was pointing toward, and choose how to respond.</p>
+      <h2 id="chamber-premise-heading">The concept</h2>
+      <p>Safe, communal chambers for confronting desire, grief, rage, envy, and fear—then deciding how to respond.</p>
     </div>
 
     <div class="chamber-card-grid">
       <article class="chamber-card">
         <span class="chamber-label">Belief</span>
-        <h3>No emotion requires shame</h3>
-        <p>Feelings were understood as information about unmet needs, boundaries, attachments, and change.</p>
+        <h3>Emotion as information</h3>
+        <p>Feelings signal needs, boundaries, attachments, and change.</p>
       </article>
       <article class="chamber-card">
         <span class="chamber-label">Practice</span>
-        <h3>Make reflection physical</h3>
-        <p>Architecture gave people a place to pause, enter deliberately, and sit with an emotion instead of suppressing it.</p>
+        <h3>Reflection as architecture</h3>
+        <p>Visitors physically enter and sit with an emotion.</p>
       </article>
       <article class="chamber-card">
         <span class="chamber-label">Tone</span>
-        <h3>Safe, strange, and sacred</h3>
-        <p>Organic cave forms, filtered light, alcoves, crystals, mushrooms, and glitter made introspection feel protected rather than clinical.</p>
+        <h3>Safe, strange, sacred</h3>
+        <p>Organic forms and filtered light make introspection feel protected.</p>
       </article>
     </div>
-  </section>
 
-  <section class="chamber-section" aria-labelledby="chamber-structure-heading">
-    <div class="chamber-section-heading">
-      <h2 id="chamber-structure-heading">The structure</h2>
-      <p>A circular foyer acts as the threshold into the psyche. Light enters from above, symbolic objects identify each emotion, and arched tunnels invite visitors to choose what they are ready to explore.</p>
-    </div>
+    <h3 class="chamber-subheading">A foyer into the psyche</h3>
+    <p class="chamber-subcopy">A circular room opens into five emotional chambers. Only Desire was developed for this assignment.</p>
 
     <div class="chamber-map" role="img" aria-label="A circular foyer opens into chambers for grief, rage, envy, fear, and desire; the desire chamber is the one developed for this project">
       <div class="chamber-foyer" aria-hidden="true">
@@ -435,25 +444,25 @@
 
   <section class="chamber-section" aria-labelledby="chamber-desire-heading">
     <div class="chamber-section-heading">
-      <h2 id="chamber-desire-heading">Why desire?</h2>
-      <p>I focused the build on desire after revisiting the Devil tarot card. Its imagery became a way to explore the line between pleasure and compulsion—and the illusion that people have no agency over their shadow selves.</p>
+      <h2 id="chamber-desire-heading">The Desire Chamber</h2>
+      <p>The Devil tarot card became a framework for exploring pleasure, compulsion, attachment, and agency.</p>
     </div>
 
     <div class="chamber-card-grid">
       <article class="chamber-card">
         <span class="chamber-label">Symbol</span>
         <h3>Loose chains</h3>
-        <p>The figures on the card appear bound, but their chains can be removed. Restriction is partly sustained by believing it is absolute.</p>
+        <p>The figures appear bound, but their chains can be removed.</p>
       </article>
       <article class="chamber-card">
         <span class="chamber-label">Question</span>
         <h3>Pleasure or compulsion?</h3>
-        <p>The chamber does not condemn indulgence. It asks when desire supports a life and when it begins to control one.</p>
+        <p>When does desire support a life, and when does it control one?</p>
       </article>
       <article class="chamber-card">
         <span class="chamber-label">Guardian</span>
         <h3>Face the shadow self</h3>
-        <p>A devil figure watches over the space as a guardian of honesty about attachment, appetite, sexuality, and control.</p>
+        <p>A devil figure guards honesty about appetite, sexuality, and control.</p>
       </article>
     </div>
 
@@ -465,8 +474,8 @@
 
   <section class="chamber-section" aria-labelledby="chamber-build-heading">
     <div class="chamber-section-heading">
-      <h2 id="chamber-build-heading">From sculpture to walkthrough</h2>
-      <p>I built the chamber as an end-to-end 3D environment: sculpting the architecture spatially in VR, surfacing it, assembling the world in Unity, and creating a first-person route through the finished space.</p>
+      <h2 id="chamber-build-heading">The build</h2>
+      <p>I sculpted the tunnels at human scale in VR, surfaced them in Substance Painter, assembled the scene in Unity, and built a first-person route through it.</p>
     </div>
 
     <div class="chamber-pipeline" role="img" aria-label="The chamber moved from VR sculpting in Adobe Medium to texturing in Substance Painter, assembly in Unity, environmental detailing, and a first-person walkthrough">
@@ -480,31 +489,13 @@
       <span class="chamber-pipeline-arrow" aria-hidden="true">→</span>
       <span class="chamber-pipeline-step"><strong>POV build</strong>Walkable experience</span>
     </div>
-
-    <div class="chamber-card-grid" style="margin-top:clamp(var(--space-7),6vw,var(--space-8))">
-      <article class="chamber-card">
-        <span class="chamber-label">Architecture</span>
-        <h3>Sculpt from inside the space</h3>
-        <p>Working in Medium let me shape the tunnels at human scale and think about how curves, thresholds, and alcoves would feel while moving through them.</p>
-      </article>
-      <article class="chamber-card">
-        <span class="chamber-label">Environment</span>
-        <h3>Carry Emora’s visual language forward</h3>
-        <p>Crystals, mushrooms, glittering surfaces, organic forms, and saturated color connect the chamber to the wider world.</p>
-      </article>
-      <article class="chamber-card">
-        <span class="chamber-label">Composition</span>
-        <h3>Design places to pause</h3>
-        <p>Alcoves and smaller zones break up the tunnel and create distinct moments for contemplation, indulgence, or retreat.</p>
-      </article>
-    </div>
   </section>
 
   <section class="chamber-section chamber-result" aria-labelledby="chamber-result-heading">
     <h2 id="chamber-result-heading">Result</h2>
     <div class="chamber-result-copy">
       <strong>A philosophical concept became a place I could walk through.</strong>
-      <p>The final Unity scene stayed true to the original desire chamber proposal while giving it spatial rhythm, material detail, and a clear point of view. It became one of the school projects I am most proud of—and a foundation for expanding the other chambers later.</p>
+      <p>The final Unity scene gave the original proposal spatial rhythm, material detail, and a clear point of view. It remains one of the school projects I am most proud of.</p>
     </div>
   </section>
 </article>

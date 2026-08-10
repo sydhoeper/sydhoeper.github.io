@@ -151,36 +151,44 @@
         grid-template-columns: 3rem minmax(0, 0.9fr) minmax(0, 1.1fr);
         gap: clamp(1.25rem, 4vw, 3.5rem);
         align-items: start;
-        padding: clamp(1.25rem, 3vw, 2rem) 0;
+        padding: clamp(1.35rem, 3vw, 2.1rem) 0;
         border-top: 1px solid rgba(var(--color-dark-rgb), 0.2);
     }
 
     .va-approach-number {
+        display: block;
+        margin-bottom: 0.85rem;
         color: var(--color-muted);
         font-size: var(--type-eyebrow-size);
         font-weight: var(--type-eyebrow-weight);
         letter-spacing: var(--type-eyebrow-spacing);
     }
 
-    .va-approach-signal h3 {
-        margin: 0 0 0.65rem;
+    .va-approach-copy h3 {
+        margin: 0 0 0.55rem;
         font-size: clamp(1.3rem, 2.7cqi, 1.75rem);
         line-height: 1.25;
     }
 
-    .va-approach-signal p,
-    .va-approach-response p {
+    .va-approach-copy p {
         margin: 0;
-        line-height: 1.65;
+        color: var(--color-muted);
+        line-height: 1.55;
     }
 
-    .va-approach-response {
+    .va-approach-actions {
         padding-left: clamp(1rem, 2.5vw, 1.75rem);
         border-left: 2px solid rgba(var(--color-dark-rgb), 0.18);
     }
 
-    .va-approach-response .va-step-number {
-        margin-bottom: 0.55rem;
+    .va-approach-actions ul {
+        margin: 0;
+        padding-left: 1.15rem;
+        line-height: 1.55;
+    }
+
+    .va-approach-actions li + li {
+        margin-top: 0.45rem;
     }
 
     .va-overview-stack {
@@ -886,8 +894,11 @@
             grid-template-columns: 2rem minmax(0, 1fr);
         }
 
-        .va-approach-response {
+        .va-approach-actions {
             grid-column: 2;
+            padding: 1rem 0 0;
+            border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
+            border-left: 0;
         }
 
         .va-hero {
@@ -1082,79 +1093,52 @@
     <section class="va-section" aria-labelledby="va-approach">
         <div class="va-section-heading">
             <h2 id="va-approach">Approach</h2>
-            <p>I joined after VA Form 10-10d was selected. I turned that fixed direction into a shared, buildable service.</p>
+            <p>I joined with the direction already set, then aligned the team and led the service through delivery.</p>
         </div>
 
         <div class="va-approach-framework">
             <article class="va-approach-item">
                 <span class="va-approach-number">01</span>
-                <div class="va-approach-signal">
-                    <h3>Join without resetting</h3>
-                    <p>I joined last, after the form and direction were set.</p>
+                <div class="va-approach-copy">
+                    <h3>Align around one direction</h3>
+                    <p>Different partners held different versions of an already-selected journey.</p>
                 </div>
-                <div class="va-approach-response">
-                    <span class="va-step-number">How I led</span>
-                    <p>Learned the rationale, clarified constraints, and built from the team’s existing decisions.</p>
+                <div class="va-approach-actions">
+                    <ul>
+                        <li>Learned the rationale and constraints</li>
+                        <li>Led a workshop in Figma</li>
+                        <li>Created one shared source of truth</li>
+                    </ul>
                 </div>
             </article>
 
             <article class="va-approach-item">
                 <span class="va-approach-number">02</span>
-                <div class="va-approach-signal">
-                    <h3>Align in Figma</h3>
-                    <p>Different partners held different versions of the applicant journey.</p>
+                <div class="va-approach-copy">
+                    <h3>Lead the core design</h3>
+                    <p>The application was complex and the scope required a design partnership.</p>
                 </div>
-                <div class="va-approach-response">
-                    <span class="va-step-number">How I led</span>
-                    <p>Led a workshop that flattened the flow and created one shared source of truth.</p>
+                <div class="va-approach-actions">
+                    <ul>
+                        <li>Owned wireframes and prototypes</li>
+                        <li>Directed and reviewed shared design work</li>
+                        <li>Turned testing into accessible revisions</li>
+                    </ul>
                 </div>
             </article>
 
             <article class="va-approach-item">
                 <span class="va-approach-number">03</span>
-                <div class="va-approach-signal">
-                    <h3>Own the core design</h3>
-                    <p>The 10-10d was complex; I brought the strongest Figma and prototyping fluency.</p>
+                <div class="va-approach-copy">
+                    <h3>Drive decisions to delivery</h3>
+                    <p>Applicant, policy, accessibility, and technical needs had to work together.</p>
                 </div>
-                <div class="va-approach-response">
-                    <span class="va-step-number">How I led</span>
-                    <p>Spearheaded wireframes, prototyping, testing revisions, and accessible handoff.</p>
-                </div>
-            </article>
-
-            <article class="va-approach-item">
-                <span class="va-approach-number">04</span>
-                <div class="va-approach-signal">
-                    <h3>Lead a design partnership</h3>
-                    <p>Another designer supported a scope too large for one person.</p>
-                </div>
-                <div class="va-approach-response">
-                    <span class="va-step-number">How I led</span>
-                    <p>Set direction, divided the work, and reviewed patterns for consistency.</p>
-                </div>
-            </article>
-
-            <article class="va-approach-item">
-                <span class="va-approach-number">05</span>
-                <div class="va-approach-signal">
-                    <h3>Manage stakeholder decisions</h3>
-                    <p>Applicant, processor, program, and policy needs competed.</p>
-                </div>
-                <div class="va-approach-response">
-                    <span class="va-step-number">How I led</span>
-                    <p>Synthesized research, documented tradeoffs, and drove decisions.</p>
-                </div>
-            </article>
-
-            <article class="va-approach-item">
-                <span class="va-approach-number">06</span>
-                <div class="va-approach-signal">
-                    <h3>Integrate delivery partners</h3>
-                    <p>Feasibility and accessibility shaped the design from the start.</p>
-                </div>
-                <div class="va-approach-response">
-                    <span class="va-step-number">How I led</span>
-                    <p>Worked continuously with PMs, engineers, researchers, and accessibility specialists.</p>
+                <div class="va-approach-actions">
+                    <ul>
+                        <li>Synthesized research and tradeoffs</li>
+                        <li>Partnered across product and engineering</li>
+                        <li>Guided decisions through handoff</li>
+                    </ul>
                 </div>
             </article>
         </div>
