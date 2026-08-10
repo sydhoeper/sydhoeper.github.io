@@ -144,15 +144,18 @@
 
     .va-approach-framework {
         display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(1.5rem, 4vw, 3rem);
     }
 
     .va-approach-item {
-        display: grid;
-        grid-template-columns: 3rem minmax(0, 0.9fr) minmax(0, 1.1fr);
-        gap: clamp(1.25rem, 4vw, 3.5rem);
-        align-items: start;
-        padding: clamp(1.35rem, 3vw, 2.1rem) 0;
-        border-top: 1px solid rgba(var(--color-dark-rgb), 0.2);
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: var(--card-padding);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
     }
 
     .va-approach-number {
@@ -177,8 +180,9 @@
     }
 
     .va-approach-actions {
-        padding-left: clamp(1rem, 2.5vw, 1.75rem);
-        border-left: 2px solid rgba(var(--color-dark-rgb), 0.18);
+        margin-top: 1.25rem;
+        padding-top: 1.15rem;
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.18);
     }
 
     .va-approach-actions ul {
@@ -891,14 +895,16 @@
         }
 
         .va-approach-item {
-            grid-template-columns: 2rem minmax(0, 1fr);
+            padding: var(--card-padding);
         }
 
         .va-approach-actions {
-            grid-column: 2;
-            padding: 1rem 0 0;
-            border-top: 1px solid rgba(var(--color-dark-rgb), 0.16);
-            border-left: 0;
+            padding-top: 1rem;
+        }
+
+        .va-approach-framework {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
         .va-hero {

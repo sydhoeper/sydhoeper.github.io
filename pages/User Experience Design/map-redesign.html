@@ -98,7 +98,7 @@
     .map-solution-layout {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
-        gap: clamp(1.5rem, 3vw, 2.5rem);
+        gap: clamp(1.25rem, 2.5vw, 2rem);
         align-items: start;
     }
 
@@ -296,6 +296,12 @@
 
     .map-media {
         margin: 0;
+    }
+
+    .map-overview-current-state > .map-media {
+        width: calc(100% - var(--case-study-content-inset));
+        max-width: 58ch;
+        margin-left: var(--case-study-content-inset);
     }
 
     .map-image-frame {
@@ -604,6 +610,11 @@
         line-height: 1.55;
     }
 
+    .map-impact-item dd strong {
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
     .map-impact-reflection {
         margin: clamp(2rem, 4vw, 3rem) 0 0;
         line-height: 1.65;
@@ -616,9 +627,9 @@
     }
 
     .map-solution-media {
-        width: min(100%, 820px);
-        margin: 0;
-        justify-self: center;
+        width: calc(100% - var(--case-study-content-inset));
+        max-width: 640px;
+        margin: 0 0 0 var(--case-study-content-inset);
     }
 
     .map-solution-comparison {
@@ -630,7 +641,7 @@
 
     .map-solution-comparison-item {
         display: grid;
-        gap: 0.1rem;
+        gap: 0.35rem;
         margin: 0;
     }
 
@@ -767,7 +778,15 @@
             margin-left: 0;
         }
 
+        .map-overview-current-state > .map-media {
+            width: 100%;
+            margin-left: 0;
+        }
+
         .map-solution-media {
+            width: 100%;
+            max-width: 640px;
+            margin-left: 0;
             justify-self: start;
         }
 
@@ -853,7 +872,7 @@
                 <p>Map layers had become fragmented and difficult to extend. Base maps and overlay categories lived behind separate controls, forcing RVers to remember where each option was stored.</p>
             </div>
 
-            <figure class="map-media wide">
+            <figure class="map-media wide map-overview-subsection">
                 <div class="map-image-frame">
                     <img src="images/Map%20Overlays/overview.png" width="982" height="720" alt="Current Campendium map architecture showing three separate controls leading to individual drawers for base maps and two overlay categories" loading="lazy" decoding="async">
                 </div>
@@ -912,55 +931,31 @@
     <section class="map-section" aria-labelledby="map-approach">
         <div class="map-section-heading">
             <h2 id="map-approach">Approach</h2>
-            <p>I treated the smoke-layer request as a systems problem, balancing customer behavior, product growth, and platform constraints through four decision principles.</p>
+            <p>I used two principles to turn a smoke-layer request into a scalable map system.</p>
         </div>
 
         <div class="map-approach-framework">
             <article class="map-approach-item">
                 <span class="map-approach-number">01</span>
                 <div class="map-approach-signal">
-                    <h3>Solve the system, not the request</h3>
-                    <p>A fourth control would deepen the fragmentation users already felt.</p>
+                    <h3>Design the system, not one feature</h3>
+                    <p>A fourth control would deepen fragmentation—and future layers would repeat the problem.</p>
                 </div>
                 <div class="map-approach-response">
                     <span class="map-step-label">Design response</span>
-                    <p>Use the smoke layer as the catalyst to consolidate every map option.</p>
+                    <p>Consolidate every option in an architecture built for Pro access, dark mode, and future layers.</p>
                 </div>
             </article>
 
             <article class="map-approach-item">
                 <span class="map-approach-number">02</span>
                 <div class="map-approach-signal">
-                    <h3>Preserve what already worked</h3>
-                    <p>The drawer was familiar, thumb-friendly, and adaptable across screen sizes.</p>
+                    <h3>Keep the familiar; clarify the rules</h3>
+                    <p>The drawer worked, but base maps and overlays behaved differently.</p>
                 </div>
                 <div class="map-approach-response">
                     <span class="map-step-label">Design response</span>
-                    <p>Keep the interaction pattern; redesign the architecture inside it.</p>
-                </div>
-            </article>
-
-            <article class="map-approach-item">
-                <span class="map-approach-number">03</span>
-                <div class="map-approach-signal">
-                    <h3>Make different behaviors explicit</h3>
-                    <p>Base maps replace one another; overlays can be combined.</p>
-                </div>
-                <div class="map-approach-response">
-                    <span class="map-step-label">Design response</span>
-                    <p>Separate them visually and use selection patterns that reveal those rules.</p>
-                </div>
-            </article>
-
-            <article class="map-approach-item">
-                <span class="map-approach-number">04</span>
-                <div class="map-approach-signal">
-                    <h3>Design beyond launch</h3>
-                    <p>The system needed to handle Pro access, dark mode, and future layers.</p>
-                </div>
-                <div class="map-approach-response">
-                    <span class="map-step-label">Design response</span>
-                    <p>Define scalable categories, states, and handoff specifications—not a one-off smoke interface.</p>
+                    <p>Preserve the thumb-friendly drawer, then use grouping and selection states to make each behavior clear.</p>
                 </div>
             </article>
         </div>
@@ -1221,31 +1216,31 @@
     <section class="map-section" aria-labelledby="map-outcomes">
         <div class="map-section-heading">
             <h2 id="map-outcomes">Outcomes and impact</h2>
-            <p>The redesign launched as one clearer, more scalable system for Campendium’s map tools.</p>
+            <p>The redesign launched as one unified system for Campendium’s map tools.</p>
         </div>
 
         <div class="map-impact-story">
             <div class="map-impact-copy">
                 <span class="map-step-label">Launched outcome</span>
-                <h3>One control made the map easier to use—and easier to grow.</h3>
-                <p class="map-impact-intro">RVers could compare and combine map context without bouncing between disconnected controls. Campendium gained a clearer surface for Pro features and future layers.</p>
+                <h3>One control made maps easier to use—and easier to grow.</h3>
+                <p class="map-impact-intro">RVers could find and combine layers in one place. Campendium gained a scalable home for Pro features and future layers.</p>
 
                 <dl class="map-impact-list">
                     <div class="map-impact-item">
                         <dt>User</dt>
-                        <dd>One drawer made layers easier to find, combine, review, and clear.</dd>
+                        <dd><strong>One place for every layer.</strong> Find, combine, review, and clear without switching controls.</dd>
                     </div>
                     <div class="map-impact-item">
                         <dt>Business</dt>
-                        <dd>The team reported stronger engagement and Pro conversion after launch; exact figures were not retained.</dd>
+                        <dd><strong>Stronger adoption.</strong> The team reported higher engagement and Pro conversion; exact figures were not retained.</dd>
                     </div>
                     <div class="map-impact-item">
                         <dt>Product</dt>
-                        <dd>Future maps, overlays, and access states gained a reusable framework.</dd>
+                        <dd><strong>Built to expand.</strong> Future maps, overlays, and access states share one reusable framework.</dd>
                     </div>
                 </dl>
 
-                <p class="map-impact-reflection"><strong>Leadership takeaway:</strong> Connecting each interaction decision to customer comprehension and product scalability made the case for one unified system.</p>
+                <p class="map-impact-reflection"><strong>Leadership takeaway:</strong> Connecting interaction details to user clarity and product scale built support for one unified system.</p>
             </div>
 
             <figure class="map-result-media map-outcome-media">
