@@ -227,7 +227,7 @@ function finishPageLoad(pageName, focusContent) {
 
     contentArea.setAttribute("aria-busy", "false");
     updateActiveLink(pageName);
-    document.title = pageHeading ? `${pageHeading.textContent.trim()} | Syd Hoeper` : "Syd Hoeper";
+    document.title = "Syd Hoeper";
     window.scrollTo(0, 0);
 
     if (focusContent) {
