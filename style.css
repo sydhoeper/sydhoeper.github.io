@@ -398,6 +398,82 @@ a:hover {
     font-size: var(--text-subheading);
 }
 
+.main-content:has(.not-found-page) {
+    max-width: none;
+}
+
+.not-found-page {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    min-height: calc(100vh - 200px);
+    place-items: center;
+    overflow: hidden;
+    border: var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 254, 251, 0.62);
+}
+
+.not-found-page::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: min(76vw, 760px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+        conic-gradient(
+            from 35deg,
+            var(--color-rainbow-pink),
+            var(--color-rainbow-yellow),
+            var(--color-rainbow-mint),
+            var(--color-rainbow-blue),
+            var(--color-rainbow-lavender),
+            var(--color-rainbow-pink)
+        );
+    opacity: 0.18;
+    filter: blur(72px);
+    transform: translate(32%, 26%) scale(1.08, 0.72);
+}
+
+.not-found-copy {
+    width: min(100%, 690px);
+    padding: clamp(2rem, 7vw, 5rem);
+}
+
+.not-found-copy > p:not(.project-eyebrow) {
+    max-width: 610px;
+    margin: 1.4rem 0 2rem;
+    font-size: clamp(1.08rem, 2vw, 1.3rem);
+    line-height: 1.65;
+}
+
+.not-found-home-link {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.8rem 1.25rem;
+    border: 2px solid var(--color-dark);
+    border-radius: var(--radius-pill);
+    background: var(--color-dark);
+    color: var(--color-background);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color var(--transition-ui), border-color var(--transition-ui), transform var(--transition-ui);
+}
+
+.not-found-home-link:hover,
+.not-found-home-link:focus-visible {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: white;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transform: translateY(-2px);
+}
+
 .main-content img,
 .main-content video {
     display: block;

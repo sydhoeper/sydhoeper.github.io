@@ -182,7 +182,7 @@ async function loadPage(pageName, { focusContent = false } = {}) {
     const pagePath = pageMap[pageName];
 
     if (!pagePath) {
-        showComingSoon(pageName, "", focusContent);
+        showNotFound(pageName, focusContent);
         return;
     }
 
@@ -219,7 +219,7 @@ async function loadPage(pageName, { focusContent = false } = {}) {
             return;
         }
 
-        showComingSoon(pageName, pagePath, focusContent);
+        showNotFound(pageName, focusContent);
         console.error(error);
     }
 }
@@ -276,15 +276,20 @@ function initializeHomeRibbon(root = document) {
 
         const maximumScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
         const progress = Math.min(1, Math.max(0, window.scrollY / maximumScroll));
-        const drift = Math.sin(progress * Math.PI * 4) * 14;
-        const stretch = 1 + Math.sin(progress * Math.PI * 3) * 0.018;
-        const hue = Math.sin(progress * Math.PI * 2) * 10;
-        const glow = 0.18 + ((Math.sin(progress * Math.PI * 4 - Math.PI / 2) + 1) / 2) * 0.08;
+        const drift = (Math.sin(progress * Math.PI * 3.5) * 34)
+            + (Math.sin(progress * Math.PI * 7) * 8);
+        const float = Math.sin((progress * Math.PI * 4.5) + 0.6) * 14;
+        const stretch = 1 + Math.sin((progress * Math.PI * 3) - 0.5) * 0.035;
+        const hue = Math.sin(progress * Math.PI * 2.5) * 16;
+        const glow = 0.14 + ((Math.sin(progress * Math.PI * 4 - Math.PI / 2) + 1) / 2) * 0.13;
+        const bloomOffset = progress * -32;
 
         ribbon.style.setProperty("--ribbon-shift-x", `${drift.toFixed(2)}px`);
+        ribbon.style.setProperty("--ribbon-shift-y", `${float.toFixed(2)}px`);
         ribbon.style.setProperty("--ribbon-scale-x", stretch.toFixed(4));
         ribbon.style.setProperty("--ribbon-hue", `${hue.toFixed(2)}deg`);
         ribbon.style.setProperty("--ribbon-glow", glow.toFixed(3));
+        ribbon.style.setProperty("--ribbon-bloom-offset", bloomOffset.toFixed(2));
     };
 
     const requestRibbonUpdate = () => {
@@ -641,11 +646,18 @@ function initializePhysicalProductPage(root = document) {
     });
 }
 
-function showComingSoon(pageName, pagePath = "", focusContent = false) {
+function showNotFound(pageName, focusContent = false) {
     contentArea.innerHTML = `
-        <h1>Coming Soon</h1>
-        <p>This page hasn't been built yet.</p>
-        ${pagePath ? `<p><small>Missing file: ${pagePath}</small></p>` : ""}
+        <section class="not-found-page" aria-labelledby="not-found-title">
+            <div class="not-found-copy">
+                <p class="project-eyebrow">404 · Page not found</p>
+                <h1 id="not-found-title">This page wandered off.</h1>
+                <p>It may have moved, or I may still be putting the finishing touches on it. No worries—you can head home and keep exploring.</p>
+                <a class="not-found-home-link" href="#home">
+                    Back to home <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </section>
     `;
 
     finishPageLoad(pageName, focusContent);

@@ -11,9 +11,11 @@
 
     .home-rainbow-squiggle {
         --ribbon-shift-x: 0px;
+        --ribbon-shift-y: 0px;
         --ribbon-scale-x: 1;
         --ribbon-hue: 0deg;
         --ribbon-glow: 0.2;
+        --ribbon-bloom-offset: 0;
         position: absolute;
         z-index: 0;
         top: -6rem;
@@ -22,14 +24,14 @@
         height: calc(100% + 12rem);
         margin: 0;
         overflow: visible;
-        opacity: 0.5;
+        opacity: 0.42;
         pointer-events: none;
         filter: hue-rotate(var(--ribbon-hue));
         will-change: filter;
     }
 
     .home-rainbow-squiggle path {
-        transform: translateX(var(--ribbon-shift-x)) scaleX(var(--ribbon-scale-x));
+        transform: translate(var(--ribbon-shift-x), var(--ribbon-shift-y)) scaleX(var(--ribbon-scale-x));
         transform-box: fill-box;
         transform-origin: center;
         will-change: transform;
@@ -39,7 +41,7 @@
         fill: none;
         stroke: url(#home-pastel-spectrum);
         stroke-linecap: round;
-        stroke-width: 86;
+        stroke-width: 110;
         opacity: var(--ribbon-glow);
         filter: url(#home-pastel-glow);
     }
@@ -48,9 +50,21 @@
         fill: none;
         stroke: url(#home-pastel-spectrum);
         stroke-linecap: round;
-        stroke-width: 56;
-        opacity: 0.42;
+        stroke-width: 58;
+        opacity: 0.32;
         filter: url(#home-pastel-softness);
+    }
+
+    .home-rainbow-squiggle .squiggle-bloom {
+        fill: none;
+        stroke: url(#home-pastel-spectrum);
+        stroke-linecap: round;
+        stroke-width: 96;
+        stroke-dasharray: 13 12 19 17 10 29;
+        stroke-dashoffset: var(--ribbon-bloom-offset);
+        opacity: 0.16;
+        filter: url(#home-pastel-softness);
+        will-change: transform, stroke-dashoffset;
     }
 
     .home-page h1,
@@ -547,7 +561,7 @@
             left: 0;
             width: 100%;
             height: calc(100% + 8rem);
-            opacity: 0.46;
+            opacity: 0.4;
         }
 
         .home-block {
@@ -652,14 +666,15 @@
                 <stop offset="100%" stop-color="var(--color-rainbow-pink)"></stop>
             </linearGradient>
             <filter id="home-pastel-glow" x="-30%" y="-5%" width="160%" height="110%" color-interpolation-filters="sRGB">
-                <feGaussianBlur stdDeviation="26"></feGaussianBlur>
+                <feGaussianBlur stdDeviation="34"></feGaussianBlur>
             </filter>
             <filter id="home-pastel-softness" x="-30%" y="-5%" width="160%" height="110%" color-interpolation-filters="sRGB">
-                <feGaussianBlur stdDeviation="12"></feGaussianBlur>
+                <feGaussianBlur stdDeviation="18"></feGaussianBlur>
             </filter>
         </defs>
-        <path class="squiggle-halo" d="M 900 -180 C 1180 35, 1090 235, 735 350 S 120 525, 415 720 S 1120 905, 825 1110 S 105 1290, 365 1500 S 1125 1700, 835 1910 S 110 2110, 405 2330 S 1110 2520, 755 2720 S 115 2910, 610 3180"></path>
-        <path class="squiggle-ribbon" d="M 900 -180 C 1180 35, 1090 235, 735 350 S 120 525, 415 720 S 1120 905, 825 1110 S 105 1290, 365 1500 S 1125 1700, 835 1910 S 110 2110, 405 2330 S 1110 2520, 755 2720 S 115 2910, 610 3180"></path>
+        <path class="squiggle-halo" d="M 980 -180 C 1135 5, 1090 175, 930 285 C 790 380, 325 355, 245 535 C 145 755, 700 710, 880 860 C 1085 1030, 970 1205, 680 1265 C 385 1320, 115 1430, 235 1635 C 360 1845, 1020 1705, 1070 1945 C 1115 2170, 725 2240, 565 2345 C 365 2480, 120 2620, 260 2810 C 405 3005, 920 2865, 730 3180"></path>
+        <path class="squiggle-bloom" pathLength="100" d="M 980 -180 C 1135 5, 1090 175, 930 285 C 790 380, 325 355, 245 535 C 145 755, 700 710, 880 860 C 1085 1030, 970 1205, 680 1265 C 385 1320, 115 1430, 235 1635 C 360 1845, 1020 1705, 1070 1945 C 1115 2170, 725 2240, 565 2345 C 365 2480, 120 2620, 260 2810 C 405 3005, 920 2865, 730 3180"></path>
+        <path class="squiggle-ribbon" d="M 980 -180 C 1135 5, 1090 175, 930 285 C 790 380, 325 355, 245 535 C 145 755, 700 710, 880 860 C 1085 1030, 970 1205, 680 1265 C 385 1320, 115 1430, 235 1635 C 360 1845, 1020 1705, 1070 1945 C 1115 2170, 725 2240, 565 2345 C 365 2480, 120 2620, 260 2810 C 405 3005, 920 2865, 730 3180"></path>
     </svg>
 
     <section class="home-block home-hero" aria-labelledby="home-title">
