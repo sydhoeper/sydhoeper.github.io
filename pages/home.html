@@ -200,7 +200,7 @@
     .career-list {
         position: relative;
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: clamp(1.25rem, 3vw, 3rem);
         margin: 0;
         padding: 0;
@@ -211,8 +211,8 @@
         content: "";
         position: absolute;
         top: 7px;
-        right: 12.5%;
-        left: 12.5%;
+        right: 16.67%;
+        left: 16.67%;
         height: 1px;
         background: rgba(var(--color-dark-rgb), 0.32);
     }
@@ -266,6 +266,41 @@
     .career-list p {
         margin: 0;
         line-height: var(--type-body-line-height);
+    }
+
+    .career-link {
+        display: inline-flex;
+        gap: 0.4rem;
+        align-items: center;
+        margin-top: 1.15rem;
+        color: var(--color-text);
+        font-size: 0.95rem;
+        font-weight: 650;
+        line-height: 1.3;
+        text-decoration-color: var(--color-accent);
+        text-decoration-thickness: 0.12em;
+        text-underline-offset: 0.22em;
+    }
+
+    .career-link span {
+        color: var(--color-accent);
+        transition: transform var(--transition-ui);
+    }
+
+    .career-link:hover,
+    .career-link:focus-visible {
+        text-decoration-thickness: 0.18em;
+    }
+
+    .career-link:hover span,
+    .career-link:focus-visible span {
+        transform: translateX(0.2rem);
+    }
+
+    .career-link:focus-visible {
+        border-radius: var(--radius-sm);
+        outline: 3px solid var(--color-accent);
+        outline-offset: 5px;
     }
 
     .home-practice {
@@ -572,34 +607,32 @@
     <section class="home-block career-path" aria-labelledby="background-title">
         <div class="home-section-heading">
             <div>
-                <p class="home-eyebrow">Background</p>
-                <h2 id="background-title">From details to systems.</h2>
+                <p class="home-eyebrow">Practice</p>
+                <h2 id="background-title">Three threads of my practice.</h2>
             </div>
-            <p>My scope grew from hands-on design to end-to-end ownership, complex services, and new forms of interaction.</p>
+            <p>My work moves between hands-on craft, digital product design, and interactive storytelling—not along one linear path.</p>
         </div>
 
-        <ol class="career-list">
+        <ul class="career-list">
             <li>
-                <span class="career-number">2016</span>
-                <h3>Designed within constraints</h3>
-                <p>My physical product design background taught me to balance user needs, materials, and manufacturing.</p>
+                <span class="career-number">Foundation</span>
+                <h3>Learn through making</h3>
+                <p>Physical product design taught me to work within material, manufacturing, and human constraints.</p>
+                <a class="career-link" href="#physical-product-design">View Physical Product Design <span aria-hidden="true">→</span></a>
             </li>
             <li>
-                <span class="career-number">2018</span>
-                <h3>Owned products end to end</h3>
-                <p>As Trip Pilot’s sole designer, I led research, strategy, design, and delivery.</p>
+                <span class="career-number">Product &amp; Systems Design</span>
+                <h3>Build new products and strengthen existing ones</h3>
+                <p>Across 0→1 launches and product improvements, I turned complex needs into clear, scalable services.</p>
+                <a class="career-link" href="#va-pdfs">View PDF Digitization <span aria-hidden="true">→</span></a>
             </li>
             <li>
-                <span class="career-number">2020</span>
-                <h3>Shaped connected systems</h3>
-                <p>I designed high-stakes services for responders, travelers, and Veterans’ families.</p>
+                <span class="career-number">Interactive Media</span>
+                <h3>Create worlds people can enter</h3>
+                <p>Contract and school projects let me combine Unity, spatial design, art direction, and play.</p>
+                <a class="career-link" href="#emora">View the Oracle Deck <span aria-hidden="true">→</span></a>
             </li>
-            <li>
-                <span class="career-number">2025</span>
-                <h3>Expanding my perspective</h3>
-                <p>I’m pursuing an MFA in games and interactive media, exploring new ways to think about interaction, behavior, and play.</p>
-            </li>
-        </ol>
+        </ul>
     </section>
 
     <section class="home-block home-practice" aria-labelledby="practice-title">
