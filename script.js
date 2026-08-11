@@ -276,13 +276,13 @@ function initializeHomeRibbon(root = document) {
 
         const maximumScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
         const progress = Math.min(1, Math.max(0, window.scrollY / maximumScroll));
-        const drift = (Math.sin(progress * Math.PI * 3.5) * 34)
-            + (Math.sin(progress * Math.PI * 7) * 8);
-        const float = Math.sin((progress * Math.PI * 4.5) + 0.6) * 14;
-        const stretch = 1 + Math.sin((progress * Math.PI * 3) - 0.5) * 0.035;
-        const hue = Math.sin(progress * Math.PI * 2.5) * 16;
-        const glow = 0.14 + ((Math.sin(progress * Math.PI * 4 - Math.PI / 2) + 1) / 2) * 0.13;
-        const bloomOffset = progress * -32;
+        const drift = (Math.sin(progress * Math.PI * 3.5) * 52)
+            + (Math.sin(progress * Math.PI * 7) * 14);
+        const float = Math.sin((progress * Math.PI * 4.5) + 0.6) * 24;
+        const stretch = 1 + Math.sin((progress * Math.PI * 3) - 0.5) * 0.055;
+        const hue = Math.sin(progress * Math.PI * 2.5) * 22;
+        const glow = 0.13 + ((Math.sin(progress * Math.PI * 4 - Math.PI / 2) + 1) / 2) * 0.17;
+        const bloomOffset = progress * -82;
 
         ribbon.style.setProperty("--ribbon-shift-x", `${drift.toFixed(2)}px`);
         ribbon.style.setProperty("--ribbon-shift-y", `${float.toFixed(2)}px`);
