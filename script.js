@@ -26,9 +26,8 @@ const pageMap = {
     frokost: "pages/Games and Interactive Media/frokost-game.html",
 
     "emora-diorama": "pages/Sculpture/sculpture-emora.html",
+    "physical-product-design": "pages/Sculpture/physical-product-design.html",
     "stained-glass": "pages/Sculpture/stained-glass.html",
-    felting: "pages/Sculpture/felting-works.html",
-
     "digital-portraits": "pages/Illustration/digital-illustration.html",
     "digital-drawings": "pages/Illustration/digital-illustration.html",
     "event-posters": "pages/Illustration/digital-illustration.html",
@@ -208,6 +207,7 @@ async function loadPage(pageName, { focusContent = false } = {}) {
             fitGameEmbeds(contentArea);
             initializeLocalAnchors(contentArea);
             initializeCarousels(contentArea);
+            initializePhysicalProductPage(contentArea);
             initializeGalleries(contentArea);
             initializeMapAnimations(contentArea);
             finishPageLoad(pageName, focusContent);
@@ -550,6 +550,44 @@ function initializeGalleries(root = document) {
             lightboxVideo?.load();
             openingButton?.focus();
         });
+    });
+}
+
+function initializePhysicalProductPage(root = document) {
+    const page = root.querySelector("[data-physical-product-page]");
+
+    if (!page) {
+        return;
+    }
+
+    page.querySelectorAll("[data-product-gallery]").forEach((gallery) => {
+        const { slug, extension, title } = gallery.dataset;
+        const imageCount = Number.parseInt(gallery.dataset.count, 10);
+
+        if (!slug || !extension || !title || !Number.isFinite(imageCount)) {
+            return;
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        for (let index = 1; index <= imageCount; index += 1) {
+            const button = document.createElement("button");
+            const image = document.createElement("img");
+
+            button.className = "art-gallery-item";
+            button.type = "button";
+            button.dataset.galleryItem = "";
+
+            image.src = `/images/Physical%20Product%20Design/${slug}-${index}.${extension}`;
+            image.alt = `${title}, image ${index}`;
+            image.loading = "lazy";
+            image.decoding = "async";
+
+            button.append(image);
+            fragment.append(button);
+        }
+
+        gallery.append(fragment);
     });
 }
 

@@ -1,0 +1,519 @@
+<style>
+  .physical-product-page {
+    width: 100%;
+    max-width: 1180px;
+  }
+
+  .physical-product-hero {
+    padding-bottom: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .physical-product-hero h1 {
+    max-width: 12ch;
+    margin: 0 0 var(--space-5);
+    font-family: var(--font-display);
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+    text-wrap: balance;
+  }
+
+  .physical-product-hero > p {
+    max-width: 62ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .physical-product-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+  }
+
+  .physical-product-fact {
+    padding: var(--card-padding);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .physical-product-fact strong,
+  .physical-product-fact span {
+    display: block;
+  }
+
+  .physical-product-fact strong {
+    margin-bottom: var(--space-2);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .physical-product-fact span {
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+
+  .physical-product-group {
+    padding: clamp(var(--space-7), 7vw, var(--space-9)) 0 0;
+    border-top: var(--border-subtle);
+  }
+
+  .physical-product-group + .physical-product-group {
+    margin-top: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .physical-product-group-heading {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.42fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+    margin-bottom: clamp(var(--space-5), 4vw, var(--space-7));
+  }
+
+  .physical-product-group-heading h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .physical-product-group-heading p {
+    max-width: 54ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .physical-product-list {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .physical-product-item {
+    overflow: clip;
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .physical-product-item > summary {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.42fr) minmax(0, 1fr) auto;
+    gap: clamp(var(--space-4), 4vw, var(--space-7));
+    align-items: center;
+    padding: clamp(var(--space-3), 2.5vw, var(--space-5));
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .physical-product-item > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .physical-product-item > summary:hover .physical-product-summary-copy h3 {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12em;
+    text-underline-offset: 0.18em;
+  }
+
+  .physical-product-item > summary:focus-visible {
+    outline: 3px solid var(--color-text);
+    outline-offset: -5px;
+  }
+
+  .physical-product-cover {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    margin: 0;
+    border-radius: calc(var(--card-radius) * 0.72);
+    background: var(--color-media-canvas);
+    object-fit: cover;
+  }
+
+  .physical-product-cover--left {
+    object-position: left center;
+  }
+
+  .physical-product-summary-copy .project-eyebrow {
+    margin-bottom: var(--space-2);
+  }
+
+  .physical-product-summary-copy h3 {
+    margin: 0 0 var(--space-2);
+    font-size: clamp(1.35rem, 2.4vw, 2rem);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .physical-product-summary-copy p {
+    max-width: 56ch;
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.55;
+  }
+
+  .physical-product-toggle {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    line-height: 1;
+    place-items: center;
+    transition: transform 180ms ease;
+  }
+
+  .physical-product-item[open] .physical-product-toggle {
+    transform: rotate(45deg);
+  }
+
+  .physical-product-body {
+    padding: clamp(var(--space-5), 5vw, var(--space-8));
+    border-top: var(--border-subtle);
+  }
+
+  .physical-product-story {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.34fr) minmax(0, 1fr);
+    gap: clamp(var(--space-5), 5vw, var(--space-8));
+    margin-bottom: var(--space-6);
+  }
+
+  .physical-product-story h4 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    line-height: 1.05;
+  }
+
+  .physical-product-story-copy > :first-child {
+    margin-top: 0;
+  }
+
+  .physical-product-story-copy > :last-child {
+    margin-bottom: 0;
+  }
+
+  .physical-product-story-copy p,
+  .physical-product-story-copy li {
+    line-height: 1.65;
+  }
+
+  .physical-product-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .physical-product-gallery .art-gallery-item {
+    aspect-ratio: 4 / 3;
+    background: var(--color-media-canvas);
+  }
+
+  .physical-product-gallery .art-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 760px) {
+    .physical-product-facts,
+    .physical-product-group-heading,
+    .physical-product-story {
+      grid-template-columns: 1fr;
+    }
+
+    .physical-product-item > summary {
+      grid-template-columns: minmax(110px, 0.42fr) minmax(0, 1fr) auto;
+      gap: var(--space-3);
+    }
+
+    .physical-product-summary-copy p {
+      display: none;
+    }
+
+    .physical-product-gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .physical-product-item > summary {
+      grid-template-columns: 1fr auto;
+    }
+
+    .physical-product-cover {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+
+<article class="physical-product-page" data-gallery-page data-physical-product-page>
+  <header class="physical-product-hero">
+    <span class="project-eyebrow">Industrial design archive</span>
+    <h1>Physical Product Design</h1>
+    <p>A collection of early product-design work spanning research, concept development, CAD, rendering, prototyping, and hands-on model making.</p>
+
+    <div class="physical-product-facts" aria-label="Collection overview">
+      <article class="physical-product-fact">
+        <strong>14 projects</strong>
+        <span>Every project and image preserved from my original portfolio.</span>
+      </article>
+      <article class="physical-product-fact">
+        <strong>End-to-end making</strong>
+        <span>From sketches and research through fabrication and presentation.</span>
+      </article>
+      <article class="physical-product-fact">
+        <strong>Tools and materials</strong>
+        <span>SolidWorks, 3ds Max, Photoshop, shop tools, and physical prototyping.</span>
+      </article>
+    </div>
+  </header>
+
+  <div data-gallery>
+    <section class="physical-product-group" aria-labelledby="designed-products-heading">
+      <div class="physical-product-group-heading">
+        <h2 id="designed-products-heading">Designed products</h2>
+        <p>Projects that moved through research, iteration, prototyping, and a resolved physical concept.</p>
+      </div>
+
+      <div class="physical-product-list">
+        <details class="physical-product-item" id="knee-scooter">
+          <summary>
+            <img class="physical-product-cover physical-product-cover--left" src="/images/Physical%20Product%20Design/knee-scooter-34.jpg" alt="Finished green and wood knee scooter prototype" loading="eager">
+            <span class="physical-product-summary-copy">
+              <span class="project-eyebrow">Design process · 34 images</span>
+              <h3>Knee Scooter</h3>
+              <p>A semester-long product-design project documented from early research through a resolved mobility concept.</p>
+            </span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body">
+            <div class="physical-product-story">
+              <h4>Process archive</h4>
+              <div class="physical-product-story-copy">
+                <p>This semester project captures the full design process for a knee scooter: framing the opportunity, exploring form and function, developing the concept, and communicating the final direction.</p>
+              </div>
+            </div>
+            <div class="art-grid physical-product-gallery" data-product-gallery data-slug="knee-scooter" data-count="34" data-extension="jpg" data-title="Knee Scooter"></div>
+          </div>
+        </details>
+
+        <details class="physical-product-item" id="playground-equipment">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/toy-product-design-1.jpg" alt="Stand-on playground maze prototype" loading="lazy">
+            <span class="physical-product-summary-copy">
+              <span class="project-eyebrow">Team product design · 3 images</span>
+              <h3>Playground Equipment</h3>
+              <p>A full-scale, stand-on maze developed with a six-person team for Landscape Structures.</p>
+            </span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body">
+            <div class="physical-product-story">
+              <h4>From research to play</h4>
+              <div class="physical-product-story-copy">
+                <p>Landscape Structures sponsored our Toy Product Design course and asked teams to create a new playground “event.” Our six-person team designed a circular, stand-on maze supported by a large spring, with a marble that players guide by shifting their weight.</p>
+                <p>We used market research, playground visits, interviews with children, sketch models, rapid prototypes, peer reviews, pitches, and iteration to reach the final concept. The full-scale prototype combined CNC-routed high-density polyethylene, acrylic, steel hardware, and 3D-printed interior figures.</p>
+              </div>
+            </div>
+            <div class="art-grid physical-product-gallery" data-product-gallery data-slug="toy-product-design" data-count="3" data-extension="jpg" data-title="Playground Equipment"></div>
+          </div>
+        </details>
+
+        <details class="physical-product-item" id="cricket-condo">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/cricket-box-1.jpg" alt="Cricket Condo prototype" loading="lazy">
+            <span class="physical-product-summary-copy">
+              <span class="project-eyebrow">24-hour make-a-thon · 5 images</span>
+              <h3>Cricket Condo</h3>
+              <p>A modular cricket-farming system designed to make alternative protein production more efficient.</p>
+            </span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body">
+            <div class="physical-product-story">
+              <h4>Second-place concept</h4>
+              <div class="physical-product-story-copy">
+                <p>During the 10,000 Makes Marathon, teams of five had 24 hours to respond to the theme “Grand Challenges.” Our team focused on the land, water, and feed demands of conventional meat production and proposed crickets as a lower-resource protein source.</p>
+                <p>We designed a stackable farming system with screened walls for airflow, perforated floors, removable waste drawers, front access for food and water, and climate control for each shelving unit. I was the primary designer of the condo itself and built the prototype with one teammate in six hours.</p>
+                <p>We presented alongside eleven other teams and received second place.</p>
+              </div>
+            </div>
+            <div class="art-grid physical-product-gallery" data-product-gallery data-slug="cricket-box" data-count="5" data-extension="jpg" data-title="Cricket Condo"></div>
+          </div>
+        </details>
+
+        <details class="physical-product-item" id="tap-handle">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/tap-handle-1.jpg" alt="Tin Whiskers tap handle prototype" loading="lazy">
+            <span class="physical-product-summary-copy">
+              <span class="project-eyebrow">Model making · 2 images</span>
+              <h3>Tap Handle</h3>
+              <p>A legible, modular tap handle designed for the circuit-inspired Tin Whiskers microbrewery.</p>
+            </span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body">
+            <div class="physical-product-story">
+              <h4>Built for change</h4>
+              <div class="physical-product-story-copy">
+                <p>Tin Whiskers wanted a tap handle that remained recognizable when rotated and could change color quickly for different beers. I developed a simple, ergonomic aluminum body with branding visible from multiple angles.</p>
+                <p>I cut the body from aluminum bar, CNC-engraved the lettering, spray painted and disc sanded the surface, and threaded the top and bottom. The top references a Wheatstone bridge circuit and was water-jet cut, finished with an angle grinder, and paired with interchangeable laser-cut acrylic and magnetic vinyl color pieces.</p>
+              </div>
+            </div>
+            <div class="art-grid physical-product-gallery" data-product-gallery data-slug="tap-handle" data-count="2" data-extension="jpg" data-title="Tap Handle"></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="physical-product-group" aria-labelledby="cad-heading">
+      <div class="physical-product-group-heading">
+        <h2 id="cad-heading">CAD and rendering</h2>
+        <p>Form studies and modeled products built to strengthen SolidWorks and 3ds Max fluency.</p>
+      </div>
+
+      <div class="physical-product-list">
+        <details class="physical-product-item" id="hamster-cage">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/hamster-cage-rendering-1.jpg" alt="Rendered hamster cage" loading="lazy">
+            <span class="physical-product-summary-copy"><span class="project-eyebrow">SolidWorks + 3ds Max · 8 images</span><h3>Hamster Cage Rendering</h3><p>A complete CAD and rendering study developed as a Computer Aided Design final project.</p></span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body"><div class="art-grid physical-product-gallery" data-product-gallery data-slug="hamster-cage-rendering" data-count="8" data-extension="jpg" data-title="Hamster Cage Rendering"></div></div>
+        </details>
+
+        <details class="physical-product-item" id="bookshelf">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/cad-bookshelf-1.jpg" alt="Modern bookshelf CAD model" loading="lazy">
+            <span class="physical-product-summary-copy"><span class="project-eyebrow">SolidWorks · 3 images</span><h3>Bookshelf</h3><p>A modern furniture modeling project exploring structure, proportion, and assembly.</p></span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body"><div class="art-grid physical-product-gallery" data-product-gallery data-slug="cad-bookshelf" data-count="3" data-extension="jpg" data-title="Bookshelf"></div></div>
+        </details>
+
+        <details class="physical-product-item" id="toothbrush">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/cad-toothbrush-1.jpg" alt="Toothbrush CAD model" loading="lazy">
+            <span class="physical-product-summary-copy"><span class="project-eyebrow">SolidWorks · 4 images</span><h3>Toothbrush</h3><p>A Computer Aided Design project focused on modeling an everyday handheld product.</p></span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body"><div class="art-grid physical-product-gallery" data-product-gallery data-slug="cad-toothbrush" data-count="4" data-extension="jpg" data-title="Toothbrush"></div></div>
+        </details>
+
+        <details class="physical-product-item" id="cad-speakers">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/cad-speakers-1.png" alt="Speaker CAD model" loading="lazy">
+            <span class="physical-product-summary-copy"><span class="project-eyebrow">SolidWorks · 4 images</span><h3>CAD Speakers</h3><p>A modeled speaker concept developed through multiple views and renderings.</p></span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body"><div class="art-grid physical-product-gallery" data-product-gallery data-slug="cad-speakers" data-count="4" data-extension="png" data-title="CAD Speakers"></div></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="physical-product-group" aria-labelledby="sketching-heading">
+      <div class="physical-product-group-heading">
+        <h2 id="sketching-heading">Concept sketching</h2>
+        <p>Digital product explorations created in Photoshop with a Wacom drawing tablet.</p>
+      </div>
+
+      <div class="physical-product-list">
+        <details class="physical-product-item" id="hanging-tent">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/hanging-tent-1.jpg" alt="Hanging tent concept illustration" loading="lazy">
+            <span class="physical-product-summary-copy"><span class="project-eyebrow">Digital sketching · 5 images</span><h3>Hanging Tent</h3><p>A final-project concept communicated through environmental views and product details.</p></span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body"><div class="art-grid physical-product-gallery" data-product-gallery data-slug="hanging-tent" data-count="5" data-extension="jpg" data-title="Hanging Tent"></div></div>
+        </details>
+
+        <details class="physical-product-item" id="ski-boots">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/ski-boots-1.png" alt="Ski boot concept sketch" loading="lazy">
+            <span class="physical-product-summary-copy"><span class="project-eyebrow">Footwear sketching · 5 images</span><h3>Ski Boots</h3><p>A footwear form study developed through digital sketching and rendering.</p></span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body"><div class="art-grid physical-product-gallery" data-product-gallery data-slug="ski-boots" data-count="5" data-extension="png" data-title="Ski Boots"></div></div>
+        </details>
+
+        <details class="physical-product-item" id="speaker-sketches">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/speakers-1.png" alt="Speaker concept sketch" loading="lazy">
+            <span class="physical-product-summary-copy"><span class="project-eyebrow">Digital sketching · 6 images</span><h3>Speaker Concepts</h3><p>Speaker forms explored through sketches, color, materials, and presentation rendering.</p></span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body"><div class="art-grid physical-product-gallery" data-product-gallery data-slug="speakers" data-count="6" data-extension="png" data-title="Speaker Concepts"></div></div>
+        </details>
+
+        <details class="physical-product-item" id="tape-measure">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/tool-1.png" alt="Tape measure concept sketch" loading="lazy">
+            <span class="physical-product-summary-copy"><span class="project-eyebrow">Tool sketching · 4 images</span><h3>Tape Measure</h3><p>An everyday tool explored through Photoshop sketches and product renderings.</p></span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body"><div class="art-grid physical-product-gallery" data-product-gallery data-slug="tool" data-count="4" data-extension="png" data-title="Tape Measure"></div></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="physical-product-group" aria-labelledby="model-making-heading">
+      <div class="physical-product-group-heading">
+        <h2 id="model-making-heading">Model making</h2>
+        <p>Physical studies that use scale, material, fabrication, and form to translate an idea into an object.</p>
+      </div>
+
+      <div class="physical-product-list">
+        <details class="physical-product-item" id="paper-clips">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/paper-clips-1.jpg" alt="Oversized interlinked paper clips" loading="lazy">
+            <span class="physical-product-summary-copy"><span class="project-eyebrow">Metal fabrication · 2 images</span><h3>Paper Clips</h3><p>Interlinked paper clips recreated at ten times their original scale.</p></span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body">
+            <div class="physical-product-story">
+              <h4>Make things big</h4>
+              <div class="physical-product-story-copy">
+                <p>I recreated a pair of interlinked paper clips at ten times their original scale using steel rod and a metal bender. To match the proportions, I made custom dies from aluminum blocks on a metal lathe, formed the first clip, threaded the second rod through it, and finished the ends with an angle grinder.</p>
+                <p>I suspended the forms with fishing line, applied Plasti Dip, masked each section for color, and finished the piece with a matte coat.</p>
+              </div>
+            </div>
+            <div class="art-grid physical-product-gallery" data-product-gallery data-slug="paper-clips" data-count="2" data-extension="jpg" data-title="Paper Clips"></div>
+          </div>
+        </details>
+
+        <details class="physical-product-item" id="paper-escape">
+          <summary>
+            <img class="physical-product-cover" src="/images/Physical%20Product%20Design/paper-escape-1.jpg" alt="Paper Escape sculpture" loading="lazy">
+            <span class="physical-product-summary-copy"><span class="project-eyebrow">Paper sculpture · 3 images</span><h3>Paper Escape</h3><p>A single-color paper sculpture connecting imagination, geometry, and the mountains.</p></span>
+            <span class="physical-product-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="physical-product-body">
+            <div class="physical-product-story">
+              <h4>Escape inward</h4>
+              <div class="physical-product-story-copy">
+                <p>For “Paper Escapes,” I made a single-color sculpture representing my idea of escape. Turning inward to imagination led me to a dodecahedron inspired by Kepler’s <em>Mysterium Cosmographicum</em>, surrounded by a whimsical mountain scene made from Bristol and tissue paper.</p>
+              </div>
+            </div>
+            <div class="art-grid physical-product-gallery" data-product-gallery data-slug="paper-escape" data-count="3" data-extension="jpg" data-title="Paper Escape"></div>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <dialog class="gallery-lightbox" data-gallery-dialog aria-label="Physical product design image viewer">
+    <button class="gallery-lightbox-close" type="button" data-gallery-close aria-label="Close full-screen image">&times;</button>
+    <button class="gallery-lightbox-nav" type="button" data-gallery-previous aria-label="Previous image">&#8592;</button>
+    <figure>
+      <img data-gallery-image alt="">
+      <figcaption data-gallery-counter aria-live="polite"></figcaption>
+    </figure>
+    <button class="gallery-lightbox-nav" type="button" data-gallery-next aria-label="Next image">&#8594;</button>
+  </dialog>
+</article>
