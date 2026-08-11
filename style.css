@@ -1109,6 +1109,33 @@ body:has(.gallery-lightbox[open]) {
     margin: 0;
 }
 
+.site-footer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+}
+
+.site-footer-link {
+    color: inherit;
+    font-weight: 650;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+.site-footer-link:hover,
+.site-footer-link:focus-visible {
+    color: white;
+    text-decoration-thickness: 2px;
+}
+
+.site-footer-link:focus-visible {
+    border-radius: 3px;
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
 .sparkler-toggle {
     display: inline-flex;
     min-height: 44px;
@@ -1179,6 +1206,11 @@ body:has(.gallery-lightbox[open]) {
 
     body::before {
         display: none;
+    }
+
+    .site-footer {
+        align-items: flex-start;
+        flex-wrap: wrap;
     }
 
     .sidebar {

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="612" height="612" viewBox="37.5 37.5 750 750" role="img" aria-labelledby="title description">
+  <title id="title">Business card ribbon background, front</title>
+  <desc id="description">Cream square background with a soft pastel rainbow ribbon traveling from the lower-left edge to the upper-right edge.</desc>
+  <defs>
+    <linearGradient id="front-spectrum" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="825" y2="0">
+      <stop offset="0" stop-color="#F2A8C4"/>
+      <stop offset="0.2" stop-color="#F7BD91"/>
+      <stop offset="0.4" stop-color="#F3DC87"/>
+      <stop offset="0.6" stop-color="#9FD7BE"/>
+      <stop offset="0.8" stop-color="#9BC7EA"/>
+      <stop offset="1" stop-color="#C2AFE8"/>
+    </linearGradient>
+    <filter id="front-halo" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="42"/>
+    </filter>
+    <filter id="front-soft" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+
+  <rect width="825" height="825" fill="#FFF9F0"/>
+
+  <path d="M -100 620 C 0 620 65 620 120 620 C 250 620 244 515 350 495 C 478 471 402 303 545 275 C 616 261 620 210 705 210 C 770 210 842 210 925 210"
+        fill="none" stroke="url(#front-spectrum)" stroke-width="188" stroke-linecap="round" opacity="0.17" filter="url(#front-halo)"/>
+  <path d="M -100 620 C 0 620 65 620 120 620 C 250 620 244 515 350 495 C 478 471 402 303 545 275 C 616 261 620 210 705 210 C 770 210 842 210 925 210"
+        fill="none" stroke="url(#front-spectrum)" stroke-width="116" stroke-linecap="round" opacity="0.3" filter="url(#front-soft)"/>
+  <path d="M 155 620 C 258 611 254 530 350 508 C 456 484 421 327 545 289 C 610 269 625 226 661 214"
+        fill="none" stroke="url(#front-spectrum)" stroke-width="168" stroke-linecap="round" opacity="0.13" filter="url(#front-soft)"/>
+</svg>

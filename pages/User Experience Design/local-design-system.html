@@ -1,6 +1,7 @@
 <style>
     .design-system {
         width: 100%;
+        min-width: 0;
         max-width: 980px;
         container: design-system / inline-size;
     }
@@ -41,34 +42,6 @@
         margin: 0;
         font-size: var(--type-lede-size);
         line-height: var(--type-lede-line-height);
-    }
-
-    .ds-status {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-3);
-        align-items: center;
-        margin-top: var(--space-6);
-    }
-
-    .ds-badge {
-        display: inline-flex;
-        min-height: 32px;
-        align-items: center;
-        padding: 0.4rem 0.75rem;
-        border: var(--border-subtle);
-        border-radius: var(--radius-pill);
-        background: var(--surface-card);
-        color: var(--color-dark);
-        font-size: 0.82rem;
-        font-weight: 650;
-        line-height: 1;
-    }
-
-    .ds-badge.current {
-        border-color: var(--color-dark);
-        background: var(--color-dark);
-        color: var(--color-background);
     }
 
     .ds-jump-nav {
@@ -200,6 +173,33 @@
     .ds-color-copy span {
         font-size: 0.9rem;
         line-height: 1.45;
+    }
+
+    .ds-spectrum {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        min-height: 142px;
+        overflow: hidden;
+        border: var(--border-subtle);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-card);
+    }
+
+    .ds-spectrum span {
+        display: flex;
+        align-items: flex-end;
+        padding: var(--space-3);
+        color: var(--color-dark);
+        font-size: 0.72rem;
+        font-weight: 650;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+    }
+
+    .ds-spectrum-note {
+        max-width: 68ch;
+        margin: var(--space-4) 0 0;
+        line-height: var(--type-body-line-height);
     }
 
     .ds-type-stack {
@@ -422,39 +422,6 @@
         text-underline-offset: 3px;
     }
 
-    .ds-disclosure {
-        width: 100%;
-    }
-
-    .ds-disclosure summary {
-        display: flex;
-        min-height: 48px;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--space-4);
-        padding: var(--space-4) 0;
-        border-bottom: var(--border-subtle);
-        font-weight: 700;
-        cursor: pointer;
-    }
-
-    .ds-disclosure summary::after {
-        content: "+";
-        font-size: 1.4rem;
-        font-weight: 400;
-    }
-
-    .ds-disclosure[open] summary::after {
-        content: "\2212";
-    }
-
-    .ds-disclosure p {
-        max-width: 62ch;
-        margin: 0;
-        padding: var(--space-4) 0 0;
-        line-height: var(--type-body-line-height);
-    }
-
     .ds-checklist {
         display: grid;
         gap: var(--space-3);
@@ -508,6 +475,19 @@
     }
 
     @container design-system (max-width: 520px) {
+        .ds-hero h1 {
+            max-width: 100%;
+            font-size: clamp(2.35rem, 11cqi, 3rem);
+        }
+
+        .ds-lede {
+            font-size: clamp(1.05rem, 5cqi, 1.25rem);
+        }
+
+        .ds-jump-nav {
+            padding: var(--space-4);
+        }
+
         .ds-grid,
         .ds-grid.three,
         .ds-color-grid {
@@ -526,29 +506,26 @@
             grid-template-columns: 68px minmax(0, 1fr) 42px;
             gap: var(--space-3);
         }
+
+        .ds-spectrum {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
     }
 </style>
 
 <article class="design-system">
     <header class="ds-hero">
-        <span class="ds-eyebrow">Local design system · Version 0.1</span>
+        <span class="ds-eyebrow">Local design system · Version 0.3 · Updated August 2026</span>
         <h1>A shared language for Syd’s portfolio.</h1>
         <p class="ds-lede">This living reference documents the visual and interaction decisions already used across the website. It is intentionally practical: complete enough to keep current pages cohesive, and flexible enough to grow with the portfolio.</p>
-
-        <div class="ds-status" aria-label="Design system status">
-            <span class="ds-badge current">Current baseline</span>
-            <span class="ds-badge">Responsive</span>
-            <span class="ds-badge">Keyboard ready</span>
-            <span class="ds-badge">WCAG-minded</span>
-        </div>
 
         <nav class="ds-jump-nav" aria-label="Design system sections">
             <a href="#local-design-system" data-scroll-target="ds-principles">Principles</a>
             <a href="#local-design-system" data-scroll-target="ds-foundations">Foundations</a>
             <a href="#local-design-system" data-scroll-target="ds-layout">Layout</a>
             <a href="#local-design-system" data-scroll-target="ds-components">Components</a>
-            <a href="#local-design-system" data-scroll-target="ds-content">Content &amp; media</a>
-            <a href="#local-design-system" data-scroll-target="ds-accessibility">Accessibility</a>
+            <a href="#local-design-system" data-scroll-target="ds-accessibility">Accessibility standards</a>
         </nav>
     </header>
 
@@ -619,6 +596,18 @@
                     <div class="ds-color-copy"><strong>Media stage</strong><code>--color-media-stage · #232323</code><span>Dark framing for videos and light media artifacts.</span></div>
                 </article>
             </div>
+
+            <h4 style="margin:var(--space-7) 0 var(--space-4);font-size:var(--type-card-heading-size)">Pastel accent spectrum</h4>
+            <div class="ds-spectrum" aria-label="Pastel rainbow accent colors">
+                <span style="background:#F2A8C4">Pink<br>#F2A8C4</span>
+                <span style="background:#F7BD91">Peach<br>#F7BD91</span>
+                <span style="background:#F3DC87">Yellow<br>#F3DC87</span>
+                <span style="background:#9FD7BE">Mint<br>#9FD7BE</span>
+                <span style="background:#9BC7EA">Blue<br>#9BC7EA</span>
+                <span style="background:#C2AFE8">Lavender<br>#C2AFE8</span>
+            </div>
+            <p class="ds-spectrum-note">Use the spectrum as a blurred decorative accent, never as the only carrier of meaning. The homepage ribbon may shift and glow with scrolling, but it stays behind content, never crosses the navigation rail, and becomes static when reduced motion is requested.</p>
+
         </div>
 
         <div class="ds-component-block">
@@ -721,7 +710,7 @@
             <h3 class="ds-component-heading">Actions and links</h3>
             <div class="ds-component-stage">
                 <a class="ds-button primary" href="#local-design-system" data-scroll-target="ds-accessibility">Primary action</a>
-                <a class="ds-button" href="#local-design-system" data-scroll-target="ds-content">Secondary action</a>
+                <a class="ds-button" href="#local-design-system" data-scroll-target="ds-foundations">Secondary action</a>
                 <button class="ds-button" type="button" disabled>Unavailable</button>
                 <a class="ds-text-link" href="#local-design-system" data-scroll-target="ds-layout">Text link</a>
             </div>
@@ -736,66 +725,40 @@
             </div>
         </div>
 
-        <div class="ds-component-block">
-            <h3 class="ds-component-heading">Progressive disclosure</h3>
-            <div class="ds-component-stage">
-                <details class="ds-disclosure">
-                    <summary>View supporting process</summary>
-                    <p>Expandable areas keep the main narrative concise while preserving access to detailed process work. Separate items within long expanded zones using the shared subtle divider.</p>
-                </details>
-            </div>
-        </div>
-
-        <div class="ds-component-block">
-            <h3 class="ds-component-heading">Component rules</h3>
-            <div class="ds-grid">
-                <div class="ds-rule"><strong>Use one blue action color.</strong><span>Blue communicates hover, focus, progress, and selected media. Navigation selection remains black for strong location awareness.</span></div>
-                <div class="ds-rule"><strong>Keep controls explicit.</strong><span>Pair familiar icons with accessible names. Use visible text whenever an icon alone could be ambiguous.</span></div>
-                <div class="ds-rule"><strong>Preserve native behavior.</strong><span>Use buttons for actions, links for destinations, details for disclosure, and native video controls unless a project needs more.</span></div>
-                <div class="ds-rule"><strong>Show every state.</strong><span>Interactive components need default, hover, keyboard-focus, active or selected, and disabled states. Hover must add a non-color cue such as an underline change, outline, elevation, or movement.</span></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="ds-section" id="ds-content">
-        <div class="ds-section-heading">
-            <h2>Content &amp; media</h2>
-            <p>Case studies should explain the problem, the designer’s role, the decisions made, the evidence behind them, and what changed. Images support that story rather than functioning as decoration.</p>
-        </div>
-
-        <div class="ds-grid">
-            <article class="ds-card">
-                <span class="ds-label">Writing</span>
-                <h3>Use an outcome-first narrative</h3>
-                <ul>
-                    <li>Lead with the project’s purpose and result.</li>
-                    <li>Use short descriptive headings in sentence case.</li>
-                    <li>Name decisions and tradeoffs, not only activities.</li>
-                    <li>Prefer direct language over internal jargon.</li>
-                </ul>
-            </article>
-            <article class="ds-card">
-                <span class="ds-label">Imagery</span>
-                <h3>Show only useful views</h3>
-                <ul>
-                    <li>Choose the clearest screenshots and strongest artifact photos.</li>
-                    <li>Use descriptive alternative text for meaningful images.</li>
-                    <li>Keep text labels in HTML whenever possible.</li>
-                    <li>Provide video controls, captions when speech is present, and poster images where useful.</li>
-                </ul>
-            </article>
-        </div>
     </section>
 
     <section class="ds-section" id="ds-accessibility">
         <div class="ds-section-heading">
-            <h2>Accessibility</h2>
-            <p>Accessibility is part of the component definition, not a later review. These checks describe the current site baseline and should be revisited whenever a new pattern is introduced.</p>
+            <h2>Accessibility standards</h2>
+            <p>Accessibility is part of every component definition, not a later review. The portfolio follows these interaction, content, and release standards whenever a page or pattern is added.</p>
         </div>
 
         <div class="ds-grid">
             <article class="ds-card">
-                <span class="ds-label">Required now</span>
+                <span class="ds-label">Keyboard &amp; focus</span>
+                <h3>Everything works without a pointer</h3>
+                <p>Use native controls, logical focus order, visible focus rings, and expected keys. Opening navigation, disclosures, galleries, and carousels must never trap or lose focus.</p>
+            </article>
+            <article class="ds-card">
+                <span class="ds-label">Color &amp; states</span>
+                <h3>Never communicate through color alone</h3>
+                <p>Pair color changes with underlines, weight, borders, labels, icons, or movement. Text, controls, and meaningful UI states must retain readable contrast.</p>
+            </article>
+            <article class="ds-card">
+                <span class="ds-label">Structure &amp; media</span>
+                <h3>Make the page understandable</h3>
+                <p>Use semantic headings, descriptive links, useful alternative text, labeled dialogs and carousels, native video controls, and captions whenever speech carries meaning.</p>
+            </article>
+            <article class="ds-card">
+                <span class="ds-label">Motion &amp; effects</span>
+                <h3>Keep delight optional</h3>
+                <p>Respect reduced-motion preferences, hide decorative effects from assistive technology, keep the ribbon behind content, and leave the sparkler cursor off until someone chooses it.</p>
+            </article>
+        </div>
+
+        <div class="ds-grid" style="margin-top:var(--space-6)">
+            <article class="ds-card">
+                <span class="ds-label">Implementation checklist</span>
                 <ul class="ds-checklist">
                     <li>Semantic headings follow a meaningful hierarchy.</li>
                     <li>Every function is reachable with a keyboard.</li>
@@ -804,6 +767,8 @@
                     <li>Body text and controls maintain readable contrast.</li>
                     <li>Tap targets meet a 24-pixel minimum; 44–48 pixels is preferred.</li>
                     <li>Motion respects reduced-motion preferences.</li>
+                    <li>Decorative imagery and motion are hidden from assistive technology.</li>
+                    <li>Optional effects, including the sparkler cursor, default to off.</li>
                     <li>Images, videos, dialogs, and carousels have useful accessible names.</li>
                 </ul>
             </article>

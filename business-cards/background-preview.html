@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syd Hoeper · Continuous Ribbon Background</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 3rem;
+      background: #e9e5df;
+      color: #1c1220;
+      font-family: "Avenir Next", Avenir, Arial, sans-serif;
+    }
+    h1 { margin: 0 0 0.5rem; font-size: 1.5rem; }
+    p { max-width: 68ch; margin: 0 0 2rem; color: #6f6677; line-height: 1.55; }
+    main { display: flex; flex-wrap: wrap; gap: 3rem; }
+    figure { margin: 0; }
+    figcaption { margin-bottom: 0.65rem; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    img { display: block; width: min(420px, calc(100vw - 6rem)); height: auto; box-shadow: 0 14px 36px rgb(28 18 32 / 18%); }
+    @media (max-width: 620px) { body { padding: 1.5rem; } img { width: calc(100vw - 3rem); } }
+  </style>
+</head>
+<body>
+  <h1>Continuous ribbon background</h1>
+  <p>Set up directly for a 612 × 612 artframe and a left-to-right flip. The front uses a smoother rising curve; the back uses a looser double bend. Their lavender upper edge and pink lower edge still align after the card is turned over.</p>
+  <main>
+    <figure>
+      <figcaption>Front</figcaption>
+      <img src="business-card-background-front.svg" alt="Cream front background with a pastel ribbon curving from lower left to upper right">
+    </figure>
+    <figure>
+      <figcaption>Back</figcaption>
+      <img src="business-card-background-back.svg" alt="Cream back background continuing the pastel ribbon from upper left to lower right">
+    </figure>
+  </main>
+</body>
+</html>
