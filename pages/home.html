@@ -1,10 +1,56 @@
 <style>
     .home-page {
+        position: relative;
+        isolation: isolate;
         width: 100%;
         --home-edge: 48px;
         --home-space: clamp(4.5rem, 8vw, 7.5rem);
         container: home / inline-size;
         font-family: var(--font-body);
+    }
+
+    .home-rainbow-squiggle {
+        --ribbon-shift-x: 0px;
+        --ribbon-scale-x: 1;
+        --ribbon-hue: 0deg;
+        --ribbon-glow: 0.2;
+        position: absolute;
+        z-index: 0;
+        top: -6rem;
+        left: 0;
+        width: 100%;
+        height: calc(100% + 12rem);
+        margin: 0;
+        overflow: visible;
+        opacity: 0.5;
+        pointer-events: none;
+        filter: hue-rotate(var(--ribbon-hue));
+        will-change: filter;
+    }
+
+    .home-rainbow-squiggle path {
+        transform: translateX(var(--ribbon-shift-x)) scaleX(var(--ribbon-scale-x));
+        transform-box: fill-box;
+        transform-origin: center;
+        will-change: transform;
+    }
+
+    .home-rainbow-squiggle .squiggle-halo {
+        fill: none;
+        stroke: url(#home-pastel-spectrum);
+        stroke-linecap: round;
+        stroke-width: 86;
+        opacity: var(--ribbon-glow);
+        filter: url(#home-pastel-glow);
+    }
+
+    .home-rainbow-squiggle .squiggle-ribbon {
+        fill: none;
+        stroke: url(#home-pastel-spectrum);
+        stroke-linecap: round;
+        stroke-width: 56;
+        opacity: 0.42;
+        filter: url(#home-pastel-softness);
     }
 
     .home-page h1,
@@ -27,6 +73,8 @@
     }
 
     .home-block {
+        position: relative;
+        z-index: 1;
         width: 100%;
         margin-left: 0;
         padding: var(--home-space) 0;
@@ -481,7 +529,27 @@
         font-size: 1.35rem;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+        .home-rainbow-squiggle {
+            filter: none;
+            will-change: auto;
+        }
+
+        .home-rainbow-squiggle path {
+            transform: none;
+            will-change: auto;
+        }
+    }
+
     @container home (max-width: 760px) {
+        .home-rainbow-squiggle {
+            top: -4rem;
+            left: 0;
+            width: 100%;
+            height: calc(100% + 8rem);
+            opacity: 0.46;
+        }
+
         .home-block {
             padding-right: 0;
             padding-left: 0;
@@ -572,6 +640,28 @@
 </style>
 
 <div class="home-page">
+    <svg class="home-rainbow-squiggle" viewBox="0 0 1200 3000" preserveAspectRatio="none" role="presentation" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="home-pastel-spectrum" x1="0%" y1="0%" x2="0%" y2="22%" spreadMethod="repeat">
+                <stop offset="0%" stop-color="var(--color-rainbow-pink)"></stop>
+                <stop offset="17%" stop-color="var(--color-rainbow-peach)"></stop>
+                <stop offset="34%" stop-color="var(--color-rainbow-yellow)"></stop>
+                <stop offset="51%" stop-color="var(--color-rainbow-mint)"></stop>
+                <stop offset="68%" stop-color="var(--color-rainbow-blue)"></stop>
+                <stop offset="85%" stop-color="var(--color-rainbow-lavender)"></stop>
+                <stop offset="100%" stop-color="var(--color-rainbow-pink)"></stop>
+            </linearGradient>
+            <filter id="home-pastel-glow" x="-30%" y="-5%" width="160%" height="110%" color-interpolation-filters="sRGB">
+                <feGaussianBlur stdDeviation="26"></feGaussianBlur>
+            </filter>
+            <filter id="home-pastel-softness" x="-30%" y="-5%" width="160%" height="110%" color-interpolation-filters="sRGB">
+                <feGaussianBlur stdDeviation="12"></feGaussianBlur>
+            </filter>
+        </defs>
+        <path class="squiggle-halo" d="M 900 -180 C 1180 35, 1090 235, 735 350 S 120 525, 415 720 S 1120 905, 825 1110 S 105 1290, 365 1500 S 1125 1700, 835 1910 S 110 2110, 405 2330 S 1110 2520, 755 2720 S 115 2910, 610 3180"></path>
+        <path class="squiggle-ribbon" d="M 900 -180 C 1180 35, 1090 235, 735 350 S 120 525, 415 720 S 1120 905, 825 1110 S 105 1290, 365 1500 S 1125 1700, 835 1910 S 110 2110, 405 2330 S 1110 2520, 755 2720 S 115 2910, 610 3180"></path>
+    </svg>
+
     <section class="home-block home-hero" aria-labelledby="home-title">
         <figure class="home-portrait">
             <img src="images/Hoeper-Picture.jpg?v=2" alt="Portrait of Syd Hoeper" loading="eager" decoding="async">

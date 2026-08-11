@@ -7,6 +7,7 @@ const mobileNavigationOverlay = document.querySelector(".mobile-nav-overlay");
 const siteFooter = document.querySelector(".site-footer");
 const mobileNavigationQuery = window.matchMedia("(max-width: 850px)");
 let pageLoadRequest = 0;
+let homeRibbonController = null;
 
 const pageMap = {
     home: "pages/home.html",
@@ -210,6 +211,7 @@ async function loadPage(pageName, { focusContent = false } = {}) {
             initializePhysicalProductPage(contentArea);
             initializeGalleries(contentArea);
             initializeMapAnimations(contentArea);
+            initializeHomeRibbon(contentArea);
             finishPageLoad(pageName, focusContent);
         });
     } catch (error) {
@@ -253,6 +255,54 @@ function initializeLocalAnchors(root = document) {
             target.scrollIntoView({ behavior, block: "start" });
         });
     });
+}
+
+function initializeHomeRibbon(root = document) {
+    homeRibbonController?.abort();
+    homeRibbonController = null;
+
+    const ribbon = root.querySelector(".home-rainbow-squiggle");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (!ribbon || reducedMotionQuery.matches) {
+        return;
+    }
+
+    homeRibbonController = new AbortController();
+    let animationFrame = null;
+
+    const updateRibbon = () => {
+        animationFrame = null;
+
+        const maximumScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, window.scrollY / maximumScroll));
+        const drift = Math.sin(progress * Math.PI * 4) * 14;
+        const stretch = 1 + Math.sin(progress * Math.PI * 3) * 0.018;
+        const hue = Math.sin(progress * Math.PI * 2) * 10;
+        const glow = 0.18 + ((Math.sin(progress * Math.PI * 4 - Math.PI / 2) + 1) / 2) * 0.08;
+
+        ribbon.style.setProperty("--ribbon-shift-x", `${drift.toFixed(2)}px`);
+        ribbon.style.setProperty("--ribbon-scale-x", stretch.toFixed(4));
+        ribbon.style.setProperty("--ribbon-hue", `${hue.toFixed(2)}deg`);
+        ribbon.style.setProperty("--ribbon-glow", glow.toFixed(3));
+    };
+
+    const requestRibbonUpdate = () => {
+        if (animationFrame === null) {
+            animationFrame = window.requestAnimationFrame(updateRibbon);
+        }
+    };
+
+    window.addEventListener("scroll", requestRibbonUpdate, {
+        passive: true,
+        signal: homeRibbonController.signal
+    });
+    window.addEventListener("resize", requestRibbonUpdate, {
+        passive: true,
+        signal: homeRibbonController.signal
+    });
+
+    updateRibbon();
 }
 
 function fitGameEmbeds(root = document) {
