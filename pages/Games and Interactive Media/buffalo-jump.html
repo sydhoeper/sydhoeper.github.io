@@ -57,8 +57,7 @@
   }
 
   .buffalo-fact,
-  .buffalo-card,
-  .buffalo-callout {
+  .buffalo-card {
     padding: var(--card-padding);
     border: var(--border-subtle);
     border-radius: var(--card-radius);
@@ -102,6 +101,16 @@
     border: 0;
   }
 
+  .buffalo-carousel {
+    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
+  }
+
+  .buffalo-carousel .emora-carousel-viewport {
+    height: auto;
+    aspect-ratio: 822 / 385;
+    background: var(--color-media-stage);
+  }
+
   .buffalo-section {
     border-top: var(--border-subtle);
   }
@@ -135,52 +144,67 @@
     text-underline-offset: 3px;
   }
 
-  .buffalo-grid {
+  .buffalo-brief-grid,
+  .buffalo-card-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(var(--space-4), 3vw, var(--space-6));
   }
 
-  .buffalo-grid.three {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .buffalo-card h3,
-  .buffalo-callout h3 {
+  .buffalo-card h3 {
     margin: 0 0 var(--space-3);
     font-family: var(--font-body);
     font-size: var(--card-heading-size);
     line-height: var(--card-heading-line-height);
   }
 
-  .buffalo-card p,
-  .buffalo-card li,
-  .buffalo-callout p {
+  .buffalo-card p {
+    margin: 0;
     line-height: var(--type-body-line-height);
   }
 
-  .buffalo-card p,
-  .buffalo-callout p {
+  .buffalo-scan-list {
+    border-top: var(--border-subtle);
+  }
+
+  .buffalo-scan-row {
+    display: grid;
+    grid-template-columns: minmax(95px, 0.22fr) minmax(180px, 0.5fr) minmax(0, 1fr);
+    gap: clamp(var(--space-4), 3vw, var(--space-6));
+    align-items: start;
+    padding: clamp(var(--space-4), 3vw, var(--space-5)) 0;
+    border-bottom: var(--border-subtle);
+  }
+
+  .buffalo-scan-row .buffalo-label {
+    margin: 0.18rem 0 0;
+  }
+
+  .buffalo-scan-row strong {
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .buffalo-scan-row p {
     margin: 0;
-  }
-
-  .buffalo-card ul {
-    margin: var(--space-3) 0 0;
-    padding-left: 1.2rem;
-  }
-
-  .buffalo-card li + li {
-    margin-top: var(--space-2);
+    line-height: var(--type-body-line-height);
   }
 
   .buffalo-flow {
+    --flow-gap: clamp(1.5rem, 3vw, 2.5rem);
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: var(--space-3);
+    gap: var(--flow-gap);
     align-items: stretch;
     margin: 0;
     padding: 0;
+    counter-reset: buffalo-step;
     list-style: none;
+  }
+
+  .buffalo-flow-loop {
+    position: relative;
+    padding-bottom: 74px;
   }
 
   .buffalo-flow li {
@@ -196,6 +220,17 @@
     font-weight: 650;
     line-height: 1.35;
     text-align: center;
+    counter-increment: buffalo-step;
+  }
+
+  .buffalo-flow li::before {
+    content: "0" counter(buffalo-step);
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--color-muted);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    letter-spacing: var(--type-eyebrow-spacing);
   }
 
   .buffalo-flow li:not(:last-child)::after {
@@ -203,41 +238,86 @@
     position: absolute;
     z-index: 1;
     top: 50%;
-    right: calc(var(--space-3) * -1);
-    width: var(--space-3);
+    right: calc(var(--flow-gap) * -1);
+    width: var(--flow-gap);
     color: var(--color-muted);
     font-size: 1rem;
     line-height: 1;
     text-align: center;
-    transform: translate(50%, -50%);
+    transform: translateY(-50%);
+  }
+
+  .buffalo-flow-return {
+    position: absolute;
+    right: 10%;
+    bottom: 0;
+    left: 30%;
+    height: 54px;
+    border-right: 2px solid rgba(var(--color-dark-rgb), 0.3);
+    border-bottom: 2px solid rgba(var(--color-dark-rgb), 0.3);
+    border-left: 2px solid rgba(var(--color-dark-rgb), 0.3);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    color: var(--color-muted);
+    text-align: center;
+  }
+
+  .buffalo-flow-return::before {
+    content: "\2191";
+    position: absolute;
+    top: -0.65rem;
+    left: -0.42rem;
+    padding: 0 0.1rem;
+    background: var(--color-background);
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .buffalo-flow-return span {
+    position: absolute;
+    bottom: -0.7rem;
+    left: 50%;
+    padding: 0 var(--space-3);
+    background: var(--color-background);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    letter-spacing: var(--type-eyebrow-spacing);
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    white-space: nowrap;
   }
 
   .buffalo-callout {
+    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
+    padding: var(--card-padding);
+    border: var(--border-subtle);
     border-left: 5px solid var(--color-accent);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
     box-shadow: none;
   }
 
+  .buffalo-callout .buffalo-label {
+    margin-bottom: var(--space-3);
+  }
+
   .buffalo-callout p {
-    font-family: var(--font-display);
+    max-width: 36ch;
+    margin: 0;
     font-size: clamp(1.35rem, 3.4cqi, 2rem);
     line-height: 1.25;
   }
 
-  .buffalo-outcomes {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(var(--space-4), 3vw, var(--space-6));
-  }
-
   @container buffalo-study (max-width: 760px) {
-    .buffalo-facts,
-    .buffalo-grid.three,
-    .buffalo-outcomes {
+    .buffalo-facts {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .buffalo-flow {
       grid-template-columns: 1fr;
+    }
+
+    .buffalo-flow-loop {
+      padding-bottom: 0;
     }
 
     .buffalo-flow li {
@@ -246,23 +326,69 @@
     }
 
     .buffalo-flow li:not(:last-child)::after {
+      content: "\2193";
       top: auto;
       right: auto;
-      bottom: calc(var(--space-3) * -1);
+      bottom: calc(var(--flow-gap) * -1);
       left: 50%;
-      width: auto;
-      height: var(--space-3);
-      transform: translate(-50%, 50%) rotate(90deg);
+      display: grid;
+      width: 1rem;
+      height: var(--flow-gap);
+      place-items: center;
+      font-size: 1.15rem;
+      transform: translateX(-50%);
     }
+
+    .buffalo-flow-return {
+      position: static;
+      display: flex;
+      height: auto;
+      align-items: center;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      border: 0;
+      border-left: 3px solid var(--color-accent);
+      border-radius: 0;
+      text-align: left;
+    }
+
+    .buffalo-flow-return::before {
+      content: "\21B0";
+      position: static;
+      padding: 0;
+      background: none;
+      font-size: 1.2rem;
+    }
+
+    .buffalo-flow-return span {
+      position: static;
+      padding: 0;
+      background: none;
+      transform: none;
+    }
+
+    .buffalo-scan-row {
+      grid-template-columns: minmax(95px, 0.25fr) minmax(180px, 0.75fr);
+    }
+
+    .buffalo-scan-row p {
+      grid-column: 2;
+    }
+
   }
 
   @container buffalo-study (max-width: 560px) {
     .buffalo-section-heading,
-    .buffalo-grid,
-    .buffalo-grid.three,
-    .buffalo-facts,
-    .buffalo-outcomes {
+    .buffalo-brief-grid,
+    .buffalo-card-grid,
+    .buffalo-scan-row,
+    .buffalo-facts {
       grid-template-columns: 1fr;
+    }
+
+    .buffalo-scan-row p {
+      grid-column: auto;
     }
   }
 </style>
@@ -290,6 +416,38 @@
         allowfullscreen>
       </iframe>
     </div>
+
+    <section class="emora-carousel buffalo-carousel" data-carousel aria-label="Selected moments from the Buffalo Jump experience" aria-roledescription="carousel">
+      <div class="emora-carousel-viewport">
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 1 of 5">
+          <img src="/images/Buffalo%20Jump/buffalo-jump-atmosphere.jpg" alt="Dark forms moving through a smoke-filled circular interior" loading="eager" decoding="async">
+        </figure>
+
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 2 of 5" hidden>
+          <img src="/images/Buffalo%20Jump/buffalo-jump-sculptural-head.jpg" alt="Illuminated sculptural head suspended inside the circular interior" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 3 of 5" hidden>
+          <img src="/images/Buffalo%20Jump/buffalo-jump-campfire.jpg" alt="Glowing campfire surrounded by stones inside the experience" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 4 of 5" hidden>
+          <img src="/images/Buffalo%20Jump/buffalo-jump-pilons.jpg" alt="Rock pilons arranged across the clifftop landscape" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 5 of 5" hidden>
+          <img src="/images/Buffalo%20Jump/buffalo-jump-herd.jpg" alt="Buffalo moving across the hillside among the rock pilons" loading="lazy" decoding="async">
+        </figure>
+
+        <button class="emora-carousel-arrow previous" type="button" data-carousel-previous aria-label="Previous slide">&#8249;</button>
+        <button class="emora-carousel-arrow next" type="button" data-carousel-next aria-label="Next slide">&#8250;</button>
+      </div>
+
+      <div class="emora-carousel-controls">
+        <div class="emora-carousel-thumbnails" data-carousel-thumbnails aria-label="Choose a Buffalo Jump image"></div>
+        <p class="visually-hidden" data-carousel-status aria-live="polite">Slide 1 of 5</p>
+      </div>
+    </section>
   </header>
 
   <section class="buffalo-section">
@@ -298,57 +456,45 @@
       <p>Refine our instructor’s early prototype with <a href="https://www.blackfeetecoknowledge.org/" target="_blank" rel="noopener noreferrer">Blackfeet Eco Knowledge</a> into a more accurate and complete experience.</p>
     </div>
 
-    <div class="buffalo-grid three">
-      <article class="buffalo-card">
-        <span class="buffalo-label">Start</span>
-        <h3>Build from the prototype</h3>
-        <p>Keep the concept; identify unfinished systems and details.</p>
-      </article>
-      <article class="buffalo-card">
-        <span class="buffalo-label">Constraint</span>
-        <h3>Ask, do not assume</h3>
-        <p>Bring authenticity questions to the partner team.</p>
-      </article>
-      <article class="buffalo-card">
-        <span class="buffalo-label">Need</span>
-        <h3>Unify the work</h3>
-        <p>Turn separate contributions into one tested journey.</p>
-      </article>
+    <div class="buffalo-brief-grid" aria-label="Project brief at a glance">
+      <div class="buffalo-fact"><span class="buffalo-label">Starting point</span><strong>Early instructor prototype</strong><span>The central concept and first build already existed.</span></div>
+      <div class="buffalo-fact"><span class="buffalo-label">Assignment</span><strong>Complete the experience</strong><span>Refine its systems, movement, effects, interactions, and flow.</span></div>
+      <div class="buffalo-fact"><span class="buffalo-label">Guardrail</span><strong>Ask, do not assume</strong><span>Use partner consultation to guide culturally specific details.</span></div>
     </div>
   </section>
 
   <section class="buffalo-section">
     <div class="buffalo-section-heading">
       <h2>What I owned</h2>
-      <p>I moved between detailed production and the full player journey.</p>
+      <p>My value was moving between detailed production and the full player journey.</p>
     </div>
 
-    <div class="buffalo-grid">
-      <article class="buffalo-card">
+    <div class="buffalo-scan-list" aria-label="Syd's project responsibilities">
+      <div class="buffalo-scan-row">
         <span class="buffalo-label">Animation</span>
-        <h3>Running buffalo</h3>
+        <strong>Running buffalo</strong>
         <p>Refined movement and timing for clarity and energy.</p>
-      </article>
-      <article class="buffalo-card">
-        <span class="buffalo-label">Environment</span>
-        <h3>Bison dust effects</h3>
+      </div>
+      <div class="buffalo-scan-row">
+        <span class="buffalo-label">Effects</span>
+        <strong>Bison dust</strong>
         <p>Tuned particles to ground movement without hiding the action.</p>
-      </article>
-      <article class="buffalo-card">
+      </div>
+      <div class="buffalo-scan-row">
         <span class="buffalo-label">Interaction</span>
-        <h3>Clifftop rock experience</h3>
-        <p>Refined the clifftop moment and its surrounding flow.</p>
-      </article>
-      <article class="buffalo-card">
-        <span class="buffalo-label">Full picture</span>
-        <h3>Flow, integration, and QA</h3>
+        <strong>Stack rocks into pilons</strong>
+        <p>Designed the interaction for picking up rocks and assembling pilons at the clifftop.</p>
+      </div>
+      <div class="buffalo-scan-row">
+        <span class="buffalo-label">Integration</span>
+        <strong>Flow and QA</strong>
         <p>Tested transitions, tracked issues, and prepared builds for review.</p>
-      </article>
-    </div>
-
-    <div class="buffalo-callout" style="margin-top:clamp(var(--space-6),5vw,var(--space-8))">
-      <span class="buffalo-label">My value to the team</span>
-      <p>I could tune one dust particle, then zoom out and evaluate the whole player journey.</p>
+      </div>
+      <div class="buffalo-scan-row">
+        <span class="buffalo-label">Coordination</span>
+        <strong>Team + partner feedback</strong>
+        <p>Turned QA into priorities, organized authenticity questions, and carried partner guidance into the build.</p>
+      </div>
     </div>
   </section>
 
@@ -358,50 +504,48 @@
       <p>We treated client review and authenticity questions as part of production—not a final approval step.</p>
     </div>
 
-    <ol class="buffalo-flow" aria-label="Project workflow">
-      <li>Review the inherited prototype</li>
-      <li>Identify gaps and open questions</li>
-      <li>Build and integrate details</li>
-      <li>Share with the partner team</li>
-      <li>Refine, test, and repeat</li>
-    </ol>
-
-    <div class="buffalo-grid" style="margin-top:clamp(var(--space-7),6vw,var(--space-8))">
-      <article class="buffalo-card">
-        <span class="buffalo-label">Within the team</span>
-        <h3>Turn QA into priorities</h3>
-        <p>I found integration problems through full-flow testing and translated them into clear team work.</p>
-      </article>
-      <article class="buffalo-card">
-        <span class="buffalo-label">With the partner</span>
-        <h3>Translate feedback</h3>
-        <p>I organized questions, shared progress, and turned guidance into actionable changes.</p>
-      </article>
+    <div class="buffalo-flow-loop">
+      <ol class="buffalo-flow" aria-label="Project workflow">
+        <li>Review current build</li>
+        <li>Surface gaps + questions</li>
+        <li>Build + integrate</li>
+        <li>Review with partner</li>
+        <li>Refine from feedback</li>
+      </ol>
+      <div class="buffalo-flow-return">
+        <span>Repeat from step 02</span>
+      </div>
     </div>
+
   </section>
 
-  <section class="buffalo-section">
+  <section class="buffalo-section" aria-labelledby="buffalo-result-heading">
     <div class="buffalo-section-heading">
-      <h2>What changed</h2>
-      <p>The early prototype became a more complete, client-reviewed experience with refined motion, effects, interactions, and flow.</p>
+      <h2 id="buffalo-result-heading">Results</h2>
+      <p>The early prototype became one cohesive, partner-reviewed player experience.</p>
     </div>
 
-    <div class="buffalo-outcomes">
+    <div class="buffalo-card-grid" aria-label="Project results">
       <article class="buffalo-card">
         <span class="buffalo-label">Experience</span>
-        <h3>One cohesive build</h3>
-        <p>Separate features became one tested player journey.</p>
+        <h3>Integrated build</h3>
+        <p>Motion, effects, interactions, and transitions worked together.</p>
       </article>
       <article class="buffalo-card">
-        <span class="buffalo-label">Partnership</span>
-        <h3>Feedback throughout</h3>
-        <p>Blackfeet Eco Knowledge guided important details.</p>
+        <span class="buffalo-label">Collaboration</span>
+        <h3>Partner reviewed</h3>
+        <p>Blackfeet Eco Knowledge guided culturally specific decisions.</p>
       </article>
       <article class="buffalo-card">
-        <span class="buffalo-label">Growth</span>
-        <h3>Detail plus direction</h3>
-        <p>I connected craft, coordination, QA, and consultation.</p>
+        <span class="buffalo-label">Quality</span>
+        <h3>Tested end to end</h3>
+        <p>QA strengthened transitions and the full player journey.</p>
       </article>
+    </div>
+
+    <div class="buffalo-callout">
+      <span class="buffalo-label">My contribution</span>
+      <p>I connected detailed craft, integration, team coordination, and partner feedback into one coherent journey.</p>
     </div>
   </section>
 </article>
