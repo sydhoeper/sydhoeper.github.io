@@ -1,5 +1,378 @@
-<article class="project-placeholder">
-  <p class="project-eyebrow">Internship · 2026</p>
-  <h1>ARIA Engine</h1>
-  <p>This project page is coming soon.</p>
+<style>
+  .aria-study {
+    width: 100%;
+    max-width: 980px;
+    container: aria-study / inline-size;
+  }
+
+  .aria-study h1,
+  .aria-study h2,
+  .aria-callout p {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  .aria-hero,
+  .aria-section {
+    padding: clamp(var(--space-7), 6vw, var(--space-8)) 0;
+  }
+
+  .aria-hero {
+    padding-top: 0;
+  }
+
+  .aria-eyebrow,
+  .aria-label {
+    display: block;
+    margin: 0 0 0.85rem;
+    color: var(--color-muted);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    line-height: var(--type-eyebrow-line-height);
+    letter-spacing: var(--type-eyebrow-spacing);
+    text-transform: uppercase;
+  }
+
+  .aria-hero h1 {
+    margin: 0 0 1.2rem;
+    font-size: var(--type-hero-size);
+    line-height: var(--type-hero-line-height);
+    letter-spacing: var(--type-hero-spacing);
+  }
+
+  .aria-lede {
+    max-width: 62ch;
+    margin: 0;
+    font-size: var(--type-lede-size);
+    line-height: var(--type-lede-line-height);
+  }
+
+  .aria-lede a,
+  .aria-section-heading a {
+    color: inherit;
+    font-weight: 650;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  .aria-facts,
+  .aria-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+  }
+
+  .aria-facts {
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+  }
+
+  .aria-fact,
+  .aria-card,
+  .aria-callout {
+    padding: var(--card-padding);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .aria-fact strong,
+  .aria-fact span {
+    display: block;
+  }
+
+  .aria-fact strong {
+    margin-bottom: var(--space-2);
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .aria-fact span {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .aria-carousel {
+    margin-top: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .aria-carousel .emora-carousel-viewport {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .aria-carousel-caption {
+    max-width: 68ch;
+    margin: var(--space-3) auto 0;
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .aria-section {
+    border-top: var(--border-subtle);
+  }
+
+  .aria-section-heading {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+    margin-bottom: clamp(var(--space-6), 4vw, var(--space-7));
+  }
+
+  .aria-section-heading h2 {
+    margin: 0;
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+  }
+
+  .aria-section-heading p {
+    max-width: 60ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .aria-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .aria-card h3 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .aria-card p {
+    margin: 0;
+    line-height: var(--type-body-line-height);
+  }
+
+  .aria-story {
+    margin: 0;
+    padding: 0;
+    border-top: var(--border-subtle);
+    counter-reset: aria-step;
+    list-style: none;
+  }
+
+  .aria-story li {
+    display: grid;
+    grid-template-columns: 56px minmax(190px, 0.62fr) minmax(0, 1fr);
+    gap: clamp(var(--space-4), 3vw, var(--space-6));
+    align-items: start;
+    padding: clamp(var(--space-5), 4vw, var(--space-6)) 0;
+    border-bottom: var(--border-subtle);
+    counter-increment: aria-step;
+  }
+
+  .aria-story li::before {
+    content: "0" counter(aria-step);
+    padding-top: 0.2rem;
+    color: var(--color-muted);
+    font-size: var(--type-eyebrow-size);
+    font-weight: var(--type-eyebrow-weight);
+    letter-spacing: var(--type-eyebrow-spacing);
+  }
+
+  .aria-story h3 {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--card-heading-size);
+    line-height: var(--card-heading-line-height);
+  }
+
+  .aria-story p {
+    max-width: 58ch;
+    margin: 0;
+    line-height: var(--type-body-line-height);
+  }
+
+  .aria-story strong {
+    font-weight: 750;
+  }
+
+  .aria-callout {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.32fr) minmax(0, 1fr);
+    gap: clamp(var(--space-5), 5vw, var(--space-7));
+    align-items: start;
+    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
+    border-left: 5px solid var(--color-accent);
+    box-shadow: none;
+  }
+
+  .aria-callout .aria-label {
+    margin: 0;
+  }
+
+  .aria-callout p {
+    max-width: 34ch;
+    margin: 0;
+    font-size: clamp(1.35rem, 3.4cqi, 2rem);
+    line-height: 1.25;
+  }
+
+  @container aria-study (max-width: 760px) {
+    .aria-facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .aria-story li {
+      grid-template-columns: 44px minmax(180px, 0.62fr) minmax(0, 1fr);
+    }
+  }
+
+  @container aria-study (max-width: 560px) {
+    .aria-section-heading,
+    .aria-facts,
+    .aria-card-grid,
+    .aria-callout,
+    .aria-story li {
+      grid-template-columns: 1fr;
+    }
+
+    .aria-carousel .emora-carousel-viewport {
+      aspect-ratio: 1 / 1;
+    }
+  }
+</style>
+
+<article class="aria-study">
+  <header class="aria-hero">
+    <span class="aria-eyebrow">Contract Unity production · 2026</span>
+    <h1>ARIA Engine</h1>
+    <p class="aria-lede">I helped artist <a href="https://peterburr.com" target="_blank" rel="noopener noreferrer">Peter Burr</a> turn an underground skyscraper into 200+ story-rich rooms, then framed those environments as cinematic interstitials for his evolving interactive artwork.</p>
+
+    <div class="aria-facts" aria-label="Project facts">
+      <div class="aria-fact"><strong>My role</strong><span>Unity environment production</span></div>
+      <div class="aria-fact"><strong>Scale</strong><span>200+ authored rooms</span></div>
+      <div class="aria-fact"><strong>Tools</strong><span>Unity, prefabs, Meshy AI</span></div>
+      <div class="aria-fact"><strong>Status</strong><span>Multi-year artwork in progress</span></div>
+    </div>
+
+    <section class="emora-carousel aria-carousel" data-carousel aria-label="ARIA Engine project gallery" aria-roledescription="carousel">
+      <div class="emora-carousel-viewport">
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 1 of 6">
+          <img src="/images/ARIA%20Engine/aria-engine-vessels-installation.jpg" alt="ARIA Engine projected across a theater screen with the slot-machine interface in front" loading="eager" decoding="async">
+        </figure>
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 2 of 6" hidden>
+          <img src="/images/ARIA%20Engine/aria-engine-installation-wide.jpg" alt="Wide view of the ARIA Engine theater installation" loading="lazy" decoding="async">
+        </figure>
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 3 of 6" hidden>
+          <img src="/images/ARIA%20Engine/aria-engine-slot-machine.jpg" alt="Visitor using the physical slot-machine controller in front of the projected world" loading="lazy" decoding="async">
+        </figure>
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 4 of 6" hidden>
+          <img src="/images/ARIA%20Engine/aria-engine-character-screen.jpg" alt="Generated character walking through one of the projected rooms" loading="lazy" decoding="async">
+        </figure>
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 5 of 6" hidden>
+          <img src="/images/ARIA%20Engine/aria-engine-unity-overview.jpg" alt="Large cross-section of the underground skyscraper open in the Unity editor" loading="lazy" decoding="async">
+        </figure>
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 6 of 6" hidden>
+          <img src="/images/ARIA%20Engine/aria-engine-room-map.png" alt="Color-coded overview showing rooms and infrastructure throughout the underground skyscraper" loading="lazy" decoding="async">
+        </figure>
+
+        <button class="emora-carousel-arrow previous" type="button" data-carousel-previous aria-label="Previous slide">&#8249;</button>
+        <button class="emora-carousel-arrow next" type="button" data-carousel-next aria-label="Next slide">&#8250;</button>
+      </div>
+
+      <div class="emora-carousel-controls">
+        <div class="emora-carousel-thumbnails" data-carousel-thumbnails aria-label="Choose an ARIA Engine image"></div>
+        <p class="visually-hidden" data-carousel-status aria-live="polite">Slide 1 of 6</p>
+      </div>
+    </section>
+
+    <p class="aria-carousel-caption">The installation scans a visitor’s face, generates a character, and sends that character walking through the “dirtscraper” on the large screen.</p>
+  </header>
+
+  <section class="aria-section" aria-labelledby="aria-brief-heading">
+    <div class="aria-section-heading">
+      <h2 id="aria-brief-heading">The assignment</h2>
+      <p>Give every room a distinct past while staying inside Peter’s visual system and the project’s technical constraints.</p>
+    </div>
+
+    <div class="aria-card-grid" aria-label="Project constraints">
+      <article class="aria-card">
+        <span class="aria-label">Direction</span>
+        <h3>One prompt per room</h3>
+        <p>Peter’s AI prompts supplied the premise; I translated each one into a physical scene.</p>
+      </article>
+      <article class="aria-card">
+        <span class="aria-label">Constraint</span>
+        <h3>A limited prefab kit</h3>
+        <p>Repeated objects had to feel fresh across hundreds of spaces.</p>
+      </article>
+      <article class="aria-card">
+        <span class="aria-label">Goal</span>
+        <h3>Make people wonder</h3>
+        <p>Every room needed enough evidence to provoke: “What happened here?”</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="aria-section" aria-labelledby="aria-process-heading">
+    <div class="aria-section-heading">
+      <h2 id="aria-process-heading">How I built it</h2>
+      <p>I moved from environmental storytelling at room scale to cinematic composition across the finished world.</p>
+    </div>
+
+    <ol class="aria-story" aria-label="ARIA Engine production process">
+      <li>
+        <h3>Interpret the prompt</h3>
+        <p><strong>Find the room’s story.</strong> I used Peter’s prompt to decide who had occupied the space and what might have happened there.</p>
+      </li>
+      <li>
+        <h3>Stage the evidence</h3>
+        <p><strong>Build with implication.</strong> Knocked-over furniture, sprawling clutter, and unusual object combinations made each room feel interrupted rather than simply decorated.</p>
+      </li>
+      <li>
+        <h3>Stretch the kit</h3>
+        <p><strong>Reuse creatively.</strong> I recombined a limited prefab library in new ways and used the team’s Meshy AI workflow when a story truly needed another object.</p>
+      </li>
+      <li>
+        <h3>Review side by side</h3>
+        <p><strong>Protect Peter’s vision.</strong> Working closely in his Missoula office let us adjust rooms quickly while leaving room for my creative suggestions.</p>
+      </li>
+      <li>
+        <h3>Compose the interstitials</h3>
+        <p><strong>Turn rooms into moving images.</strong> After all 200+ spaces were filled, I placed two cameras in each room and composed slow, visually compelling clips for the installation slideshow.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="aria-section" aria-labelledby="aria-result-heading">
+    <div class="aria-section-heading">
+      <h2 id="aria-result-heading">What I delivered</h2>
+      <p>A populated world with enough specificity to support both active character exploration and the quiet interstitial moments between visitors.</p>
+    </div>
+
+    <div class="aria-card-grid" aria-label="Project outcomes">
+      <article class="aria-card">
+        <span class="aria-label">Worldbuilding</span>
+        <h3>200+ distinct rooms</h3>
+        <p>Each space carries its own premise, aftermath, and visual clues.</p>
+      </article>
+      <article class="aria-card">
+        <span class="aria-label">Cinematography</span>
+        <h3>Two views per room</h3>
+        <p>Camera compositions turned the completed environments into a library of slow interstitial clips.</p>
+      </article>
+      <article class="aria-card">
+        <span class="aria-label">Collaboration</span>
+        <h3>One cohesive vision</h3>
+        <p>Close daily review balanced my creative contribution with Peter’s authorship and direction.</p>
+      </article>
+    </div>
+
+    <div class="aria-callout">
+      <span class="aria-label">My contribution</span>
+      <p>I made a massive digital structure feel inhabited, specific, and ready to be seen.</p>
+    </div>
+  </section>
 </article>
