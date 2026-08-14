@@ -375,8 +375,10 @@ function initializeCarousels(root = document) {
 
         const thumbnails = thumbnailsContainer ? slides.map((slide, index) => {
             const sourceMedia = slide.querySelector("img, video");
+            const embeddedVideo = slide.querySelector("iframe");
+            const explicitThumbnailSource = slide.dataset.carouselThumbnailSrc;
             const thumbnail = document.createElement("button");
-            const isVideo = sourceMedia?.tagName === "VIDEO";
+            const isVideo = sourceMedia?.tagName === "VIDEO" || Boolean(embeddedVideo);
             const setThumbnailRatio = (width, height) => {
                 if (width > 0 && height > 0) {
                     thumbnail.style.setProperty("--thumbnail-aspect-ratio", `${width} / ${height}`);
@@ -387,7 +389,20 @@ function initializeCarousels(root = document) {
             thumbnail.type = "button";
             thumbnail.setAttribute("aria-label", `Show ${isVideo ? "video" : "photo"} slide ${index + 1} of ${slides.length}`);
 
-            if (isVideo) {
+            if (explicitThumbnailSource) {
+                const preview = document.createElement("img");
+                preview.src = explicitThumbnailSource;
+                preview.alt = "";
+                preview.loading = "lazy";
+                preview.addEventListener("load", () => {
+                    setThumbnailRatio(preview.naturalWidth, preview.naturalHeight);
+                }, { once: true });
+                thumbnail.append(preview);
+
+                if (isVideo) {
+                    thumbnail.dataset.videoThumbnail = "";
+                }
+            } else if (isVideo && sourceMedia) {
                 const preview = document.createElement("video");
                 const source = sourceMedia.querySelector("source")?.getAttribute("src");
                 preview.muted = true;
@@ -431,7 +446,15 @@ function initializeCarousels(root = document) {
         }
 
         const showSlide = (index) => {
-            slides[currentIndex]?.querySelector("video")?.pause();
+            const currentSlide = slides[currentIndex];
+            currentSlide?.querySelector("video")?.pause();
+            currentSlide?.querySelectorAll("iframe").forEach((frame) => {
+                frame.contentWindow?.postMessage(JSON.stringify({
+                    event: "command",
+                    func: "pauseVideo",
+                    args: []
+                }), "*");
+            });
             currentIndex = (index + slides.length) % slides.length;
 
             slides.forEach((slide, slideIndex) => {

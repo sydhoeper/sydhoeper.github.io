@@ -82,33 +82,21 @@
     line-height: 1.45;
   }
 
-  .buffalo-video {
-    width: 100%;
-    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
-    overflow: hidden;
-    aspect-ratio: 16 / 9;
-    border-radius: var(--radius-md);
-    background: var(--color-media-stage);
-    box-shadow:
-      0 3px 8px rgba(var(--color-dark-rgb), 0.3),
-      0 12px 30px rgba(var(--color-dark-rgb), 0.2);
-  }
-
-  .buffalo-video iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
   .buffalo-carousel {
-    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
+    margin-top: clamp(var(--space-7), 6vw, var(--space-8));
   }
 
   .buffalo-carousel .emora-carousel-viewport {
     height: auto;
     aspect-ratio: 822 / 385;
     background: var(--color-media-stage);
+  }
+
+  .buffalo-carousel .emora-carousel-slide > iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 
   .buffalo-section {
@@ -406,36 +394,36 @@
       <div class="buffalo-fact"><strong>Timeline</strong><span>One semester</span></div>
     </div>
 
-    <div class="buffalo-video">
-      <iframe
-        src="https://www.youtube.com/embed/WnSs92t62qo?si=bgKIXpZz5OZj5cjQ"
-        title="Buffalo Jump project video"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="origin"
-        loading="lazy"
-        allowfullscreen>
-      </iframe>
-    </div>
-
     <section class="emora-carousel buffalo-carousel" data-carousel aria-label="Selected moments from the Buffalo Jump experience" aria-roledescription="carousel">
       <div class="emora-carousel-viewport">
-        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 1 of 5">
+        <figure class="emora-carousel-slide" data-carousel-slide data-carousel-thumbnail-src="/images/Buffalo%20Jump/buffalo-jump-campfire.jpg" aria-label="Video 1 of 6">
+          <iframe
+            src="https://www.youtube.com/embed/WnSs92t62qo?si=bgKIXpZz5OZj5cjQ&amp;enablejsapi=1"
+            title="Buffalo Jump project video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="origin"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </figure>
+
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 2 of 6" hidden>
           <img src="/images/Buffalo%20Jump/buffalo-jump-atmosphere.jpg" alt="Dark forms moving through a smoke-filled circular interior" loading="eager" decoding="async">
         </figure>
 
-        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 2 of 5" hidden>
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 3 of 6" hidden>
           <img src="/images/Buffalo%20Jump/buffalo-jump-sculptural-head.jpg" alt="Illuminated sculptural head suspended inside the circular interior" loading="lazy" decoding="async">
         </figure>
 
-        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 3 of 5" hidden>
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 4 of 6" hidden>
           <img src="/images/Buffalo%20Jump/buffalo-jump-campfire.jpg" alt="Glowing campfire surrounded by stones inside the experience" loading="lazy" decoding="async">
         </figure>
 
-        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 4 of 5" hidden>
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 5 of 6" hidden>
           <img src="/images/Buffalo%20Jump/buffalo-jump-pilons.jpg" alt="Rock pilons arranged across the clifftop landscape" loading="lazy" decoding="async">
         </figure>
 
-        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 5 of 5" hidden>
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 6 of 6" hidden>
           <img src="/images/Buffalo%20Jump/buffalo-jump-herd.jpg" alt="Buffalo moving across the hillside among the rock pilons" loading="lazy" decoding="async">
         </figure>
 
@@ -445,7 +433,7 @@
 
       <div class="emora-carousel-controls">
         <div class="emora-carousel-thumbnails" data-carousel-thumbnails aria-label="Choose a Buffalo Jump image"></div>
-        <p class="visually-hidden" data-carousel-status aria-live="polite">Slide 1 of 5</p>
+        <p class="visually-hidden" data-carousel-status aria-live="polite">Slide 1 of 6</p>
       </div>
     </section>
   </header>
