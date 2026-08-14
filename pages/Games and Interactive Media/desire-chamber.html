@@ -10,8 +10,7 @@
 
   .chamber-study h1,
   .chamber-study h2,
-  .chamber-study h3,
-  .chamber-callout p {
+  .chamber-study h3 {
     font-family: var(--font-display);
     font-optical-sizing: auto;
     text-wrap: balance;
@@ -63,8 +62,7 @@
     line-height: var(--type-lede-line-height);
   }
 
-  .chamber-facts,
-  .chamber-card-grid {
+  .chamber-facts {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: clamp(var(--space-3), 2vw, var(--space-5));
@@ -74,9 +72,7 @@
     margin-top: clamp(var(--space-7), 6vw, var(--space-8));
   }
 
-  .chamber-fact,
-  .chamber-card,
-  .chamber-callout {
+  .chamber-fact {
     padding: var(--card-padding);
     border: var(--border-subtle);
     border-radius: var(--card-radius);
@@ -163,46 +159,59 @@
     line-height: var(--type-section-copy-line-height);
   }
 
-  .chamber-card-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .chamber-scan-list {
+    border-top: var(--border-subtle);
   }
 
-  .chamber-card h3 {
-    margin: 0 0 var(--space-3);
-    font-family: var(--font-body);
+  .chamber-scan-row {
+    display: grid;
+    grid-template-columns: minmax(90px, 0.22fr) minmax(180px, 0.5fr) minmax(0, 1fr);
+    gap: clamp(var(--space-4), 3vw, var(--space-6));
+    align-items: start;
+    padding: clamp(var(--space-4), 3vw, var(--space-5)) 0;
+    border-bottom: var(--border-subtle);
+  }
+
+  .chamber-scan-row .chamber-label {
+    margin: 0.18rem 0 0;
+  }
+
+  .chamber-scan-row strong {
     font-size: var(--card-heading-size);
     line-height: var(--card-heading-line-height);
   }
 
-  .chamber-card p,
-  .chamber-card li {
+  .chamber-scan-row p {
+    margin: 0;
     line-height: var(--type-body-line-height);
   }
 
-  .chamber-card p {
+  .chamber-desire-core {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 6vw, 5rem);
+    align-items: start;
+    margin-bottom: clamp(var(--space-6), 5vw, var(--space-7));
+    padding: clamp(var(--space-5), 4vw, var(--space-7));
+    border: var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at 88% 18%, var(--chamber-desire), transparent 34%),
+      var(--surface-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .chamber-desire-core h3 {
     margin: 0;
+    font-size: clamp(1.75rem, 4cqi, 2.75rem);
+    line-height: 1.08;
   }
 
-  .chamber-card ul {
+  .chamber-desire-core p {
+    max-width: 48ch;
     margin: 0;
-    padding-left: 1.2rem;
-  }
-
-  .chamber-card li + li {
-    margin-top: var(--space-2);
-  }
-
-  .chamber-callout {
-    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
-    border-left: 5px solid var(--color-accent);
-    box-shadow: none;
-  }
-
-  .chamber-callout p {
-    max-width: 31ch;
-    margin: 0;
-    font-size: clamp(1.35rem, 3.4cqi, 2rem);
-    line-height: 1.25;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
   }
 
   .chamber-map {
@@ -347,13 +356,20 @@
   }
 
   @container chamber-study (max-width: 760px) {
-    .chamber-facts,
-    .chamber-card-grid {
+    .chamber-facts {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .chamber-manifesto {
       grid-template-columns: 1fr;
+    }
+
+    .chamber-scan-row {
+      grid-template-columns: minmax(90px, 0.25fr) minmax(180px, 0.75fr);
+    }
+
+    .chamber-scan-row p {
+      grid-column: 2;
     }
 
     .chamber-doors {
@@ -377,10 +393,15 @@
   @container chamber-study (max-width: 560px) {
     .chamber-section-heading,
     .chamber-result,
+    .chamber-desire-core,
+    .chamber-scan-row,
     .chamber-facts,
-    .chamber-card-grid,
     .chamber-doors {
       grid-template-columns: 1fr;
+    }
+
+    .chamber-scan-row p {
+      grid-column: auto;
     }
 
     .chamber-door {
@@ -451,25 +472,25 @@
       <p>Safe, communal chambers for confronting desire, grief, rage, envy, and fear—then deciding how to respond.</p>
     </div>
 
-    <div class="chamber-card-grid">
-      <article class="chamber-card">
+    <div class="chamber-scan-list" aria-label="Core principles">
+      <div class="chamber-scan-row">
         <span class="chamber-label">Belief</span>
-        <h3>Emotion as information</h3>
+        <strong>Emotion is information</strong>
         <p>Feelings signal needs, boundaries, attachments, and change.</p>
-      </article>
-      <article class="chamber-card">
+      </div>
+      <div class="chamber-scan-row">
         <span class="chamber-label">Practice</span>
-        <h3>Reflection as architecture</h3>
+        <strong>Architecture supports reflection</strong>
         <p>Visitors physically enter and sit with an emotion.</p>
-      </article>
-      <article class="chamber-card">
-        <span class="chamber-label">Tone</span>
-        <h3>Safe, strange, sacred</h3>
+      </div>
+      <div class="chamber-scan-row">
+        <span class="chamber-label">Atmosphere</span>
+        <strong>Safe, strange, sacred</strong>
         <p>Organic forms and filtered light make introspection feel protected.</p>
-      </article>
+      </div>
     </div>
 
-    <h3 class="chamber-subheading">A foyer into the psyche</h3>
+    <h3 class="chamber-subheading">How the chambers connect</h3>
     <p class="chamber-subcopy">A circular room opens into five emotional chambers. Only Desire was developed for this assignment.</p>
 
     <div class="chamber-map" role="img" aria-label="A circular foyer opens into chambers for grief, rage, envy, fear, and desire; the desire chamber is the one developed for this project">
@@ -494,27 +515,30 @@
       <p>The Devil tarot card became a framework for exploring pleasure, compulsion, attachment, and agency.</p>
     </div>
 
-    <div class="chamber-card-grid">
-      <article class="chamber-card">
-        <span class="chamber-label">Symbol</span>
-        <h3>Loose chains</h3>
-        <p>The figures appear bound, but their chains can be removed.</p>
-      </article>
-      <article class="chamber-card">
-        <span class="chamber-label">Question</span>
+    <div class="chamber-desire-core">
+      <div>
+        <span class="chamber-label">Core question</span>
         <h3>Pleasure or compulsion?</h3>
-        <p>When does desire support a life, and when does it control one?</p>
-      </article>
-      <article class="chamber-card">
-        <span class="chamber-label">Guardian</span>
-        <h3>Face the shadow self</h3>
-        <p>A devil figure guards honesty about appetite, sexuality, and control.</p>
-      </article>
+      </div>
+      <p>The chamber does not tell visitors what they should want. It asks them to be honest about why they want it—and whether desire supports their life or controls it.</p>
     </div>
 
-    <div class="chamber-callout">
-      <span class="chamber-label">Core idea</span>
-      <p>The chamber does not tell visitors what they should want. It asks them to be honest about why they want it.</p>
+    <div class="chamber-scan-list" aria-label="Desire Chamber design decisions">
+      <div class="chamber-scan-row">
+        <span class="chamber-label">Symbol</span>
+        <strong>Loose chains preserve agency</strong>
+        <p>The figures appear bound, but what restrains them can be removed.</p>
+      </div>
+      <div class="chamber-scan-row">
+        <span class="chamber-label">Guardian</span>
+        <strong>Face the shadow self</strong>
+        <p>A devil figure guards honesty about appetite, sexuality, and control.</p>
+      </div>
+      <div class="chamber-scan-row">
+        <span class="chamber-label">Space</span>
+        <strong>Make room to sit with desire</strong>
+        <p>Cushioned alcoves, symbolic objects, and low light turn the chamber into a place for private reflection.</p>
+      </div>
     </div>
   </section>
 
