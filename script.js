@@ -34,8 +34,9 @@ const pageMap = {
     "event-posters": "pages/Illustration/digital-illustration.html",
     "digital-illustration": "pages/Illustration/digital-illustration.html",
     "oracle-deck": "pages/Illustration/digital-illustration.html",
-    "marker-doodles": "pages/Illustration/marker-doodles.html",
-    "plein-air": "pages/Illustration/plein-air-sketches.html"
+    "physical-drawings": "pages/Illustration/physical-drawings.html",
+    "marker-doodles": "pages/Illustration/physical-drawings.html",
+    "plein-air": "pages/Illustration/physical-drawings.html"
 };
 
 function setMobileNavigation(isOpen, { restoreFocus = false } = {}) {
@@ -668,7 +669,9 @@ function updateActiveLink(pageName) {
         "digital-portraits": "digital-illustration",
         "digital-drawings": "digital-illustration",
         "event-posters": "digital-illustration",
-        "oracle-deck": "digital-illustration"
+        "oracle-deck": "digital-illustration",
+        "marker-doodles": "physical-drawings",
+        "plein-air": "physical-drawings"
     };
     const activePageName = pageAliases[pageName] || pageName;
 

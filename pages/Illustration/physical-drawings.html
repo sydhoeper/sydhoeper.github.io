@@ -1,0 +1,535 @@
+<style>
+    .marker-gallery-page {
+        width: 100%;
+        max-width: 1120px;
+    }
+
+    .marker-gallery-intro {
+        padding-bottom: clamp(var(--space-7), 7vw, var(--space-9));
+    }
+
+    .marker-gallery-intro h1 {
+        max-width: 12ch;
+        margin: 0 0 var(--space-5);
+        font-family: var(--font-display);
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-line-height);
+        letter-spacing: var(--type-hero-spacing);
+        text-wrap: balance;
+    }
+
+    .marker-gallery-intro > p {
+        max-width: 58ch;
+        margin: 0;
+        font-size: var(--type-lede-size);
+        line-height: var(--type-lede-line-height);
+    }
+
+    .physical-collection {
+        padding: clamp(var(--space-7), 7vw, var(--space-9)) 0;
+        border-top: var(--border-subtle);
+    }
+
+    .physical-collection .marker-gallery-facts {
+        margin: 0 0 clamp(var(--space-6), 5vw, var(--space-8));
+    }
+
+    .marker-gallery-facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(var(--space-3), 2vw, var(--space-5));
+        margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+    }
+
+    .marker-gallery-facts article {
+        padding: var(--card-padding);
+        border: var(--border-subtle);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
+    }
+
+    .marker-gallery-facts strong,
+    .marker-gallery-facts span {
+        display: block;
+    }
+
+    .marker-gallery-facts strong {
+        margin-bottom: var(--space-2);
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
+    }
+
+    .marker-gallery-facts span {
+        color: var(--color-muted);
+        line-height: 1.5;
+    }
+
+    .marker-work-heading {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.4fr) minmax(0, 1fr);
+        gap: clamp(var(--space-6), 6vw, 5rem);
+        align-items: start;
+        margin-bottom: clamp(var(--space-6), 5vw, var(--space-8));
+    }
+
+    .marker-work-heading h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
+    }
+
+    .marker-work-heading p {
+        max-width: 52ch;
+        margin: 0;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
+    }
+
+    .physical-plein-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .physical-gouache-grid {
+        grid-template-columns: minmax(0, 0.62fr);
+    }
+
+    .marker-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    .marker-gallery-item {
+        grid-column: span 3;
+        aspect-ratio: 1;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        border-radius: var(--card-radius);
+        background: var(--color-media-canvas);
+        cursor: zoom-in;
+    }
+
+    .marker-gallery-item.featured {
+        grid-column: span 4;
+        aspect-ratio: 4 / 3;
+    }
+
+    .marker-gallery-item img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        margin: 0;
+        border-radius: inherit;
+        object-fit: cover;
+        transition: transform 180ms ease;
+    }
+
+    .marker-gallery-item:hover img {
+        transform: scale(1.03);
+    }
+
+    .marker-gallery-item:hover {
+        outline: 3px solid var(--color-accent);
+        outline-offset: 3px;
+    }
+
+    .marker-gallery-item:focus-visible {
+        outline: 3px solid var(--color-text);
+        outline-offset: 3px;
+    }
+
+    .marker-lightbox {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100dvh;
+        max-width: none;
+        max-height: none;
+        margin: 0;
+        padding: 1.5rem;
+        border: 0;
+        background: rgba(var(--color-dark-rgb), 0.96);
+        color: white;
+    }
+
+    .marker-lightbox[open] {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr) 64px;
+        align-items: center;
+    }
+
+    .marker-lightbox::backdrop {
+        background: rgba(var(--color-dark-rgb), 0.96);
+    }
+
+    .marker-lightbox figure {
+        display: grid;
+        min-width: 0;
+        height: 100%;
+        margin: 0;
+        place-items: center;
+    }
+
+    .marker-lightbox img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: calc(100dvh - 5rem);
+        margin: 0;
+        object-fit: contain;
+    }
+
+    .marker-lightbox figcaption {
+        position: fixed;
+        right: 1.5rem;
+        bottom: 1rem;
+        left: 1.5rem;
+        text-align: center;
+    }
+
+    .marker-lightbox button {
+        border: 0;
+        background: rgba(255, 255, 255, 0.12);
+        color: white;
+        cursor: pointer;
+        transition: background-color var(--transition-ui), transform var(--transition-ui), box-shadow var(--transition-ui);
+    }
+
+    .marker-lightbox button:hover,
+    .marker-lightbox button:focus-visible {
+        background: var(--color-accent);
+        color: white;
+        box-shadow: 0 0 0 2px white;
+        transform: scale(1.08);
+    }
+
+    .marker-lightbox button:focus-visible {
+        outline-color: white;
+    }
+
+    .marker-lightbox-nav {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        font-size: 1.75rem;
+        line-height: 1;
+    }
+
+    .marker-lightbox-close {
+        position: fixed;
+        z-index: 1;
+        top: 1rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        font-size: 2rem;
+        line-height: 1;
+    }
+
+    body:has(.marker-lightbox[open]) {
+        overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+        .marker-gallery-facts,
+        .marker-work-heading {
+            grid-template-columns: 1fr;
+        }
+
+        .physical-plein-grid,
+        .physical-gouache-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .marker-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .marker-gallery-item {
+            grid-column: span 1;
+        }
+
+        .marker-gallery-item.featured {
+            grid-column: 1 / -1;
+        }
+
+        .marker-lightbox {
+            padding: 1rem 0.5rem;
+        }
+
+        .marker-lightbox[open] {
+            grid-template-columns: 48px minmax(0, 1fr) 48px;
+        }
+
+        .marker-lightbox-nav {
+            width: 42px;
+            height: 42px;
+        }
+    }
+</style>
+
+<article class="marker-gallery-page" data-gallery-page data-gallery>
+    <header class="marker-gallery-intro">
+        <span class="project-eyebrow">Ongoing studio practice</span>
+        <h1>Physical Drawings</h1>
+        <p>Marker drawings, plein air sketches, and gouache paintings collected by medium in one evolving body of hand-made work.</p>
+    </header>
+
+    <section class="physical-collection" aria-labelledby="physical-marker-heading">
+        <div class="marker-work-heading">
+            <h2 id="physical-marker-heading">Marker doodles</h2>
+            <p>An evolving sketchbook of playful characters and visual experiments developed with layered Copic alcohol markers and detailed Micron fineliners since 2023.</p>
+        </div>
+
+    <div class="marker-grid">
+        <button class="marker-gallery-item featured" type="button" data-full="/images/Markers/web/IMG_3251.jpg" aria-label="Open marker doodle 1 of 68">
+            <img src="/images/Markers/thumbs/IMG_3251.jpg" alt="Colorful marker doodle 1" loading="eager" decoding="async">
+        </button>
+        <button class="marker-gallery-item featured" type="button" data-full="/images/Markers/web/IMG_3254.jpg" aria-label="Open marker doodle 2 of 68">
+            <img src="/images/Markers/thumbs/IMG_3254.jpg" alt="Colorful marker doodle 2" loading="eager" decoding="async">
+        </button>
+        <button class="marker-gallery-item featured" type="button" data-full="/images/Markers/web/IMG_3256.jpg" aria-label="Open marker doodle 3 of 68">
+            <img src="/images/Markers/thumbs/IMG_3256.jpg" alt="Colorful marker doodle 3" loading="eager" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_0612.jpg" aria-label="Open marker doodle 4 of 68">
+            <img src="/images/Markers/thumbs/IMG_0612.jpg" alt="Colorful marker doodle 4" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1034.jpg" aria-label="Open marker doodle 5 of 68">
+            <img src="/images/Markers/thumbs/IMG_1034.jpg" alt="Colorful marker doodle 5" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1035.jpg" aria-label="Open marker doodle 6 of 68">
+            <img src="/images/Markers/thumbs/IMG_1035.jpg" alt="Colorful marker doodle 6" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1037.jpg" aria-label="Open marker doodle 7 of 68">
+            <img src="/images/Markers/thumbs/IMG_1037.jpg" alt="Colorful marker doodle 7" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1038.jpg" aria-label="Open marker doodle 8 of 68">
+            <img src="/images/Markers/thumbs/IMG_1038.jpg" alt="Colorful marker doodle 8" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1040.jpg" aria-label="Open marker doodle 9 of 68">
+            <img src="/images/Markers/thumbs/IMG_1040.jpg" alt="Colorful marker doodle 9" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1042.jpg" aria-label="Open marker doodle 10 of 68">
+            <img src="/images/Markers/thumbs/IMG_1042.jpg" alt="Colorful marker doodle 10" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1044.jpg" aria-label="Open marker doodle 11 of 68">
+            <img src="/images/Markers/thumbs/IMG_1044.jpg" alt="Colorful marker doodle 11" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1045.jpg" aria-label="Open marker doodle 12 of 68">
+            <img src="/images/Markers/thumbs/IMG_1045.jpg" alt="Colorful marker doodle 12" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1046.jpg" aria-label="Open marker doodle 13 of 68">
+            <img src="/images/Markers/thumbs/IMG_1046.jpg" alt="Colorful marker doodle 13" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1047.jpg" aria-label="Open marker doodle 14 of 68">
+            <img src="/images/Markers/thumbs/IMG_1047.jpg" alt="Colorful marker doodle 14" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1048.jpg" aria-label="Open marker doodle 15 of 68">
+            <img src="/images/Markers/thumbs/IMG_1048.jpg" alt="Colorful marker doodle 15" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1049.jpg" aria-label="Open marker doodle 16 of 68">
+            <img src="/images/Markers/thumbs/IMG_1049.jpg" alt="Colorful marker doodle 16" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1050.jpg" aria-label="Open marker doodle 17 of 68">
+            <img src="/images/Markers/thumbs/IMG_1050.jpg" alt="Colorful marker doodle 17" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1051.jpg" aria-label="Open marker doodle 18 of 68">
+            <img src="/images/Markers/thumbs/IMG_1051.jpg" alt="Colorful marker doodle 18" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1052.jpg" aria-label="Open marker doodle 19 of 68">
+            <img src="/images/Markers/thumbs/IMG_1052.jpg" alt="Colorful marker doodle 19" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1053.jpg" aria-label="Open marker doodle 20 of 68">
+            <img src="/images/Markers/thumbs/IMG_1053.jpg" alt="Colorful marker doodle 20" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1054.jpg" aria-label="Open marker doodle 21 of 68">
+            <img src="/images/Markers/thumbs/IMG_1054.jpg" alt="Colorful marker doodle 21" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1055.jpg" aria-label="Open marker doodle 22 of 68">
+            <img src="/images/Markers/thumbs/IMG_1055.jpg" alt="Colorful marker doodle 22" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1056.jpg" aria-label="Open marker doodle 23 of 68">
+            <img src="/images/Markers/thumbs/IMG_1056.jpg" alt="Colorful marker doodle 23" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1057.jpg" aria-label="Open marker doodle 24 of 68">
+            <img src="/images/Markers/thumbs/IMG_1057.jpg" alt="Colorful marker doodle 24" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1058.jpg" aria-label="Open marker doodle 25 of 68">
+            <img src="/images/Markers/thumbs/IMG_1058.jpg" alt="Colorful marker doodle 25" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1059.jpg" aria-label="Open marker doodle 26 of 68">
+            <img src="/images/Markers/thumbs/IMG_1059.jpg" alt="Colorful marker doodle 26" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1060.jpg" aria-label="Open marker doodle 27 of 68">
+            <img src="/images/Markers/thumbs/IMG_1060.jpg" alt="Colorful marker doodle 27" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1061.jpg" aria-label="Open marker doodle 28 of 68">
+            <img src="/images/Markers/thumbs/IMG_1061.jpg" alt="Colorful marker doodle 28" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1062.jpg" aria-label="Open marker doodle 29 of 68">
+            <img src="/images/Markers/thumbs/IMG_1062.jpg" alt="Colorful marker doodle 29" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1063.jpg" aria-label="Open marker doodle 30 of 68">
+            <img src="/images/Markers/thumbs/IMG_1063.jpg" alt="Colorful marker doodle 30" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_1064.jpg" aria-label="Open marker doodle 31 of 68">
+            <img src="/images/Markers/thumbs/IMG_1064.jpg" alt="Colorful marker doodle 31" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3103.jpg" aria-label="Open marker doodle 32 of 68">
+            <img src="/images/Markers/thumbs/IMG_3103.jpg" alt="Colorful marker doodle 32" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3104.jpg" aria-label="Open marker doodle 33 of 68">
+            <img src="/images/Markers/thumbs/IMG_3104.jpg" alt="Colorful marker doodle 33" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3105.jpg" aria-label="Open marker doodle 34 of 68">
+            <img src="/images/Markers/thumbs/IMG_3105.jpg" alt="Colorful marker doodle 34" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3106.jpg" aria-label="Open marker doodle 35 of 68">
+            <img src="/images/Markers/thumbs/IMG_3106.jpg" alt="Colorful marker doodle 35" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3107.jpg" aria-label="Open marker doodle 36 of 68">
+            <img src="/images/Markers/thumbs/IMG_3107.jpg" alt="Colorful marker doodle 36" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3108.jpg" aria-label="Open marker doodle 37 of 68">
+            <img src="/images/Markers/thumbs/IMG_3108.jpg" alt="Colorful marker doodle 37" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3109.jpg" aria-label="Open marker doodle 38 of 68">
+            <img src="/images/Markers/thumbs/IMG_3109.jpg" alt="Colorful marker doodle 38" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3110.jpg" aria-label="Open marker doodle 39 of 68">
+            <img src="/images/Markers/thumbs/IMG_3110.jpg" alt="Colorful marker doodle 39" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3111.jpg" aria-label="Open marker doodle 40 of 68">
+            <img src="/images/Markers/thumbs/IMG_3111.jpg" alt="Colorful marker doodle 40" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3112.jpg" aria-label="Open marker doodle 41 of 68">
+            <img src="/images/Markers/thumbs/IMG_3112.jpg" alt="Colorful marker doodle 41" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3113.jpg" aria-label="Open marker doodle 42 of 68">
+            <img src="/images/Markers/thumbs/IMG_3113.jpg" alt="Colorful marker doodle 42" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3114.jpg" aria-label="Open marker doodle 43 of 68">
+            <img src="/images/Markers/thumbs/IMG_3114.jpg" alt="Colorful marker doodle 43" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3115.jpg" aria-label="Open marker doodle 44 of 68">
+            <img src="/images/Markers/thumbs/IMG_3115.jpg" alt="Colorful marker doodle 44" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3116.jpg" aria-label="Open marker doodle 45 of 68">
+            <img src="/images/Markers/thumbs/IMG_3116.jpg" alt="Colorful marker doodle 45" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3117.jpg" aria-label="Open marker doodle 46 of 68">
+            <img src="/images/Markers/thumbs/IMG_3117.jpg" alt="Colorful marker doodle 46" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3118.jpg" aria-label="Open marker doodle 47 of 68">
+            <img src="/images/Markers/thumbs/IMG_3118.jpg" alt="Colorful marker doodle 47" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3119.jpg" aria-label="Open marker doodle 48 of 68">
+            <img src="/images/Markers/thumbs/IMG_3119.jpg" alt="Colorful marker doodle 48" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3120.jpg" aria-label="Open marker doodle 49 of 68">
+            <img src="/images/Markers/thumbs/IMG_3120.jpg" alt="Colorful marker doodle 49" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3121.jpg" aria-label="Open marker doodle 50 of 68">
+            <img src="/images/Markers/thumbs/IMG_3121.jpg" alt="Colorful marker doodle 50" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3122.jpg" aria-label="Open marker doodle 51 of 68">
+            <img src="/images/Markers/thumbs/IMG_3122.jpg" alt="Colorful marker doodle 51" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3123.jpg" aria-label="Open marker doodle 52 of 68">
+            <img src="/images/Markers/thumbs/IMG_3123.jpg" alt="Colorful marker doodle 52" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3124.jpg" aria-label="Open marker doodle 53 of 68">
+            <img src="/images/Markers/thumbs/IMG_3124.jpg" alt="Colorful marker doodle 53" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3125.jpg" aria-label="Open marker doodle 54 of 68">
+            <img src="/images/Markers/thumbs/IMG_3125.jpg" alt="Colorful marker doodle 54" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3126.jpg" aria-label="Open marker doodle 55 of 68">
+            <img src="/images/Markers/thumbs/IMG_3126.jpg" alt="Colorful marker doodle 55" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3127.jpg" aria-label="Open marker doodle 56 of 68">
+            <img src="/images/Markers/thumbs/IMG_3127.jpg" alt="Colorful marker doodle 56" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3128.jpg" aria-label="Open marker doodle 57 of 68">
+            <img src="/images/Markers/thumbs/IMG_3128.jpg" alt="Colorful marker doodle 57" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3129.jpg" aria-label="Open marker doodle 58 of 68">
+            <img src="/images/Markers/thumbs/IMG_3129.jpg" alt="Colorful marker doodle 58" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3130.jpg" aria-label="Open marker doodle 59 of 68">
+            <img src="/images/Markers/thumbs/IMG_3130.jpg" alt="Colorful marker doodle 59" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3131.jpg" aria-label="Open marker doodle 60 of 68">
+            <img src="/images/Markers/thumbs/IMG_3131.jpg" alt="Colorful marker doodle 60" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3132.jpg" aria-label="Open marker doodle 61 of 68">
+            <img src="/images/Markers/thumbs/IMG_3132.jpg" alt="Colorful marker doodle 61" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3133.jpg" aria-label="Open marker doodle 62 of 68">
+            <img src="/images/Markers/thumbs/IMG_3133.jpg" alt="Colorful marker doodle 62" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3134.jpg" aria-label="Open marker doodle 63 of 68">
+            <img src="/images/Markers/thumbs/IMG_3134.jpg" alt="Colorful marker doodle 63" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3135.jpg" aria-label="Open marker doodle 64 of 68">
+            <img src="/images/Markers/thumbs/IMG_3135.jpg" alt="Colorful marker doodle 64" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3136.jpg" aria-label="Open marker doodle 65 of 68">
+            <img src="/images/Markers/thumbs/IMG_3136.jpg" alt="Colorful marker doodle 65" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3137.jpg" aria-label="Open marker doodle 66 of 68">
+            <img src="/images/Markers/thumbs/IMG_3137.jpg" alt="Colorful marker doodle 66" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3138.jpg" aria-label="Open marker doodle 67 of 68">
+            <img src="/images/Markers/thumbs/IMG_3138.jpg" alt="Colorful marker doodle 67" loading="lazy" decoding="async">
+        </button>
+        <button class="marker-gallery-item" type="button" data-full="/images/Markers/web/IMG_3139.jpg" aria-label="Open marker doodle 68 of 68">
+            <img src="/images/Markers/thumbs/IMG_3139.jpg" alt="Colorful marker doodle 68" loading="lazy" decoding="async">
+        </button>
+    </div>
+    </section>
+
+    <section class="physical-collection" aria-labelledby="physical-plein-heading">
+        <div class="marker-work-heading">
+            <h2 id="physical-plein-heading">Plein air sketches</h2>
+            <p>A new practice of drawing directly from the places and moments around me, started in summer 2026.</p>
+        </div>
+
+        <div class="art-grid physical-plein-grid">
+            <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Plein%20Air%20Sketches/porch-and-flamingos.png" width="2400" height="1448" alt="Colorful plein air sketch of a porch decorated with prayer flags, tapestries, flowers, and pink flamingos" loading="lazy" decoding="async"></button>
+            <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Plein%20Air%20Sketches/dogs-in-the-yard-daylight.png" width="1547" height="1017" alt="Plein air sketch of two white dogs resting together on a raised blue cot in a backyard" loading="lazy" decoding="async"></button>
+            <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Plein%20Air%20Sketches/lake-and-inner-tube.png" width="2400" height="1525" alt="Plein air sketch of a wooded lake with a dock, American flag, and yellow and blue inner tube" loading="lazy" decoding="async"></button>
+            <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Plein%20Air%20Sketches/lavender-field.png" width="2400" height="1520" alt="Watercolor and ink plein air sketch of a lavender field beneath green mountains and a bright blue sky" loading="lazy" decoding="async"></button>
+        </div>
+    </section>
+
+    <section class="physical-collection" aria-labelledby="physical-gouache-heading">
+        <div class="marker-work-heading">
+            <h2 id="physical-gouache-heading">Gouache paintings</h2>
+            <p>Small paintings that explore bold color, symbolic imagery, and the tactile texture of opaque paint on paper.</p>
+        </div>
+
+        <div class="art-grid physical-gouache-grid">
+            <button class="art-gallery-item" type="button" data-gallery-item><img src="/images/Gouache%20Paintings/golden-cup.png" width="1254" height="1254" alt="Gouache painting of a golden jeweled cup framed by two blue arches and yellow stars on a pink background" loading="lazy" decoding="async"></button>
+        </div>
+    </section>
+
+    <dialog class="gallery-lightbox" data-gallery-dialog aria-label="Physical drawings viewer">
+        <button class="gallery-lightbox-close" type="button" data-gallery-close aria-label="Close full-screen image">&times;</button>
+        <button class="gallery-lightbox-nav" type="button" data-gallery-previous aria-label="Previous image">&#8592;</button>
+
+        <figure>
+            <img data-gallery-image src="" alt="">
+            <figcaption data-gallery-counter aria-live="polite"></figcaption>
+        </figure>
+
+        <button class="gallery-lightbox-nav" type="button" data-gallery-next aria-label="Next image">&#8594;</button>
+    </dialog>
+</article>
