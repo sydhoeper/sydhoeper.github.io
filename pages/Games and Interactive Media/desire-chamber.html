@@ -26,6 +26,16 @@
     padding-top: 0;
   }
 
+  .chamber-carousel {
+    margin-top: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .chamber-carousel .emora-carousel-viewport {
+    height: auto;
+    aspect-ratio: 2400 / 1551;
+    background: #050105;
+  }
+
   .chamber-eyebrow,
   .chamber-label {
     display: block;
@@ -397,6 +407,42 @@
       <strong>Emotions are signals, not moral failures.</strong>
       <p>Emora believed suffering came less from emotion itself than from shame and repression.</p>
     </div>
+
+    <section class="emora-carousel chamber-carousel" data-carousel aria-label="Chambers of Becoming environment gallery" aria-roledescription="carousel">
+      <div class="emora-carousel-viewport">
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 1 of 6">
+          <img src="/images/Chambers%20of%20Becoming/chambers-foyer.jpg" alt="Circular cavern foyer with colored emotional chambers, sculptural icons, chained doors, and a skylight overhead" loading="eager" decoding="async">
+        </figure>
+
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 2 of 6" hidden>
+          <img src="/images/Chambers%20of%20Becoming/chambers-guardian.jpg" alt="Front view of the horned guardian seated at the center of the purple Desire Chamber among crystals, mushrooms, and alcoves" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 3 of 6" hidden>
+          <img src="/images/Chambers%20of%20Becoming/chambers-bath.jpg" alt="A weathered claw-foot bath resting on a mound of treasure inside a torchlit alcove" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 4 of 6" hidden>
+          <img src="/images/Chambers%20of%20Becoming/chambers-alcoves.jpg" alt="Cushioned reflection area surrounded by glowing symbolic sculptures, pink crystals, and mushrooms" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 5 of 6" hidden>
+          <img src="/images/Chambers%20of%20Becoming/chambers-chandelier.jpg" alt="Organic glowing chandelier suspended above a dark red cushioned chamber" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="emora-carousel-slide" data-carousel-slide aria-label="Slide 6 of 6" hidden>
+          <img src="/images/Chambers%20of%20Becoming/chambers-guardian-rear.jpg" alt="Rear view of the central guardian looking across the Desire Chamber's glowing crystals, mushrooms, symbols, and torches" loading="lazy" decoding="async">
+        </figure>
+
+        <button class="emora-carousel-arrow previous" type="button" data-carousel-previous aria-label="Previous slide">&#8249;</button>
+        <button class="emora-carousel-arrow next" type="button" data-carousel-next aria-label="Next slide">&#8250;</button>
+      </div>
+
+      <div class="emora-carousel-controls">
+        <div class="emora-carousel-thumbnails" data-carousel-thumbnails aria-label="Choose a Chambers of Becoming image"></div>
+        <p class="visually-hidden" data-carousel-status aria-live="polite">Slide 1 of 6</p>
+      </div>
+    </section>
   </header>
 
   <section class="chamber-section" aria-labelledby="chamber-premise-heading">
