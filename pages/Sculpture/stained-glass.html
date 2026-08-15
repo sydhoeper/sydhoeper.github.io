@@ -56,6 +56,128 @@
     line-height: 1.5;
   }
 
+  .aria-glass-feature {
+    padding: clamp(var(--space-7), 7vw, var(--space-9)) 0;
+    border-top: var(--border-subtle);
+    border-bottom: var(--border-subtle);
+  }
+
+  .aria-glass-feature-heading {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1fr);
+    gap: clamp(var(--space-5), 5vw, var(--space-8));
+    align-items: end;
+    margin-bottom: clamp(var(--space-6), 5vw, var(--space-8));
+  }
+
+  .aria-glass-feature-heading h2 {
+    max-width: 11ch;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--type-section-heading-size);
+    line-height: var(--type-section-heading-line-height);
+    letter-spacing: var(--type-section-heading-spacing);
+    text-wrap: balance;
+  }
+
+  .aria-glass-feature-heading p {
+    max-width: 58ch;
+    margin: 0;
+    font-size: var(--type-section-copy-size);
+    line-height: var(--type-section-copy-line-height);
+  }
+
+  .aria-glass-feature-heading a {
+    color: inherit;
+    font-weight: 700;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.18em;
+  }
+
+  .aria-glass-hero {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(var(--space-4), 3vw, var(--space-6));
+    align-items: end;
+  }
+
+  .aria-glass-media {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .aria-glass-media button,
+  .aria-glass-process button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--card-radius);
+    background: var(--color-media-canvas);
+    cursor: zoom-in;
+    transition: box-shadow var(--transition-ui), transform var(--transition-ui);
+  }
+
+  .aria-glass-media button:hover,
+  .aria-glass-media button:focus-visible,
+  .aria-glass-process button:hover,
+  .aria-glass-process button:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+    box-shadow: var(--shadow-card);
+    transform: translateY(-2px);
+  }
+
+  .aria-glass-media img,
+  .aria-glass-process img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    object-fit: cover;
+  }
+
+  .aria-glass-source img {
+    aspect-ratio: 3 / 4;
+  }
+
+  .aria-glass-finished img {
+    aspect-ratio: 3 / 4;
+  }
+
+  .aria-glass-media figcaption,
+  .aria-glass-process figcaption {
+    margin-top: var(--space-3);
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .aria-glass-media figcaption strong {
+    display: block;
+    margin-bottom: 0.15rem;
+    color: var(--color-text);
+  }
+
+  .aria-glass-process {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+    margin-top: clamp(var(--space-6), 5vw, var(--space-8));
+    padding-top: var(--space-5);
+    border-top: var(--border-subtle);
+  }
+
+  .aria-glass-process figure {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .aria-glass-process img {
+    aspect-ratio: 1;
+  }
+
   .stained-glass-work-heading {
     display: grid;
     grid-template-columns: minmax(190px, 0.4fr) minmax(0, 1fr);
@@ -82,13 +204,28 @@
 
   @media (max-width: 760px) {
     .stained-glass-facts,
-    .stained-glass-work-heading {
+    .stained-glass-work-heading,
+    .aria-glass-feature-heading {
       grid-template-columns: 1fr;
+    }
+
+    .aria-glass-process {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .aria-glass-hero {
+      grid-template-columns: 1fr;
+    }
+
+    .aria-glass-source {
+      width: min(78%, 360px);
     }
   }
 </style>
 
-<article class="art-gallery-page stained-glass-page" data-gallery-page>
+<article class="art-gallery-page stained-glass-page" data-gallery-page data-gallery>
   <header class="stained-glass-intro">
     <span class="project-eyebrow">Ongoing practice · January 2025–present</span>
     <h1>Stained Glass</h1>
@@ -106,12 +243,71 @@
     </div>
   </header>
 
+  <section class="aria-glass-feature" aria-labelledby="aria-glass-heading">
+    <div class="aria-glass-feature-heading">
+      <div>
+        <span class="project-eyebrow">Featured piece · Commissioned by Peter Burr</span>
+        <h2 id="aria-glass-heading">ARIA, translated into glass</h2>
+      </div>
+      <p>Commissioned by Peter Burr, this panel translates the pink-and-gray pipe composition from a screenshot of <a href="#aria-engine" data-link>ARIA Engine</a> into stained glass. I rebuilt the image as a cuttable pattern, bringing my digital worldbuilding and stained-glass practice into the same object.</p>
+    </div>
+
+    <div class="aria-glass-hero">
+      <figure class="aria-glass-media aria-glass-source">
+        <button type="button" data-gallery-item>
+          <img src="/images/Stained%20Glass/aria-engine/aria-source.jpg" alt="Original pink and gray pipe composition from ARIA Engine" loading="eager" decoding="async">
+        </button>
+        <figcaption><strong>The source</strong>Original ARIA Engine screenshot.</figcaption>
+      </figure>
+
+      <figure class="aria-glass-media aria-glass-finished">
+        <button type="button" data-gallery-item>
+          <img src="/images/Stained%20Glass/aria-engine/finished-panel.jpg" alt="Finished stained-glass panel with pink pipes crossing a gray geometric background" loading="eager" decoding="async">
+        </button>
+        <figcaption><strong>The finished panel</strong>Pink, white, and gray glass joined with copper foil and solder.</figcaption>
+      </figure>
+    </div>
+
+    <div class="aria-glass-process" aria-label="Making the ARIA stained-glass panel">
+      <figure>
+        <button type="button" data-gallery-item>
+          <img src="/images/Stained%20Glass/aria-engine/pattern-planning.jpg" alt="ARIA pipe screenshot beside a numbered stained-glass pattern" loading="lazy" decoding="async">
+        </button>
+        <figcaption>Pattern planning</figcaption>
+      </figure>
+      <figure>
+        <button type="button" data-gallery-item>
+          <img src="/images/Stained%20Glass/aria-engine/glass-cutting.jpg" alt="Numbered paper pattern pieces arranged over sheets of pink and gray glass" loading="lazy" decoding="async">
+        </button>
+        <figcaption>Mapping the cuts</figcaption>
+      </figure>
+      <figure>
+        <button type="button" data-gallery-item>
+          <img src="/images/Stained%20Glass/aria-engine/cut-pieces.jpg" alt="Cut glass pieces covered with numbered paper pattern templates" loading="lazy" decoding="async">
+        </button>
+        <figcaption>Cut and numbered</figcaption>
+      </figure>
+      <figure>
+        <button type="button" data-gallery-item>
+          <img src="/images/Stained%20Glass/aria-engine/glass-layout.jpg" alt="Pink and gray glass pieces assembled into the ARIA pipe pattern" loading="lazy" decoding="async">
+        </button>
+        <figcaption>Dry fit</figcaption>
+      </figure>
+      <figure>
+        <button type="button" data-gallery-item>
+          <img src="/images/Stained%20Glass/aria-engine/copper-foil.jpg" alt="ARIA stained-glass pieces wrapped in copper foil and pinned in place" loading="lazy" decoding="async">
+        </button>
+        <figcaption>Foiled and pinned</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <div class="stained-glass-work-heading">
     <h2>Selected work</h2>
     <p>A growing collection of finished pieces and process videos from my stained-glass practice.</p>
   </div>
 
-  <div class="art-grid stained-glass-grid" data-gallery>
+  <div class="art-grid stained-glass-grid">
     <button class="art-gallery-item" type="button" data-gallery-item aria-label="Open stained glass image 1 full screen"><img src="/images/Stained%20Glass/web/IMG_7543.jpg?v=2" alt="Stained glass work by Syd Hoeper" loading="eager" decoding="async"></button>
     <button class="art-gallery-item" type="button" data-gallery-item aria-label="Open stained glass image 2 full screen"><img src="/images/Stained%20Glass/web/IMG_7548.jpg?v=2" alt="Stained glass work by Syd Hoeper" loading="lazy" decoding="async"></button>
     <button class="art-gallery-item" type="button" data-gallery-item aria-label="Open stained glass image 3 full screen"><img src="/images/Stained%20Glass/web/IMG_7549.jpg?v=2" alt="Stained glass work by Syd Hoeper" loading="lazy" decoding="async"></button>
