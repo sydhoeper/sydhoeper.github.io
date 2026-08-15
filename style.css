@@ -48,6 +48,12 @@
     --radius-pill: 999px;
     --border-subtle: 1px solid rgba(var(--color-dark-rgb), 0.16);
     --transition-ui: 180ms ease;
+    --control-min-height: 48px;
+    --control-padding: 0.85rem 1.2rem;
+    --control-border: 2px solid var(--color-dark);
+    --control-font-weight: 650;
+    --focus-ring: 3px solid var(--color-accent);
+    --focus-offset: 4px;
 
     --font-body: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-display: "Fraunces", Georgia, "Times New Roman", serif;
@@ -125,12 +131,20 @@ button,
 input,
 select,
 textarea {
-    font-family: var(--font-body);
+    font: inherit;
 }
 
 :focus-visible {
-    outline: 3px solid var(--color-dark);
-    outline-offset: 4px;
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+}
+
+a {
+    color: var(--color-text);
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition: color var(--transition-ui), text-decoration-color var(--transition-ui);
 }
 
 .visually-hidden {
@@ -517,6 +531,59 @@ a:hover {
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
     transform: translateY(-2px);
+}
+
+/* Shared action and text-link primitives. Page-specific classes can add layout
+   without redefining the site's interaction language. */
+.ui-action {
+    display: inline-flex;
+    min-height: var(--control-min-height);
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: var(--control-padding);
+    border: var(--control-border);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-dark);
+    font-weight: var(--control-font-weight);
+    line-height: 1.1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--transition-ui), border-color var(--transition-ui), color var(--transition-ui), transform var(--transition-ui), box-shadow var(--transition-ui);
+}
+
+.ui-action--primary {
+    background: var(--color-dark);
+    color: var(--color-background);
+}
+
+.ui-action:hover,
+.ui-action:focus-visible {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 5px 14px rgba(var(--color-dark-rgb), 0.2);
+    transform: translateY(-2px);
+}
+
+.ui-action:disabled,
+.ui-action[aria-disabled="true"] {
+    border-color: rgba(var(--color-dark-rgb), 0.22);
+    background: transparent;
+    color: var(--color-muted);
+    cursor: not-allowed;
+    opacity: 0.62;
+    box-shadow: none;
+    transform: none;
+}
+
+.ui-text-link {
+    color: var(--color-dark);
+    font-weight: var(--control-font-weight);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
 }
 
 .main-content img,
@@ -1429,6 +1496,14 @@ body:has(.gallery-lightbox[open]) {
 
     .navigation a {
         font-size: var(--text-base);
+    }
+
+    .navigation-group > a {
+        display: flex;
+        width: 100%;
+        min-height: 44px;
+        align-items: center;
+        margin: 2px 0;
     }
 
     .site-title-name {

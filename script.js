@@ -711,7 +711,7 @@ function showNotFound(pageName, focusContent = false) {
                 <p class="project-eyebrow">404 · Page not found</p>
                 <h1 id="not-found-title">This page wandered off.</h1>
                 <p>It may have moved, or I may still be putting the finishing touches on it. No worries—you can head home and keep exploring.</p>
-                <a class="not-found-home-link" href="#home">
+                <a class="not-found-home-link ui-action ui-action--primary" href="#home">
                     Back to home <span aria-hidden="true">→</span>
                 </a>
             </div>

@@ -440,11 +440,19 @@
     .home-personal-photo {
         min-width: 0;
         margin: 0;
+        padding: 0;
         overflow: hidden;
         aspect-ratio: 5 / 4;
+        border: 0;
         border-radius: var(--card-radius);
         background: var(--surface-card);
         box-shadow: var(--shadow-card);
+        cursor: pointer;
+    }
+
+    .home-personal-photo:focus-visible {
+        outline: 3px solid var(--color-accent);
+        outline-offset: 4px;
     }
 
     .home-personal-photo img {
@@ -687,7 +695,7 @@
             <h1 id="home-title">Turning ambiguity into intuitive experiences.</h1>
             <p class="home-lede">I untangle complex systems into clear paths that work for real people.</p>
             <div class="home-actions">
-                <a class="home-button" href="/documents/syd-hoeper-resume.pdf?v=3" target="_blank" rel="noopener noreferrer">
+                <a class="home-button ui-action" href="/documents/syd-hoeper-resume.pdf?v=3" target="_blank" rel="noopener noreferrer">
                     View my resume <span aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span>
                 </a>
             </div>
@@ -771,7 +779,7 @@
 
     </section>
 
-    <section class="home-block home-personal" aria-labelledby="personal-title">
+    <section class="home-block home-personal" aria-labelledby="personal-title" data-gallery-page>
         <div class="home-personal-intro">
             <div>
                 <p class="home-eyebrow">Beyond the work</p>
@@ -783,7 +791,7 @@
                     I’m a proud trans/nonbinary designer (they/them) living in a little log cabin in Missoula, MT with my black cat, Olive.
                 </p>
                 <p>
-                    I’m happiest outside skiing, rollerblading with my partner, Carly, or traveling in my Scamp trailer.
+                    I’m happiest outside with my partner, Carly—skiing, rollerblading, or traveling in my Scamp trailer.
                 </p>
 
                 <ul class="interest-list" aria-label="Interests">
@@ -799,27 +807,37 @@
             </div>
         </div>
 
-        <div class="home-personal-gallery" aria-label="Life beyond design">
-            <figure class="home-personal-photo home-personal-photo-tile home-personal-photo-travel">
+        <div class="home-personal-gallery" aria-label="Life beyond design" data-gallery>
+            <button class="home-personal-photo home-personal-photo-tile home-personal-photo-travel" type="button" data-gallery-item>
                 <img src="images/syd-and-carly-traveling.jpeg" width="5712" height="4284" alt="Syd and their partner, Carly, smiling together in front of a waterfall while traveling" loading="lazy" decoding="async">
-            </figure>
+            </button>
 
-            <figure class="home-personal-photo home-personal-photo-tile home-personal-photo-olive">
+            <button class="home-personal-photo home-personal-photo-tile home-personal-photo-olive" type="button" data-gallery-item>
                 <img src="images/olive.png" width="2113" height="1511" alt="Olive, Syd’s black cat, lying down with wide curious eyes" loading="lazy" decoding="async">
-            </figure>
+            </button>
 
-            <figure class="home-personal-photo home-personal-photo-house">
+            <button class="home-personal-photo home-personal-photo-house" type="button" data-gallery-item>
                 <img src="images/syd-house.png" width="1268" height="1643" alt="Syd smiling in front of their log cabin in Missoula" loading="lazy" decoding="async">
-            </figure>
+            </button>
 
-            <figure class="home-personal-photo home-personal-photo-tile home-personal-photo-skiing">
+            <button class="home-personal-photo home-personal-photo-tile home-personal-photo-skiing" type="button" data-gallery-item>
                 <img src="images/syd-skiing.png" width="2147" height="1615" alt="Syd posing on skis above a snowy Montana valley" loading="lazy" decoding="async">
-            </figure>
+            </button>
 
-            <figure class="home-personal-photo home-personal-photo-tile home-personal-photo-rollerblading">
+            <button class="home-personal-photo home-personal-photo-tile home-personal-photo-rollerblading" type="button" data-gallery-item>
                 <img src="images/syd-and-carly-rollerblading.jpeg" width="4896" height="3672" alt="Syd and Carly smiling in helmets while rollerblading together at sunset" loading="lazy" decoding="async">
-            </figure>
+            </button>
         </div>
+
+        <dialog class="gallery-lightbox" data-gallery-dialog aria-label="Life beyond design photo viewer">
+            <button class="gallery-lightbox-close" type="button" data-gallery-close aria-label="Close full-screen image">&times;</button>
+            <button class="gallery-lightbox-nav" type="button" data-gallery-previous aria-label="Previous image">&#8592;</button>
+            <figure>
+                <img data-gallery-image alt="">
+                <figcaption data-gallery-counter aria-live="polite"></figcaption>
+            </figure>
+            <button class="gallery-lightbox-nav" type="button" data-gallery-next aria-label="Next image">&#8594;</button>
+        </dialog>
     </section>
 
     <section class="home-block contact-section" aria-labelledby="contact-title">
