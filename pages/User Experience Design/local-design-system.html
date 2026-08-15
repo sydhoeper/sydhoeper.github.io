@@ -70,7 +70,7 @@
 
     .ds-section-heading {
         display: grid;
-        grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+        grid-template-columns: minmax(360px, 0.55fr) minmax(0, 1fr);
         gap: clamp(var(--space-6), 6vw, 5rem);
         align-items: start;
         margin-bottom: clamp(var(--space-7), 6vw, 5rem);
@@ -375,6 +375,276 @@
         box-shadow: inset 0 0 0 1px rgba(var(--color-dark-rgb), 0.05);
     }
 
+    .ds-component-copy {
+        max-width: 68ch;
+        margin: calc(var(--space-3) * -1) 0 var(--space-5);
+        color: var(--color-muted);
+        line-height: var(--type-body-line-height);
+    }
+
+    .ds-nav-preview {
+        display: grid;
+        grid-template-columns: minmax(150px, 0.36fr) minmax(0, 1fr);
+        width: 100%;
+        min-height: 260px;
+        overflow: hidden;
+        border: var(--border-subtle);
+        border-radius: var(--radius-md);
+        background: var(--color-background);
+        box-shadow: var(--shadow-card);
+    }
+
+    .ds-nav-preview-rail {
+        display: grid;
+        align-content: start;
+        gap: var(--space-2);
+        padding: var(--space-5);
+        background: var(--color-sidebar-background);
+        box-shadow: 4px 0 14px rgba(var(--color-dark-rgb), 0.07);
+    }
+
+    .ds-nav-preview-title {
+        margin-bottom: var(--space-4);
+        font-family: var(--font-display);
+        font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+    }
+
+    .ds-nav-preview-item {
+        padding: 0.55rem 0.7rem;
+        border-radius: var(--radius-sm);
+        color: var(--color-dark);
+        font-size: 0.86rem;
+        font-weight: 650;
+    }
+
+    .ds-nav-preview-item[aria-current="page"] {
+        background: var(--color-selected-background);
+        color: var(--color-selected-text);
+    }
+
+    .ds-nav-preview-content {
+        display: grid;
+        align-content: start;
+        gap: var(--space-3);
+        padding: var(--space-6);
+    }
+
+    .ds-media-preview {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 100%;
+        gap: var(--space-4);
+    }
+
+    .ds-media-tile {
+        position: relative;
+        display: grid;
+        min-height: 170px;
+        overflow: hidden;
+        border: 1px solid rgba(var(--color-dark-rgb), 0.1);
+        border-radius: var(--radius-md);
+        background: linear-gradient(135deg, rgba(242, 168, 196, 0.92), rgba(194, 175, 232, 0.88));
+        box-shadow: var(--shadow-card);
+        color: var(--color-dark);
+        font-weight: 700;
+        place-items: center;
+    }
+
+    .ds-media-tile:nth-child(2) { background: linear-gradient(135deg, rgba(159, 215, 190, 0.92), rgba(155, 199, 234, 0.9)); }
+    .ds-media-tile:nth-child(3) { background: linear-gradient(135deg, rgba(243, 220, 135, 0.94), rgba(247, 189, 145, 0.9)); }
+
+    .ds-media-tile::after {
+        content: "Open in lightbox";
+        position: absolute;
+        right: var(--space-3);
+        bottom: var(--space-3);
+        padding: 0.35rem 0.55rem;
+        border-radius: var(--radius-pill);
+        background: rgba(var(--color-dark-rgb), 0.78);
+        color: white;
+        font-size: 0.68rem;
+        font-weight: 650;
+    }
+
+    .ds-carousel-preview {
+        display: grid;
+        width: 100%;
+        max-width: 620px;
+        gap: var(--space-4);
+        margin: 0 auto;
+    }
+
+    .ds-carousel-stage {
+        position: relative;
+        display: grid;
+        min-height: 300px;
+        overflow: hidden;
+        border: var(--border-subtle);
+        border-radius: var(--radius-lg);
+        background: var(--color-media-canvas);
+        box-shadow: var(--shadow-card);
+        place-items: center;
+    }
+
+    .ds-carousel-art {
+        width: 44%;
+        aspect-ratio: 3 / 4;
+        border-radius: var(--radius-md);
+        background: var(--gradient-rainbow);
+        box-shadow: 0 12px 30px rgba(var(--color-dark-rgb), 0.18);
+    }
+
+    .ds-carousel-arrow-preview {
+        position: absolute;
+        top: 50%;
+        display: grid;
+        width: 46px;
+        height: 46px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        background: rgba(248, 248, 248, 0.86);
+        box-shadow: 0 3px 14px rgba(var(--color-dark-rgb), 0.18);
+        font-size: 1.8rem;
+        place-items: center;
+        transform: translateY(-50%);
+    }
+
+    .ds-carousel-arrow-preview.previous { left: var(--space-4); }
+    .ds-carousel-arrow-preview.next { right: var(--space-4); }
+
+    .ds-carousel-thumbs {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-3);
+    }
+
+    .ds-carousel-thumb {
+        width: 44px;
+        aspect-ratio: 3 / 4;
+        border: 3px solid transparent;
+        border-radius: var(--radius-sm);
+        background: var(--color-media-canvas);
+        box-shadow: 0 4px 12px rgba(var(--color-dark-rgb), 0.12);
+        opacity: 0.66;
+    }
+
+    .ds-carousel-thumb.current {
+        border-color: var(--color-accent);
+        background: var(--gradient-rainbow);
+        opacity: 1;
+        transform: scale(1.06);
+    }
+
+    .ds-embed-preview {
+        position: relative;
+        display: grid;
+        width: min(100%, 680px);
+        aspect-ratio: 980 / 640;
+        overflow: hidden;
+        border: var(--border-subtle);
+        border-radius: var(--radius-lg);
+        background: var(--color-media-stage);
+        box-shadow: 0 18px 44px rgba(var(--color-dark-rgb), 0.16);
+        color: white;
+        place-items: center;
+    }
+
+    .ds-embed-preview::before {
+        content: "Interactive experience";
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        border-radius: var(--radius-pill);
+        background: rgba(255, 255, 255, 0.1);
+        font-weight: 650;
+    }
+
+    .ds-embed-preview::after {
+        content: "Responsive iframe · fullscreen enabled";
+        position: absolute;
+        right: var(--space-4);
+        bottom: var(--space-4);
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.72rem;
+    }
+
+    .ds-disclosure { width: 100%; }
+
+    .ds-disclosure > summary {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: 0.9rem 1.2rem;
+        border: 2px solid var(--color-dark);
+        border-radius: var(--radius-pill);
+        font-weight: 700;
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .ds-disclosure > summary::-webkit-details-marker { display: none; }
+    .ds-disclosure > summary::after { content: "⌄"; font-size: 1.15rem; line-height: 0.8; }
+    .ds-disclosure[open] > summary::after { transform: rotate(180deg); }
+
+    .ds-disclosure > div {
+        margin-top: var(--space-4);
+        padding: var(--space-5);
+        border-radius: var(--radius-md);
+        background: rgba(var(--color-dark-rgb), 0.035);
+    }
+
+    .ds-disclosure p { margin: 0; line-height: var(--type-body-line-height); }
+
+    .ds-footer-preview {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        width: 100%;
+        gap: var(--space-4);
+        align-items: center;
+        padding: var(--space-5) 0;
+        border-top: 1px solid rgba(var(--color-dark-rgb), 0.18);
+        font-size: 0.82rem;
+    }
+
+    .ds-footer-preview a { justify-self: start; color: var(--color-dark); font-weight: 650; }
+    .ds-footer-preview span { justify-self: center; }
+
+    .ds-footer-preview-control {
+        justify-self: end;
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0.6rem 0.85rem;
+        border: 1px solid rgba(var(--color-dark-rgb), 0.24);
+        border-radius: var(--radius-pill);
+        background: var(--surface-card);
+        color: var(--color-dark);
+        font-weight: 650;
+    }
+
+    .ds-source-map {
+        display: grid;
+        gap: 0;
+        overflow: hidden;
+        border: var(--border-subtle);
+        border-radius: var(--radius-md);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
+    }
+
+    .ds-source-row {
+        display: grid;
+        grid-template-columns: minmax(125px, 0.32fr) minmax(0, 1fr);
+        gap: var(--space-5);
+        padding: var(--space-5);
+        align-items: start;
+    }
+
+    .ds-source-row + .ds-source-row { border-top: var(--border-subtle); }
+    .ds-source-row code { color: var(--color-accent); font-size: 0.86rem; font-weight: 700; }
+    .ds-source-row p { margin: 0; line-height: var(--type-body-line-height); }
+
     .ds-button {
         display: inline-flex;
         min-height: 48px;
@@ -464,7 +734,8 @@
     @container design-system (max-width: 720px) {
         .ds-section-heading,
         .ds-type-row,
-        .ds-layout-main {
+        .ds-layout-main,
+        .ds-source-row {
             grid-template-columns: 1fr;
         }
 
@@ -498,6 +769,18 @@
             grid-template-columns: 1fr;
         }
 
+        .ds-nav-preview,
+        .ds-media-preview,
+        .ds-footer-preview {
+            grid-template-columns: 1fr;
+        }
+
+        .ds-footer-preview a,
+        .ds-footer-preview span,
+        .ds-footer-preview-control {
+            justify-self: start;
+        }
+
         .ds-layout-sidebar {
             min-height: 82px;
         }
@@ -516,7 +799,7 @@
 
 <article class="design-system">
     <header class="ds-hero">
-        <span class="ds-eyebrow">Local design system · Version 0.3 · Updated August 2026</span>
+        <span class="ds-eyebrow">Local design system · Version 0.4 · Updated August 2026</span>
         <h1>A shared language for Syd’s portfolio.</h1>
         <p class="ds-lede">This living reference documents the visual and interaction decisions already used across the website. It is intentionally practical: complete enough to keep current pages cohesive, and flexible enough to grow with the portfolio.</p>
 
@@ -525,6 +808,7 @@
             <a href="#local-design-system" data-scroll-target="ds-foundations">Foundations</a>
             <a href="#local-design-system" data-scroll-target="ds-layout">Layout</a>
             <a href="#local-design-system" data-scroll-target="ds-components">Components</a>
+            <a href="#local-design-system" data-scroll-target="ds-implementation">Implementation</a>
             <a href="#local-design-system" data-scroll-target="ds-accessibility">Accessibility standards</a>
         </nav>
     </header>
@@ -665,12 +949,33 @@
                 </article>
             </div>
         </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Borders, elevation, and motion</h3>
+            <div class="ds-grid three">
+                <article class="ds-card">
+                    <span class="ds-label">Structure</span>
+                    <h3>Subtle border</h3>
+                    <p><code>--border-subtle</code> uses 16% ink for cards, dividers, media frames, and grouped controls.</p>
+                </article>
+                <article class="ds-card">
+                    <span class="ds-label">Elevation</span>
+                    <h3>Shared card shadow</h3>
+                    <p><code>--shadow-card</code> combines a short contact shadow with a softer ambient shadow. Dialogs and media viewers may use more depth.</p>
+                </article>
+                <article class="ds-card">
+                    <span class="ds-label">Interaction</span>
+                    <h3>180 milliseconds</h3>
+                    <p><code>--transition-ui</code> is the default for hover, focus, selection, and small transforms. Reduced-motion preferences remove nonessential movement.</p>
+                </article>
+            </div>
+        </div>
     </section>
 
     <section class="ds-section" id="ds-layout">
         <div class="ds-section-heading">
             <h2>Layout</h2>
-            <p>The desktop shell uses a persistent 300-pixel navigation rail and a focused content column. Below 850 pixels, navigation becomes a sticky compact header and content uses a 24-pixel page inset.</p>
+            <p>The desktop shell uses a persistent 300-pixel navigation rail and a focused content column. Below 850 pixels, navigation becomes a sticky compact header and content uses a 24-pixel page inset. The footer follows the same responsive shift.</p>
         </div>
 
         <div class="ds-layout-demo" aria-label="Diagram of the portfolio page shell">
@@ -697,6 +1002,11 @@
             <article class="ds-card"><span class="ds-label">Page shell</span><h3>Focused width</h3><p>Keep narrative content within the shared 1,050-pixel main column unless immersive media needs more room.</p></article>
             <article class="ds-card"><span class="ds-label">Section pattern</span><h3>Heading left, copy right</h3><p>Use the recurring split heading for major case-study sections, then stack it at narrow widths.</p></article>
             <article class="ds-card"><span class="ds-label">Responsive rule</span><h3>Reflow, do not shrink</h3><p>Collapse grids to one column, preserve readable type, and allow media controls to remain comfortably tappable.</p></article>
+        </div>
+
+        <div class="ds-rule" style="margin-top:var(--space-6)">
+            <strong>Current breakpoints</strong>
+            <span>The shared shell changes at 850 pixels. Dense galleries and small media controls simplify again at 560 pixels. Case-study components may use container queries when their available column matters more than the viewport.</span>
         </div>
     </section>
 
@@ -725,6 +1035,114 @@
             </div>
         </div>
 
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Navigation and selected state</h3>
+            <p class="ds-component-copy">The desktop rail groups work by discipline and marks the current page with an inverse ink state. On mobile, the same links move into a dismissible menu; focus returns to the menu button when it closes.</p>
+            <div class="ds-nav-preview" aria-label="Example of the desktop navigation shell">
+                <div class="ds-nav-preview-rail">
+                    <div class="ds-nav-preview-title">Syd Hoeper</div>
+                    <span class="ds-nav-preview-item">About</span>
+                    <span class="ds-nav-preview-item" aria-current="page">Stained Glass</span>
+                    <span class="ds-nav-preview-item">UX Design</span>
+                    <span class="ds-nav-preview-item">Illustration</span>
+                </div>
+                <div class="ds-nav-preview-content">
+                    <div class="ds-placeholder accent"></div>
+                    <div class="ds-placeholder dark"></div>
+                    <div class="ds-placeholder"></div>
+                    <div class="ds-placeholder short"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Gallery and lightbox</h3>
+            <p class="ds-component-copy">Artwork grids use consistent rounded media cards. Images and videos open in a modal viewer with a labeled close control, previous and next controls, arrow-key navigation, focus restoration, and page-scroll locking.</p>
+            <div class="ds-media-preview" aria-label="Example three-column artwork gallery">
+                <div class="ds-media-tile">Artwork 01</div>
+                <div class="ds-media-tile">Artwork 02</div>
+                <div class="ds-media-tile">Artwork 03</div>
+            </div>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Media carousel</h3>
+            <p class="ds-component-copy">Long visual sequences use a contained viewport, circular previous and next buttons, and thumbnail buttons. The current thumbnail combines a blue border, full opacity, and scale so selection does not depend on color alone.</p>
+            <div class="ds-component-stage">
+                <div class="ds-carousel-preview" aria-label="Example media carousel">
+                    <div class="ds-carousel-stage">
+                        <span class="ds-carousel-arrow-preview previous" aria-hidden="true">‹</span>
+                        <div class="ds-carousel-art"></div>
+                        <span class="ds-carousel-arrow-preview next" aria-hidden="true">›</span>
+                    </div>
+                    <div class="ds-carousel-thumbs" aria-hidden="true">
+                        <span class="ds-carousel-thumb"></span>
+                        <span class="ds-carousel-thumb current"></span>
+                        <span class="ds-carousel-thumb"></span>
+                        <span class="ds-carousel-thumb"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Progressive disclosure</h3>
+            <p class="ds-component-copy">Dense supporting material uses native <code>details</code> and <code>summary</code>. The summary is pill-shaped, keeps visible focus, and changes both its label and chevron when opened.</p>
+            <div class="ds-component-stage">
+                <details class="ds-disclosure">
+                    <summary>View supporting details</summary>
+                    <div><p>Supporting research, extended process notes, or secondary artifacts belong here when they would otherwise interrupt the primary story.</p></div>
+                </details>
+            </div>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Interactive embeds</h3>
+            <p class="ds-component-copy">Playable projects sit in a dark, rounded stage that preserves the source aspect ratio and scales the iframe to the available column. Every iframe needs a useful title, a fallback link, and fullscreen permission when the experience supports it. Audio-heavy work includes an adjacent stop-and-restart control.</p>
+            <div class="ds-component-stage">
+                <div class="ds-embed-preview" aria-label="Example responsive interactive embed stage"></div>
+            </div>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Case-study navigation</h3>
+            <p class="ds-component-copy">Previous and next project cards close long case studies. Direction is an eyebrow label, the project title is set in Fraunces, and narrow containers stack the pair into one column.</p>
+            <nav class="case-study-navigation" aria-label="Example case-study navigation" style="width:100%;margin-top:0">
+                <a class="case-study-navigation-link previous" href="#local-design-system" data-scroll-target="ds-layout"><span class="case-study-navigation-direction">← Previous project</span><strong>Page layout</strong></a>
+                <a class="case-study-navigation-link next" href="#local-design-system" data-scroll-target="ds-accessibility"><span class="case-study-navigation-direction">Next section →</span><strong>Accessibility</strong></a>
+            </nav>
+        </div>
+
+        <div class="ds-component-block">
+            <h3 class="ds-component-heading">Site footer</h3>
+            <p class="ds-component-copy">Desktop uses three balanced positions: the Local Design System link on the left, copyright centered, and the optional sparkler control on the right. Below 850 pixels, all three stack and align left.</p>
+            <div class="ds-footer-preview" aria-label="Example desktop footer alignment">
+                <a href="#local-design-system" data-scroll-target="ds-principles">Local Design System</a>
+                <span>© 2026 Syd Hoeper</span>
+                <span class="ds-footer-preview-control">Sparkler cursor · Off</span>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="ds-section" id="ds-implementation">
+        <div class="ds-section-heading">
+            <h2>Implementation</h2>
+            <p>The website is a small, framework-free system. Shared tokens and component styles live centrally; page fragments add only the layout or media treatment unique to that story.</p>
+        </div>
+
+        <div class="ds-source-map" aria-label="Design system source-of-truth map">
+            <div class="ds-source-row"><code>style.css</code><p>Source of truth for foundations, the page shell, navigation, footer, shared cards, galleries, lightbox, carousel, disclosures, case-study navigation, focus states, and responsive behavior.</p></div>
+            <div class="ds-source-row"><code>index.html</code><p>Owns the persistent semantic shell: skip link, sidebar navigation, main content target, footer, mobile overlay, and gallery dialog.</p></div>
+            <div class="ds-source-row"><code>script.js</code><p>Loads page fragments, synchronizes navigation state, manages the mobile menu, sizes embeds, initializes carousels, controls the gallery dialog, and restores focus after interactions.</p></div>
+            <div class="ds-source-row"><code>pages/</code><p>Contains the individual project and gallery fragments. Local styles are acceptable for genuinely one-off artifacts; repeated patterns should move into the shared stylesheet and this reference.</p></div>
+        </div>
+
+        <div class="ds-grid three" style="margin-top:var(--space-6)">
+            <article class="ds-card"><span class="ds-label">Navigation</span><h3>Hash-routed pages</h3><p>Internal project links update the URL hash and load fragments into the persistent shell. Local jump links use explicit scroll targets.</p></article>
+            <article class="ds-card"><span class="ds-label">Media</span><h3>One behavior layer</h3><p>Images, videos, carousel slides, and product galleries share centralized initialization so dynamically loaded pages behave consistently.</p></article>
+            <article class="ds-card"><span class="ds-label">Exceptions</span><h3>Document repetition</h3><p>When a local pattern appears twice, promote it to a shared token or component and record its states, breakpoint behavior, and accessibility contract here.</p></article>
+        </div>
     </section>
 
     <section class="ds-section" id="ds-accessibility">

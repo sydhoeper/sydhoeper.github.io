@@ -317,6 +317,7 @@ function fitGameEmbeds(root = document) {
         const container = iframe.parentElement;
         const embedWidth = Number(iframe.getAttribute("width"));
         const embedHeight = Number(iframe.getAttribute("height"));
+        const visibleHeight = Number(container?.dataset.embedCropHeight) || embedHeight;
 
         if (!container || !embedWidth || !embedHeight) {
             return;
@@ -325,7 +326,7 @@ function fitGameEmbeds(root = document) {
         const scale = Math.min(1, container.clientWidth / embedWidth);
 
         iframe.style.transform = `scale(${scale})`;
-        container.style.height = `${embedHeight * scale}px`;
+        container.style.height = `${visibleHeight * scale}px`;
     });
 }
 
