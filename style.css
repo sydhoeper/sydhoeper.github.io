@@ -586,6 +586,57 @@ a:hover {
     text-underline-offset: 3px;
 }
 
+.site-toast {
+    position: fixed;
+    z-index: 1200;
+    right: clamp(1rem, 3vw, 2rem);
+    bottom: clamp(1rem, 3vw, 2rem);
+    max-width: min(360px, calc(100vw - 2rem));
+    padding: 0.85rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: var(--radius-pill);
+    background: var(--color-dark);
+    box-shadow: 0 10px 30px rgba(var(--color-dark-rgb), 0.28);
+    color: var(--color-background);
+    font-weight: var(--control-font-weight);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.75rem);
+    transition: opacity var(--transition-ui), transform var(--transition-ui);
+}
+
+.site-toast.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.site-toast--anchored {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: auto;
+    bottom: auto;
+    left: 0;
+    padding: 0.2rem 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    transform: translateY(-0.65rem);
+}
+
+.site-toast--anchored.is-visible {
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-toast {
+        transition: none;
+    }
+}
+
 .main-content img,
 .main-content video {
     display: block;
