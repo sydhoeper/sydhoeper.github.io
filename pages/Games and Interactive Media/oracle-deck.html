@@ -163,7 +163,45 @@
     overflow: hidden;
   }
 
+  .oracle-game-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+
+  .oracle-game-controls p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .oracle-audio-toggle {
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    border: 2px solid var(--color-dark);
+    border-radius: var(--radius-pill);
+    background: var(--color-background);
+    color: var(--color-dark);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .oracle-audio-toggle:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.18em;
+  }
+
+  .oracle-audio-toggle:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
   .itch-widget {
+    position: relative;
     width: 100%;
     aspect-ratio: 49 / 29;
     overflow: hidden;
@@ -176,6 +214,21 @@
     width: 100%;
     height: 100%;
     border: 0;
+  }
+
+  .oracle-game-stopped {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: var(--space-5);
+    background: var(--color-media-canvas);
+    color: var(--color-dark);
+    text-align: center;
+  }
+
+  .oracle-game-stopped[hidden] {
+    display: none;
   }
 
   .oracle-card-grid {
@@ -515,8 +568,8 @@
     <div class="oracle-card-fan" aria-label="Five cards from The World of Emora Oracle Deck">
       <img src="/images/Oracle%20Deck/web/IMG_2411.PNG" alt="Oracle card showing an eye above a rainbow path" loading="eager" decoding="async">
       <img src="/images/Oracle%20Deck/web/IMG_2424.PNG" alt="Thunderstorms oracle card" loading="eager" decoding="async">
-      <img src="/images/Oracle%20Deck/web/IMG_2503.PNG" alt="Fernip oracle card" loading="eager" decoding="async">
-      <img src="/images/Oracle%20Deck/web/IMG_2498.PNG" alt="The Selka River oracle card" loading="eager" decoding="async">
+      <img src="/images/Oracle%20Deck/web/IMG_2498.PNG" alt="Collective Consciousness oracle card" loading="eager" decoding="async">
+      <img src="/images/Oracle%20Deck/web/IMG_2503.PNG" alt="Needroot oracle card" loading="eager" decoding="async">
       <img src="/images/Oracle%20Deck/web/IMG_2506.PNG" alt="Witness Tree oracle card" loading="eager" decoding="async">
     </div>
   </header>
@@ -528,9 +581,15 @@
     </div>
 
     <div class="oracle-demo-frame">
-      <div class="itch-widget">
+      <div class="oracle-game-controls">
+        <button class="oracle-audio-toggle" type="button" data-game-audio-toggle>Stop music</button>
+        <p>Stopping the music also resets the embedded deck.</p>
+      </div>
+
+      <div class="itch-widget" data-game-embed>
         <iframe
           src="https://itch.io/embed-upload/17770495?color=ffffff"
+          data-game-frame
           width="980"
           height="580"
           title="Play The World of Emora Oracle Deck on itch.io"
@@ -539,6 +598,7 @@
         >
           <a href="https://cosmicsquid46.itch.io/the-world-of-emora-digital-oracle-deck-desktop">Play The World of Emora Oracle Deck on itch.io</a>
         </iframe>
+        <p class="oracle-game-stopped" data-game-stopped-message role="status" hidden>Music stopped. Restart the deck when you’re ready to play again.</p>
       </div>
     </div>
   </section>

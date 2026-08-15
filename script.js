@@ -212,6 +212,7 @@ async function loadPage(pageName, { focusContent = false } = {}) {
             initializePhysicalProductPage(contentArea);
             initializeGalleries(contentArea);
             initializeMapAnimations(contentArea);
+            initializeGameAudioControls(contentArea);
             initializeHomeRibbon(contentArea);
             finishPageLoad(pageName, focusContent);
         });
@@ -325,6 +326,38 @@ function fitGameEmbeds(root = document) {
 
         iframe.style.transform = `scale(${scale})`;
         container.style.height = `${embedHeight * scale}px`;
+    });
+}
+
+function initializeGameAudioControls(root = document) {
+    root.querySelectorAll("[data-game-audio-toggle]").forEach((button) => {
+        const frameContainer = button.closest(".oracle-demo-frame")?.querySelector("[data-game-embed]");
+        const iframe = frameContainer?.querySelector("[data-game-frame]");
+        const stoppedMessage = frameContainer?.querySelector("[data-game-stopped-message]");
+
+        if (!iframe || !stoppedMessage) {
+            return;
+        }
+
+        const gameSource = iframe.getAttribute("src");
+        let isStopped = false;
+
+        button.addEventListener("click", () => {
+            isStopped = !isStopped;
+
+            if (isStopped) {
+                iframe.src = "about:blank";
+                iframe.hidden = true;
+                stoppedMessage.hidden = false;
+                button.textContent = "Restart deck";
+            } else {
+                iframe.src = gameSource;
+                iframe.hidden = false;
+                stoppedMessage.hidden = true;
+                button.textContent = "Stop music";
+                requestAnimationFrame(() => fitGameEmbeds(root));
+            }
+        });
     });
 }
 
