@@ -30,12 +30,14 @@ const pageMap = {
     "emora-diorama": "pages/Sculpture/sculpture-emora.html",
     "physical-product-design": "pages/Sculpture/physical-product-design.html",
     "stained-glass": "pages/Sculpture/stained-glass.html",
+    "monster-project": "pages/Sculpture/monster-project.html",
     "digital-portraits": "pages/Illustration/digital-illustration.html",
     "digital-drawings": "pages/Illustration/digital-illustration.html",
     "event-posters": "pages/Illustration/digital-illustration.html",
     "digital-illustration": "pages/Illustration/digital-illustration.html",
     "oracle-deck": "pages/Illustration/digital-illustration.html",
     "physical-drawings": "pages/Illustration/physical-drawings.html",
+    linocuts: "pages/Illustration/linocuts.html",
     "marker-doodles": "pages/Illustration/physical-drawings.html",
     "plein-air": "pages/Illustration/physical-drawings.html"
 };

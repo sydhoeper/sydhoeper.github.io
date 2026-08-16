@@ -1,0 +1,229 @@
+<style>
+    .monster-project-page {
+        width: 100%;
+        max-width: 1120px;
+    }
+
+    .monster-project-page h1,
+    .monster-project-page h2 {
+        font-family: var(--font-display);
+        font-optical-sizing: auto;
+        text-wrap: balance;
+    }
+
+    .monster-project-hero {
+        padding-bottom: clamp(var(--space-7), 7vw, var(--space-9));
+    }
+
+    .monster-project-hero h1 {
+        max-width: 13ch;
+        margin: 0 0 var(--space-5);
+        font-size: var(--type-hero-size);
+        line-height: var(--type-hero-line-height);
+        letter-spacing: var(--type-hero-spacing);
+    }
+
+    .monster-project-lede {
+        max-width: 57ch;
+        margin: 0;
+        font-size: var(--type-lede-size);
+        line-height: var(--type-lede-line-height);
+    }
+
+    .monster-project-facts {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(var(--space-3), 2vw, var(--space-5));
+        margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+    }
+
+    .monster-project-fact {
+        padding: var(--card-padding);
+        border: var(--border-subtle);
+        border-radius: var(--card-radius);
+        background: var(--surface-card);
+        box-shadow: var(--shadow-card);
+    }
+
+    .monster-project-fact strong,
+    .monster-project-fact span {
+        display: block;
+    }
+
+    .monster-project-fact strong {
+        margin-bottom: var(--space-2);
+        font-size: 1rem;
+        line-height: 1.25;
+    }
+
+    .monster-project-fact span {
+        color: var(--color-muted);
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    .monster-project-section {
+        padding: clamp(var(--space-7), 7vw, var(--space-9)) 0;
+        border-top: var(--border-subtle);
+    }
+
+    .monster-project-heading {
+        display: grid;
+        grid-template-columns: minmax(190px, 0.4fr) minmax(0, 1fr);
+        gap: clamp(var(--space-6), 6vw, 5rem);
+        align-items: start;
+        margin-bottom: clamp(var(--space-6), 5vw, var(--space-8));
+    }
+
+    .monster-project-heading h2 {
+        margin: 0;
+        font-size: var(--type-section-heading-size);
+        line-height: var(--type-section-heading-line-height);
+        letter-spacing: var(--type-section-heading-spacing);
+    }
+
+    .monster-project-heading-copy {
+        display: grid;
+        gap: var(--space-4);
+        max-width: 60ch;
+    }
+
+    .monster-project-heading-copy p {
+        margin: 0;
+        font-size: var(--type-section-copy-size);
+        line-height: var(--type-section-copy-line-height);
+    }
+
+    .monster-project-gallery {
+        align-items: stretch;
+    }
+
+    .monster-project-gallery figure {
+        display: grid;
+        grid-template-rows: minmax(0, 1fr) auto;
+        gap: var(--space-4);
+    }
+
+    .monster-project-gallery .art-gallery-item {
+        min-height: clamp(360px, 48vw, 620px);
+        border: var(--border-subtle);
+        background: var(--color-media-canvas);
+        box-shadow: var(--shadow-card);
+    }
+
+    .monster-project-gallery .art-gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 180ms ease;
+    }
+
+    .monster-project-gallery .art-gallery-item:hover img {
+        transform: scale(1.015);
+    }
+
+    .monster-project-gallery figcaption {
+        display: grid;
+        gap: var(--space-2);
+    }
+
+    .monster-project-gallery figcaption strong {
+        font-size: var(--card-heading-size);
+        line-height: var(--card-heading-line-height);
+    }
+
+    .monster-project-gallery figcaption span {
+        color: var(--color-muted);
+        line-height: var(--type-body-line-height);
+    }
+
+    @media (max-width: 720px) {
+        .monster-project-facts,
+        .monster-project-heading,
+        .monster-project-gallery {
+            grid-template-columns: 1fr;
+        }
+
+        .monster-project-gallery .art-gallery-item {
+            min-height: 0;
+            aspect-ratio: 4 / 5;
+        }
+    }
+</style>
+
+<article class="monster-project-page" data-gallery-page data-gallery>
+    <header class="monster-project-hero">
+        <span class="project-eyebrow">Community art collaboration</span>
+        <h1>The Missoula Monster Project</h1>
+        <p class="monster-project-lede">A kindergartner imagined a monster. I translated it into a needle-felted world while keeping the original creature at the center.</p>
+
+        <div class="monster-project-facts" aria-label="Project details">
+            <div class="monster-project-fact">
+                <strong>Starting point</strong>
+                <span>A kindergartner&rsquo;s original monster drawing</span>
+            </div>
+            <div class="monster-project-fact">
+                <strong>My medium</strong>
+                <span>Needle felting and mixed-media shadowbox</span>
+            </div>
+            <div class="monster-project-fact">
+                <strong>Exhibition</strong>
+                <span>Original and reinterpretation displayed side by side</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="monster-project-section" aria-labelledby="monster-pair-heading">
+        <div class="monster-project-heading">
+            <h2 id="monster-pair-heading">One monster, two imaginations</h2>
+            <div class="monster-project-heading-copy">
+                <p>The Missoula Monster Project pairs children&rsquo;s drawings with adult artists who recreate the creatures in their own medium.</p>
+                <p>For my interpretation, I turned Edie&rsquo;s blue, orange, and green monster into a fuzzy shadowbox scene, then expanded its world with a landscape, flowers, and tiny rabbits.</p>
+            </div>
+        </div>
+
+        <div class="art-grid monster-project-gallery">
+            <figure>
+                <button class="art-gallery-item" type="button" data-gallery-item>
+                    <img src="/images/Monster%20Project/original-monster-drawing.jpg" width="2550" height="3640" alt="Child&rsquo;s drawing of a tall blue and orange monster with a green body and long white arms and legs" loading="eager" decoding="async">
+                </button>
+                <figcaption>
+                    <strong>Edie&rsquo;s original drawing</strong>
+                    <span>The starting point for the adult artist&rsquo;s interpretation.</span>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <button class="art-gallery-item" type="button" data-gallery-item>
+                    <img src="/images/Monster%20Project/finished-monster-shadowbox.jpeg" width="2293" height="1929" alt="Needle-felted shadowbox interpretation of the child&rsquo;s monster beside the original drawing displayed on a phone" loading="eager" decoding="async">
+                </button>
+                <figcaption>
+                    <strong>My finished interpretation</strong>
+                    <span>A needle-felted, mixed-media shadowbox built from the child&rsquo;s character.</span>
+                </figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section class="monster-project-section" aria-labelledby="monster-community-heading">
+        <div class="monster-project-heading">
+            <h2 id="monster-community-heading">Made for the community</h2>
+            <div class="monster-project-heading-copy">
+                <p>Zootown Arts Community Center produces the annual project with the Missoula County Public Schools Fine Arts Department. The original drawings and finished artworks are exhibited together at the ZACC Main Gallery.</p>
+                <p>The family-friendly event celebrates the young artists and raises funds for arts education and needed classroom supplies.</p>
+            </div>
+        </div>
+    </section>
+
+    <dialog class="gallery-lightbox" data-gallery-dialog aria-label="Monster Project viewer">
+        <button class="gallery-lightbox-close" type="button" data-gallery-close aria-label="Close full-screen image">&times;</button>
+        <button class="gallery-lightbox-nav" type="button" data-gallery-previous aria-label="Previous image">&#8592;</button>
+
+        <figure>
+            <img data-gallery-image src="" alt="">
+            <figcaption data-gallery-counter aria-live="polite"></figcaption>
+        </figure>
+
+        <button class="gallery-lightbox-nav" type="button" data-gallery-next aria-label="Next image">&#8594;</button>
+    </dialog>
+</article>
