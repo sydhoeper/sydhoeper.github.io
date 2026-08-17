@@ -30,38 +30,6 @@
         line-height: var(--type-lede-line-height);
     }
 
-    .monster-project-facts {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: clamp(var(--space-3), 2vw, var(--space-5));
-        margin-top: clamp(var(--space-7), 6vw, var(--space-8));
-    }
-
-    .monster-project-fact {
-        padding: var(--card-padding);
-        border: var(--border-subtle);
-        border-radius: var(--card-radius);
-        background: var(--surface-card);
-        box-shadow: var(--shadow-card);
-    }
-
-    .monster-project-fact strong,
-    .monster-project-fact span {
-        display: block;
-    }
-
-    .monster-project-fact strong {
-        margin-bottom: var(--space-2);
-        font-size: 1rem;
-        line-height: 1.25;
-    }
-
-    .monster-project-fact span {
-        color: var(--color-muted);
-        font-size: 0.9rem;
-        line-height: 1.45;
-    }
-
     .monster-project-section {
         padding: clamp(var(--space-7), 7vw, var(--space-9)) 0;
         border-top: var(--border-subtle);
@@ -138,7 +106,6 @@
     }
 
     @media (max-width: 720px) {
-        .monster-project-facts,
         .monster-project-heading,
         .monster-project-gallery {
             grid-template-columns: 1fr;
@@ -153,32 +120,16 @@
 
 <article class="monster-project-page" data-gallery-page data-gallery>
     <header class="monster-project-hero">
-        <span class="project-eyebrow">Community art collaboration</span>
+        <span class="project-eyebrow">Community art collaboration &middot; 2024</span>
         <h1>The Missoula Monster Project</h1>
-        <p class="monster-project-lede">A kindergartner imagined a monster. I translated it into a needle-felted world while keeping the original creature at the center.</p>
-
-        <div class="monster-project-facts" aria-label="Project details">
-            <div class="monster-project-fact">
-                <strong>Starting point</strong>
-                <span>A kindergartner&rsquo;s original monster drawing</span>
-            </div>
-            <div class="monster-project-fact">
-                <strong>My medium</strong>
-                <span>Needle felting and mixed-media shadowbox</span>
-            </div>
-            <div class="monster-project-fact">
-                <strong>Exhibition</strong>
-                <span>Original and reinterpretation displayed side by side</span>
-            </div>
-        </div>
+        <p class="monster-project-lede">A needle-felted shadowbox based on a kindergartner&rsquo;s drawing, created for the 2024 Missoula Monster Project.</p>
     </header>
 
     <section class="monster-project-section" aria-labelledby="monster-pair-heading">
         <div class="monster-project-heading">
-            <h2 id="monster-pair-heading">One monster, two imaginations</h2>
+            <h2 id="monster-pair-heading">From drawing to shadowbox</h2>
             <div class="monster-project-heading-copy">
-                <p>The Missoula Monster Project pairs children&rsquo;s drawings with adult artists who recreate the creatures in their own medium.</p>
-                <p>Edie imagined a monster that likes to eat rabbits and corn, lives in a house, and loves spending time in a meadow. For my interpretation, I turned the blue, orange, and green creature into a fuzzy shadowbox scene filled with those details.</p>
+                <p>Edie&rsquo;s monster eats rabbits and corn, lives in a house, and likes being in a meadow. I carried those details into the felted scene, which was displayed beside her original drawing at the ZACC.</p>
             </div>
         </div>
 
@@ -188,8 +139,7 @@
                     <img src="/images/Monster%20Project/original-monster-drawing.jpg" width="2550" height="3640" alt="Child&rsquo;s drawing of a tall blue and orange monster with a green body and long white arms and legs" loading="eager" decoding="async">
                 </button>
                 <figcaption>
-                    <strong>Edie&rsquo;s original drawing</strong>
-                    <span>The starting point for the adult artist&rsquo;s interpretation.</span>
+                    <strong>Original drawing</strong>
                 </figcaption>
             </figure>
 
@@ -198,20 +148,9 @@
                     <img src="/images/Monster%20Project/finished-monster-shadowbox-cropped.png" width="1122" height="1402" alt="Framed needle-felted shadowbox interpretation of the child&rsquo;s monster in a meadow with a house, rabbits, flowers, and corn" loading="eager" decoding="async">
                 </button>
                 <figcaption>
-                    <strong>My finished interpretation</strong>
-                    <span>A needle-felted, mixed-media shadowbox built from the child&rsquo;s character.</span>
+                    <strong>Needle-felted shadowbox</strong>
                 </figcaption>
             </figure>
-        </div>
-    </section>
-
-    <section class="monster-project-section" aria-labelledby="monster-community-heading">
-        <div class="monster-project-heading">
-            <h2 id="monster-community-heading">Made for the community</h2>
-            <div class="monster-project-heading-copy">
-                <p>Zootown Arts Community Center produces the annual project with the Missoula County Public Schools Fine Arts Department. The original drawings and finished artworks are exhibited together at the ZACC Main Gallery.</p>
-                <p>The family-friendly event celebrates the young artists and raises funds for arts education and needed classroom supplies.</p>
-            </div>
         </div>
     </section>
 
