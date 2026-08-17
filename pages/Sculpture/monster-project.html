@@ -12,7 +12,7 @@
     }
 
     .monster-project-hero {
-        padding-bottom: clamp(var(--space-7), 7vw, var(--space-9));
+        padding-bottom: clamp(var(--space-6), 4vw, var(--space-8));
     }
 
     .monster-project-hero h1 {
@@ -31,16 +31,16 @@
     }
 
     .monster-project-section {
-        padding: clamp(var(--space-7), 7vw, var(--space-9)) 0;
+        padding: clamp(var(--space-7), 5vw, var(--space-8)) 0;
         border-top: var(--border-subtle);
     }
 
     .monster-project-heading {
         display: grid;
         grid-template-columns: minmax(190px, 0.4fr) minmax(0, 1fr);
-        gap: clamp(var(--space-6), 6vw, 5rem);
+        gap: clamp(var(--space-6), 4vw, var(--space-8));
         align-items: start;
-        margin-bottom: clamp(var(--space-6), 5vw, var(--space-8));
+        margin-bottom: clamp(var(--space-6), 3vw, var(--space-7));
     }
 
     .monster-project-heading h2 {
@@ -60,6 +60,10 @@
         margin: 0;
         font-size: var(--type-section-copy-size);
         line-height: var(--type-section-copy-line-height);
+    }
+
+    .monster-project-about .monster-project-heading {
+        margin-bottom: 0;
     }
 
     .monster-project-gallery {
@@ -106,9 +110,21 @@
     }
 
     @media (max-width: 720px) {
+        .monster-project-hero {
+            padding-bottom: var(--space-6);
+        }
+
+        .monster-project-section {
+            padding: var(--space-7) 0;
+        }
+
         .monster-project-heading,
         .monster-project-gallery {
             grid-template-columns: 1fr;
+        }
+
+        .monster-project-heading {
+            gap: var(--space-5);
         }
 
         .monster-project-gallery .art-gallery-item {
@@ -124,6 +140,15 @@
         <h1>The Missoula Monster Project</h1>
         <p class="monster-project-lede">My needle-felted interpretation of a kindergartner&rsquo;s drawing for the 2024 Missoula Monster Project.</p>
     </header>
+
+    <section class="monster-project-section monster-project-about" aria-labelledby="monster-about-heading">
+        <div class="monster-project-heading">
+            <h2 id="monster-about-heading">About the project</h2>
+            <div class="monster-project-heading-copy">
+                <p>The Zootown Arts Community Center organizes the annual collaboration with the Missoula County Public Schools Fine Arts Department. The original drawings and artist interpretations are exhibited side by side at the ZACC Main Gallery, raising money for arts education and classroom supplies.</p>
+            </div>
+        </div>
+    </section>
 
     <section class="monster-project-section" aria-labelledby="monster-pair-heading">
         <div class="monster-project-heading">
@@ -152,15 +177,6 @@
                     <strong>Needle-felted, mixed-media shadowbox</strong>
                 </figcaption>
             </figure>
-        </div>
-    </section>
-
-    <section class="monster-project-section" aria-labelledby="monster-about-heading">
-        <div class="monster-project-heading">
-            <h2 id="monster-about-heading">About the project</h2>
-            <div class="monster-project-heading-copy">
-                <p>The Zootown Arts Community Center organizes the annual collaboration with the Missoula County Public Schools Fine Arts Department. The original drawings and artist interpretations are exhibited side by side at the ZACC Main Gallery, raising money for arts education and classroom supplies.</p>
-            </div>
         </div>
     </section>
 

@@ -597,17 +597,34 @@
     .ds-disclosure p { margin: 0; line-height: var(--type-body-line-height); }
 
     .ds-footer-preview {
+        position: relative;
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
         width: 100%;
         gap: var(--space-4);
         align-items: center;
-        padding: var(--space-5) 0;
-        border-top: 1px solid rgba(var(--color-dark-rgb), 0.18);
+        overflow: hidden;
+        padding: calc(var(--space-5) + 10px) var(--space-5) var(--space-5);
+        border-radius: var(--radius-md);
+        background: var(--color-dark);
+        color: var(--color-background);
         font-size: 0.82rem;
     }
 
-    .ds-footer-preview a { justify-self: start; color: var(--color-dark); font-weight: 650; }
+    .ds-footer-preview::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 10px;
+        background: var(--footer-rainbow);
+        border: 0;
+        box-shadow: none;
+        content: "";
+        filter: none;
+    }
+
+    .ds-footer-preview a { justify-self: start; color: inherit; font-weight: 650; }
     .ds-footer-preview span { justify-self: center; }
 
     .ds-footer-preview-control {
@@ -1116,7 +1133,7 @@
 
         <div class="ds-component-block">
             <h3 class="ds-component-heading">Site footer</h3>
-            <p class="ds-component-copy">Desktop uses three balanced positions: the Local Design System link on the left, copyright centered, and the optional sparkler control on the right. Below 850 pixels, all three stack and align left.</p>
+            <p class="ds-component-copy">Desktop uses three balanced positions: the Local Design System link on the left, copyright centered, and the optional sparkler control on the right. A thick, softly blurred pastel rainbow runs along the top edge. Below 850 pixels, all three items stack and align left.</p>
             <div class="ds-footer-preview" aria-label="Example desktop footer alignment">
                 <a href="#local-design-system" data-scroll-target="ds-principles">Local Design System</a>
                 <span>© 2026 Syd Hoeper</span>
