@@ -54,11 +54,11 @@
     }
 
     .linocuts-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(12, minmax(0, 1fr));
     }
 
     .linocuts-grid .art-gallery-item {
-        aspect-ratio: 1;
+        height: auto;
         background: var(--color-media-canvas);
     }
 
@@ -68,22 +68,60 @@
         transition: transform 180ms ease;
     }
 
+    .linocut-rings,
+    .linocut-lava {
+        grid-column: span 5;
+    }
+
+    .linocut-motorcycle,
+    .linocut-squid {
+        grid-column: span 7;
+    }
+
+    .linocut-banana,
+    .linocut-eye {
+        grid-column: span 6;
+    }
+
+    .linocut-rings,
+    .linocut-squid {
+        aspect-ratio: 1;
+    }
+
+    .linocut-motorcycle {
+        aspect-ratio: 3 / 2;
+    }
+
+    .linocut-banana,
+    .linocut-eye {
+        aspect-ratio: 4 / 3;
+    }
+
+    .linocut-lava {
+        aspect-ratio: 5 / 7;
+    }
+
+    .linocut-motorcycle img,
+    .linocut-banana img {
+        object-position: center 58%;
+    }
+
+    .linocut-eye img {
+        object-position: center 48%;
+    }
+
     .linocuts-grid .art-gallery-item:hover img {
         transform: scale(1.03);
     }
 
-    .linocuts-grid .linocut-motorcycle,
-    .linocuts-grid .linocut-banana {
-        object-position: center 58%;
-    }
-
-    .linocuts-grid .linocut-eye {
-        object-position: center 48%;
-    }
-
     @media (max-width: 820px) {
-        .linocuts-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+        .linocut-rings,
+        .linocut-motorcycle,
+        .linocut-banana,
+        .linocut-eye,
+        .linocut-lava,
+        .linocut-squid {
+            grid-column: span 6;
         }
     }
 
@@ -91,6 +129,15 @@
         .linocuts-gallery-heading,
         .linocuts-grid {
             grid-template-columns: 1fr;
+        }
+
+        .linocut-rings,
+        .linocut-motorcycle,
+        .linocut-banana,
+        .linocut-eye,
+        .linocut-lava,
+        .linocut-squid {
+            grid-column: 1;
         }
     }
 </style>
@@ -105,26 +152,26 @@
     <section class="linocuts-gallery-section" aria-labelledby="linocuts-gallery-heading">
         <div class="linocuts-gallery-heading">
             <h2 id="linocuts-gallery-heading">Selected prints</h2>
-            <p>A collection spanning landscapes, cosmic imagery, and strange little objects. Select any print to see the complete photograph.</p>
+            <p>A collection spanning landscapes, cosmic imagery, and strange little objects. Select any print to see a larger view.</p>
         </div>
 
         <div class="art-grid linocuts-grid">
-            <button class="art-gallery-item" type="button" data-gallery-item>
+            <button class="art-gallery-item linocut-rings" type="button" data-gallery-item>
                 <img src="/images/Linocuts/interconnected-rings.jpg" width="2146" height="2200" alt="Pastel blue, green, and lavender linocut of overlapping circular forms" loading="eager" decoding="async">
             </button>
-            <button class="art-gallery-item" type="button" data-gallery-item>
-                <img class="linocut-motorcycle" src="/images/Linocuts/motorcycle-ride.jpg" width="4032" height="3024" alt="Layered linocut of a motorcycle ride through a yellow cornfield" loading="eager" decoding="async">
+            <button class="art-gallery-item linocut-motorcycle" type="button" data-gallery-item>
+                <img src="/images/Linocuts/motorcycle-ride.jpg" width="4032" height="3024" alt="Layered linocut of a motorcycle ride through a yellow cornfield" loading="eager" decoding="async">
             </button>
-            <button class="art-gallery-item" type="button" data-gallery-item>
-                <img class="linocut-banana" src="/images/Linocuts/after-dinah.jpg" width="4032" height="3024" alt="Yellow and brown linocut of a banana against a repeating square pattern" loading="lazy" decoding="async">
+            <button class="art-gallery-item linocut-banana" type="button" data-gallery-item>
+                <img src="/images/Linocuts/after-dinah.jpg" width="4032" height="3024" alt="Yellow and brown linocut of a banana against a repeating square pattern" loading="lazy" decoding="async">
             </button>
-            <button class="art-gallery-item" type="button" data-gallery-item>
-                <img class="linocut-eye" src="/images/Linocuts/loving-eye-of-god.jpg" width="4032" height="3024" alt="Black, white, purple, and blue linocut of an eye filled with stars" loading="lazy" decoding="async">
+            <button class="art-gallery-item linocut-eye" type="button" data-gallery-item>
+                <img src="/images/Linocuts/loving-eye-of-god.jpg" width="4032" height="3024" alt="Black, white, purple, and blue linocut of an eye filled with stars" loading="lazy" decoding="async">
             </button>
-            <button class="art-gallery-item" type="button" data-gallery-item>
+            <button class="art-gallery-item linocut-lava" type="button" data-gallery-item>
                 <img src="/images/Linocuts/lava-lamp.jpg" width="2282" height="3179" alt="Burgundy, pink, and red linocut of a glowing lava lamp" loading="lazy" decoding="async">
             </button>
-            <button class="art-gallery-item" type="button" data-gallery-item>
+            <button class="art-gallery-item linocut-squid" type="button" data-gallery-item>
                 <img src="/images/Linocuts/cosmic-squid.jpg" width="2420" height="2474" alt="Black and white linocut of a one-eyed squid surrounded by moon phases and stars" loading="lazy" decoding="async">
             </button>
         </div>
