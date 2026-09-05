@@ -163,6 +163,41 @@
     overflow: hidden;
   }
 
+  .oracle-download-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 56px;
+    margin-top: var(--space-4);
+    padding: 0.85rem var(--space-4);
+    border: var(--border-subtle);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+    color: var(--color-dark);
+    font-size: var(--type-section-copy-size);
+    font-weight: var(--type-eyebrow-weight);
+    text-decoration: none;
+    transition: color var(--transition-ui), transform var(--transition-ui), box-shadow var(--transition-ui);
+  }
+
+  .oracle-download-card:hover,
+  .oracle-download-card:focus-visible {
+    color: var(--color-accent);
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transform: translateY(-2px);
+  }
+
+  .oracle-download-card > span:last-child {
+    flex: 0 0 auto;
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+
   .oracle-game-controls {
     display: flex;
     align-items: center;
@@ -589,6 +624,7 @@
     .oracle-build-list p {
       grid-column: 2;
     }
+
   }
 </style>
 
@@ -641,6 +677,11 @@
         <p class="oracle-game-stopped" data-game-stopped-message role="status" hidden>Music stopped. Restart the deck when you’re ready to play again.</p>
       </div>
     </div>
+
+    <a class="oracle-download-card" href="https://cosmicsquid46.itch.io/the-world-of-emora-digital-oracle-deck-desktop" target="_blank" rel="noopener noreferrer">
+      <span>Download on itch.io <span class="visually-hidden">(opens in a new tab)</span></span>
+      <span aria-hidden="true">↗</span>
+    </a>
   </section>
 
   <section class="oracle-section" aria-labelledby="oracle-shift-heading">
