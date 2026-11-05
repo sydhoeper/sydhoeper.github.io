@@ -235,7 +235,7 @@ function finishPageLoad(pageName, focusContent) {
 
     contentArea.setAttribute("aria-busy", "false");
     updateActiveLink(pageName);
-    document.title = "Syd Hoeper";
+    document.title = pageName === "home" ? "Syd Hoeper — Multidisciplinary Designer" : "Syd Hoeper";
     window.scrollTo(0, 0);
 
     if (focusContent) {
